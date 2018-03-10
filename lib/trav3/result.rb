@@ -27,6 +27,11 @@ class Response
     @response = response
     @json = JSON.parse(response.body)
   end
+
+  def inspect
+    "<#{self.class} Response>"
+  end
+
   def success?; raise Unimplemented  end
   def failure?; raise Unimplemented  end
 end
