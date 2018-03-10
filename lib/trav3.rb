@@ -33,6 +33,10 @@ module Trav3
       GET.("#{self[]}/build/#{id}")
     end
 
+    def build_jobs(id)
+      GET.("#{self[]}/build/#{id}/jobs")
+    end
+
     def job(id)
       GET.("#{self[]}/job/#{id}")
     end
