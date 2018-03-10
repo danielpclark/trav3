@@ -18,6 +18,7 @@ module Trav3
     def [](repository = nil)
       [API_ENDPOINT].tap {|a| a.push("repo/#{@repo}") if repository }.join('/')
     end
+    private :[]
 
     def defaults(**args)
       (@options ||= Options.new).build(**args)
