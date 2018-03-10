@@ -32,6 +32,7 @@ require 'trav3'
 project = Trav3::Travis.new("name/example")
 project.builds
 project.build(12345)
+project.build_jobs(12345)
 project.job(1234)
 project.log(1234)
 project.text_log(1234)
