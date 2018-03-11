@@ -16,7 +16,7 @@ module Trav3
       @opts ||= []
 
       for (key, value) in args
-        @opts = @opts.keep_if {|a, _| (eval ki)[a] }
+        remove(key)
         @opts.push(pb[key, value])
       end
     end
