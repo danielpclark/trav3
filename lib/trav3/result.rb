@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'forwardable'
+require 'trav3/pagination'
 
 class InvalidRepository < StandardError
   def message
@@ -37,6 +38,10 @@ class Response
 end
 
 class Success < Response
+  def page
+    Trav3::Pagination.new(self)
+  end
+
   def success?; true  end
   def failure?; false end
 end

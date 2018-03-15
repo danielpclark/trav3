@@ -1,16 +1,18 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require_relative './result'
+require 'trav3/result'
 
-module GET
-  def self.call(url)
-    response = Net::HTTP.get_response(URI(url))
+module Trav3
+  module GET
+    def self.call(url)
+      response = Net::HTTP.get_response(URI(url))
 
-    if Net::HTTPOK == response.code_type
-      Success.new(response)
-    else
-      RequestError.new(response)
+      if Net::HTTPOK == response.code_type
+        Success.new(response)
+      else
+        RequestError.new(response)
+      end
     end
   end
 end
