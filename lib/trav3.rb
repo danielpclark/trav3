@@ -5,8 +5,10 @@ require 'trav3/result'
 require 'trav3/get'
 
 module Trav3
+  API_ROOT = 'https://api.travis-ci.org'
+
   class Travis
-    API_ENDPOINT = 'https://api.travis-ci.org/v3'
+    API_ENDPOINT = "#{API_ROOT}/v3"
     def initialize(repo)
       raise InvalidRepository unless repo.is_a?(String) and
         Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
@@ -26,32 +28,37 @@ module Trav3
     end
 
     def builds
-      GET.("#{self[true]}/builds#{opts}")
+      get("#{self[true]}/builds#{opts}")
     end
 
     def build(id)
-      GET.("#{self[]}/build/#{id}")
+      get("#{self[]}/build/#{id}")
     end
 
     def build_jobs(id)
-      GET.("#{self[]}/build/#{id}/jobs")
+      get("#{self[]}/build/#{id}/jobs")
     end
 
     def job(id)
-      GET.("#{self[]}/job/#{id}")
+      get("#{self[]}/job/#{id}")
     end
 
     def log(id)
-      GET.("#{self[]}/job/#{id}/log")
+      get("#{self[]}/job/#{id}/log")
     end
 
     def text_log(id)
-      GET.("#{self[]}/job/#{id}/log.txt")
+      get("#{self[]}/job/#{id}/log.txt")
     end
 
     def opts
       @options
     end
     private :opts
+
+    def get(x)
+      Trav3::GET.(x)
+    end
+    private :get
   end
 end
