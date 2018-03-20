@@ -17,12 +17,14 @@ module Trav3
 
       for (key, value) in args
         remove(key)
-        @opts.push(pb[key, value])
+        @opts.push("#{key}=#{value}")
       end
     end
 
     def remove(key)
-      @opts = @opts.keep_if {|a, _| ki[key][a] }
+      @opts = @opts.keep_if {|item, _|
+        !(/^#{key}=/ === "#{item}")
+      }
     end
 
     def +(other)
@@ -33,15 +35,5 @@ module Trav3
     def to_s
       opts
     end
-
-    def pb
-      lambda {|param, arg| "#{param}=#{arg}" }
-    end
-    private :pb
-
-    def ki
-      lambda {|key| lambda {|item| !(/^#{key}=/ === "#{item}") } }
-    end
-    private :ki
   end
 end
