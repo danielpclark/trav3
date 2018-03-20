@@ -10,7 +10,7 @@ module Trav3
 
   # Abstract base class for Travis CI v3 API
   #
-  # @author Daniel P. Clark <6ftdan@gmail.com>
+  # @author Daniel P. Clark https://6ftdan.com
   # @!attribute [r] options
   #   @return [Options] Request options object
   class Travis
@@ -29,10 +29,8 @@ module Trav3
       defaults(limit: 25)
     end
 
-    # Set the default options for requests of collections
-    #
-    # @overload defaults(key => value)
-    #   Set as many options as you'd like for collection requests
+    # @overload defaults(key: value, ...)
+    #   Set as many options as you'd like for collections queried via an API request
     #   @param key [Symbol, String] name for value to set
     #   @param value [Symbol, String, Integer] value for key
     # @return [self]
@@ -41,7 +39,6 @@ module Trav3
       self
     end
 
-    # # Owner
     # This will be either a user or organization.
     # 
     # ## Attributes
@@ -112,8 +109,8 @@ module Trav3
     #     Example: GET /owner/github_id/639823
     #
     # @param owner [String] username or github ID
-    # @return [Trav3::Success, Trav3::RequestError]
-    def owner(owner = parse_username)
+    # @return [Success, RequestError]
+    def owner(owner = username)
       if /^\d+$/ === owner
         get("#{self[]}/owner/github_id/#{owner}")
       else
@@ -121,10 +118,142 @@ module Trav3
       end
     end
 
+    # A list of repositories for the current user.
+    # 
+    # ## Attributes
+    #    
+    #     Name           Type           Description
+    #     repositories   [Repository]   List of repositories.
+    #    
+    # **Collection Items**<br />
+    # Each entry in the repositories array has the following attributes:
+    #     
+    #     Name                Type     Description
+    #     id                  Integer  Value uniquely identifying the repository.
+    #     name                String   The repository's name on GitHub.
+    #     slug                String   Same as {repository.owner.name}/{repository.name}.
+    #     description         String   The repository's description from GitHub.
+    #     github_language     String   The main programming language used according to GitHub.
+    #     active              Boolean  Whether or not this repository is currently enabled on Travis CI.
+    #     private             Boolean  Whether or not this repository is private.
+    #     owner               Owner    GitHub user or organization the repository belongs to.
+    #     default_branch      Branch   The default branch on GitHub.
+    #     starred             Boolean  Whether or not this repository is starred.
+    #     current_build       Build    The most recently started build (this excludes builds that have been created but have not yet started).
+    #     last_started_build  Build    Alias for current_build.
+    #    
+    # ## Actions
+    # **For Owner**<br />
+    # This returns a list of repositories an owner has access to.
+    # 
+    # GET <code>/owner/{owner.login}/repos</code>
+    #    
+    #     Template Variable  Type    Description
+    #     owner.login        String  User or organization login set on GitHub.
+    #    
+    #     Query Parameter     Type       Description
+    #     active              [Boolean]  Alias for repository.active.
+    #     include             [String]   List of attributes to eager load.
+    #     limit               Integer    How many repositories to include in the response. Used for pagination.
+    #     offset              Integer    How many repositories to skip before the first entry in the response. Used for pagination.
+    #     private             [Boolean]  Alias for repository.private.
+    #     repository.active   [Boolean]  Filters repositories by whether or not this repository is currently enabled on Travis CI.
+    #     repository.private  [Boolean]  Filters repositories by whether or not this repository is private.
+    #     repository.starred  [Boolean]  Filters repositories by whether or not this repository is starred.
+    #     sort_by             [String]   Attributes to sort repositories by. Used for pagination.
+    #     starred             [Boolean]  Alias for repository.starred.
+    #    
+    #     Example: GET /owner/danielpclark/repos?limit=5&sort_by=active,name
+    #     
+    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # 
+    # GET <code>/owner/{user.login}/repos</code>
+    #     
+    #     Template Variable  Type    Description
+    #     user.login         String  Login set on Github.
+    #
+    #     Query Parameter    Type        Description
+    #     active              [Boolean]  Alias for repository.active.
+    #     include             [String]   List of attributes to eager load.
+    #     limit               Integer    How many repositories to include in the response. Used for pagination.
+    #     offset              Integer    How many repositories to skip before the first entry in the response. Used for pagination.
+    #     private             [Boolean]  Alias for repository.private.
+    #     repository.active   [Boolean]  Filters repositories by whether or not this repository is currently enabled on Travis CI.
+    #     repository.private  [Boolean]  Filters repositories by whether or not this repository is private.
+    #     repository.starred  [Boolean]  Filters repositories by whether or not this repository is starred.
+    #     sort_by             [String]   Attributes to sort repositories by. Used for pagination.
+    #     starred             [Boolean]  Alias for repository.starred.
+    #    
+    #     Example: GET /owner/danielpclark/repos?limit=5&sort_by=active,name
+    #     
+    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # 
+    # GET <code>/owner/{organization.login}/repos</code>
+    #     
+    #     Template Variable   Type    Description
+    #     organization.login  String  Login set on GitHub.
+    #
+    #     Query Parameter     Type       Description
+    #     active              [Boolean]  Alias for repository.active.
+    #     include             [String]   List of attributes to eager load.
+    #     limit               Integer    How many repositories to include in the response. Used for pagination.
+    #     offset              Integer    How many repositories to skip before the first entry in the response. Used for pagination.
+    #     private             [Boolean]  Alias for repository.private.
+    #     repository.active   [Boolean]  Filters repositories by whether or not this repository is currently enabled on Travis CI.
+    #     repository.private  [Boolean]  Filters repositories by whether or not this repository is private.
+    #     repository.starred  [Boolean]  Filters repositories by whether or not this repository is starred.
+    #     sort_by             [String]   Attributes to sort repositories by. Used for pagination.
+    #     starred             [Boolean]  Alias for repository.starred.
+    #    
+    #     Example: GET /owner/travis-ci/repos?limit=5&sort_by=active,name
+    #     
+    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # 
+    # GET <code>/owner/github_id/{owner.github_id}/repos</code>
+    #     
+    #     Template Variable  Type     Description
+    #     owner.github_id    Integer  User or organization id set on GitHub.
+    #
+    #     Query Parameter     Type       Description
+    #     active              [Boolean]  Alias for repository.active.
+    #     include             [String]   List of attributes to eager load.
+    #     limit               Integer    How many repositories to include in the response. Used for pagination.
+    #     offset              Integer    How many repositories to skip before the first entry in the response. Used for pagination.
+    #     private             [Boolean]  Alias for repository.private.
+    #     repository.active   [Boolean]  Filters repositories by whether or not this repository is currently enabled on Travis CI.
+    #     repository.private  [Boolean]  Filters repositories by whether or not this repository is private.
+    #     repository.starred  [Boolean]  Filters repositories by whether or not this repository is starred.
+    #     sort_by             [String]   Attributes to sort repositories by. Used for pagination.
+    #     starred             [Boolean]  Alias for repository.starred.
+    #    
+    #     Example: GET /owner/github_id/639823/repos?limit=5&sort_by=active,name
+    #     
+    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # 
+    # **For Current User**<br />
+    # This returns a list of repositories the current user has access to.
+    # 
+    # GET <code>/repos</code>
+    #     
+    #     Query Parameter     Type       Description
+    #     active              [Boolean]  Alias for repository.active.
+    #     include             [String]   List of attributes to eager load.
+    #     limit               Integer    How many repositories to include in the response. Used for pagination.
+    #     offset              Integer    How many repositories to skip before the first entry in the response. Used for pagination.
+    #     private             [Boolean]  Alias for repository.private.
+    #     repository.active   [Boolean]  Filters repositories by whether or not this repository is currently enabled on Travis CI.
+    #     repository.private  [Boolean]  Filters repositories by whether or not this repository is private.
+    #     repository.starred  [Boolean]  Filters repositories by whether or not this repository is starred.
+    #     sort_by             [String]   Attributes to sort repositories by. Used for pagination.
+    #     starred             [Boolean]  Alias for repository.starred.
+    #
+    #     Example: GET /repos?limit=5&sort_by=active,name
+    #     
+    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
     #
     # @param owner [String] username or github ID
-    # @return [Trav3::Success, Trav3::RequestError]
-    def repositories(owner = parse_username)
+    # @return [Success, RequestError]
+    def repositories(owner = username)
       if /^\d+$/ === owner
         get("#{self[]}/owner/github_id/#{owner}/repos#{opts}")
       else
@@ -136,7 +265,7 @@ module Trav3
     # @param repo [String] github_username/repository_name
     # @raise [InvalidRepository] if given input does not
     #   conform to valid repository identifier format
-    # @return [Trav3::Success, Trav3::RequestError]
+    # @return [Success, RequestError]
     def repository(repo = @repo)
       raise InvalidRepository unless repo.is_a?(String) and
         Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
@@ -144,60 +273,56 @@ module Trav3
       get("#{self[]}/repo/#{repo.gsub(/\//, '%2F')}")
     end
 
-    # @return [Trav3::Success, Trav3::RequestError]
+    # @return [Success, RequestError]
     def builds
       get("#{self[true]}/builds#{opts}")
     end
 
     # @param id [String, Integer] the build id number
-    # @return [Trav3::Success, Trav3::RequestError]
+    # @return [Success, RequestError]
     def build(id)
       get("#{self[]}/build/#{id}")
     end
 
     # @param id [String, Integer] the build id number
-    # @return [Trav3::Success, Trav3::RequestError]
+    # @return [Success, RequestError]
     def build_jobs(id)
       get("#{self[]}/build/#{id}/jobs")
     end
 
     # @param id [String, Integer] the job id number
-    # @return [Trav3::Success, Trav3::RequestError]
+    # @return [Success, RequestError]
     def job(id)
       get("#{self[]}/job/#{id}")
     end
 
     # @param id [String, Integer] the job id number
-    # @return [Trav3::Success, Trav3::RequestError]
+    # @return [Success, RequestError]
     def log(id)
       get("#{self[]}/job/#{id}/log")
     end
 
     # @param id [String, Integer] the job id number
-    # @return [Trav3::Success, Trav3::RequestError]
+    # @return [Success, RequestError]
     def text_log(id)
       get("#{self[]}/job/#{id}/log.txt")
     end
 
-    # @private
+    private # @private
     def [](repository = false)
       [API_ENDPOINT].tap {|a| a.push("repo/#{@repo}") if repository }.join('/')
     end
-    private :[]
 
     def opts
       @options
     end
-    private :opts
 
     def get(x)
       Trav3::GET.(x)
     end
-    private :get
 
-    def parse_username
+    def username
       @repo[/.*?(?=(?:\/|%2F)|$)/]
     end
-    private :parse_username
   end
 end

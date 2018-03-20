@@ -43,6 +43,10 @@ module Trav3
       Trav3::Pagination.new(self)
     end
 
+    def inspect
+      "<#{self.class} Response: keys = #{self.keys}>"
+    end
+
     def success?; true  end
     def failure?; false end
   end
