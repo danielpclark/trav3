@@ -27,35 +27,33 @@ Or install it yourself as:
 
 ## Usage
 
-```ruby
-require 'trav3'
-project = Trav3::Travis.new("name/example")
-project.owner
-project.owner("owner")
-project.repositories
-project.repositories("owner")
-project.repository
-project.repository("owner/repo")
-project.builds
-project.build(12345)
-project.build_jobs(12345)
-project.job(1234)
-project.log(1234)
-project.text_log(1234)
-
-# API Request Options
-project.defaults(limit: 25)
-
-# Pagination
-builds = project.builds
-builds.page.next
-builds.page.first
-builds.page.last
-
-# Recommended inspection
-builds.keys
-builds.dig("some_key")
-```
+    require 'trav3'
+    project = Trav3::Travis.new("name/example")
+    project.owner
+    project.owner("owner")
+    project.repositories
+    project.repositories("owner")
+    project.repository
+    project.repository("owner/repo")
+    project.builds
+    project.build(12345)
+    project.build_jobs(12345)
+    project.job(1234)
+    project.log(1234)
+    project.text_log(1234)
+    
+    # API Request Options
+    project.defaults(limit: 25)
+    
+    # Pagination
+    builds = project.builds
+    builds.page.next
+    builds.page.first
+    builds.page.last
+    
+    # Recommended inspection
+    builds.keys
+    builds.dig("some_key")
 
 ## Development
 
