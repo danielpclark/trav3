@@ -30,6 +30,12 @@ Or install it yourself as:
 ```ruby
 require 'trav3'
 project = Trav3::Travis.new("name/example")
+project.owner
+project.owner("owner")
+project.repositories
+project.repositories("owner")
+project.repository
+project.repository("owner/repo")
 project.builds
 project.build(12345)
 project.build_jobs(12345)
@@ -45,6 +51,10 @@ builds = project.builds
 builds.page.next
 builds.page.first
 builds.page.last
+
+# Recommended inspection
+builds.keys
+builds.dig("some_key")
 ```
 
 ## Development

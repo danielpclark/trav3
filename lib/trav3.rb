@@ -9,6 +9,7 @@ module Trav3
 
   class Travis
     API_ENDPOINT = "#{API_ROOT}/v3"
+    attr_reader :options
     def initialize(repo)
       raise InvalidRepository unless repo.is_a?(String) and
         Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
@@ -17,7 +18,7 @@ module Trav3
       defaults(limit: 25)
     end
 
-    def [](repository = nil)
+    def [](repository = false)
       [API_ENDPOINT].tap {|a| a.push("repo/#{@repo}") if repository }.join('/')
     end
     private :[]
@@ -25,6 +26,29 @@ module Trav3
     def defaults(**args)
       (@options ||= Options.new).build(**args)
       self
+    end
+
+    def owner(owner = @repo[/.*?(?=(?:\/|%2F)|$)/])
+      if /^\d+$/ === owner
+        get("#{self[]}/owner/github_id/#{owner}")
+      else
+        get("#{self[]}/owner/#{owner}")
+      end
+    end
+
+    def repositories(owner = @repo[/.*?(?=(?:\/|%2F)|$)/])
+      if /^\d+$/ === owner
+        get("#{self[]}/owner/github_id/#{owner}/repos#{opts}")
+      else
+        get("#{self[]}/owner/#{owner}/repos#{opts}")
+      end
+    end
+
+    def repository(repo = @repo)
+      raise InvalidRepository unless repo.is_a?(String) and
+        Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
+
+      get("#{self[]}/repo/#{repo.gsub(/\//, '%2F')}")
     end
 
     def builds

@@ -22,7 +22,7 @@ module Trav3
     end
 
     def remove(key)
-      @opts = @opts.keep_if {|a, _| (eval ki)[a] }
+      @opts = @opts.keep_if {|a, _| ki[key][a] }
     end
 
     def +(other)
@@ -40,7 +40,7 @@ module Trav3
     private :pb
 
     def ki
-      'lambda {|item| !(/^#{key}=/ === "#{item}") }'
+      lambda {|key| lambda {|item| !(/^#{key}=/ === "#{item}") } }
     end
     private :ki
   end
