@@ -5,15 +5,16 @@ require 'trav3/result'
 
 module Trav3
   module POST
-    def self.call(url, fields = {})
-      uri = URI(API_ROOT)
-      url = url.sub(/^#{API_ROOT}/, '').sub(/\?.*$/, '')
-      req = Net::HTTP::Post.new(url)
-      req.set_form_data(**fields)
-
-      response = Net::HTTP.start(uri.hostname, uri.port) {|http|
-        http.request(req)
+    def self.call(url, headers = {}, fields={})
+      uri = URI( url.sub(/\?.*$/, '') )
+      req = Net::HTTP::Post.new(uri.request_uri)
+      headers.each_pair { |header, value|
+        req[header] = value
       }
+      req.set_form_data(**fields)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = (uri.scheme == "https")
+      response = http.request(req)
 
       if Net::HTTPOK == response.code_type
         Success.new(response)

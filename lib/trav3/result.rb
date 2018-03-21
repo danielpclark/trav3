@@ -31,7 +31,7 @@ module Trav3
     end
 
     def inspect
-      "<#{self.class} Response>"
+      "<#{self.class} Response: keys = #{self.keys}>"
     end
 
     def success?; raise Unimplemented  end
@@ -41,10 +41,6 @@ module Trav3
   class Success < Response
     def page
       Trav3::Pagination.new(self)
-    end
-
-    def inspect
-      "<#{self.class} Response: keys = #{self.keys}>"
     end
 
     def success?; true  end

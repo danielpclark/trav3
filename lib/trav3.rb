@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'trav3/version'
 require 'trav3/options'
+require 'trav3/headers'
 require 'trav3/result'
 require 'trav3/post'
 require 'trav3/get'
@@ -14,9 +15,12 @@ module Trav3
   # @author Daniel P. Clark https://6ftdan.com
   # @!attribute [r] options
   #   @return [Options] Request options object
+  # @!attribute [r] headers
+  #   @return [Headers] Request headers object
   class Travis
-    API_ENDPOINT = "#{API_ROOT}/v3"
+    API_ENDPOINT = API_ROOT
     attr_reader :options
+    attr_reader :headers
 
     # @param repo [String] github_username/repository_name
     # @raise [InvalidRepository] if given input does not
@@ -28,6 +32,7 @@ module Trav3
 
       @repo = repo.gsub(/\//, '%2F')
       defaults(limit: 25)
+      h("Travis-API-Version": 3)
     end
 
     # @overload defaults(key: value, ...)
@@ -37,6 +42,16 @@ module Trav3
     # @return [self]
     def defaults(**args)
       (@options ||= Options.new).build(**args)
+      self
+    end
+
+    # @overload h(key: value, ...)
+    #   Set as many headers as you'd like for API requests
+    #   @param key [Symbol, String] name for value to set
+    #   @param value [Symbol, String, Integer] value for key
+    # @return [self]
+    def h(**args)
+      (@headers ||= Headers.new).build(**args)
       self
     end
 
@@ -466,11 +481,11 @@ module Trav3
     end
 
     def get(x)
-      Trav3::GET.(x)
+      Trav3::GET.(x, headers())
     end
 
     def post(x, fields = {})
-      Trav3::POST.(x, fields)
+      Trav3::POST.(x, headers(), fields)
     end
 
     def username
