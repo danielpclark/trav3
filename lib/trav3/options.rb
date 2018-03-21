@@ -35,5 +35,9 @@ module Trav3
     def to_s
       opts
     end
+
+    def to_h
+      @opts.map {|item| item.split("=") }.to_h
+    end
   end
 end
