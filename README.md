@@ -1,13 +1,12 @@
 [![Gem Version](https://badge.fury.io/rb/trav3.svg)](http://badge.fury.io/rb/trav3)
 [![Build Status](https://travis-ci.org/danielpclark/trav3.svg?branch=master)](https://travis-ci.org/danielpclark/trav3)
-[![Inline docs](http://inch-ci.org/github/danielpclark/trav3.svg?branch=master)](http://inch-ci.org/github/danielpclark/trav3)
 [![SayThanks.io](https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg)](https://saythanks.io/to/danielpclark)
 
 # Trav3
 
 A simple abstraction layer for Travis CI API v3. The results from queries return either `Success`
 or `RequestError` which both repsond with Hash like query methods for the JSON data or the Net::HTTP
-resonse object methods.
+resonse object methods.  Documentation from the API has been added to this package.  Please check it out.
 
 
 ## Installation
