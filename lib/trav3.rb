@@ -473,7 +473,7 @@ module Trav3
     #
     # **For Current User**
     #
-    # This returns a list of builds for the current user. The result is paginated. The default limit is 100.
+    # This returns a list of builds for the current user. The result is paginated.
     # 
     # GET <code>/builds</code>
     #     
@@ -637,28 +637,264 @@ module Trav3
       get("#{self[]}/build/#{id}")
     end
 
+    # A list of jobs.
+    # 
+    # ## Attributes
+    #     
+    #     Name  Type  Description
+    #     jobs  [Job]  List of jobs.
+    #    
+    # **Collection Items**
+    #
+    # Each entry in the jobs array has the following attributes:
+    #      
+    #     Name           Type        Description
+    #     id             Integer     Value uniquely identifying the job.
+    #     allow_failure  Unknown     The job's allow_failure.
+    #     number         String      Incremental number for a repository's builds.
+    #     state          String      Current state of the job.
+    #     started_at     String      When the job started.
+    #     finished_at    String      When the job finished.
+    #     build          Build       The build the job is associated with.
+    #     queue          String      Worker queue this job is/was scheduled on.
+    #     repository     Repository  GitHub user or organization the job belongs to.
+    #     commit         Commit      The commit the job is associated with.
+    #     owner          Owner       GitHub user or organization the job belongs to.
+    #     stage          [Stage]     The stages of a job.
+    #     created_at     String      When the job was created.
+    #     updated_at     String      When the job was updated.
+    #     config         Object      The job's config.
+    #    
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a list of jobs belonging to an individual build.
+    # 
+    # GET <code>/build/{build.id}/jobs</code>
+    #     
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #    
+    #     Example: GET /build/86601346/jobs
+    #     
+    # **For Current User**
+    #
+    # This returns a list of jobs a current user has access to.
+    # 
+    # GET <code>/jobs</code>
+    #     
+    #     Query Parameter  Type      Description
+    #     active           Unknown   Alias for job.active.
+    #     created_by       Unknown   Alias for job.created_by.
+    #     include          [String]  List of attributes to eager load.
+    #     job.active       Unknown   Documentation missing.
+    #     job.created_by   Unknown   Documentation missing.
+    #     job.state        [String]  Filters jobs by current state of the job.
+    #     limit            Integer   How many jobs to include in the response. Used for pagination.
+    #     offset           Integer   How many jobs to skip before the first entry in the response. Used for pagination.
+    #     sort_by          [String]  Attributes to sort jobs by. Used for pagination.
+    #     state            [String]  Alias for job.state.
+    #    
+    #     Example: GET /jobs?limit=5
+    #     
+    # **Sortable by:** id, append :desc to any attribute to reverse order.
+    # The default value is id:desc.
+    #
     # @param id [String, Integer] the build id number
     # @return [Success, RequestError]
     def build_jobs(id)
       get("#{self[]}/build/#{id}/jobs")
     end
 
+    # An individual job.
+    # 
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #      
+    #     Name  Type     Description
+    #     id    Integer  Value uniquely identifying the job.
+    #    
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is eager loaded.
+    #      
+    #     Name           Type        Description
+    #     id             Integer     Value uniquely identifying the job.
+    #     allow_failure  Unknown     The job's allow_failure.
+    #     number         String      Incremental number for a repository's builds.
+    #     state          String      Current state of the job.
+    #     started_at     String      When the job started.
+    #     finished_at    String      When the job finished.
+    #     build          Build       The build the job is associated with.
+    #     queue          String      Worker queue this job is/was scheduled on.
+    #     repository     Repository  GitHub user or organization the job belongs to.
+    #     commit         Commit      The commit the job is associated with.
+    #     owner          Owner       GitHub user or organization the job belongs to.
+    #     stage          [Stage]     The stages of a job.
+    #     created_at     String      When the job was created.
+    #     updated_at     String      When the job was updated.
+    #    
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single job.
+    # 
+    # GET <code>/job/{job.id}</code>
+    #     
+    #     Template Variable  Type     Description
+    #     job.id             Integer  Value uniquely identifying the job.
+    #    
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #    
+    #     Example: GET /job/86601347
+    #     
+    # **Cancel**
+    #
+    # This cancels a currently running job.
+    # 
+    # POST <code>/job/{job.id}/cancel</code>
+    #     
+    #     Template Variable  Type     Description
+    #     job.id             Integer  Value uniquely identifying the job.
+    #    
+    #     Example: POST /job/86601347/cancel
+    #     
+    # **Restart**
+    #
+    # This restarts a job that has completed or been canceled.
+    # 
+    # POST <code>/job/{job.id}/restart</code>
+    #     
+    #     Template Variable  Type     Description
+    #     job.id             Integer  Value uniquely identifying the job.
+    #    
+    #     Example: POST /job/86601347/restart
+    #     
+    # **Debug**
+    #
+    # This restarts a job in debug mode, enabling the logged-in user to ssh into the build VM. Please note this feature is only available on the travis-ci.com domain, and those repositories on the travis-ci.org domain for which the debug feature is enabled. See this document for more details.
+    # 
+    # POST <code>/job/{job.id}/debug</code>
+    #     
+    #     Template Variable  Type     Description
+    #     job.id             Integer  Value uniquely identifying the job.
+    #    
+    #     Example: POST /job/86601347/debug
+    #    
+    # @note POST requests require an authorization token set in the headers. See: {h}
+    #
     # @param id [String, Integer] the job id number
+    # @param option [Symbol] options for :cancel, :restart, or :debug
     # @return [Success, RequestError]
-    def job(id)
-      get("#{self[]}/job/#{id}")
+    def job(id, option = nil)
+      case option
+      when :cancel
+        post("#{self[]}/job/#{id}/cancel")
+      when :restart
+        post("#{self[]}/job/#{id}/restart")
+      when :debug
+        post("#{self[]}/job/#{id}/debug")
+      else
+        get("#{self[]}/job/#{id}")
+      end
     end
 
+    # An individual log.
+    # 
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #      
+    #     Name  Type     Description
+    #     id    Unknown  The log's id.
+    #    
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is eager loaded.
+    #      
+    #     Name       Type     Description
+    #     id         Unknown  The log's id.
+    #     content    Unknown  The log's content.
+    #     log_parts  Unknown  The log's log_parts.
+    #    
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single log.
+    # 
+    # It's possible to specify the accept format of the request as text/plain if required. This will return the content of the log as a single blob of text.
+    #      
+    #     curl -H "Travis-API-Version: 3" \
+    #       -H "Accept: text/plain" \
+    #       -H "Authorization: token xxxxxxxxxxxx" \
+    #       https://api.travis-ci.org/job/{job.id}/log
+    #    
+    # The default response type is application/json, and will include additional meta data such as @type, @representation etc. (see [https://developer.travis-ci.org/format](https://developer.travis-ci.org/format)).
+    # 
+    # GET <code>/job/{job.id}/log</code>
+    #    
+    #     Template Variable  Type     Description
+    #     job.id             Integer  Value uniquely identifying the job.
+    #
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     log.token        Unknown   Documentation missing.
+    #
+    #     Example: GET /job/86601347/log
+    #     
+    # GET <code>/job/{job.id}/log.txt</code>
+    #     
+    #     Template Variable  Type     Description
+    #     job.id             Integer  Value uniquely identifying the job.
+    #    
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     log.token        Unknown   Documentation missing.
+    #    
+    #     Example:GET/job/86601347/log.txt
+    #     
+    # **Delete**
+    #
+    # This removes the contents of a log. It gets replace with the message: Log removed by XXX at 2017-02-13 16:00:00 UTC.
+    #      
+    #     curl -X DELETE \
+    #       -H "Travis-API-Version: 3" \
+    #       -H "Authorization: token xxxxxxxxxxxx" \
+    #       https://api.travis-ci.org/job/{job.id}/log
+    #
+    # DELETE <code>/job/{job.id}/log</code>
+    #     
+    #     Template Variable  Type     Description
+    #     job.id             Integer  Value uniquely identifying the job.
+    #     
+    #     Example: DELETE /job/86601347/log
+    #     
+    # @note DELETE is unimplemented
+    #
     # @param id [String, Integer] the job id number
+    # @param option [Symbol] options for :text or :delete
     # @return [Success, RequestError]
-    def log(id)
-      get("#{self[]}/job/#{id}/log")
-    end
-
-    # @param id [String, Integer] the job id number
-    # @return [Success, RequestError]
-    def text_log(id)
-      get("#{self[]}/job/#{id}/log.txt")
+    def log(id, option = nil)
+      case option
+      when :text
+        get("#{self[]}/job/#{id}/log.txt")
+      when :delete
+        raise Unimplemented
+      else
+        get("#{self[]}/job/#{id}/log")
+      end
     end
 
     private # @private

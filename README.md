@@ -41,7 +41,6 @@ Or install it yourself as:
     project.build_jobs(12345)
     project.job(1234)
     project.log(1234)
-    project.text_log(1234)
     
     # API Request Options
     project.defaults(limit: 25)
