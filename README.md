@@ -6,7 +6,7 @@
 
 A simple abstraction layer for Travis CI API v3. The results from queries return either `Success`
 or `RequestError` which both repsond with Hash like query methods for the JSON data or the Net::HTTP
-resonse object methods.  Documentation from the API has been added to this package.  Please check it out.
+resonse object methods.  Documentation from the API has been added to this package.  Please [check it out](http://www.rubydoc.info/github/danielpclark/trav3/master/Trav3/Travis).
 
 
 ## Installation
