@@ -10,7 +10,7 @@ require 'trav3/get'
 module Trav3
   API_ROOT = 'https://api.travis-ci.org'
 
-  # Abstract base class for Travis CI v3 API
+  # An abstraction for the Travis CI v3 API
   #
   # @author Daniel P. Clark https://6ftdan.com
   # @!attribute [r] options
@@ -45,8 +45,11 @@ module Trav3
       self
     end
 
+    # Set as many headers as you'd like for API requests
+    #    
+    #     h("Authorization": "token xxxxxxxxxxxxxxxxxxxxxx")
+    #    
     # @overload h(key: value, ...)
-    #   Set as many headers as you'd like for API requests
     #   @param key [Symbol, String] name for value to set
     #   @param value [Symbol, String, Integer] value for key
     # @return [self]
@@ -412,6 +415,8 @@ module Trav3
     #    
     #     Example: POST /repo/rails%2Frails/unstar
     #    
+    # @note POST requests require an authorization token set in the headers. See: {h}
+    #
     # @param repo [String] github_username/repository_name
     # @param action [String, Symbol] Optional argument for star/unstar/activate/deactivate
     # @raise [InvalidRepository] if given input does not
@@ -432,11 +437,200 @@ module Trav3
       end
     end
 
+    # A list of builds.
+    # 
+    # ## Attributes
+    #     
+    #     Name    Type     Description
+    #     builds  [Build]  List of builds.
+    #    
+    # **Collection Items**
+    #
+    # Each entry in the builds array has the following attributes:
+    #      
+    #     Name                 Type        Description
+    #     id                   Integer     Value uniquely identifying the build.
+    #     number               String      Incremental number for a repository's builds.
+    #     state                String      Current state of the build.
+    #     duration             Integer     Wall clock time in seconds.
+    #     event_type           String      Event that triggered the build.
+    #     previous_state       String      State of the previous build (useful to see if state changed).
+    #     pull_request_title   String      Title of the build's pull request.
+    #     pull_request_number  Integer     Number of the build's pull request.
+    #     started_at           String      When the build started.
+    #     finished_at          String      When the build finished.
+    #     repository           Repository  GitHub user or organization the build belongs to.
+    #     branch               Branch      The branch the build is associated with.
+    #     tag                  Unknown     The build's tag.
+    #     commit               Commit      The commit the build is associated with.
+    #     jobs                 Jobs        List of jobs that are part of the build's matrix.
+    #     stages               [Stage]     The stages of a build.
+    #     created_by           Owner       The User or Organization that created the build.
+    #     updated_at           Unknown     The build's updated_at.
+    #     request              Unknown     The build's request.
+    #    
+    # ## Actions
+    #
+    # **For Current User**
+    #
+    # This returns a list of builds for the current user. The result is paginated. The default limit is 100.
+    # 
+    # GET <code>/builds</code>
+    #     
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many builds to include in the response. Used for pagination.
+    #     limit            Integer   How many builds to include in the response. Used for pagination.
+    #     offset           Integer   How many builds to skip before the first entry in the response. Used for pagination.
+    #     offset           Integer   How many builds to skip before the first entry in the response. Used for pagination.
+    #     sort_by          [String]  Attributes to sort builds by. Used for pagination.
+    #     sort_by          [String]  Attributes to sort builds by. Used for pagination.
+    #    
+    #     Example: GET /builds?limit=5
+    #     
+    # **Sortable by:** id, started_at, finished_at, append :desc to any attribute to reverse order.
+    # 
+    # **Find**
+    #
+    # This returns a list of builds for an individual repository. It is possible to use the repository id or slug in the request. The result is paginated. Each request will return 25 results.
+    # 
+    # GET <code>/repo/{repository.id}/builds</code>
+    #     
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #
+    #     Query Parameter       Type      Description
+    #     branch.name           [String]  Filters builds by name of the git branch.
+    #     build.created_by      [Owner]   Filters builds by the User or Organization that created the build.
+    #     build.event_type      [String]  Filters builds by event that triggered the build.
+    #     build.previous_state  [String]  Filters builds by state of the previous build (useful to see if state changed).
+    #     build.state           [String]  Filters builds by current state of the build.
+    #     created_by            [Owner]   Alias for build.created_by.
+    #     event_type            [String]  Alias for build.event_type.
+    #     include               [String]  List of attributes to eager load.
+    #     limit                 Integer   How many builds to include in the response. Used for pagination.
+    #     offset                Integer   How many builds to skip before the first entry in the response. Used for pagination.
+    #     previous_state        [String]  Alias for build.previous_state.
+    #     sort_by               [String]  Attributes to sort builds by. Used for pagination.
+    #     state                 [String]  Alias for build.state.
+    #
+    #     Example: GET /repo/891/builds?limit=5
+    #     
+    # **Sortable by:** id, started_at, finished_at, append :desc to any attribute to reverse order.
+    # 
+    # GET <code>/repo/{repository.slug}/builds</code>
+    #     
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #
+    #     Query Parameter       Type      Description
+    #     branch.name           [String]  Filters builds by name of the git branch.
+    #     build.created_by      [Owner]   Filters builds by the User or Organization that created the build.
+    #     build.event_type      [String]  Filters builds by event that triggered the build.
+    #     build.previous_state  [String]  Filters builds by state of the previous build (useful to see if state changed).
+    #     build.state           [String]  Filters builds by current state of the build.
+    #     created_by            [Owner]   Alias for build.created_by.
+    #     event_type            [String]  Alias for build.event_type.
+    #     include               [String]  List of attributes to eager load.
+    #     limit                 Integer   How many builds to include in the response. Used for pagination.
+    #     offset                Integer   How many builds to skip before the first entry in the response. Used for pagination.
+    #     previous_state        [String]  Alias for build.previous_state.
+    #     sort_by               [String]  Attributes to sort builds by. Used for pagination.
+    #     state                 [String]  Alias for build.state.
+    #
+    #     Example: GET /repo/rails%2Frails/builds?limit=5
+    #     
+    # **Sortable by:** id, started_at, finished_at, append :desc to any attribute to reverse order.
+    # 
     # @return [Success, RequestError]
     def builds
       get("#{self[true]}/builds#{opts}")
     end
 
+    # An individual build.
+    # 
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #      
+    #     Name                 Type     Description
+    #     id                   Integer  Value uniquely identifying the build.
+    #     number               String   Incremental number for a repository's builds.
+    #     state                String   Current state of the build.
+    #     duration             Integer  Wall clock time in seconds.
+    #     event_type           String   Event that triggered the build.
+    #     previous_state       String   State of the previous build (useful to see if state changed).
+    #     pull_request_title   String   Title of the build's pull request.
+    #     pull_request_number  Integer  Number of the build's pull request.
+    #     started_at           String   When the build started.
+    #     finished_at          String   When the build finished.
+    #    
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is eager loaded.
+    #      
+    #     Name                 Type        Description
+    #     id                   Integer     Value uniquely identifying the build.
+    #     number               String      Incremental number for a repository's builds.
+    #     state                String      Current state of the build.
+    #     duration             Integer     Wall clock time in seconds.
+    #     event_type           String      Event that triggered the build.
+    #     previous_state       String      State of the previous build (useful to see if state changed).
+    #     pull_request_title   String      Title of the build's pull request.
+    #     pull_request_number  Integer     Number of the build's pull request.
+    #     started_at           String      When the build started.
+    #     finished_at          String      When the build finished.
+    #     repository           Repository  GitHub user or organization the build belongs to.
+    #     branch               Branch      The branch the build is associated with.
+    #     tag                  Unknown     The build's tag.
+    #     commit               Commit      The commit the build is associated with.
+    #     jobs                 Jobs        List of jobs that are part of the build's matrix.
+    #     stages               [Stage]     The stages of a build.
+    #     created_by           Owner       The User or Organization that created the build.
+    #     updated_at           Unknown     The build's updated_at.
+    #    
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single build.
+    # 
+    # GET <code>/build/{build.id}</code>
+    #     
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #    
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #    
+    #     Example: GET /build/86601346
+    #     
+    # **Cancel**
+    #
+    # This cancels a currently running build. It will set the build and associated jobs to "state": "canceled".
+    # 
+    # POST <code>/build/{build.id}/cancel</code>
+    #     
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #    
+    #     Example: POST /build/86601346/cancel
+    #     
+    # **Restart**
+    #
+    # This restarts a build that has completed or been canceled.
+    # 
+    # POST <code>/build/{build.id}/restart</code>
+    #     
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #    
+    #     Example: POST /build/86601346/restart
+    #    
+    # @note POST requests require an authorization token set in the headers. See: {h}
+    #
     # @param id [String, Integer] the build id number
     # @return [Success, RequestError]
     def build(id)
