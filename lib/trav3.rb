@@ -2,6 +2,7 @@
 require 'trav3/version'
 require 'trav3/options'
 require 'trav3/result'
+require 'trav3/post'
 require 'trav3/get'
 
 # Trav3 project namespace
@@ -42,14 +43,17 @@ module Trav3
     # This will be either a user or organization.
     # 
     # ## Attributes
-    # **Minimal Representation**<br />
+    #
+    # **Minimal Representation**
+    #
     # Included when the resource is returned as part of another resource.
     #     
     #     Name    Type     Description
     #     id      Integer  Value uniquely identifying the owner.
     #     login   String   User or organization login set on GitHub.
     #
-    # **Standard Representation**<br />
+    # **Standard Representation**
+    #
     # Included when the resource is the main response of a request, or is eager loaded.
     #    
     #     Name        Type     Description
@@ -59,13 +63,15 @@ module Trav3
     #     github_id   Integer  User or organization id set on GitHub.
     #     avatar_url  String   Link to user or organization avatar (image) set on GitHub.
     #
-    # **Additional Attributes**<br />
+    # **Additional Attributes**
     #    
     #     Name           Type           Description
     #     repositories   [Repository]   Repositories belonging to this account.
     #
     # ## Actions
-    # **Find**<br />
+    #
+    # **Find**
+    #
     # This returns an individual owner. It is possible to use the GitHub login or github_id in the request.
     # 
     # GET <code>/owner/{owner.login}</code>
@@ -125,7 +131,8 @@ module Trav3
     #     Name           Type           Description
     #     repositories   [Repository]   List of repositories.
     #    
-    # **Collection Items**<br />
+    # **Collection Items**
+    #
     # Each entry in the repositories array has the following attributes:
     #     
     #     Name                Type     Description
@@ -143,7 +150,9 @@ module Trav3
     #     last_started_build  Build    Alias for current_build.
     #    
     # ## Actions
-    # **For Owner**<br />
+    #
+    # **For Owner**
+    #
     # This returns a list of repositories an owner has access to.
     # 
     # GET <code>/owner/{owner.login}/repos</code>
@@ -172,7 +181,7 @@ module Trav3
     #     Template Variable  Type    Description
     #     user.login         String  Login set on Github.
     #
-    #     Query Parameter    Type        Description
+    #     Query Parameter     Type       Description
     #     active              [Boolean]  Alias for repository.active.
     #     include             [String]   List of attributes to eager load.
     #     limit               Integer    How many repositories to include in the response. Used for pagination.
@@ -261,16 +270,151 @@ module Trav3
       end
     end
 
+    # An individual repository.
+    # 
+    # ## Attributes
     #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #      
+    #     Name   Type     Description
+    #     id     Integer  Value uniquely identifying the repository.
+    #     name   String   The repository's name on GitHub.
+    #     slug   String   Same as {repository.owner.name}/{repository.name}.
+    #    
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is eager loaded.
+    #      
+    #     Name             Type     Description
+    #     id               Integer  Value uniquely identifying the repository.
+    #     name             String   The repository's name on GitHub.
+    #     slug             String   Same as {repository.owner.name}/{repository.name}.
+    #     description      String   The repository's description from GitHub.
+    #     github_language  String   The main programming language used according to GitHub.
+    #     active           Boolean  Whether or not this repository is currently enabled on Travis CI.
+    #     private          Boolean  Whether or not this repository is private.
+    #     owner            Owner    GitHub user or organization the repository belongs to.
+    #     default_branch   Branch   The default branch on GitHub.
+    #     starred          Boolean  Whether or not this repository is starred.
+    #    
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns an individual repository.
+    # 
+    # GET <code>/repo/{repository.id}</code>
+    #     
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #    
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #    
+    #     Example: GET /repo/891
+    #     
+    # GET <code>/repo/{repository.slug}</code>
+    #     
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #    
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #    
+    #     Example: GET /repo/rails%2Frails
+    #     
+    # **Activate**
+    #
+    # This will activate a repository, allowing its tests to be run on Travis CI.
+    # 
+    # POST <code>/repo/{repository.id}/activate</code>
+    #     
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #    
+    #     Example: POST /repo/891/activate
+    #     
+    # POST <code>/repo/{repository.slug}/activate</code>
+    #     
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #    
+    #     Example: POST /repo/rails%2Frails/activate
+    #     
+    # **Deactivate**
+    # 
+    # This will deactivate a repository, preventing any tests from running on Travis CI.
+    # 
+    # POST <code>/repo/{repository.id}/deactivate</code>
+    #     
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #    
+    #     Example: POST /repo/891/deactivate
+    #     
+    # POST <code>/repo/{repository.slug}/deactivate</code>
+    #     
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #    
+    #     Example: POST /repo/rails%2Frails/deactivate
+    #     
+    # **Star**
+    #
+    # This will star a repository based on the currently logged in user.
+    # 
+    # POST <code>/repo/{repository.id}/star</code>
+    #     
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #    
+    #     Example: POST /repo/891/star
+    #     
+    # POST <code>/repo/{repository.slug}/star</code>
+    #     
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #    
+    #     Example: POST /repo/rails%2Frails/star
+    #     
+    # **Unstar**
+    #
+    # This will unstar a repository based on the currently logged in user.
+    # 
+    # POST <code>/repo/{repository.id}/unstar</code>
+    #     
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #    
+    #     Example: POST /repo/891/unstar
+    #     
+    # POST <code>/repo/{repository.slug}/unstar</code>
+    #    
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #    
+    #     Example: POST /repo/rails%2Frails/unstar
+    #    
     # @param repo [String] github_username/repository_name
+    # @param action [String, Symbol] Optional argument for star/unstar/activate/deactivate
     # @raise [InvalidRepository] if given input does not
     #   conform to valid repository identifier format
     # @return [Success, RequestError]
-    def repository(repo = @repo)
+    def repository(repo = repository_name, action = nil)
       raise InvalidRepository unless repo.is_a?(String) and
         Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
 
-      get("#{self[]}/repo/#{repo.gsub(/\//, '%2F')}")
+      repo = repo.gsub(/\//, '%2F')
+
+      action = '' if !%w(star unstar activate deavtivate).include? "#{action}"
+
+      if action.empty?
+        get("#{self[]}/repo/#{repo}")
+      else
+        post("#{self[]}/repo/#{repo}/#{action}")
+      end
     end
 
     # @return [Success, RequestError]
@@ -313,12 +457,20 @@ module Trav3
       [API_ENDPOINT].tap {|a| a.push("repo/#{@repo}") if repository }.join('/')
     end
 
+    def repository_name
+      @repo
+    end
+
     def opts
       @options
     end
 
     def get(x)
       Trav3::GET.(x)
+    end
+
+    def post(x, fields = {})
+      Trav3::POST.(x, fields)
     end
 
     def username

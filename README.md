@@ -1,5 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/trav3.svg)](http://badge.fury.io/rb/trav3)
-[![Build Status](https://travis-ci.org/danielpclark/trav3.svg)](https://travis-ci.org/danielpclark/trav3)
+[![Build Status](https://travis-ci.org/danielpclark/trav3.svg?branch=master)](https://travis-ci.org/danielpclark/trav3)
+[![Inline docs](http://inch-ci.org/github/danielpclark/trav3.svg?branch=master)](http://inch-ci.org/github/danielpclark/trav3)
 [![SayThanks.io](https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg)](https://saythanks.io/to/danielpclark)
 
 # Trav3
