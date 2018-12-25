@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'forwardable'
-require 'trav3/pagination'
 
 module Trav3
   class InvalidRepository < StandardError

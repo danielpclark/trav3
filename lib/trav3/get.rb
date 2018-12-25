@@ -1,7 +1,7 @@
+# frozen_string_literal: true
 require 'net/http'
 require 'uri'
 require 'json'
-require 'trav3/result'
 
 module Trav3
   module GET

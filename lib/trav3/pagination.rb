@@ -1,5 +1,4 @@
-require 'trav3/get'
-
+# frozen_string_literal: true
 module Trav3
   class Pagination
     def initialize(result)
