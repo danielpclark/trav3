@@ -11,7 +11,7 @@ module Trav3
       headers.each_pair { |header, value|
         req[header] = value
       }
-      req.set_form_data(**fields)
+      req.set_form_data(**fields) unless fields.empty?
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = (uri.scheme == "https")
       response = http.request(req)
