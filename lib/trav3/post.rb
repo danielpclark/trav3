@@ -16,7 +16,7 @@ module Trav3
       http.use_ssl = (uri.scheme == "https")
       response = http.request(req)
 
-      if Net::HTTPOK == response.code_type
+      if Net::HTTPAccepted == response.code_type
         Success.new(response)
       else
         RequestError.new(response)
