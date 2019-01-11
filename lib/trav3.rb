@@ -32,7 +32,9 @@ module Trav3
 
       @repo = repo.gsub(/\//, '%2F')
       defaults(limit: 25)
-      h("Travis-API-Version": 3)
+      h('Content-Type': 'application/json')
+      h('Accept': 'application/json')
+      h('Travis-API-Version': 3)
     end
 
     # @overload defaults(key: value, ...)
