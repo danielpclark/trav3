@@ -9,3 +9,4 @@
 **/*.swp
 /Gemfile.lock
 .byebug_history
+spec/examples.txt
