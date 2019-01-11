@@ -1,0 +1,141 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/build/351778872
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 11 Jan 2019 21:14:23 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Build::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 56c746ba-a183-4e81-b42e-56c2793644f0
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "build",
+          "@href": "/build/351778872",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "restart": true,
+            "cancel": true
+          },
+          "id": 351778872,
+          "number": "6",
+          "state": "started",
+          "duration": null,
+          "event_type": "push",
+          "previous_state": "errored",
+          "pull_request_title": null,
+          "pull_request_number": null,
+          "started_at": "2019-01-11T21:14:15Z",
+          "finished_at": null,
+          "private": false,
+          "repository": {
+            "@type": "repository",
+            "@href": "/repo/18059679",
+            "@representation": "minimal",
+            "id": 18059679,
+            "name": "trav3",
+            "slug": "danielpclark/trav3"
+          },
+          "branch": {
+            "@type": "branch",
+            "@href": "/repo/18059679/branch/master",
+            "@representation": "minimal",
+            "name": "master"
+          },
+          "tag": null,
+          "commit": {
+            "@type": "commit",
+            "@representation": "minimal",
+            "id": 104726860,
+            "sha": "784bf4de64ac4bdf7afadbc63927d421703d6fe3",
+            "ref": "refs/heads/master",
+            "message": "don't stash Gemfile.lock",
+            "compare_url": "https://github.com/danielpclark/trav3/compare/1633b9241ece...784bf4de64ac",
+            "committed_at": "2018-03-10T19:33:24Z"
+          },
+          "jobs": [
+            {
+              "@type": "job",
+              "@href": "/job/351778873",
+              "@representation": "minimal",
+              "id": 351778873
+            },
+            {
+              "@type": "job",
+              "@href": "/job/351778874",
+              "@representation": "minimal",
+              "id": 351778874
+            },
+            {
+              "@type": "job",
+              "@href": "/job/351778875",
+              "@representation": "minimal",
+              "id": 351778875
+            }
+          ],
+          "stages": [
+
+          ],
+          "created_by": {
+            "@type": "user",
+            "@href": "/user/114816",
+            "@representation": "minimal",
+            "id": 114816,
+            "login": "danielpclark"
+          },
+          "updated_at": "2019-01-11T21:14:15.245Z"
+        }
+    http_version: 
+  recorded_at: Fri, 11 Jan 2019 21:14:23 GMT
+recorded_with: VCR 4.0.0

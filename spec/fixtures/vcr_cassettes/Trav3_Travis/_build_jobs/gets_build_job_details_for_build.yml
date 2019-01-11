@@ -1,0 +1,263 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/build/351778872/jobs
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 11 Jan 2019 21:14:24 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Jobs::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - d5c172bc-4c03-48a6-b146-905ca4953110
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "jobs",
+          "@href": "/build/351778872/jobs",
+          "@representation": "standard",
+          "jobs": [
+            {
+              "@type": "job",
+              "@href": "/job/351778873",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 351778873,
+              "allow_failure": false,
+              "number": "6.1",
+              "state": "passed",
+              "started_at": "2018-03-10T19:33:40Z",
+              "finished_at": "2018-03-10T19:34:30Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/351778872",
+                "@representation": "minimal",
+                "id": 351778872,
+                "number": "6",
+                "state": "created",
+                "duration": null,
+                "event_type": "push",
+                "previous_state": "errored",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": null,
+                "finished_at": null,
+                "private": false
+              },
+              "queue": "builds.ec2",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/18059679",
+                "@representation": "minimal",
+                "id": 18059679,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 104726860,
+                "sha": "784bf4de64ac4bdf7afadbc63927d421703d6fe3",
+                "ref": "refs/heads/master",
+                "message": "don't stash Gemfile.lock",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/1633b9241ece...784bf4de64ac",
+                "committed_at": "2018-03-10T19:33:24Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2018-03-10T19:33:37.325Z",
+              "updated_at": "2018-06-04T07:45:00.338Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/351778874",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 351778874,
+              "allow_failure": false,
+              "number": "6.2",
+              "state": "passed",
+              "started_at": "2018-03-10T19:33:41Z",
+              "finished_at": "2018-03-10T19:34:22Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/351778872",
+                "@representation": "minimal",
+                "id": 351778872,
+                "number": "6",
+                "state": "created",
+                "duration": null,
+                "event_type": "push",
+                "previous_state": "errored",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": null,
+                "finished_at": null,
+                "private": false
+              },
+              "queue": "builds.ec2",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/18059679",
+                "@representation": "minimal",
+                "id": 18059679,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 104726860,
+                "sha": "784bf4de64ac4bdf7afadbc63927d421703d6fe3",
+                "ref": "refs/heads/master",
+                "message": "don't stash Gemfile.lock",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/1633b9241ece...784bf4de64ac",
+                "committed_at": "2018-03-10T19:33:24Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2018-03-10T19:33:37.330Z",
+              "updated_at": "2018-06-04T07:45:00.383Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/351778875",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 351778875,
+              "allow_failure": false,
+              "number": "6.3",
+              "state": "created",
+              "started_at": null,
+              "finished_at": null,
+              "build": {
+                "@type": "build",
+                "@href": "/build/351778872",
+                "@representation": "minimal",
+                "id": 351778872,
+                "number": "6",
+                "state": "created",
+                "duration": null,
+                "event_type": "push",
+                "previous_state": "errored",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": null,
+                "finished_at": null,
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/18059679",
+                "@representation": "minimal",
+                "id": 18059679,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 104726860,
+                "sha": "784bf4de64ac4bdf7afadbc63927d421703d6fe3",
+                "ref": "refs/heads/master",
+                "message": "don't stash Gemfile.lock",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/1633b9241ece...784bf4de64ac",
+                "committed_at": "2018-03-10T19:33:24Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2018-03-10T19:33:37.336Z",
+              "updated_at": "2019-01-11T21:14:24.420Z",
+              "private": false
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 11 Jan 2019 21:14:24 GMT
+recorded_with: VCR 4.0.0
