@@ -1,5 +1,7 @@
 require 'simplecov'
 SimpleCov.start
+require 'factory_bot'
+require_relative '../lib/trav3'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
