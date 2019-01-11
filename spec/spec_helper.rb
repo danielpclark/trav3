@@ -1,6 +1,8 @@
 require 'simplecov'
 SimpleCov.start
 require 'factory_bot'
+require 'vcr'
+require 'webmock/rspec'
 require_relative '../lib/trav3'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
