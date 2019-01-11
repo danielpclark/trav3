@@ -10,4 +10,5 @@ group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'webmock', '~> 3.5'
   gem 'vcr', '~> 4.0'
+  gem 'byebug'
 end

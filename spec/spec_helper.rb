@@ -1,5 +1,6 @@
 require 'simplecov'
 SimpleCov.start
+require 'byebug'
 require 'factory_bot'
 require 'vcr'
 require 'webmock/rspec'
