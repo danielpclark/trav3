@@ -137,7 +137,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def owner(owner = username)
-      if /^\d+$/ === owner
+      if /^\d+$/ === "#{owner}"
         get("#{self[]}/owner/github_id/#{owner}")
       else
         get("#{self[]}/owner/#{owner}")
