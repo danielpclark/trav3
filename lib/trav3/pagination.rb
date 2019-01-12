@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 module Trav3
   class Pagination
-    def initialize(result)
+    def initialize(travis, result)
+      @travis = travis
       @result = result
     end
 
@@ -22,8 +23,11 @@ module Trav3
     end
 
     def get(x)
-      Trav3::GET.(x)
+      Trav3::GET.(travis, x)
     end
     private :get
+
+    attr_reader :travis
+    private :travis
   end
 end

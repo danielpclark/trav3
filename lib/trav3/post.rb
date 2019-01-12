@@ -5,10 +5,10 @@ require 'json'
 
 module Trav3
   module POST
-    def self.call(url, headers = {}, fields={})
+    def self.call(travis, url, fields={})
       uri = URI( url.sub(/\?.*$/, '') )
       req = Net::HTTP::Post.new(uri.request_uri)
-      headers.each_pair { |header, value|
+      travis.headers.each_pair { |header, value|
         req[header] = value
       }
       req.set_form_data(**fields) unless fields.empty?
@@ -17,9 +17,9 @@ module Trav3
       response = http.request(req)
 
       if Net::HTTPAccepted == response.code_type
-        Success.new(response)
+        Success.new(travis, response)
       else
-        RequestError.new(response)
+        RequestError.new(travis, response)
       end
     end
   end

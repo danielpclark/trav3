@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'trav3/version'
+require 'trav3/pagination'
 require 'trav3/options'
 require 'trav3/headers'
 require 'trav3/result'
@@ -913,11 +914,11 @@ module Trav3
     end
 
     def get(x)
-      Trav3::GET.(x, headers())
+      Trav3::GET.(self, x)
     end
 
     def post(x, fields = {})
-      Trav3::POST.(x, headers(), fields)
+      Trav3::POST.(self, x, fields)
     end
 
     def username
