@@ -12,7 +12,7 @@ module Trav3
 
   class Unimplemented < StandardError
     def message
-      "You need to implement this method"
+      "This feature is not implemented."
     end
   end
 

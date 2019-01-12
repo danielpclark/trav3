@@ -284,7 +284,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def repositories(owner = username)
-      if /^\d+$/ === owner
+      if /^\d+$/ === "#{owner}"
         get("#{self[]}/owner/github_id/#{owner}/repos#{opts}")
       else
         get("#{self[]}/owner/#{owner}/repos#{opts}")
@@ -892,7 +892,7 @@ module Trav3
     def log(id, option = nil)
       case option
       when :text
-        get("#{self[]}/job/#{id}/log.txt")
+        get("#{self[]}/job/#{id}/log.txt", true)
       when :delete
         raise Unimplemented
       else
@@ -913,8 +913,8 @@ module Trav3
       @options
     end
 
-    def get(x)
-      Trav3::GET.(self, x)
+    def get(x, raw_reply = false)
+      Trav3::GET.(self, x, raw_reply)
     end
 
     def post(x, fields = {})

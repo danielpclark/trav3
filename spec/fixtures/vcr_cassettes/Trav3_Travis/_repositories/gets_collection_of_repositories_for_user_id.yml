@@ -1,0 +1,1169 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/owner/github_id/639823/repos?limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 12 Jan 2019 15:38:31 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Repositories::ForOwner
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 91b5f1e6-2ac1-49c2-84ee-b2e625d759d5
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "repositories",
+          "@href": "/owner/github_id/639823/repos?limit=25",
+          "@representation": "standard",
+          "@pagination": {
+            "limit": 25,
+            "offset": 0,
+            "count": 243,
+            "is_first": true,
+            "is_last": false,
+            "next": {
+              "@href": "/owner/github_id/639823/repos?limit=25&offset=25",
+              "offset": 25,
+              "limit": 25
+            },
+            "prev": null,
+            "first": {
+              "@href": "/owner/github_id/639823/repos?limit=25",
+              "offset": 0,
+              "limit": 25
+            },
+            "last": {
+              "@href": "/owner/github_id/639823/repos?limit=25&offset=225",
+              "offset": 225,
+              "limit": 25
+            }
+          },
+          "repositories": [
+            {
+              "@type": "repository",
+              "@href": "/repo/4067916",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 4067916,
+              "name": "php-src-builder",
+              "slug": "travis-ci/php-src-builder",
+              "description": "Builds php/php-src with php-build and uploads artifacts to S3",
+              "github_id": 30946458,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/4067916/branch/default",
+                "@representation": "minimal",
+                "name": "default"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/119756",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 119756,
+              "name": "travis-api",
+              "slug": "travis-ci/travis-api",
+              "description": "The Travis CI API",
+              "github_id": 5096124,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/119756/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/2717",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 2717,
+              "name": "travis-build",
+              "slug": "travis-ci/travis-build",
+              "description": ".travis.yml => build.sh converter",
+              "github_id": 2508083,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/2717/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/1398458",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 1398458,
+              "name": "travis-rubies",
+              "slug": "travis-ci/travis-rubies",
+              "description": "my rubies, let me show you them",
+              "github_id": 9365475,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/1398458/branch/build",
+                "@representation": "minimal",
+                "name": "build"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/4158935",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 4158935,
+              "name": "cpython-builder",
+              "slug": "travis-ci/cpython-builder",
+              "description": "Clones and builds CPython",
+              "github_id": 31757278,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/4158935/branch/default",
+                "@representation": "minimal",
+                "name": "default"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/5344902",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 5344902,
+              "name": "travis-erlang-builder",
+              "slug": "travis-ci/travis-erlang-builder",
+              "description": ":mailbox:",
+              "github_id": 38597627,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/5344902/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/6045562",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 6045562,
+              "name": "perl-builder",
+              "slug": "travis-ci/perl-builder",
+              "description": "builds Perl distributions with perlbrew",
+              "github_id": 43103452,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/6045562/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/4988099",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 4988099,
+              "name": "travis-nightly-builder",
+              "slug": "travis-ci/travis-nightly-builder",
+              "description": "API + rake tasks to build \"nightly\" or on-demand stuff",
+              "github_id": 36888718,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/4988099/branch/build",
+                "@representation": "minimal",
+                "name": "build"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/269284",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 269284,
+              "name": "travis-web",
+              "slug": "travis-ci/travis-web",
+              "description": "The Ember web client for Travis CI",
+              "github_id": 4693087,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/269284/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/12037796",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 12037796,
+              "name": "nightwhale",
+              "slug": "travis-ci/nightwhale",
+              "description": "The Whale Of The Night",
+              "github_id": 81576496,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/12037796/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/1771959",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 1771959,
+              "name": "docs-travis-ci-com",
+              "slug": "travis-ci/docs-travis-ci-com",
+              "description": "The Travis CI Documentation",
+              "github_id": 15974409,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/1771959/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/11241327",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 11241327,
+              "name": "heroku-addons",
+              "slug": "travis-ci/heroku-addons",
+              "description": "A shortcut dashboard for Heroku addons",
+              "github_id": 75991126,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/11241327/branch/primary",
+                "@representation": "minimal",
+                "name": "primary"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/16299",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 16299,
+              "name": "travis-cookbooks",
+              "slug": "travis-ci/travis-cookbooks",
+              "description": "Chef cookbook monolithic repo :book: :bomb:",
+              "github_id": 1859479,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/16299/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/4896386",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 4896386,
+              "name": "packer-templates",
+              "slug": "travis-ci/packer-templates",
+              "description": "Templates for Packer!",
+              "github_id": 36261810,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/4896386/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/8545975",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 8545975,
+              "name": "terraform-config",
+              "slug": "travis-ci/terraform-config",
+              "description": "Terraform bits and bytes",
+              "github_id": 57980877,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/8545975/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/950691",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 950691,
+              "name": "dpl",
+              "slug": "travis-ci/dpl",
+              "description": "Dpl (dee-pee-ell) is a deploy tool made for continuous deployment.",
+              "github_id": 10312708,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/950691/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/409371",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 409371,
+              "name": "travis.rb",
+              "slug": "travis-ci/travis.rb",
+              "description": "Travis CI Client (CLI and Ruby library)",
+              "github_id": 7512078,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/409371/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3487206",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 3487206,
+              "name": "worker",
+              "slug": "travis-ci/worker",
+              "description": "Worker runs your Travis CI jobs",
+              "github_id": 27410275,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3487206/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/1803137",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 1803137,
+              "name": "travis-migrations",
+              "slug": "travis-ci/travis-migrations",
+              "description": "Skeleton app to allow migrations to be run for our infrastructures",
+              "github_id": 16173730,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/1803137/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/5769211",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 5769211,
+              "name": "gcloud-cleanup",
+              "slug": "travis-ci/gcloud-cleanup",
+              "description": "Clean That Cloud! :cloud: :bath:",
+              "github_id": 41367285,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/5769211/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/4325749",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 4325749,
+              "name": "apt-source-safelist",
+              "slug": "travis-ci/apt-source-safelist",
+              "description": "Safelist of apt sources approved for build environments with restricted sudo",
+              "github_id": 32885727,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/4325749/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/305556",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 305556,
+              "name": "travis-scheduler",
+              "slug": "travis-ci/travis-scheduler",
+              "description": "Queues jobs to be run by the various workers",
+              "github_id": 6388572,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/305556/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/1295912",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 1295912,
+              "name": "casher",
+              "slug": "travis-ci/casher",
+              "description": "CH CHING",
+              "github_id": 12725417,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/1295912/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/1486",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 1486,
+              "name": "travis-ruby-client",
+              "slug": "travis-ci/travis-ruby-client",
+              "description": "Ruby client library for Travis CI API",
+              "github_id": 2174801,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/1486/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3323",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "activate": false,
+                "deactivate": false,
+                "migrate": false,
+                "star": false,
+                "unstar": false,
+                "create_cron": false,
+                "create_env_var": false,
+                "create_key_pair": false,
+                "create_request": false,
+                "admin": false,
+                "delete_key_pair": false
+              },
+              "id": 3323,
+              "name": "travis-core",
+              "slug": "travis-ci/travis-core",
+              "description": "[DEPRECATED] Models and classes shared by Travis CI api, hub and gatekeeper",
+              "github_id": 2723436,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "organization",
+                "id": 87,
+                "login": "travis-ci",
+                "@href": "/org/87"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3323/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Sat, 12 Jan 2019 15:38:31 GMT
+recorded_with: VCR 4.0.0

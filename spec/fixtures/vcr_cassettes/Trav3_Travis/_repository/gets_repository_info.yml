@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 12 Jan 2019 15:44:22 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Repository::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - fb1a1040-0be1-47e9-97ef-d15a9fd12c41
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "repository",
+          "@href": "/repo/18059679",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "activate": true,
+            "deactivate": true,
+            "migrate": true,
+            "star": true,
+            "unstar": true,
+            "create_cron": true,
+            "create_env_var": true,
+            "create_key_pair": true,
+            "create_request": true,
+            "admin": true,
+            "delete_key_pair": true
+          },
+          "id": 18059679,
+          "name": "trav3",
+          "slug": "danielpclark/trav3",
+          "description": "A simple abstraction layer for the Travs CI v3 API",
+          "github_id": 124688971,
+          "github_language": null,
+          "active": true,
+          "private": false,
+          "owner": {
+            "@type": "user",
+            "id": 114816,
+            "login": "danielpclark",
+            "@href": "/user/114816"
+          },
+          "default_branch": {
+            "@type": "branch",
+            "@href": "/repo/18059679/branch/master",
+            "@representation": "minimal",
+            "name": "master"
+          },
+          "starred": false,
+          "managed_by_installation": false,
+          "active_on_org": null,
+          "migration_status": null
+        }
+    http_version: 
+  recorded_at: Sat, 12 Jan 2019 15:44:22 GMT
+recorded_with: VCR 4.0.0

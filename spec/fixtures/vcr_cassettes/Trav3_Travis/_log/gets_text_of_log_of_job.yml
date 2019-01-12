@@ -1,0 +1,375 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/job/351778875/log.txt
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 12 Jan 2019 15:22:56 GMT
+      Content-Type:
+      - text/plain
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Log::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 829b0ed7-8669-4782-9b00-2d433f977810
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: "travis_fold:start:worker_info\r\e[0K\e[33;1mWorker information\e[0m\nhostname:
+        546c6479-3adc-41d8-bbb2-faa92a7de38d@1.production-1-worker-org-gce-n982\nversion:
+        v6.2.0 https://github.com/travis-ci/worker/tree/5e5476e01646095f48eec13196fdb3faf8f5cbf7\ninstance:
+        travis-job-5213e716-7d95-4135-95f7-ad7da8cb5cdc travis-ci-garnet-trusty-1512502259-986baf0
+        (via amqp)\nstartup: 6.700195978s\ntravis_fold:end:worker_info\r\e[0Ktravis_fold:start:system_info\r\e[0K\e[33;1mBuild
+        system information\e[0m\r\nBuild language: ruby\r\nBuild group: stable\r\nBuild
+        dist: trusty\r\nBuild id: 351778872\r\nJob id: 351778875\r\nRuntime kernel
+        version: 4.4.0-101-generic\r\ntravis-build version: 5caec04f7\r\n\e[34m\e[1mBuild
+        image provisioning date and time\e[0m\r\nTue Dec  5 19:58:13 UTC 2017\r\n\e[34m\e[1mOperating
+        System Details\e[0m\r\nDistributor ID:\tUbuntu\r\nDescription:\tUbuntu 14.04.5
+        LTS\r\nRelease:\t14.04\r\nCodename:\ttrusty\r\n\e[34m\e[1mCookbooks Version\e[0m\r\n7c2c6a6
+        https://github.com/travis-ci/travis-cookbooks/tree/7c2c6a6\r\n\e[34m\e[1mgit
+        version\e[0m\r\ngit version 2.15.1\r\n\e[34m\e[1mbash version\e[0m\r\nGNU
+        bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)\r\n\e[34m\e[1mgcc version\e[0m\r\ngcc
+        (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4\r\nCopyright (C) 2013 Free Software
+        Foundation, Inc.\r\nThis is free software; see the source for copying conditions.
+        \ There is NO\r\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR
+        PURPOSE.\r\n\r\n\e[34m\e[1mdocker version\e[0m\r\nClient:\r\n Version:      17.09.0-ce\r\n
+        API version:  1.32\r\n Go version:   go1.8.3\r\n Git commit:   afdb6d4\r\n
+        Built:        Tue Sep 26 22:42:38 2017\r\n OS/Arch:      linux/amd64\r\n\r\nServer:\r\n
+        Version:      17.09.0-ce\r\n API version:  1.32 (minimum version 1.12)\r\n
+        Go version:   go1.8.3\r\n Git commit:   afdb6d4\r\n Built:        Tue Sep
+        26 22:41:20 2017\r\n OS/Arch:      linux/amd64\r\n Experimental: false\r\n\e[34m\e[1mclang
+        version\e[0m\r\nclang version 5.0.0 (tags/RELEASE_500/final)\r\nTarget: x86_64-unknown-linux-gnu\r\nThread
+        model: posix\r\nInstalledDir: /usr/local/clang-5.0.0/bin\r\n\e[34m\e[1mjq
+        version\e[0m\r\njq-1.5\r\n\e[34m\e[1mbats version\e[0m\r\nBats 0.4.0\r\n\e[34m\e[1mshellcheck
+        version\e[0m\r\n0.4.6\r\n\e[34m\e[1mshfmt version\e[0m\r\nv2.0.0\r\n\e[34m\e[1mccache
+        version\e[0m\r\nccache version 3.1.9\r\n\r\nCopyright (C) 2002-2007 Andrew
+        Tridgell\r\nCopyright (C) 2009-2011 Joel Rosdahl\r\n\r\nThis program is free
+        software; you can redistribute it and/or modify it under\r\nthe terms of the
+        GNU General Public License as published by the Free Software\r\nFoundation;
+        either version 3 of the License, or (at your option) any later\r\nversion.\r\n\e[34m\e[1mcmake
+        version\e[0m\r\ncmake version 3.9.2\r\n\r\nCMake suite maintained and supported
+        by Kitware (kitware.com/cmake).\r\n\e[34m\e[1mheroku version\e[0m\r\nheroku-cli/6.14.39-addc925
+        (linux-x64) node-v9.2.0\r\n\e[34m\e[1mimagemagick version\e[0m\r\nVersion:
+        ImageMagick 6.7.7-10 2017-07-31 Q16 http://www.imagemagick.org\r\n\e[34m\e[1mmd5deep
+        version\e[0m\r\n4.2\r\n\e[34m\e[1mmercurial version\e[0m\r\nMercurial Distributed
+        SCM (version 4.2.2)\r\n(see https://mercurial-scm.org for more information)\r\n\r\nCopyright
+        (C) 2005-2017 Matt Mackall and others\r\nThis is free software; see the source
+        for copying conditions. There is NO\r\nwarranty; not even for MERCHANTABILITY
+        or FITNESS FOR A PARTICULAR PURPOSE.\r\n\e[34m\e[1mmysql version\e[0m\r\nmysql
+        \ Ver 14.14 Distrib 5.6.33, for debian-linux-gnu (x86_64) using  EditLine
+        wrapper\r\n\e[34m\e[1mopenssl version\e[0m\r\nOpenSSL 1.0.1f 6 Jan 2014\r\n\e[34m\e[1mpacker
+        version\e[0m\r\nPacker v1.0.2\r\n\r\nYour version of Packer is out of date!
+        The latest version\r\nis 1.1.2. You can update by downloading from www.packer.io\r\n\e[34m\e[1mpostgresql
+        client version\e[0m\r\npsql (PostgreSQL) 9.6.6\r\n\e[34m\e[1mragel version\e[0m\r\nRagel
+        State Machine Compiler version 6.8 Feb 2013\r\nCopyright (c) 2001-2009 by
+        Adrian Thurston\r\n\e[34m\e[1msubversion version\e[0m\r\nsvn, version 1.8.8
+        (r1568071)\r\n   compiled Aug 10 2017, 17:20:39 on x86_64-pc-linux-gnu\r\n\r\nCopyright
+        (C) 2013 The Apache Software Foundation.\r\nThis software consists of contributions
+        made by many people;\r\nsee the NOTICE file for more information.\r\nSubversion
+        is open source software, see http://subversion.apache.org/\r\n\r\nThe following
+        repository access (RA) modules are available:\r\n\r\n* ra_svn : Module for
+        accessing a repository using the svn network protocol.\r\n  - with Cyrus SASL
+        authentication\r\n  - handles 'svn' scheme\r\n* ra_local : Module for accessing
+        a repository on local disk.\r\n  - handles 'file' scheme\r\n* ra_serf : Module
+        for accessing a repository via WebDAV protocol using serf.\r\n  - using serf
+        1.3.3\r\n  - handles 'http' scheme\r\n  - handles 'https' scheme\r\n\r\n\e[34m\e[1msudo
+        version\e[0m\r\nSudo version 1.8.9p5\r\nConfigure options: --prefix=/usr -v
+        --with-all-insults --with-pam --with-fqdn --with-logging=syslog --with-logfac=authpriv
+        --with-env-editor --with-editor=/usr/bin/editor --with-timeout=15 --with-password-timeout=0
+        --with-passprompt=[sudo] password for %p:  --without-lecture --with-tty-tickets
+        --disable-root-mailer --enable-admin-flag --with-sendmail=/usr/sbin/sendmail
+        --with-timedir=/var/lib/sudo --mandir=/usr/share/man --libexecdir=/usr/lib/sudo
+        --with-sssd --with-sssd-lib=/usr/lib/x86_64-linux-gnu --with-selinux\r\nSudoers
+        policy plugin version 1.8.9p5\r\nSudoers file grammar version 43\r\n\r\nSudoers
+        path: /etc/sudoers\r\nAuthentication methods: 'pam'\r\nSyslog facility if
+        syslog is being used for logging: authpriv\r\nSyslog priority to use when
+        user authenticates successfully: notice\r\nSyslog priority to use when user
+        authenticates unsuccessfully: alert\r\nSend mail if the user is not in sudoers\r\nUse
+        a separate timestamp for each user/tty combo\r\nLecture user the first time
+        they run sudo\r\nRoot may run sudo\r\nAllow some information gathering to
+        give useful error messages\r\nRequire fully-qualified hostnames in the sudoers
+        file\r\nVisudo will honor the EDITOR environment variable\r\nSet the LOGNAME
+        and USER environment variables\r\nLength at which to wrap log file lines (0
+        for no wrap): 80\r\nAuthentication timestamp timeout: 15.0 minutes\r\nPassword
+        prompt timeout: 0.0 minutes\r\nNumber of tries to enter a password: 3\r\nUmask
+        to use or 0777 to use user's: 022\r\nPath to mail program: /usr/sbin/sendmail\r\nFlags
+        for mail program: -t\r\nAddress to send mail to: root\r\nSubject line for
+        mail messages: *** SECURITY information for %h ***\r\nIncorrect password message:
+        Sorry, try again.\r\nPath to authentication timestamp dir: /var/lib/sudo\r\nDefault
+        password prompt: [sudo] password for %p: \r\nDefault user to run commands
+        as: root\r\nValue to override user's $PATH with: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin\r\nPath
+        to the editor for use by visudo: /usr/bin/editor\r\nWhen to require a password
+        for 'list' pseudocommand: any\r\nWhen to require a password for 'verify' pseudocommand:
+        all\r\nFile descriptors >= 3 will be closed before executing a command\r\nEnvironment
+        variables to check for sanity:\r\n\tTZ\r\n\tTERM\r\n\tLINGUAS\r\n\tLC_*\r\n\tLANGUAGE\r\n\tLANG\r\n\tCOLORTERM\r\nEnvironment
+        variables to remove:\r\n\tRUBYOPT\r\n\tRUBYLIB\r\n\tPYTHONUSERBASE\r\n\tPYTHONINSPECT\r\n\tPYTHONPATH\r\n\tPYTHONHOME\r\n\tTMPPREFIX\r\n\tZDOTDIR\r\n\tREADNULLCMD\r\n\tNULLCMD\r\n\tFPATH\r\n\tPERL5DB\r\n\tPERL5OPT\r\n\tPERL5LIB\r\n\tPERLLIB\r\n\tPERLIO_DEBUG
+        \r\n\tJAVA_TOOL_OPTIONS\r\n\tSHELLOPTS\r\n\tGLOBIGNORE\r\n\tPS4\r\n\tBASH_ENV\r\n\tENV\r\n\tTERMCAP\r\n\tTERMPATH\r\n\tTERMINFO_DIRS\r\n\tTERMINFO\r\n\t_RLD*\r\n\tLD_*\r\n\tPATH_LOCALE\r\n\tNLSPATH\r\n\tHOSTALIASES\r\n\tRES_OPTIONS\r\n\tLOCALDOMAIN\r\n\tCDPATH\r\n\tIFS\r\nEnvironment
+        variables to preserve:\r\n\tJAVA_HOME\r\n\tTRAVIS\r\n\tCI\r\n\tDEBIAN_FRONTEND\r\n\tXAUTHORIZATION\r\n\tXAUTHORITY\r\n\tPS2\r\n\tPS1\r\n\tPATH\r\n\tLS_COLORS\r\n\tKRB5CCNAME\r\n\tHOSTNAME\r\n\tHOME\r\n\tDISPLAY\r\n\tCOLORS\r\nLocale
+        to use while parsing sudoers: C\r\nDirectory in which to store input/output
+        logs: /var/log/sudo-io\r\nFile in which to store the input/output log: %{seq}\r\nAdd
+        an entry to the utmp/utmpx file when allocating a pty\r\nPAM service name
+        to use\r\nPAM service name to use for login shells\r\nCreate a new PAM session
+        for the command to run in\r\nMaximum I/O log sequence number: 0\r\n\r\nLocal
+        IP address and netmask pairs:\r\n\t10.240.0.28/255.255.255.255\r\n\t172.17.0.1/255.255.0.0\r\n\r\nSudoers
+        I/O plugin version 1.8.9p5\r\n\e[34m\e[1mgzip version\e[0m\r\ngzip 1.6\r\nCopyright
+        (C) 2007, 2010, 2011 Free Software Foundation, Inc.\r\nCopyright (C) 1993
+        Jean-loup Gailly.\r\nThis is free software.  You may redistribute copies of
+        it under the terms of\r\nthe GNU General Public License <http://www.gnu.org/licenses/gpl.html>.\r\nThere
+        is NO WARRANTY, to the extent permitted by law.\r\n\r\nWritten by Jean-loup
+        Gailly.\r\n\e[34m\e[1mzip version\e[0m\r\nCopyright (c) 1990-2008 Info-ZIP
+        - Type 'zip \"-L\"' for software license.\r\nThis is Zip 3.0 (July 5th 2008),
+        by Info-ZIP.\r\nCurrently maintained by E. Gordon.  Please send bug reports
+        to\r\nthe authors using the web page at www.info-zip.org; see README for details.\r\n\r\nLatest
+        sources and executables are at ftp://ftp.info-zip.org/pub/infozip,\r\nas of
+        above date; see http://www.info-zip.org/ for other sites.\r\n\r\nCompiled
+        with gcc 4.8.2 for Unix (Linux ELF) on Oct 21 2013.\r\n\r\nZip special compilation
+        options:\r\n\tUSE_EF_UT_TIME       (store Universal Time)\r\n\tBZIP2_SUPPORT
+        \       (bzip2 library version 1.0.6, 6-Sept-2010)\r\n\t    bzip2 code and
+        library copyright (c) Julian R Seward\r\n\t    (See the bzip2 license for
+        terms of use)\r\n\tSYMLINK_SUPPORT      (symbolic links supported)\r\n\tLARGE_FILE_SUPPORT
+        \  (can read and write large files on file system)\r\n\tZIP64_SUPPORT        (use
+        Zip64 to store large files in archives)\r\n\tUNICODE_SUPPORT      (store and
+        read UTF-8 Unicode paths)\r\n\tSTORE_UNIX_UIDs_GIDs (store UID/GID sizes/values
+        using new extra field)\r\n\tUIDGID_NOT_16BIT     (old Unix 16-bit UID/GID
+        extra field not used)\r\n\t[encryption, version 2.91 of 05 Jan 2007] (modified
+        for Zip 3)\r\n\r\nEncryption notice:\r\n\tThe encryption code of this program
+        is not copyrighted and is\r\n\tput in the public domain.  It was originally
+        written in Europe\r\n\tand, to the best of our knowledge, can be freely distributed\r\n\tin
+        both source and object forms from any country, including\r\n\tthe USA under
+        License Exception TSU of the U.S. Export\r\n\tAdministration Regulations (section
+        740.13(e)) of 6 June 2002.\r\n\r\nZip environment options:\r\n             ZIP:
+        \ [none]\r\n          ZIPOPT:  [none]\r\n\e[34m\e[1mvim version\e[0m\r\nVIM
+        - Vi IMproved 7.4 (2013 Aug 10, compiled Nov 24 2016 16:43:18)\r\nIncluded
+        patches: 1-52\r\nExtra patches: 8.0.0056\r\nModified by pkg-vim-maintainers@lists.alioth.debian.org\r\nCompiled
+        by buildd@\r\nHuge version without GUI.  Features included (+) or not (-):\r\n+acl
+        \            +farsi           +mouse_netterm   +syntax\r\n+arabic          +file_in_path
+        \   +mouse_sgr       +tag_binary\r\n+autocmd         +find_in_path    -mouse_sysmouse
+        \ +tag_old_static\r\n-balloon_eval    +float           +mouse_urxvt     -tag_any_white\r\n-browse
+        \         +folding         +mouse_xterm     -tcl\r\n++builtin_terms  -footer
+        \         +multi_byte      +terminfo\r\n+byte_offset     +fork()          +multi_lang
+        \     +termresponse\r\n+cindent         +gettext         -mzscheme        +textobjects\r\n-clientserver
+        \   -hangul_input    +netbeans_intg   +title\r\n-clipboard       +iconv           +path_extra
+        \     -toolbar\r\n+cmdline_compl   +insert_expand   -perl            +user_commands\r\n+cmdline_hist
+        \   +jumplist        +persistent_undo +vertsplit\r\n+cmdline_info    +keymap
+        \         +postscript      +virtualedit\r\n+comments        +langmap         +printer
+        \        +visual\r\n+conceal         +libcall         +profile         +visualextra\r\n+cryptv
+        \         +linebreak       +python          +viminfo\r\n+cscope          +lispindent
+        \     -python3         +vreplace\r\n+cursorbind      +listcmds        +quickfix
+        \       +wildignore\r\n+cursorshape     +localmap        +reltime         +wildmenu\r\n+dialog_con
+        \     -lua             +rightleft       +windows\r\n+diff            +menu
+        \           -ruby            +writebackup\r\n+digraphs        +mksession       +scrollbind
+        \     -X11\r\n-dnd             +modify_fname    +signs           -xfontset\r\n-ebcdic
+        \         +mouse           +smartindent     -xim\r\n+emacs_tags      -mouseshape
+        \     -sniff           -xsmp\r\n+eval            +mouse_dec       +startuptime
+        \    -xterm_clipboard\r\n+ex_extra        +mouse_gpm       +statusline      -xterm_save\r\n+extra_search
+        \   -mouse_jsbterm   -sun_workshop    -xpm\r\n   system vimrc file: \"$VIM/vimrc\"\r\n
+        \    user vimrc file: \"$HOME/.vimrc\"\r\n 2nd user vimrc file: \"~/.vim/vimrc\"\r\n
+        \     user exrc file: \"$HOME/.exrc\"\r\n  fall-back for $VIM: \"/usr/share/vim\"\r\nCompilation:
+        gcc -c -I. -Iproto -DHAVE_CONFIG_H     -g -O2 -fstack-protector --param=ssp-buffer-size=4
+        -Wformat -Werror=format-security -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1      \r\nLinking:
+        gcc   -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,--as-needed -o vim        -lm
+        -ltinfo -lnsl  -lselinux  -lacl -lattr -lgpm -ldl    -L/usr/lib/python2.7/config-x86_64-linux-gnu
+        -lpython2.7 -lpthread -ldl -lutil -lm -Xlinker -export-dynamic -Wl,-O1 -Wl,-Bsymbolic-functions
+        \     \r\n\e[34m\e[1miptables version\e[0m\r\niptables v1.4.21\r\n\e[34m\e[1mcurl
+        version\e[0m\r\ncurl 7.35.0 (x86_64-pc-linux-gnu) libcurl/7.35.0 OpenSSL/1.0.1f
+        zlib/1.2.8 libidn/1.28 librtmp/2.3\r\n\e[34m\e[1mwget version\e[0m\r\nGNU
+        Wget 1.15 built on linux-gnu.\r\n\e[34m\e[1mrsync version\e[0m\r\nrsync  version
+        3.1.0  protocol version 31\r\n\e[34m\e[1mgimme version\e[0m\r\nv1.2.0\r\n\e[34m\e[1mnvm
+        version\e[0m\r\n0.33.6\r\n\e[34m\e[1mperlbrew version\e[0m\r\n/home/travis/perl5/perlbrew/bin/perlbrew
+        \ - App::perlbrew/0.80\r\n\e[34m\e[1mphpenv version\e[0m\r\nrbenv 1.1.1-25-g6aa70b6\r\n\e[34m\e[1mrvm
+        version\e[0m\r\nrvm 1.29.3 (latest) by Michal Papis, Piotr Kuczynski, Wayne
+        E. Seguin [https://rvm.io]\r\n\e[34m\e[1mdefault ruby version\e[0m\r\nruby
+        2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]\r\n\e[34m\e[1mCouchDB
+        version\e[0m\r\ncouchdb 1.6.1\r\n\e[34m\e[1mElasticSearch version\e[0m\r\n5.5.0\r\n\e[34m\e[1mInstalled
+        Firefox version\e[0m\r\nfirefox 56.0.2\r\n\e[34m\e[1mMongoDB version\e[0m\r\nMongoDB
+        3.4.10\r\n\e[34m\e[1mPhantomJS version\e[0m\r\n2.1.1\r\n\e[34m\e[1mPre-installed
+        PostgreSQL versions\e[0m\r\n9.2.24\r\n9.3.20\r\n9.4.15\r\n9.5.10\r\n9.6.6\r\n\e[34m\e[1mRabbitMQ
+        Version\e[0m\r\n3.6.14\r\n\e[34m\e[1mRedis version\e[0m\r\nredis-server 4.0.6\r\n\e[34m\e[1mriak
+        version\e[0m\r\n2.2.3\r\n\e[34m\e[1mPre-installed Go versions\e[0m\r\n1.7.4\r\n\e[34m\e[1mant
+        version\e[0m\r\nApache Ant(TM) version 1.9.3 compiled on April 8 2014\r\n\e[34m\e[1mmvn
+        version\e[0m\r\nApache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d;
+        2017-10-18T07:58:13Z)\r\nMaven home: /usr/local/maven-3.5.2\r\nJava version:
+        1.8.0_151, vendor: Oracle Corporation\r\nJava home: /usr/lib/jvm/java-8-oracle/jre\r\nDefault
+        locale: en_US, platform encoding: UTF-8\r\nOS name: \"linux\", version: \"4.4.0-98-generic\",
+        arch: \"amd64\", family: \"unix\"\r\n\e[34m\e[1mgradle version\e[0m\r\n\r\n------------------------------------------------------------\r\nGradle
+        4.0.1\r\n------------------------------------------------------------\r\n\r\nBuild
+        time:   2017-07-07 14:02:41 UTC\r\nRevision:     38e5dc0f772daecca1d2681885d3d85414eb6826\r\n\r\nGroovy:
+        \      2.4.11\r\nAnt:          Apache Ant(TM) version 1.9.6 compiled on June
+        29 2015\r\nJVM:          1.8.0_151 (Oracle Corporation 25.151-b12)\r\nOS:
+        \          Linux 4.4.0-98-generic amd64\r\n\r\n\e[34m\e[1mlein version\e[0m\r\nLeiningen
+        2.8.1 on Java 1.8.0_151 Java HotSpot(TM) 64-Bit Server VM\r\n\e[34m\e[1mPre-installed
+        Node.js versions\e[0m\r\nv4.8.6\r\nv6.12.0\r\nv6.12.1\r\nv8.9\r\nv8.9.1\r\n\e[34m\e[1mphpenv
+        versions\e[0m\r\n  system\r\n  5.6\r\n* 5.6.32 (set by /home/travis/.phpenv/version)\r\n
+        \ 7.0\r\n  7.0.25\r\n  7.1\r\n  7.1.11\r\n  hhvm\r\n  hhvm-stable\r\n\e[34m\e[1mcomposer
+        --version\e[0m\r\nComposer version 1.5.2 2017-09-11 16:59:25\r\n\e[34m\e[1mPre-installed
+        Ruby versions\e[0m\r\nruby-2.2.7\r\nruby-2.3.4\r\nruby-2.4.1\r\ntravis_fold:end:system_info\r\e[0K\r\n\r\nruby-2.2.7\r\nruby-2.3.4\r\nruby-2.4.1\r\ntravis_fold:end:system_info\r\e[0K\r\n\n\nDone:
+        Job Cancelled\n\n\r\ntravis_fold:start:git.checkout\r\e[0Ktravis_time:start:03df0cfc\r\e[0K$
+        git clone --depth=50 --branch=master https://github.com/danielpclark/trav3.git
+        danielpclark/trav3\r\nCloning into 'danielpclark/trav3'...\r\nremote: Enumerating
+        objects: 7, done.\e[K\r\nremote: Counting objects:  14% (1/7)   \e[K\rremote:
+        Counting objects:  28% (2/7)   \e[K\rremote: Counting objects:  42% (3/7)
+        \  \e[K\rremote: Counting objects:  57% (4/7)   \e[K\rremote: Counting objects:
+        \ 71% (5/7)   \e[K\rremote: Counting objects:  85% (6/7)   \e[K\rremote: Counting
+        objects: 100% (7/7)   \e[K\rremote: Counting objects: 100% (7/7), done.\e[K\r\nremote:
+        Compressing objects:  14% (1/7)   \e[K\rremote: Compressing objects:  28%
+        (2/7)   \e[K\rremote: Compressing objects:  42% (3/7)   \e[K\rremote: Compressing
+        objects:  57% (4/7)   \e[K\rremote: Compressing objects:  71% (5/7)   \e[K\rremote:
+        Compressing objects:  85% (6/7)   \e[K\rremote: Compressing objects: 100%
+        (7/7)   \e[K\rremote: Compressing objects: 100% (7/7), done.\e[K\r\nReceiving
+        objects:   0% (1/164)   \rReceiving objects:   1% (2/164)   \rReceiving objects:
+        \  2% (4/164)   \rReceiving objects:   3% (5/164)   \rReceiving objects:   4%
+        (7/164)   \rReceiving objects:   5% (9/164)   \rReceiving objects:   6% (10/164)
+        \  \rReceiving objects:   7% (12/164)   \rReceiving objects:   8% (14/164)
+        \  \rReceiving objects:   9% (15/164)   \rReceiving objects:  10% (17/164)
+        \  \rReceiving objects:  11% (19/164)   \rReceiving objects:  12% (20/164)
+        \  \rReceiving objects:  13% (22/164)   \rReceiving objects:  14% (23/164)
+        \  \rReceiving objects:  15% (25/164)   \rReceiving objects:  16% (27/164)
+        \  \rReceiving objects:  17% (28/164)   \rReceiving objects:  18% (30/164)
+        \  \rReceiving objects:  19% (32/164)   \rReceiving objects:  20% (33/164)
+        \  \rReceiving objects:  21% (35/164)   \rReceiving objects:  22% (37/164)
+        \  \rReceiving objects:  23% (38/164)   \rReceiving objects:  24% (40/164)
+        \  \rReceiving objects:  25% (41/164)   \rReceiving objects:  26% (43/164)
+        \  \rReceiving objects:  27% (45/164)   \rReceiving objects:  28% (46/164)
+        \  \rReceiving objects:  29% (48/164)   \rReceiving objects:  30% (50/164)
+        \  \rReceiving objects:  31% (51/164)   \rReceiving objects:  32% (53/164)
+        \  \rReceiving objects:  33% (55/164)   \rReceiving objects:  34% (56/164)
+        \  \rReceiving objects:  35% (58/164)   \rReceiving objects:  36% (60/164)
+        \  \rReceiving objects:  37% (61/164)   \rReceiving objects:  38% (63/164)
+        \  \rReceiving objects:  39% (64/164)   \rReceiving objects:  40% (66/164)
+        \  \rReceiving objects:  41% (68/164)   \rReceiving objects:  42% (69/164)
+        \  \rReceiving objects:  43% (71/164)   \rReceiving objects:  44% (73/164)
+        \  \rReceiving objects:  45% (74/164)   \rReceiving objects:  46% (76/164)
+        \  \rReceiving objects:  47% (78/164)   \rReceiving objects:  48% (79/164)
+        \  \rReceiving objects:  49% (81/164)   \rReceiving objects:  50% (82/164)
+        \  \rReceiving objects:  51% (84/164)   \rReceiving objects:  52% (86/164)
+        \  \rremote: Total 164 (delta 0), reused 7 (delta 0), pack-reused 157\e[K\r\nReceiving
+        objects:  53% (87/164)   \rReceiving objects:  54% (89/164)   \rReceiving
+        objects:  55% (91/164)   \rReceiving objects:  56% (92/164)   \rReceiving
+        objects:  57% (94/164)   \rReceiving objects:  58% (96/164)   \rReceiving
+        objects:  59% (97/164)   \rReceiving objects:  60% (99/164)   \rReceiving
+        objects:  61% (101/164)   \rReceiving objects:  62% (102/164)   \rReceiving
+        objects:  63% (104/164)   \rReceiving objects:  64% (105/164)   \rReceiving
+        objects:  65% (107/164)   \rReceiving objects:  66% (109/164)   \rReceiving
+        objects:  67% (110/164)   \rReceiving objects:  68% (112/164)   \rReceiving
+        objects:  69% (114/164)   \rReceiving objects:  70% (115/164)   \rReceiving
+        objects:  71% (117/164)   \rReceiving objects:  72% (119/164)   \rReceiving
+        objects:  73% (120/164)   \rReceiving objects:  74% (122/164)   \rReceiving
+        objects:  75% (123/164)   \rReceiving objects:  76% (125/164)   \rReceiving
+        objects:  77% (127/164)   \rReceiving objects:  78% (128/164)   \rReceiving
+        objects:  79% (130/164)   \rReceiving objects:  80% (132/164)   \rReceiving
+        objects:  81% (133/164)   \rReceiving objects:  82% (135/164)   \rReceiving
+        objects:  83% (137/164)   \rReceiving objects:  84% (138/164)   \rReceiving
+        objects:  85% (140/164)   \rReceiving objects:  86% (142/164)   \rReceiving
+        objects:  87% (143/164)   \rReceiving objects:  88% (145/164)   \rReceiving
+        objects:  89% (146/164)   \rReceiving objects:  90% (148/164)   \rReceiving
+        objects:  91% (150/164)   \rReceiving objects:  92% (151/164)   \rReceiving
+        objects:  93% (153/164)   \rReceiving objects:  94% (155/164)   \rReceiving
+        objects:  95% (156/164)   \rReceiving objects:  96% (158/164)   \rReceiving
+        objects:  97% (160/164)   \rReceiving objects:  98% (161/164)   \rReceiving
+        objects:  99% (163/164)   \rReceiving objects: 100% (164/164)   \rReceiving
+        objects: 100% (164/164), 27.52 KiB | 1.10 MiB/s, done.\r\nResolving deltas:
+        \  0% (0/75)   \rResolving deltas:   1% (1/75)   \rResolving deltas:   2%
+        (2/75)   \rResolving deltas:   5% (4/75)   \rResolving deltas:  12% (9/75)
+        \  \rResolving deltas:  17% (13/75)   \rResolving deltas:  24% (18/75)   \rResolving
+        deltas:  34% (26/75)   \rResolving deltas:  45% (34/75)   \rResolving deltas:
+        \ 49% (37/75)   \rResolving deltas:  60% (45/75)   \rResolving deltas:  65%
+        (49/75)   \rResolving deltas:  72% (54/75)   \rResolving deltas:  73% (55/75)
+        \  \rResolving deltas:  84% (63/75)   \rResolving deltas:  85% (64/75)   \rResolving
+        deltas:  89% (67/75)   \rResolving deltas:  92% (69/75)   \rResolving deltas:
+        \ 93% (70/75)   \rResolving deltas:  94% (71/75)   \rResolving deltas: 100%
+        (75/75)   \rResolving deltas: 100% (75/75), done.\r\ntravis_time:end:03df0cfc:start=1547241348562336041,finish=1547241349133128777,duration=570792736\r\e[0K$
+        cd danielpclark/trav3\r\n$ git checkout -qf 784bf4de64ac4bdf7afadbc63927d421703d6fe3\r\ntravis_fold:end:git.checkout\r\e[0K\r\ntravis_fold:start:rvm\r\e[0Ktravis_time:start:0ca1c477\r\e[0K$
+        rvm use 2.5.0 --install --binary --fuzzy\r\ncurl: (22) The requested URL returned
+        error: 404 Not Found\r\n\e[33mRequired ruby-2.5.0 is not installed - installing.\e[0m\r\ncurl:
+        (22) The requested URL returned error: 404 Not Found\r\n\e[32mSearching for
+        binary rubies, this might take some time.\e[0m\r\n\e[32mFound remote file
+        https://rubies.travis-ci.org/ubuntu/14.04/x86_64/ruby-2.5.0.tar.bz2\e[0m\r\n\e[32mChecking
+        requirements for ubuntu.\e[0m\r\n\e[32mRequirements installation successful.\e[0m\r\n\e[32mruby-2.5.0
+        - #configure\e[0m\r\n\e[32mruby-2.5.0 - #download\e[0m\r\n  % Total    % Received
+        % Xferd  Average Speed   Time    Time     Time  Current\r\n                                 Dload
+        \ Upload   Total   Spent    Left  Speed\r\n\r  0     0    0     0    0     0
+        \     0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0    0
+        \    0      0      0 --:--:-- --:--:-- --:--:--     0\r  0     0    0     0
+        \   0     0      0      0 --:--:-- --:--:-- --:--:--     0\r\n\r100 14.7M
+        \ 100 14.7M    0     0  15.3M      0 --:--:-- --:--:-- --:--:-- 15.3M\r\n\e[33mNo
+        checksum for downloaded archive, recording checksum in user configuration.\e[0m\r\n\e[32mruby-2.5.0
+        - #validate archive\e[0m\r\n\e[32mruby-2.5.0 - #extract\e[0m\r\n\e[32mruby-2.5.0
+        - #validate binary\e[0m\r\n\e[32mruby-2.5.0 - #setup\e[0m\r\n\e[32mruby-2.5.0
+        - #gemset created /home/travis/.rvm/gems/ruby-2.5.0@global\e[0m\r\n\e[32mruby-2.5.0
+        - #importing gemset /home/travis/.rvm/gemsets/global.gems\e[0m|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b.\r\n\e[32mruby-2.5.0
+        - #generating global wrappers\e[0m|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b.\r\n\e[32mruby-2.5.0
+        - #uninstalling gem rubygems-bundler-1.4.5\e[0m|\b/\b.\r\n\e[32mruby-2.5.0
+        - #gemset created /home/travis/.rvm/gems/ruby-2.5.0\e[0m\r\n\e[32mruby-2.5.0
+        - #importing gemset /home/travis/.rvm/gemsets/default.gems\e[0m|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b.\r\n\e[32mruby-2.5.0
+        - #generating default wrappers\e[0m|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b\\\b|\b/\b-\b.|\b/\b-\b\\\b|\b/\b-\b\\\b|\b.-\b\\\b|\b/\b-\b.\r\n\e[32mUsing
+        /home/travis/.rvm/gems/ruby-2.5.0\e[0m\r\ntravis_time:end:0ca1c477:start=1547241349149357829,finish=1547241371261506607,duration=22112148778\r\e[0Ktravis_fold:end:rvm\r\e[0K\r\n$
+        export BUNDLE_GEMFILE=$PWD/Gemfile\r\ntravis_fold:start:ruby.versions\r\e[0K$
+        ruby --version\r\nruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]\r\n$
+        rvm --version\r\nrvm 1.29.3 (latest) by Michal Papis, Piotr Kuczynski, Wayne
+        E. Seguin [https://rvm.io]\r\n$ bundle --version\r\nBundler version 1.16.2\r\n$
+        gem --version\r\n2.7.7\r\ntravis_fold:end:ruby.versions\r\e[0K\r\ntravis_fold:start:install.bundler\r\e[0Ktravis_time:start:33d3de5f\r\e[0K$
+        bundle install --jobs=3 --retry=3 --deployment\r\nFetching gem metadata from
+        https://rubygems.org/.............\r\nFetching rake 10.5.0\r\nFetching ansi
+        1.5.0\r\nInstalling rake 10.5.0\r\nFetching builder 3.2.3\r\nInstalling builder
+        3.2.3\r\nUsing bundler 1.16.2\r\nFetching docile 1.1.5\r\nInstalling ansi
+        1.5.0\r\nUsing json 2.1.0\r\nFetching simplecov-html 0.10.2\r\nInstalling
+        simplecov-html 0.10.2\r\nInstalling docile 1.1.5\r\nFetching minitest 5.11.3\r\nFetching
+        ruby-progressbar 1.9.0\r\nInstalling ruby-progressbar 1.9.0\r\nInstalling
+        minitest 5.11.3\r\nUsing trav3 0.0.2 from source at `.`\r\nFetching simplecov
+        0.13.0\r\nFetching minitest-reporters 1.1.19\r\nInstalling simplecov 0.13.0\r\nInstalling
+        minitest-reporters 1.1.19\r\nFetching codeclimate-test-reporter 1.0.8\r\nFetching
+        color_pound_spec_reporter 0.0.9\r\nInstalling color_pound_spec_reporter 0.0.9\r\nInstalling
+        codeclimate-test-reporter 1.0.8\r\nBundle complete! 8 Gemfile dependencies,
+        14 gems now installed.\r\nBundled gems are installed into `./vendor/bundle`\r\ntravis_time:end:33d3de5f:start=1547241371707935621,finish=1547241375294841601,duration=3586905980\r\e[0Ktravis_fold:end:install.bundler\r\e[0K\r\ntravis_time:start:0c2bc5f4\r\e[0K$
+        bundle exec rake test\r\nCoverage report generated for Unit Tests to /home/travis/build/danielpclark/trav3/coverage.
+        0.0 / 0.0 LOC (100.0%) covered.\r\nStarted with run options --seed 20628\r\n\r\nTrav3Test\r\n\e[32m
+        PASS\e[0m (0.00s) :: test_options_test\r\n\r\nFinished in 0.00140s\r\n1 tests,
+        3 assertions, \e[32m0 failures, 0 errors, \e[0m\e[33m0 skips\e[0m\r\ntravis_time:end:0c2bc5f4:start=1547241375299129069,finish=1547241375886429227,duration=587300158\r\e[0K\e[32;1mThe
+        command \"bundle exec rake test\" exited with 0.\e[0m\r\n\r\n\r\n\r\nDone.
+        Your build exited with 0.\r\n"
+    http_version: 
+  recorded_at: Sat, 12 Jan 2019 15:22:56 GMT
+recorded_with: VCR 4.0.0

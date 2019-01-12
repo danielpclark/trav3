@@ -6,6 +6,7 @@ RSpec.describe Trav3::Travis, :vcr do
   describe '#new' do
     it 'returns a valid instance with good repo name' do
       expect(t).to be_an_instance_of Trav3::Travis
+      expect(t.send :repository_name).to eq 'danielpclark%2Ftrav3'
     end
 
     let(:travis) { Trav3::Travis.new('asdf-asdf') }
@@ -78,6 +79,16 @@ RSpec.describe Trav3::Travis, :vcr do
       log = t.log(351778875)
       expect(log).to be_an_instance_of Trav3::Success
     end
+
+    it 'gets text of log of job' do
+      log = t.log(351778875, :text)
+      expect(log).to be_an_instance_of String
+      expect(log).to include('Worker information')
+    end
+
+    it 'raises an unimplemented error when :delete is used' do
+      expect{t.log(351778875, :delete)}.to raise_error(Trav3::Unimplemented, /not implemented/)
+    end
   end
 
   describe '#owner' do
@@ -92,15 +103,27 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
-  # describe '#repositories', vcr: { cassette_name: 'Trav3_Travis/_repositories', record: :new_episodes } do
-  #   it '' do
+  describe '#repositories' do
+    it 'gets collection of repositories for username' do
+      repositories = t.repositories
+      expect(repositories['repositories'].count).to be 25
+    end
 
-  #   end
-  # end
+    it 'gets collection of repositories for user_id' do
+      repositories = t.repositories(639823)
+      expect(repositories['repositories'].count).to be 25
+    end
+  end
 
-  # describe '#repository' do
-  #   it '' do
+  describe '#repository' do
+    it 'gets repository info' do
+      repository = t.repository('danielpclark/trav3')
+      expect(repository).to be_an_instance_of Trav3::Success
+    end
 
-  #   end
-  # end
+    it 'accepts an action for the repository' do
+      repository = t.repository('danielpclark/trav3', 'unstar')
+      expect(repository).to be_an_instance_of Trav3::Success
+    end
+  end
 end
