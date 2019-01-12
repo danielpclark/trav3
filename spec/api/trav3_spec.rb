@@ -92,7 +92,7 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
-  # describe '#repositories' do
+  # describe '#repositories', vcr: { cassette_name: 'Trav3_Travis/_repositories', record: :new_episodes } do
   #   it '' do
 
   #   end
