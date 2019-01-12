@@ -12,19 +12,21 @@ module Trav3
 
   class Unimplemented < StandardError
     def message
-      "You need to implement this method"
+      "This feature is not implemented."
     end
   end
 
   class Response
     extend Forwardable
+    attr_reader :travis
     def_delegators :@json, :[], :dig, :keys, :values, :has_key?
     def_delegators :@response, :code, :code_type, :uri, :message, :read_header,
                                :header, :value, :entity, :response, :body,
                                :decode_content, :msg, :reading_body, :read_body,
                                :http_version, :connection_close?, :connection_keep_alive?,
                                :initialize_http_header, :get_fields, :each_header
-    def initialize(response)
+    def initialize(travis, response)
+      @travis = travis
       @response = response
       @json = JSON.parse(response.body)
     end
@@ -35,11 +37,12 @@ module Trav3
 
     def success?; raise Unimplemented  end
     def failure?; raise Unimplemented  end
+    private :travis
   end
 
   class Success < Response
     def page
-      Trav3::Pagination.new(self)
+      Trav3::Pagination.new(travis, self)
     end
 
     def success?; true  end

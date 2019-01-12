@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'trav3/version'
+require 'trav3/pagination'
 require 'trav3/options'
 require 'trav3/headers'
 require 'trav3/result'
@@ -32,7 +33,9 @@ module Trav3
 
       @repo = repo.gsub(/\//, '%2F')
       defaults(limit: 25)
-      h("Travis-API-Version": 3)
+      h('Content-Type': 'application/json')
+      h('Accept': 'application/json')
+      h('Travis-API-Version': 3)
     end
 
     # @overload defaults(key: value, ...)
@@ -135,7 +138,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def owner(owner = username)
-      if /^\d+$/ === owner
+      if /^\d+$/ === "#{owner}"
         get("#{self[]}/owner/github_id/#{owner}")
       else
         get("#{self[]}/owner/#{owner}")
@@ -281,7 +284,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def repositories(owner = username)
-      if /^\d+$/ === owner
+      if /^\d+$/ === "#{owner}"
         get("#{self[]}/owner/github_id/#{owner}/repos#{opts}")
       else
         get("#{self[]}/owner/#{owner}/repos#{opts}")
@@ -889,7 +892,7 @@ module Trav3
     def log(id, option = nil)
       case option
       when :text
-        get("#{self[]}/job/#{id}/log.txt")
+        get("#{self[]}/job/#{id}/log.txt", true)
       when :delete
         raise Unimplemented
       else
@@ -910,12 +913,12 @@ module Trav3
       @options
     end
 
-    def get(x)
-      Trav3::GET.(x, headers())
+    def get(x, raw_reply = false)
+      Trav3::GET.(self, x, raw_reply)
     end
 
     def post(x, fields = {})
-      Trav3::POST.(x, headers(), fields)
+      Trav3::POST.(self, x, fields)
     end
 
     def username

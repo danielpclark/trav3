@@ -15,6 +15,8 @@ module Trav3
       for (key, value) in args
         @heads[key] = value
       end
+
+      self
     end
 
     def remove(key)
@@ -24,6 +26,8 @@ module Trav3
     def +(other)
       raise ArgumentError, "Invalid type provided." unless other.is_a?(Headers)
       @heads.merge(other.instance_variable_get(:@heads))
+
+      self
     end
 
     def to_h

@@ -1,0 +1,82 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/owner/danielpclark
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 11 Jan 2019 21:14:23 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Owner::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - a8096848-3e8b-498c-ac8b-e50acd79b962
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "user",
+          "@href": "/user/114816",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "sync": true
+          },
+          "id": 114816,
+          "login": "danielpclark",
+          "name": "Daniel P. Clark",
+          "github_id": 319081,
+          "avatar_url": "https://avatars1.githubusercontent.com/u/319081?v=4",
+          "education": false,
+          "allow_migration": false,
+          "is_syncing": false,
+          "synced_at": "2019-01-11T04:00:59Z"
+        }
+    http_version: 
+  recorded_at: Fri, 11 Jan 2019 21:14:23 GMT
+recorded_with: VCR 4.0.0

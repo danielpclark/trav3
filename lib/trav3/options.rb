@@ -6,7 +6,7 @@ module Trav3
 
     def opts
       if @opts.empty?
-        ""
+        ''
       else
         "?#{@opts.join('&')}"
       end
@@ -19,6 +19,8 @@ module Trav3
         remove(key)
         @opts.push("#{key}=#{value}")
       end
+
+      self
     end
 
     def remove(key)
@@ -29,7 +31,10 @@ module Trav3
 
     def +(other)
       raise ArgumentError, "Invalid type provided." unless other.is_a?(Options)
+
       @opts += other.instance_variable_get(:@opts)
+
+      self
     end
 
     def to_s
