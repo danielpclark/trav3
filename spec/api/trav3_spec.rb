@@ -21,11 +21,27 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
-  # describe '#builds' do
-  #   it '' do
+  describe '#builds', vcr: { cassette_name: 'Trav3_Travis/_builds', record: :new_episodes } do
+    it 'gets collection of builds' do
+      builds = t.builds
+      expect(builds['builds'].count).to be 25
+    end
 
-  #   end
-  # end
+    it 'has pages of builds' do
+      builds = t.builds
+      expect(builds.page.next['builds'].count).to be > 10
+    end
+
+    it 'has a first page' do
+      builds = t.builds
+      expect(builds.page.first['builds'].count).to be 25
+    end
+
+    it 'has a last page' do
+      builds = t.builds
+      expect(builds.page.last['builds'].count).to be > 10
+    end
+  end
 
   describe '#build_jobs' do
     it 'gets build job details for build' do
