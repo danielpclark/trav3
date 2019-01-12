@@ -10,6 +10,14 @@ module Trav3
     end
   end
 
+  class InvalidAPIEndpoint < StandardError
+    def message
+      "The API endpoint must be either
+      'https://api.travis-ci.com' or
+      'https://api.travis-ci.org'"
+    end
+  end
+
   class Unimplemented < StandardError
     def message
       "This feature is not implemented."

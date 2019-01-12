@@ -15,6 +15,17 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#api_endpoint=' do
+    it 'sets the API endpoint' do
+      t.api_endpoint = 'https://api.travis-ci.com'
+      expect(t.api_endpoint).to eq 'https://api.travis-ci.com'
+    end
+
+    it 'raises on invalid API endpoint' do
+      expect { t.api_endpoint = 'https://asdf.qwerty' }.to raise_error(Trav3::InvalidAPIEndpoint, /API/)
+    end
+  end
+
   describe '#build' do
     it 'gets build info' do
       build = t.build(351778872)

@@ -14,12 +14,15 @@ module Trav3
   # An abstraction for the Travis CI v3 API
   #
   # @author Daniel P. Clark https://6ftdan.com
+  # @!attribute [r] api_endpoint
+  #   @return [String] API endpoint
   # @!attribute [r] options
   #   @return [Options] Request options object
   # @!attribute [r] headers
   #   @return [Headers] Request headers object
   class Travis
     API_ENDPOINT = API_ROOT
+    attr_reader :api_endpoint
     attr_reader :options
     attr_reader :headers
 
@@ -31,11 +34,25 @@ module Trav3
       raise InvalidRepository unless repo.is_a?(String) and
         Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
 
+      @api_endpoint = API_ENDPOINT
       @repo = repo.gsub(/\//, '%2F')
       defaults(limit: 25)
       h('Content-Type': 'application/json')
       h('Accept': 'application/json')
       h('Travis-API-Version': 3)
+    end
+
+    # @overload api_endpoint=(endpoint)
+    #   Set as the API endpoint
+    #   @param endpoint [String] name for value to set
+    # @return [self]
+    def api_endpoint= endpoint
+      if  /^https:\/\/api\.travis-ci\.(?:org|com)$/ === endpoint
+        @api_endpoint = endpoint
+      else
+        raise InvalidAPIEndpoint
+      end
+      self
     end
 
     # @overload defaults(key: value, ...)
@@ -888,7 +905,7 @@ module Trav3
     #
     # @param id [String, Integer] the job id number
     # @param option [Symbol] options for :text or :delete
-    # @return [Success, RequestError]
+    # @return [Success, String, RequestError]
     def log(id, option = nil)
       case option
       when :text
@@ -902,7 +919,7 @@ module Trav3
 
     private # @private
     def [](repository = false)
-      [API_ENDPOINT].tap {|a| a.push("repo/#{@repo}") if repository }.join('/')
+      [api_endpoint()].tap {|a| a.push("repo/#{@repo}") if repository }.join('/')
     end
 
     def repository_name
