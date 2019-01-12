@@ -4,13 +4,13 @@ RSpec.describe Trav3::Response do
   let(:response) { build :response }
   describe '#success?' do
     it 'raises an unimplemented error' do
-      expect{response.success?}.to raise_error(Trav3::Unimplemented)
+      expect{response.success?}.to raise_error(Trav3::Unimplemented, /need to implement/)
     end
   end
 
   describe '#failure?' do
     it 'raises an unimplemented error' do
-      expect{response.success?}.to raise_error(Trav3::Unimplemented)
+      expect{response.success?}.to raise_error(Trav3::Unimplemented, /need to implement/)
     end
   end
 

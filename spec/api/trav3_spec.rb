@@ -10,7 +10,7 @@ RSpec.describe Trav3::Travis, :vcr do
 
     let(:travis) { Trav3::Travis.new('asdf-asdf') }
     it 'raises Trav3::InvalidRepository when invalid' do
-      expect { travis }.to raise_error(Trav3::InvalidRepository)
+      expect { travis }.to raise_error(Trav3::InvalidRepository, /invlaid/)
     end
   end
 
