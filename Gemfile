@@ -8,7 +8,8 @@ gemspec
 group :test do
   gem 'byebug'
   gem 'codeclimate-test-reporter', '~> 1.0.0'
-  gem 'simplecov', require: false, group: :test
+  gem 'rubocop', require: false
+  gem 'simplecov', require: false
   gem 'vcr', '~> 4.0'
   gem 'webmock', '~> 3.5'
 end
