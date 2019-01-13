@@ -14,6 +14,7 @@ RSpec.configure do |config|
     include WebMock::API
 
     FactoryBot.find_definitions
+    FactoryBot::Evaluator.include RSpec::Mocks::ExampleMethods
 
     VCR.configure do |vcr_config|
       vcr_config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
