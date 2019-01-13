@@ -31,15 +31,12 @@ module Trav3
     #   conform to valid repository identifier format
     # @return [Travis]
     def initialize(repo)
-      raise InvalidRepository unless repo.is_a?(String) and
-        Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
+      raise InvalidRepository unless repo_slug_or_id? repo
 
       @api_endpoint = API_ENDPOINT
-      @repo = repo.gsub(/\//, '%2F')
-      defaults(limit: 25)
-      h('Content-Type': 'application/json')
-      h('Accept': 'application/json')
-      h('Travis-API-Version': 3)
+      @repo = sanitize_repo_name repo
+
+      initial_defaults
     end
 
     # @overload api_endpoint=(endpoint)
@@ -940,6 +937,21 @@ module Trav3
 
     def username
       @repo[/.*?(?=(?:\/|%2F)|$)/]
+    end
+
+    def repo_slug_or_id?(repo)
+      Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
+    end
+
+    def sanitize_repo_name(repo)
+      "#{repo}".gsub(/\//, '%2F')
+    end
+
+    def initial_defaults
+      defaults(limit: 25)
+      h('Content-Type': 'application/json')
+      h('Accept': 'application/json')
+      h('Travis-API-Version': 3)
     end
   end
 end
