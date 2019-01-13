@@ -440,11 +440,9 @@ module Trav3
     #   conform to valid repository identifier format
     # @return [Success, RequestError]
     def repository(repo = repository_name, action = nil)
-      raise InvalidRepository unless repo.is_a?(String) and
-        Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/) === repo
+      raise InvalidRepository unless repo_slug_or_id? repo
 
-      repo = repo.gsub(/\//, '%2F')
-
+      repo = sanitize_repo_name repo
       action = '' if !%w(star unstar activate deavtivate).include? "#{action}"
 
       if action.empty?
