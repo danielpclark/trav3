@@ -8,11 +8,20 @@ require_relative '../lib/trav3'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-
   config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
+    include WebMock::API
+
     FactoryBot.find_definitions
+
+    VCR.configure do |vcr_config|
+      vcr_config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+      vcr_config.hook_into :webmock
+      vcr_config.configure_rspec_metadata!
+    end
+
+    WebMock::API.stub_request(:any, 'api.travis-ci.org')
   end
 
   # rspec-expectations config goes here. You can use an alternate
@@ -81,7 +90,7 @@ RSpec.configure do |config|
   # Print the 10 slowest examples and example groups at the
   # end of the spec run, to help surface which specs are running
   # particularly slow.
-  #config.profile_examples = 10
+  # config.profile_examples = 10
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
@@ -95,13 +104,3 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 end
-
-include WebMock::API
-
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
-  config.hook_into :webmock
-  config.configure_rspec_metadata!
-end
-
-stub_request(:any, 'api.travis-ci.org')

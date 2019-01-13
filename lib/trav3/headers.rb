@@ -12,7 +12,7 @@ module Trav3
     def build(**args)
       @heads ||= {}
 
-      for (key, value) in args
+      args.each do |(key, value)|
         @heads[key] = value
       end
 
@@ -24,7 +24,8 @@ module Trav3
     end
 
     def +(other)
-      raise ArgumentError, "Invalid type provided." unless other.is_a?(Headers)
+      raise ArgumentError, 'Invalid type provided.' unless other.is_a?(Headers)
+
       @heads.merge(other.instance_variable_get(:@heads))
 
       self

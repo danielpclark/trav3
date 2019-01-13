@@ -29,14 +29,14 @@ RSpec.describe Trav3::Options do
 
   describe '#to_h' do
     it 'creates a valid hash from the options instance' do
-      expect(opts.to_h).to eq({'c' => 'd', 'a' => 'b'})
+      expect(opts.to_h).to eq('c' => 'd', 'a' => 'b')
     end
   end
 
   describe '#+' do
     it 'merges two options together' do
       result = opts.build(w: :x) + opts.build(y: :z)
-      expect(result.to_s).to include("w=x&y=z")
+      expect(result.to_s).to include('w=x&y=z')
     end
   end
 end

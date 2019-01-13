@@ -1,27 +1,30 @@
 # frozen_string_literal: true
+
 require 'net/http'
 require 'uri'
 require 'json'
 
 module Trav3
   module GET
+    # rubocop:disable Metrics/MethodLength
     def self.call(travis, url, raw_reply = false)
       uri = URI(url)
       req = Net::HTTP::Get.new(uri.request_uri)
-      travis.headers.each_pair { |header, value|
+      travis.headers.each_pair do |header, value|
         req[header] = value
-      }
+      end
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = (uri.scheme == "https")
+      http.use_ssl = (uri.scheme == 'https')
       response = http.request(req)
 
-      if raw_reply
-        response.body
-      elsif Net::HTTPOK == response.code_type
+      return response.body if raw_reply
+
+      if Net::HTTPOK == response.code_type
         Success.new(travis, response)
       else
         RequestError.new(travis, response)
       end
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end

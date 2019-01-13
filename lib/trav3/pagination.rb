@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Trav3
   class Pagination
     def initialize(travis, result)
@@ -11,19 +12,19 @@ module Trav3
     end
 
     def next
-      get("#{API_ROOT}#{self.dig("@pagination").dig("next").dig("@href")}")
+      get("#{API_ROOT}#{dig('@pagination').dig('next').dig('@href')}")
     end
 
     def first
-      get("#{API_ROOT}#{self.dig("@pagination").dig("first").dig("@href")}")
+      get("#{API_ROOT}#{dig('@pagination').dig('first').dig('@href')}")
     end
 
     def last
-      get("#{API_ROOT}#{self.dig("@pagination").dig("last").dig("@href")}")
+      get("#{API_ROOT}#{dig('@pagination').dig('last').dig('@href')}")
     end
 
-    def get(x)
-      Trav3::GET.(travis, x)
+    def get(url)
+      Trav3::GET.call(travis, url)
     end
     private :get
 

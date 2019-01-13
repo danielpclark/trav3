@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'forwardable'
 
 module Trav3
@@ -20,7 +21,7 @@ module Trav3
 
   class Unimplemented < StandardError
     def message
-      "This feature is not implemented."
+      'This feature is not implemented.'
     end
   end
 
@@ -29,10 +30,10 @@ module Trav3
     attr_reader :travis
     def_delegators :@json, :[], :dig, :keys, :values, :has_key?
     def_delegators :@response, :code, :code_type, :uri, :message, :read_header,
-                               :header, :value, :entity, :response, :body,
-                               :decode_content, :msg, :reading_body, :read_body,
-                               :http_version, :connection_close?, :connection_keep_alive?,
-                               :initialize_http_header, :get_fields, :each_header
+                   :header, :value, :entity, :response, :body, :decode_content,
+                   :msg, :reading_body, :read_body, :http_version,
+                   :connection_close?, :connection_keep_alive?,
+                   :initialize_http_header, :get_fields, :each_header
     def initialize(travis, response)
       @travis = travis
       @response = response
@@ -40,11 +41,16 @@ module Trav3
     end
 
     def inspect
-      "<#{self.class} Response: keys = #{self.keys}>"
+      "<#{self.class} Response: keys = #{keys}>"
     end
 
-    def success?; raise Unimplemented  end
-    def failure?; raise Unimplemented  end
+    def success?
+      raise Unimplemented
+    end
+
+    def failure?
+      raise Unimplemented
+    end
     private :travis
   end
 
@@ -53,12 +59,22 @@ module Trav3
       Trav3::Pagination.new(travis, self)
     end
 
-    def success?; true  end
-    def failure?; false end
+    def success?
+      true
+    end
+
+    def failure?
+      false
+    end
   end
 
   class RequestError < Response
-    def success?; false end
-    def failure?; true  end
+    def success?
+      false
+    end
+
+    def failure?
+      true
+    end
   end
 end

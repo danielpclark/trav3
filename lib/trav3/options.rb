@@ -15,7 +15,7 @@ module Trav3
     def build(**args)
       @opts ||= []
 
-      for (key, value) in args
+      args.each do |(key, value)|
         remove(key)
         @opts.push("#{key}=#{value}")
       end
@@ -24,13 +24,13 @@ module Trav3
     end
 
     def remove(key)
-      @opts = @opts.keep_if {|item, _|
-        !(/^#{key}=/ === "#{item}")
-      }
+      @opts = @opts.keep_if do |item, _|
+        !(/^#{key}=/.match? item.to_s)
+      end
     end
 
     def +(other)
-      raise ArgumentError, "Invalid type provided." unless other.is_a?(Options)
+      raise ArgumentError, 'Invalid type provided.' unless other.is_a?(Options)
 
       @opts += other.instance_variable_get(:@opts)
 
@@ -42,7 +42,7 @@ module Trav3
     end
 
     def to_h
-      @opts.map {|item| item.split("=") }.to_h
+      @opts.map { |item| item.split('=') }.to_h
     end
   end
 end
