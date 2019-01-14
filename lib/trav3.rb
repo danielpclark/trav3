@@ -712,6 +712,7 @@ module Trav3
     #     Example:GET /org/87
     #
     # @param org_id [String, Integer] the organization id
+    # @raise [TypeError] if given organization id is not a number
     # @return [Success, RequestError]
     def organization(org_id)
       raise TypeError, 'Integer expected for organization id' unless /^\d+$/.match? org_id.to_s
@@ -1140,6 +1141,95 @@ module Trav3
         get("#{without_repo}/repo/#{repo}")
       else
         post("#{without_repo}/repo/#{repo}/#{action}")
+      end
+    end
+
+    # An individual user.
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name  Type     Description
+    #     id    Integer  Value uniquely identifying the user.
+    #     login String   Login set on Github.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name              Type     Description
+    #     id                Integer  Value uniquely identifying the user.
+    #     login             String   Login set on Github.
+    #     name              String   Name set on GitHub.
+    #     github_id         Integer  Id set on GitHub.
+    #     avatar_url        String   Avatar URL set on GitHub.
+    #     education         Boolean  Whether or not the user has an education account.
+    #     allow_migration   Unknown  The user's allow_migration.
+    #     is_syncing        Boolean  Whether or not the user is currently being synced with Github.
+    #     synced_at         String   The last time the user was synced with GitHub.
+    #
+    # **Additional Attributes**
+    #
+    #     Name          Type          Description
+    #     repositories  [Repository]  Repositories belonging to this user.
+    #     installation  Installation  Installation belonging to the user.
+    #     emails        Unknown       The user's emails.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This will return information about an individual user.
+    #
+    # GET <code>/user/{user.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     user.id            Integer  Value uniquely identifying the user.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example:GET /user/119240
+    #
+    # **Sync**
+    #
+    # This triggers a sync on a user's account with their GitHub account.
+    #
+    # POST <code>/user/{user.id}/sync</code>
+    #
+    #     Template Variable  Type     Description
+    #     user.id            Integer  Value uniquely identifying the user.
+    #
+    #     Example:POST /user/119240/sync
+    #
+    # **Current**
+    #
+    # This will return information about the current user.
+    #
+    # GET <code>/user</code>
+    #
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example:GET /user
+    #
+    # @note sync feature may not be permitted
+    # @note POST requests require an authorization token set in the headers. See: {h}
+    #
+    # @param user_id [String, Integer] optional user id
+    # @param sync [Boolean] optional argument for syncing your Travis CI account with Github
+    # @raise [TypeError] if given user id is not a number
+    # @return [Success, RequestError]
+    def user(user_id = nil, sync = false)
+      return get("#{without_repo}/user") if !user_id && !sync
+      raise TypeError, 'Integer expected for user id' unless /^\d+$/.match? user_id.to_s
+
+      if sync
+        get("#{without_repo}/user/#{user_id}/sync")
+      else
+        get("#{without_repo}/user/#{user_id}")
       end
     end
 
