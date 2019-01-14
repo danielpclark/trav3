@@ -1,0 +1,94 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.travis-ci.org/lint
+    body:
+      encoding: UTF-8
+      string: |
+        language: ruby
+
+        rvm:
+        - 2.4.5
+        - 2.5.3
+        - 2.6.0
+
+        env:
+          global:
+            - CC_TEST_REPORTER_ID=bbc65a7f5858b221fbbb49617e4118dcce44703366ea64a49687214aed252cf3
+
+        before_script:
+          - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          - chmod +x ./cc-test-reporter
+          - ./cc-test-reporter before-build
+
+        script:
+          - bundle exec rake
+          - bundle exec rubocop
+
+        after_script:
+          - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Travis-Api-Version:
+      - '3'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Mon, 14 Jan 2019 23:37:51 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Lint::Lint
+      X-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 2e2c653f-2bff-490b-bda6-724f623fcf5f
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@warnings": [
+            {
+              "@type": "warning",
+              "message": "query parameter language: ruby\n\nrvm:\n- 2.4.5\n- 2.5.3\n- 2.6.0\n\nenv:\n  global:\n    - CC_TEST_REPORTER_ID not safelisted, ignored",
+              "warning_type": "ignored_parameter",
+              "parameter": "language: ruby\n\nrvm:\n- 2.4.5\n- 2.5.3\n- 2.6.0\n\nenv:\n  global:\n    - CC_TEST_REPORTER_ID"
+            }
+          ],
+          "@type": "lint",
+          "warnings": [
+
+          ]
+        }
+    http_version: 
+  recorded_at: Mon, 14 Jan 2019 23:37:51 GMT
+recorded_with: VCR 4.0.0

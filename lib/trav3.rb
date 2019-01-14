@@ -576,6 +576,16 @@ module Trav3
       end
     end
 
+    def lint(yaml_contents)
+      raise TypeError, "String expected, #{yaml_contents.class} given" unless \
+        yaml_contents.is_a? String
+
+      ct = headers.remove(:'Content-Type')
+      result = post("#{without_repo}/lint", body: yaml_contents)
+      h('Content-Type': ct) if ct
+      result
+    end
+
     # An individual log.
     #
     # ## Attributes

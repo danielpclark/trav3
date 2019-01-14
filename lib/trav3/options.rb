@@ -24,9 +24,18 @@ module Trav3
     end
 
     def remove(key)
-      @opts = @opts.keep_if do |item, _|
-        !(/^#{key}=/.match? item.to_s)
+      return_value = nil
+
+      @opts = @opts.keep_if do |item, value|
+        if entry_match?(key, item)
+          return_value = value
+          false
+        else
+          true
+        end
       end
+
+      return_value
     end
 
     def reset!
@@ -34,7 +43,7 @@ module Trav3
     end
 
     def +(other)
-      raise ArgumentError, 'Invalid type provided.' unless other.is_a?(Options)
+      raise TypeError, "Options type expected, #{other.class} given" unless other.is_a? Options
 
       @opts += other.instance_variable_get(:@opts)
 
@@ -47,6 +56,12 @@ module Trav3
 
     def to_h
       @opts.map { |item| item.split('=') }.to_h
+    end
+
+    private
+
+    def entry_match?(entry, item)
+      (/^#{entry}=/.match? item.to_s)
     end
   end
 end

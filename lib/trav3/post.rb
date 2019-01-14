@@ -7,12 +7,14 @@ require 'json'
 module Trav3
   module POST
     # rubocop:disable Metrics/MethodLength
-    def self.call(travis, url, fields = {})
+    def self.call(travis, url, **fields)
       uri = URI( url.sub(/\?.*$/, '') )
       req = Net::HTTP::Post.new(uri.request_uri)
       travis.headers.each_pair do |header, value|
         req[header] = value
       end
+      body = fields.delete(:body)
+      req.body = body if body
       req.set_form_data(**fields) unless fields.empty?
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = (uri.scheme == 'https')
