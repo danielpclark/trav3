@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/orgs
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Mon, 14 Jan 2019 14:31:39 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Organizations::ForCurrentUser
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 0ca3998a-6597-4671-83e5-9c714cdb4256
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "organizations",
+          "@href": "/orgs",
+          "@representation": "standard",
+          "@pagination": {
+            "limit": 100,
+            "offset": 0,
+            "count": 2,
+            "is_first": true,
+            "is_last": true,
+            "next": null,
+            "prev": null,
+            "first": {
+              "@href": "/orgs",
+              "offset": 0,
+              "limit": 100
+            },
+            "last": {
+              "@href": "/orgs",
+              "offset": 0,
+              "limit": 100
+            }
+          },
+          "organizations": [
+            {
+              "@type": "organization",
+              "@href": "/org/123227",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "sync": true
+              },
+              "id": 123227,
+              "login": "rubyforgood",
+              "name": "Ruby for Good",
+              "github_id": 11573263,
+              "avatar_url": "https://avatars1.githubusercontent.com/u/11573263",
+              "education": false,
+              "allow_migration": false
+            },
+            {
+              "@type": "organization",
+              "@href": "/org/107660",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "sync": true
+              },
+              "id": 107660,
+              "login": "6ftDan",
+              "name": "",
+              "github_id": 1786951,
+              "avatar_url": "https://avatars1.githubusercontent.com/u/1786951",
+              "education": false,
+              "allow_migration": false
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Mon, 14 Jan 2019 14:31:39 GMT
+recorded_with: VCR 4.0.0
