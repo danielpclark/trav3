@@ -504,7 +504,7 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #     log.token        Unknown   Documentation missing.
     #
-    #     Example:GET/job/86601347/log.txt
+    #     Example:GET /job/86601347/log.txt
     #
     # **Delete**
     #
@@ -536,6 +536,61 @@ module Trav3
       else
         get("#{self[]}/job/#{id}/log")
       end
+    end
+
+    # An individual organization.
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name   Type     Description
+    #     id     Integer  Value uniquely identifying the organization.
+    #     login  String   Login set on GitHub.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is eager loaded.
+    #
+    #     Name             Type     Description
+    #     id               Integer  Value uniquely identifying the organization.
+    #     login            String   Login set on GitHub.
+    #     name             String   Name set on GitHub.
+    #     github_id        Integer  Id set on GitHub.
+    #     avatar_url       String   Avatar_url set on GitHub.
+    #     education        Boolean  Whether or not the organization has an education account.
+    #     allow_migration  Unknown  The organization's allow_migration.
+    #
+    # **Additional Attributes**
+    #
+    #     Name          Type          Description
+    #     repositories  [Repository]  Repositories belonging to this organization.
+    #     installation  Installation  Installation belonging to the organization.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns an individual organization.
+    #
+    # GET <code>/org/{organization.id}</code>
+    #
+    #     Template Variable  Type      Description
+    #     organization.id    Integer   Value uniquely identifying the organization.
+    #     Query Parameter    Type      Description
+    #     include            [String]  List of attributes to eager load.
+    #
+    #     Example:GET /org/87
+    #
+    # @param org_id [String, Integer] the organization id
+    # @return [Success, RequestError]
+    def organization(org_id)
+      raise TypeError, 'Integer expected for organization id' \
+        unless /^\d+$/.match? org_id.to_s
+
+      get("#{self[]}/org/#{org_id}")
     end
 
     # This will be either a user or organization.
