@@ -1,0 +1,182 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/branches?limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Mon, 14 Jan 2019 19:22:34 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Branches::Find
+      X-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - ace4fa82-811d-40fc-8f21-c5a30d66ffc2
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "branches",
+          "@href": "/repo/danielpclark%2Ftrav3/branches?limit=25",
+          "@representation": "standard",
+          "@pagination": {
+            "limit": 25,
+            "offset": 0,
+            "count": 3,
+            "is_first": true,
+            "is_last": true,
+            "next": null,
+            "prev": null,
+            "first": {
+              "@href": "/repo/danielpclark%2Ftrav3/branches?limit=25",
+              "offset": 0,
+              "limit": 25
+            },
+            "last": {
+              "@href": "/repo/danielpclark%2Ftrav3/branches?limit=25",
+              "offset": 0,
+              "limit": 25
+            }
+          },
+          "branches": [
+            {
+              "@type": "branch",
+              "@href": "/repo/22777898/branch/master",
+              "@representation": "standard",
+              "name": "master",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "default_branch": true,
+              "exists_on_github": true,
+              "last_build": {
+                "@type": "build",
+                "@href": "/build/479429544",
+                "@representation": "minimal",
+                "id": 479429544,
+                "number": "15",
+                "state": "passed",
+                "duration": 201,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-01-14T14:47:09Z",
+                "finished_at": "2019-01-14T14:48:27Z",
+                "private": false
+              }
+            },
+            {
+              "@type": "branch",
+              "@href": "/repo/22777898/branch/trav3%2Ffeature%2Forganizations",
+              "@representation": "standard",
+              "name": "trav3/feature/organizations",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "default_branch": false,
+              "exists_on_github": false,
+              "last_build": {
+                "@type": "build",
+                "@href": "/build/479427431",
+                "@representation": "minimal",
+                "id": 479427431,
+                "number": "13",
+                "state": "passed",
+                "duration": 206,
+                "event_type": "push",
+                "previous_state": null,
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-01-14T14:42:47Z",
+                "finished_at": "2019-01-14T14:44:00Z",
+                "private": false
+              }
+            },
+            {
+              "@type": "branch",
+              "@href": "/repo/22777898/branch/trav3%2Ffeature%2Fapi_endpoint",
+              "@representation": "standard",
+              "name": "trav3/feature/api_endpoint",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "default_branch": false,
+              "exists_on_github": false,
+              "last_build": {
+                "@type": "build",
+                "@href": "/build/478778398",
+                "@representation": "minimal",
+                "id": 478778398,
+                "number": "2",
+                "state": "passed",
+                "duration": 174,
+                "event_type": "push",
+                "previous_state": null,
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-01-12T16:25:02Z",
+                "finished_at": "2019-01-12T16:26:12Z",
+                "private": false
+              }
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Mon, 14 Jan 2019 19:22:34 GMT
+recorded_with: VCR 4.0.0

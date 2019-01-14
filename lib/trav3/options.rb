@@ -29,6 +29,10 @@ module Trav3
       end
     end
 
+    def reset!
+      @opts = []
+    end
+
     def +(other)
       raise ArgumentError, 'Invalid type provided.' unless other.is_a?(Options)
 
