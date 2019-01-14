@@ -129,7 +129,7 @@ module Trav3
     #
     #     Example: GET /builds?limit=5
     #
-    # **Sortable by:** id, started_at, finished_at, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # **Find**
     #
@@ -157,7 +157,7 @@ module Trav3
     #
     #     Example: GET /repo/891/builds?limit=5
     #
-    # **Sortable by:** id, started_at, finished_at, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # GET <code>/repo/{repository.slug}/builds</code>
     #
@@ -181,7 +181,7 @@ module Trav3
     #
     #     Example: GET /repo/rails%2Frails/builds?limit=5
     #
-    # **Sortable by:** id, started_at, finished_at, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # @return [Success, RequestError]
     def builds
@@ -342,7 +342,7 @@ module Trav3
     #
     #     Example: GET /jobs?limit=5
     #
-    # **Sortable by:** id, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is id:desc.
     #
     # @param id [String, Integer] the build id number
@@ -552,7 +552,7 @@ module Trav3
     #
     # **Standard Representation**
     #
-    # Included when the resource is the main response of a request, or is eager loaded.
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
     #
     #     Name             Type     Description
     #     id               Integer  Value uniquely identifying the organization.
@@ -587,10 +587,56 @@ module Trav3
     # @param org_id [String, Integer] the organization id
     # @return [Success, RequestError]
     def organization(org_id)
-      raise TypeError, 'Integer expected for organization id' \
-        unless /^\d+$/.match? org_id.to_s
+      raise TypeError, 'Integer expected for organization id' unless /^\d+$/.match? org_id.to_s
 
       get("#{self[]}/org/#{org_id}")
+    end
+
+    # A list of organizations for the current user.
+    #
+    # ## Attributes
+    #
+    #     Name           Type            Description
+    #     organizations  [Organization]  List of organizations.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the **organizations** array has the following attributes:
+    #
+    #     Name             Type          Description
+    #     id               Integer       Value uniquely identifying the organization.
+    #     login            String        Login set on GitHub.
+    #     name             String        Name set on GitHub.
+    #     github_id        Integer       Id set on GitHub.
+    #     avatar_url       String        Avatar_url set on GitHub.
+    #     education        Boolean       Whether or not the organization has an education account.
+    #     allow_migration  Unknown       The organization's allow_migration.
+    #     repositories     [Repository]  Repositories belonging to this organization.
+    #     installation     Installation  Installation belonging to the organization.
+    #
+    # ## Actions
+    #
+    # **For Current User**
+    #
+    # This returns a list of organizations the current user is a member of.
+    #
+    # GET <code>/orgs</code>
+    #
+    #     Query Parameter    Type      Description
+    #     include            [String]  List of attributes to eager load.
+    #     limit              Integer   How many organizations to include in the response. Used for pagination.
+    #     offset             Integer   How many organizations to skip before the first entry in the response. Used for pagination.
+    #     organization.role  Unknown   Documentation missing.
+    #     role               Unknown   Alias for organization.role.
+    #     sort_by            [String]  Attributes to sort organizations by. Used for pagination.
+    #
+    #     Example:GET /orgs?limit=5
+    #
+    # **Sortable by:** <code>id</code>, <code>login</code>, <code>name</code>, <code>github_id</code>, append <code>:desc</code> to any attribute to reverse order.
+    #
+    # @return [Success, RequestError]
+    def organizations
+      get("#{self[]}/orgs")
     end
 
     # This will be either a user or organization.
@@ -727,7 +773,7 @@ module Trav3
     #
     #     Example: GET /owner/danielpclark/repos?limit=5&sort_by=active,name
     #
-    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # GET <code>/owner/{user.login}/repos</code>
     #
@@ -748,7 +794,7 @@ module Trav3
     #
     #     Example: GET /owner/danielpclark/repos?limit=5&sort_by=active,name
     #
-    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # GET <code>/owner/{organization.login}/repos</code>
     #
@@ -769,7 +815,7 @@ module Trav3
     #
     #     Example: GET /owner/travis-ci/repos?limit=5&sort_by=active,name
     #
-    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # GET <code>/owner/github_id/{owner.github_id}/repos</code>
     #
@@ -790,7 +836,7 @@ module Trav3
     #
     #     Example: GET /owner/github_id/639823/repos?limit=5&sort_by=active,name
     #
-    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # **For Current User**<br />
     # This returns a list of repositories the current user has access to.
@@ -811,7 +857,7 @@ module Trav3
     #
     #     Example: GET /repos?limit=5&sort_by=active,name
     #
-    # **Sortable by:** id, github_id, owner_name, name, active, default_branch.last_build, append :desc to any attribute to reverse order.
+    # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
     # @param owner [String] username or github ID
     # @return [Success, RequestError]

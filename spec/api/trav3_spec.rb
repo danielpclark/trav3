@@ -121,6 +121,13 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#organizations' do
+    it 'gets organizations for current user' do
+      organizations = t.organizations
+      expect(organizations).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#repositories' do
     it 'gets collection of repositories for username' do
       repositories = t.repositories
