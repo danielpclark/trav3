@@ -10,7 +10,7 @@ RSpec.describe Trav3::GET, :vcr do
 
     it 'not happy path' do
       expect(
-        t.send(:get, "#{t.send(:[])}/example_fail_1234")
+        t.send(:get, "#{t.send(:without_repo)}/example_fail_1234")
       ).to be_an_instance_of(Trav3::RequestError)
     end
   end

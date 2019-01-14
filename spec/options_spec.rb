@@ -27,6 +27,13 @@ RSpec.describe Trav3::Options do
     end
   end
 
+  describe '#reset!' do
+    it 'removes all options' do
+      opts.reset!
+      expect(opts.to_s).to be_empty
+    end
+  end
+
   describe '#to_h' do
     it 'creates a valid hash from the options instance' do
       expect(opts.to_h).to eq('c' => 'd', 'a' => 'b')

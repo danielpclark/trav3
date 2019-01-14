@@ -26,6 +26,20 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#branch' do
+    it 'gets the branch for the current repository' do
+      branch = t.branch('master')
+      expect(branch).to be_an_instance_of Trav3::Success
+    end
+  end
+
+  describe '#branches' do
+    it 'gets the branches for the current repository' do
+      branches = t.branches
+      expect(branches).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#build' do
     it 'gets build info' do
       build = t.build(351_778_872)

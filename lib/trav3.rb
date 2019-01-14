@@ -78,6 +78,223 @@ module Trav3
       self
     end
 
+    # The branch of a GitHub repository. Useful for obtaining information about the last build on a given branch.
+    #
+    # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name  Type    Description
+    #     name  String  Name of the git branch.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name              Type        Description
+    #     name              String      Name of the git branch.
+    #     repository        Repository  GitHub user or organization the branch belongs to.
+    #     default_branch    Boolean     Whether or not this is the resposiotry's default branch.
+    #     exists_on_github  Boolean     Whether or not the branch still exists on GitHub.
+    #     last_build        Build       Last build on the branch.
+    #
+    # **Additional Attributes**
+    #
+    #     Name           Type     Description
+    #     recent_builds  [Build]  Last 10 builds on the branch (when `include=branch.recent_builds` is used).
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This will return information about an individual branch. The request can include either the repository id or slug.
+    #
+    # GET <code>/repo/{repository.id}/branch/{branch.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     branch.name        String   Name of the git branch.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example:GET /repo/891/branch/master
+    #
+    # GET <code>/repo/{repository.slug}/branch/{branch.name}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     branch.name        String  Name of the git branch.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example:GET /repo/rails%2Frails/branch/master
+    #
+    # @param id [String] the branch name for the current repository
+    # @return [Success, RequestError]
+    def branch(name)
+      get("#{with_repo}/branch/#{name}#{opts}")
+    end
+
+    # A list of branches.
+    #
+    # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
+    #
+    # ##Attributes
+    #
+    #     Name      Type      Description
+    #     branches  [Branch]  List of branches.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the **branches** array has the following attributes:
+    #
+    #     Name              Type        Description
+    #     name              String      Name of the git branch.
+    #     repository        Repository  GitHub user or organization the branch belongs to.
+    #     default_branch    Boolean     Whether or not this is the resposiotry's default branch.
+    #     exists_on_github  Boolean     Whether or not the branch still exists on GitHub.
+    #     last_build        Build       Last build on the branch.
+    #     recent_builds    [Build]      Last 10 builds on the branch (when `include=branch.recent_builds` is used).
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This will return a list of branches a repository has on GitHub.
+    #
+    # GET <code>/repo/{repository.id}/branches</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter          Type       Description
+    #     branch.exists_on_github  [Boolean]  Filters branches by whether or not the branch still exists on GitHub.
+    #     exists_on_github         [Boolean]  Alias for branch.exists_on_github.
+    #     include                  [String]   List of attributes to eager load.
+    #     limit                    Integer    How many branches to include in the response. Used for pagination.
+    #     offset                   Integer    How many branches to skip before the first entry in the response. Used for pagination.
+    #     sort_by                  [String]   Attributes to sort branches by. Used for pagination.
+    #
+    #     Example:GET /repo/891/branches?limit=5&exists_on_github=true
+    #
+    # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
+    # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
+    #
+    # GET <code>/repo/{repository.slug}/branches</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter          Type       Description
+    #     branch.exists_on_github  [Boolean]  Filters branches by whether or not the branch still exists on GitHub.
+    #     exists_on_github         [Boolean]  Alias for branch.exists_on_github.
+    #     include                  [String]   List of attributes to eager load.
+    #     limit                    Integer    How many branches to include in the response. Used for pagination.
+    #     offset                   Integer    How many branches to skip before the first entry in the response. Used for pagination.
+    #     sort_by                  [String]   Attributes to sort branches by. Used for pagination.
+    #
+    #     Example:GET /repo/rails%2Frails/branches?limit=5&exists_on_github=true
+    #
+    # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
+    # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
+    #
+    # @return [Success, RequestError]
+    def branches
+      get("#{with_repo}/branches#{opts}")
+    end
+
+    # An individual build.
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name                 Type     Description
+    #     id                   Integer  Value uniquely identifying the build.
+    #     number               String   Incremental number for a repository's builds.
+    #     state                String   Current state of the build.
+    #     duration             Integer  Wall clock time in seconds.
+    #     event_type           String   Event that triggered the build.
+    #     previous_state       String   State of the previous build (useful to see if state changed).
+    #     pull_request_title   String   Title of the build's pull request.
+    #     pull_request_number  Integer  Number of the build's pull request.
+    #     started_at           String   When the build started.
+    #     finished_at          String   When the build finished.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is eager loaded.
+    #
+    #     Name                 Type        Description
+    #     id                   Integer     Value uniquely identifying the build.
+    #     number               String      Incremental number for a repository's builds.
+    #     state                String      Current state of the build.
+    #     duration             Integer     Wall clock time in seconds.
+    #     event_type           String      Event that triggered the build.
+    #     previous_state       String      State of the previous build (useful to see if state changed).
+    #     pull_request_title   String      Title of the build's pull request.
+    #     pull_request_number  Integer     Number of the build's pull request.
+    #     started_at           String      When the build started.
+    #     finished_at          String      When the build finished.
+    #     repository           Repository  GitHub user or organization the build belongs to.
+    #     branch               Branch      The branch the build is associated with.
+    #     tag                  Unknown     The build's tag.
+    #     commit               Commit      The commit the build is associated with.
+    #     jobs                 Jobs        List of jobs that are part of the build's matrix.
+    #     stages               [Stage]     The stages of a build.
+    #     created_by           Owner       The User or Organization that created the build.
+    #     updated_at           Unknown     The build's updated_at.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single build.
+    #
+    # GET <code>/build/{build.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /build/86601346
+    #
+    # **Cancel**
+    #
+    # This cancels a currently running build. It will set the build and associated jobs to "state": "canceled".
+    #
+    # POST <code>/build/{build.id}/cancel</code>
+    #
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #
+    #     Example: POST /build/86601346/cancel
+    #
+    # **Restart**
+    #
+    # This restarts a build that has completed or been canceled.
+    #
+    # POST <code>/build/{build.id}/restart</code>
+    #
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #
+    #     Example: POST /build/86601346/restart
+    #
+    # @note POST requests require an authorization token set in the headers. See: {h}
+    #
+    # @param id [String, Integer] the build id number
+    # @return [Success, RequestError]
+    def build(id)
+      get("#{without_repo}/build/#{id}")
+    end
+
     # A list of builds.
     #
     # ## Attributes
@@ -185,97 +402,7 @@ module Trav3
     #
     # @return [Success, RequestError]
     def builds
-      get("#{self[true]}/builds#{opts}")
-    end
-
-    # An individual build.
-    #
-    # ## Attributes
-    #
-    # **Minimal Representation**
-    #
-    # Included when the resource is returned as part of another resource.
-    #
-    #     Name                 Type     Description
-    #     id                   Integer  Value uniquely identifying the build.
-    #     number               String   Incremental number for a repository's builds.
-    #     state                String   Current state of the build.
-    #     duration             Integer  Wall clock time in seconds.
-    #     event_type           String   Event that triggered the build.
-    #     previous_state       String   State of the previous build (useful to see if state changed).
-    #     pull_request_title   String   Title of the build's pull request.
-    #     pull_request_number  Integer  Number of the build's pull request.
-    #     started_at           String   When the build started.
-    #     finished_at          String   When the build finished.
-    #
-    # **Standard Representation**
-    #
-    # Included when the resource is the main response of a request, or is eager loaded.
-    #
-    #     Name                 Type        Description
-    #     id                   Integer     Value uniquely identifying the build.
-    #     number               String      Incremental number for a repository's builds.
-    #     state                String      Current state of the build.
-    #     duration             Integer     Wall clock time in seconds.
-    #     event_type           String      Event that triggered the build.
-    #     previous_state       String      State of the previous build (useful to see if state changed).
-    #     pull_request_title   String      Title of the build's pull request.
-    #     pull_request_number  Integer     Number of the build's pull request.
-    #     started_at           String      When the build started.
-    #     finished_at          String      When the build finished.
-    #     repository           Repository  GitHub user or organization the build belongs to.
-    #     branch               Branch      The branch the build is associated with.
-    #     tag                  Unknown     The build's tag.
-    #     commit               Commit      The commit the build is associated with.
-    #     jobs                 Jobs        List of jobs that are part of the build's matrix.
-    #     stages               [Stage]     The stages of a build.
-    #     created_by           Owner       The User or Organization that created the build.
-    #     updated_at           Unknown     The build's updated_at.
-    #
-    # ## Actions
-    #
-    # **Find**
-    #
-    # This returns a single build.
-    #
-    # GET <code>/build/{build.id}</code>
-    #
-    #     Template Variable  Type     Description
-    #     build.id           Integer  Value uniquely identifying the build.
-    #
-    #     Query Parameter  Type      Description
-    #     include          [String]  List of attributes to eager load.
-    #
-    #     Example: GET /build/86601346
-    #
-    # **Cancel**
-    #
-    # This cancels a currently running build. It will set the build and associated jobs to "state": "canceled".
-    #
-    # POST <code>/build/{build.id}/cancel</code>
-    #
-    #     Template Variable  Type     Description
-    #     build.id           Integer  Value uniquely identifying the build.
-    #
-    #     Example: POST /build/86601346/cancel
-    #
-    # **Restart**
-    #
-    # This restarts a build that has completed or been canceled.
-    #
-    # POST <code>/build/{build.id}/restart</code>
-    #
-    #     Template Variable  Type     Description
-    #     build.id           Integer  Value uniquely identifying the build.
-    #
-    #     Example: POST /build/86601346/restart
-    #
-    # @note POST requests require an authorization token set in the headers. See: {h}
-    #
-    # @param id [String, Integer] the build id number
-    # @return [Success, RequestError]
-    def build(id)
-      get("#{self[]}/build/#{id}")
+      get("#{with_repo}/builds#{opts}")
     end
 
     # A list of jobs.
@@ -348,7 +475,7 @@ module Trav3
     # @param id [String, Integer] the build id number
     # @return [Success, RequestError]
     def build_jobs(id)
-      get("#{self[]}/build/#{id}/jobs")
+      get("#{without_repo}/build/#{id}/jobs")
     end
 
     # An individual job.
@@ -439,13 +566,13 @@ module Trav3
     def job(id, option = nil)
       case option
       when :cancel
-        post("#{self[]}/job/#{id}/cancel")
+        post("#{without_repo}/job/#{id}/cancel")
       when :restart
-        post("#{self[]}/job/#{id}/restart")
+        post("#{without_repo}/job/#{id}/restart")
       when :debug
-        post("#{self[]}/job/#{id}/debug")
+        post("#{without_repo}/job/#{id}/debug")
       else
-        get("#{self[]}/job/#{id}")
+        get("#{without_repo}/job/#{id}")
       end
     end
 
@@ -530,11 +657,11 @@ module Trav3
     def log(id, option = nil)
       case option
       when :text
-        get("#{self[]}/job/#{id}/log.txt", true)
+        get("#{without_repo}/job/#{id}/log.txt", true)
       when :delete
         raise Unimplemented
       else
-        get("#{self[]}/job/#{id}/log")
+        get("#{without_repo}/job/#{id}/log")
       end
     end
 
@@ -589,7 +716,7 @@ module Trav3
     def organization(org_id)
       raise TypeError, 'Integer expected for organization id' unless /^\d+$/.match? org_id.to_s
 
-      get("#{self[]}/org/#{org_id}")
+      get("#{without_repo}/org/#{org_id}")
     end
 
     # A list of organizations for the current user.
@@ -636,7 +763,7 @@ module Trav3
     #
     # @return [Success, RequestError]
     def organizations
-      get("#{self[]}/orgs")
+      get("#{without_repo}/orgs")
     end
 
     # This will be either a user or organization.
@@ -717,9 +844,9 @@ module Trav3
     # @return [Success, RequestError]
     def owner(owner = username)
       if /^\d+$/.match? owner.to_s
-        get("#{self[]}/owner/github_id/#{owner}")
+        get("#{without_repo}/owner/github_id/#{owner}")
       else
-        get("#{self[]}/owner/#{owner}")
+        get("#{without_repo}/owner/#{owner}")
       end
     end
 
@@ -863,9 +990,9 @@ module Trav3
     # @return [Success, RequestError]
     def repositories(owner = username)
       if /^\d+$/.match? owner.to_s
-        get("#{self[]}/owner/github_id/#{owner}/repos#{opts}")
+        get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
       else
-        get("#{self[]}/owner/#{owner}/repos#{opts}")
+        get("#{without_repo}/owner/#{owner}/repos#{opts}")
       end
     end
 
@@ -1010,17 +1137,13 @@ module Trav3
       action = '' unless %w[star unstar activate deavtivate].include? action.to_s
 
       if action.empty?
-        get("#{self[]}/repo/#{repo}")
+        get("#{without_repo}/repo/#{repo}")
       else
-        post("#{self[]}/repo/#{repo}/#{action}")
+        post("#{without_repo}/repo/#{repo}/#{action}")
       end
     end
 
     private # @private
-
-    def [](repository = false)
-      [api_endpoint].tap { |a| a.push("repo/#{@repo}") if repository }.join('/')
-    end
 
     def get(url, raw_reply = false)
       Trav3::GET.call(self, url, raw_reply)
@@ -1055,6 +1178,14 @@ module Trav3
 
     def username
       @repo[/.*?(?=(?:\/|%2F)|$)/]
+    end
+
+    def with_repo
+      "#{api_endpoint}/repo/#{@repo}"
+    end
+
+    def without_repo
+      api_endpoint
     end
   end
   # rubocop:enable Metrics/ClassLength
