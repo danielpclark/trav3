@@ -79,22 +79,22 @@ module Trav3
     end
 
     # The branch of a GitHub repository. Useful for obtaining information about the last build on a given branch.
-    # 
+    #
     # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
-    # 
+    #
     # ## Attributes
     #
     # **Minimal Representation**
     #
     # Included when the resource is returned as part of another resource.
-    # 
+    #
     #     Name  Type    Description
     #     name  String  Name of the git branch.
     #
     # **Standard Representation**
     #
     # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
-    # 
+    #
     #     Name              Type        Description
     #     name              String      Name of the git branch.
     #     repository        Repository  GitHub user or organization the branch belongs to.
@@ -112,7 +112,7 @@ module Trav3
     # **Find**
     #
     # This will return information about an individual branch. The request can include either the repository id or slug.
-    # 
+    #
     # GET <code>/repo/{repository.id}/branch/{branch.name}</code>
     #
     #     Template Variable  Type     Description
@@ -122,7 +122,7 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example:GET /repo/891/branch/master
-    # 
+    #
     # GET <code>/repo/{repository.slug}/branch/{branch.name}</code>
     #
     #     Template Variable  Type    Description
@@ -136,13 +136,13 @@ module Trav3
     # @param id [String] the branch name for the current repository
     # @return [Success, RequestError]
     def branch(name)
-      get("#{self[true]}/branch/#{name}#{opts}")
+      get("#{with_repo}/branch/#{name}#{opts}")
     end
 
     # A list of branches.
-    # 
+    #
     # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
-    # 
+    #
     # ##Attributes
     #
     #     Name      Type      Description
@@ -151,7 +151,7 @@ module Trav3
     # **Collection Items**
     #
     # Each entry in the **branches** array has the following attributes:
-    # 
+    #
     #     Name              Type        Description
     #     name              String      Name of the git branch.
     #     repository        Repository  GitHub user or organization the branch belongs to.
@@ -165,7 +165,7 @@ module Trav3
     # **Find**
     #
     # This will return a list of branches a repository has on GitHub.
-    # 
+    #
     # GET <code>/repo/{repository.id}/branches</code>
     #
     #     Template Variable  Type     Description
@@ -179,10 +179,10 @@ module Trav3
     #     sort_by                  [String]   Attributes to sort branches by. Used for pagination.
     #
     #     Example:GET /repo/891/branches?limit=5&exists_on_github=true
-    # 
+    #
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
-    # 
+    #
     # GET <code>/repo/{repository.slug}/branches</code>
     #
     #     Template Variable  Type    Description
@@ -196,13 +196,13 @@ module Trav3
     #     sort_by                  [String]   Attributes to sort branches by. Used for pagination.
     #
     #     Example:GET /repo/rails%2Frails/branches?limit=5&exists_on_github=true
-    # 
+    #
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
     #
     # @return [Success, RequestError]
     def branches
-      get("#{self[true]}/branches#{opts}")
+      get("#{with_repo}/branches#{opts}")
     end
 
     # An individual build.
@@ -292,7 +292,7 @@ module Trav3
     # @param id [String, Integer] the build id number
     # @return [Success, RequestError]
     def build(id)
-      get("#{self[]}/build/#{id}")
+      get("#{without_repo}/build/#{id}")
     end
 
     # A list of builds.
@@ -402,7 +402,7 @@ module Trav3
     #
     # @return [Success, RequestError]
     def builds
-      get("#{self[true]}/builds#{opts}")
+      get("#{with_repo}/builds#{opts}")
     end
 
     # A list of jobs.
@@ -475,7 +475,7 @@ module Trav3
     # @param id [String, Integer] the build id number
     # @return [Success, RequestError]
     def build_jobs(id)
-      get("#{self[]}/build/#{id}/jobs")
+      get("#{without_repo}/build/#{id}/jobs")
     end
 
     # An individual job.
@@ -566,13 +566,13 @@ module Trav3
     def job(id, option = nil)
       case option
       when :cancel
-        post("#{self[]}/job/#{id}/cancel")
+        post("#{without_repo}/job/#{id}/cancel")
       when :restart
-        post("#{self[]}/job/#{id}/restart")
+        post("#{without_repo}/job/#{id}/restart")
       when :debug
-        post("#{self[]}/job/#{id}/debug")
+        post("#{without_repo}/job/#{id}/debug")
       else
-        get("#{self[]}/job/#{id}")
+        get("#{without_repo}/job/#{id}")
       end
     end
 
@@ -657,11 +657,11 @@ module Trav3
     def log(id, option = nil)
       case option
       when :text
-        get("#{self[]}/job/#{id}/log.txt", true)
+        get("#{without_repo}/job/#{id}/log.txt", true)
       when :delete
         raise Unimplemented
       else
-        get("#{self[]}/job/#{id}/log")
+        get("#{without_repo}/job/#{id}/log")
       end
     end
 
@@ -716,7 +716,7 @@ module Trav3
     def organization(org_id)
       raise TypeError, 'Integer expected for organization id' unless /^\d+$/.match? org_id.to_s
 
-      get("#{self[]}/org/#{org_id}")
+      get("#{without_repo}/org/#{org_id}")
     end
 
     # A list of organizations for the current user.
@@ -763,7 +763,7 @@ module Trav3
     #
     # @return [Success, RequestError]
     def organizations
-      get("#{self[]}/orgs")
+      get("#{without_repo}/orgs")
     end
 
     # This will be either a user or organization.
@@ -844,9 +844,9 @@ module Trav3
     # @return [Success, RequestError]
     def owner(owner = username)
       if /^\d+$/.match? owner.to_s
-        get("#{self[]}/owner/github_id/#{owner}")
+        get("#{without_repo}/owner/github_id/#{owner}")
       else
-        get("#{self[]}/owner/#{owner}")
+        get("#{without_repo}/owner/#{owner}")
       end
     end
 
@@ -990,9 +990,9 @@ module Trav3
     # @return [Success, RequestError]
     def repositories(owner = username)
       if /^\d+$/.match? owner.to_s
-        get("#{self[]}/owner/github_id/#{owner}/repos#{opts}")
+        get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
       else
-        get("#{self[]}/owner/#{owner}/repos#{opts}")
+        get("#{without_repo}/owner/#{owner}/repos#{opts}")
       end
     end
 
@@ -1137,17 +1137,13 @@ module Trav3
       action = '' unless %w[star unstar activate deavtivate].include? action.to_s
 
       if action.empty?
-        get("#{self[]}/repo/#{repo}")
+        get("#{without_repo}/repo/#{repo}")
       else
-        post("#{self[]}/repo/#{repo}/#{action}")
+        post("#{without_repo}/repo/#{repo}/#{action}")
       end
     end
 
     private # @private
-
-    def [](repository = false)
-      [api_endpoint].tap { |a| a.push("repo/#{@repo}") if repository }.join('/')
-    end
 
     def get(url, raw_reply = false)
       Trav3::GET.call(self, url, raw_reply)
@@ -1182,6 +1178,14 @@ module Trav3
 
     def username
       @repo[/.*?(?=(?:\/|%2F)|$)/]
+    end
+
+    def with_repo
+      "#{api_endpoint}/repo/#{@repo}"
+    end
+
+    def without_repo
+      api_endpoint
     end
   end
   # rubocop:enable Metrics/ClassLength
