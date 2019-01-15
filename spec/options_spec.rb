@@ -25,6 +25,11 @@ RSpec.describe Trav3::Options do
       opts.remove(:c)
       expect(opts.to_s).to be_empty
     end
+
+    it 'splits the head/tail and returns the tail' do
+      opt = opts.remove(:a)
+      expect(opt).to eql 'b'
+    end
   end
 
   describe '#reset!' do
