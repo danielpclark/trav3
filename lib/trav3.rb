@@ -883,7 +883,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def owner(owner = username)
-      if /^\d+$/.match? owner.to_s
+      if number? owner
         get("#{without_repo}/owner/github_id/#{owner}")
       else
         get("#{without_repo}/owner/#{owner}")
@@ -1029,7 +1029,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def repositories(owner = username)
-      if /^\d+$/.match? owner.to_s
+      if number? owner
         get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
       else
         get("#{without_repo}/owner/#{owner}/repos#{opts}")
@@ -1332,6 +1332,10 @@ module Trav3
       h('Travis-API-Version': 3)
     end
 
+    def number?(input)
+      /^\d+$/.match? input.to_s
+    end
+
     def opts
       @options
     end
@@ -1345,7 +1349,7 @@ module Trav3
     end
 
     def validate_number(input)
-      raise TypeError, "Integer expected, #{input.class} given" unless /^\d+$/.match? input.to_s
+      raise TypeError, "Integer expected, #{input.class} given" unless number? input
     end
 
     def validate_repo_format(input)
