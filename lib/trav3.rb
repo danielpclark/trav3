@@ -47,7 +47,7 @@ module Trav3
     # @return [self]
     # rubocop:disable Lint/Void
     def api_endpoint=(endpoint)
-      raise InvalidAPIEndpoint unless /^https:\/\/api\.travis-ci\.(?:org|com)$/.match? endpoint
+      validate_api_endpoint endpoint
 
       @api_endpoint = endpoint
 
@@ -1338,6 +1338,10 @@ module Trav3
 
     def post(url, fields = {})
       Trav3::POST.call(self, url, fields)
+    end
+
+    def validate_api_endpoint(input)
+      raise InvalidAPIEndpoint unless /^https:\/\/api\.travis-ci\.(?:org|com)$/.match? input
     end
 
     def validate_number(input)
