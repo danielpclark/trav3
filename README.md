@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/danielpclark/trav3.svg?branch=master)](https://travis-ci.org/danielpclark/trav3)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1ed07a4baea3832b6207/maintainability)](https://codeclimate.com/github/danielpclark/trav3/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1ed07a4baea3832b6207/test_coverage)](https://codeclimate.com/github/danielpclark/trav3/test_coverage)
-[![Red The Docs](https://img.shields.io/badge/Read-the%20docs-blue.svg)](https://www.rubydoc.info/github/danielpclark/trav3/0af161/Trav3/Travis)
+[![Red The Docs](https://img.shields.io/badge/Read-the%20docs-blue.svg)](https://www.rubydoc.info/github/danielpclark/trav3/9453b17/Trav3/Travis)
 [![SayThanks.io](https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg)](https://saythanks.io/to/danielpclark)
 
 # Trav3
