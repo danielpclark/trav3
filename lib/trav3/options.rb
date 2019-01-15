@@ -26,13 +26,10 @@ module Trav3
     def remove(key)
       return_value = nil
 
-      @opts = @opts.keep_if do |item, value|
-        if entry_match?(key, item)
-          return_value = value
-          false
-        else
-          true
-        end
+      @opts = @opts.delete_if do |item|
+        head, tail = split.call item
+
+        return_value = tail if head == key.to_s
       end
 
       return_value
@@ -55,13 +52,13 @@ module Trav3
     end
 
     def to_h
-      @opts.map { |item| item.split('=') }.to_h
+      @opts.map(&split).to_h
     end
 
     private
 
-    def entry_match?(entry, item)
-      /^#{entry}=/.match? item.to_s
+    def split
+      ->(entry) { entry.split('=') }
     end
   end
 end
