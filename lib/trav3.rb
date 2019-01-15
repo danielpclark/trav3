@@ -137,7 +137,7 @@ module Trav3
     # @param name [String] the branch name for the current repository
     # @return [Success, RequestError]
     def branch(name)
-      get("#{with_repo}/branch/#{name}#{opts}")
+      get("#{with_repo}/branch/#{name}")
     end
 
     # A list of branches.
@@ -906,7 +906,7 @@ module Trav3
       get("#{without_repo}/orgs")
     end
 
-    # This will be either a user or organization.
+    # This will be either a {https://developer.travis-ci.com/resource/user user} or {https://developer.travis-ci.com/resource/organization organization}.
     #
     # ## Attributes
     #
@@ -920,7 +920,7 @@ module Trav3
     #
     # **Standard Representation**
     #
-    # Included when the resource is the main response of a request, or is eager loaded.
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
     #
     #     Name        Type     Description
     #     id          Integer  Value uniquely identifying the owner.

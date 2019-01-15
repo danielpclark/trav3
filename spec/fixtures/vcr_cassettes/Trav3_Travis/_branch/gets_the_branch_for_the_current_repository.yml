@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/branch/master?limit=25
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/branch/master
     body:
       encoding: US-ASCII
       string: ''
@@ -27,7 +27,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 14 Jan 2019 19:06:41 GMT
+      - Tue, 15 Jan 2019 19:12:24 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -43,7 +43,7 @@ http_interactions:
       X-Rack-Cache:
       - miss
       X-Request-Id:
-      - 651113a3-edd6-4663-871a-c672412a42fc
+      - 872424be-8f6a-4a8b-ba50-f29b860d909f
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -56,14 +56,6 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |-
         {
-          "@warnings": [
-            {
-              "@type": "warning",
-              "message": "query parameter limit not safelisted, ignored",
-              "warning_type": "ignored_parameter",
-              "parameter": "limit"
-            }
-          ],
           "@type": "branch",
           "@href": "/repo/22777898/branch/master",
           "@representation": "standard",
@@ -80,21 +72,21 @@ http_interactions:
           "exists_on_github": true,
           "last_build": {
             "@type": "build",
-            "@href": "/build/479429544",
+            "@href": "/build/480024035",
             "@representation": "minimal",
-            "id": 479429544,
-            "number": "15",
+            "id": 480024035,
+            "number": "52",
             "state": "passed",
-            "duration": 201,
+            "duration": 302,
             "event_type": "push",
             "previous_state": "passed",
             "pull_request_title": null,
             "pull_request_number": null,
-            "started_at": "2019-01-14T14:47:09Z",
-            "finished_at": "2019-01-14T14:48:27Z",
+            "started_at": "2019-01-15T18:29:09Z",
+            "finished_at": "2019-01-15T18:32:05Z",
             "private": false
           }
         }
     http_version: 
-  recorded_at: Mon, 14 Jan 2019 19:06:41 GMT
+  recorded_at: Tue, 15 Jan 2019 19:12:24 GMT
 recorded_with: VCR 4.0.0
