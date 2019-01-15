@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe Trav3::Options do
@@ -11,6 +13,26 @@ RSpec.describe Trav3::Options do
     it 'appends to current options' do
       opts.build(e: :f)
       expect(opts.to_s).to eq '?a=b&c=d&e=f'
+    end
+  end
+
+  describe '#fetch' do
+    it 'fetches an existing url valid key value pair' do
+      expect(opts.fetch(:a)).to eql 'a=b'
+    end
+
+    it 'raises an error for a nonexisting value' do
+      expect { opts.fetch(:z) }.to raise_error(KeyError, /key not found/)
+    end
+
+    it 'yields a value when not found' do
+      expect(opts.fetch(:z) { 1 }).to be 1
+    end
+  end
+
+  describe '#fetch!' do
+    it 'behaves like fetch and also removes the result' do
+      expect { opts.fetch!(:a) }.to change { opts.to_h.count }.by(-1)
     end
   end
 

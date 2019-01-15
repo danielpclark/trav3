@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   Travis = Trav3::Travis
   factory :travis do

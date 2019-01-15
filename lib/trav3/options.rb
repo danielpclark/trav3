@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Trav3
   class Options
     def initialize(**args)
@@ -23,6 +25,22 @@ module Trav3
       self
     end
 
+    def fetch(key)
+      @opts.each do |item|
+        return item if key.to_s == split.call(item).first
+      end
+
+      raise KeyError, "key not found #{key}" unless block_given?
+
+      yield
+    end
+
+    def fetch!(key, &block)
+      result = fetch(key, &block)
+      remove(key)
+      result
+    end
+
     def remove(key)
       return_value = nil
 
@@ -37,6 +55,8 @@ module Trav3
 
     def reset!
       @opts = []
+
+      self
     end
 
     def +(other)

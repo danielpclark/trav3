@@ -3,7 +3,6 @@
 # rubocop:disable Metrics/MethodLength
 require 'net/http'
 require 'uri'
-require 'json'
 
 module Trav3
   module GET

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   RequestError = Trav3::RequestError
   factory :request_error do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   Response = Trav3::Response
   factory :response do

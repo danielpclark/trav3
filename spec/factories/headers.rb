@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   Headers = Trav3::Headers
   factory :headers do

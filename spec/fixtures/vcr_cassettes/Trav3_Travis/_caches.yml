@@ -1,0 +1,511 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/caches
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 15 Jan 2019 17:43:46 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Caches::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - d1954a69-4395-4c39-9aeb-0bd327d9d623
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "caches",
+          "@href": "/repo/danielpclark%2Ftrav3/caches",
+          "@representation": "standard",
+          "caches": [
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 12217944,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.4.5--gemfile-Gemfile.tgz",
+              "branch": "PR.33",
+              "last_modified": "2019-01-15T15:29:01Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11049157,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.5.3--gemfile-Gemfile.tgz",
+              "branch": "PR.33",
+              "last_modified": "2019-01-15T15:29:23Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11063180,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.6.0--gemfile-Gemfile.tgz",
+              "branch": "PR.33",
+              "last_modified": "2019-01-15T15:38:27Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 12219178,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.4.5--gemfile-Gemfile.tgz",
+              "branch": "master",
+              "last_modified": "2019-01-15T15:43:49Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11049880,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.5.3--gemfile-Gemfile.tgz",
+              "branch": "master",
+              "last_modified": "2019-01-15T15:44:30Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11063103,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.6.0--gemfile-Gemfile.tgz",
+              "branch": "master",
+              "last_modified": "2019-01-15T15:44:15Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 12218744,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.4.5--gemfile-Gemfile.tgz",
+              "branch": "trav3/enhancement/build",
+              "last_modified": "2019-01-15T15:29:21Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11049490,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.5.3--gemfile-Gemfile.tgz",
+              "branch": "trav3/enhancement/build",
+              "last_modified": "2019-01-15T15:29:23Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11063215,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.6.0--gemfile-Gemfile.tgz",
+              "branch": "trav3/enhancement/build",
+              "last_modified": "2019-01-15T15:36:42Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Tue, 15 Jan 2019 17:43:46 GMT
+- request:
+    method: delete
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/caches
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 15 Jan 2019 17:43:48 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Caches::Delete
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 2643d26b-30a4-4b9e-a9e2-50e3e3f46d99
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "caches",
+          "@representation": "standard",
+          "caches": [
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 12217944,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.4.5--gemfile-Gemfile.tgz",
+              "branch": "PR.33",
+              "last_modified": "2019-01-15T15:29:01Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11049157,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.5.3--gemfile-Gemfile.tgz",
+              "branch": "PR.33",
+              "last_modified": "2019-01-15T15:29:23Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11063180,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.6.0--gemfile-Gemfile.tgz",
+              "branch": "PR.33",
+              "last_modified": "2019-01-15T15:38:27Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 12219178,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.4.5--gemfile-Gemfile.tgz",
+              "branch": "master",
+              "last_modified": "2019-01-15T15:43:49Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11049880,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.5.3--gemfile-Gemfile.tgz",
+              "branch": "master",
+              "last_modified": "2019-01-15T15:44:30Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11063103,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.6.0--gemfile-Gemfile.tgz",
+              "branch": "master",
+              "last_modified": "2019-01-15T15:44:15Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 12218744,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.4.5--gemfile-Gemfile.tgz",
+              "branch": "trav3/enhancement/build",
+              "last_modified": "2019-01-15T15:29:21Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11049490,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.5.3--gemfile-Gemfile.tgz",
+              "branch": "trav3/enhancement/build",
+              "last_modified": "2019-01-15T15:29:23Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            },
+            {
+              "@type": "cache",
+              "@representation": "standard",
+              "repository_id": 22777898,
+              "size": 11063215,
+              "name": "cache-linux-trusty-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855--rvm-2.6.0--gemfile-Gemfile.tgz",
+              "branch": "trav3/enhancement/build",
+              "last_modified": "2019-01-15T15:36:42Z",
+              "repo": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              }
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Tue, 15 Jan 2019 17:43:48 GMT
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/caches
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 15 Jan 2019 17:43:49 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Caches::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 07e39812-c06f-4b06-bb07-153ce77ccfbf
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "caches",
+          "@href": "/repo/danielpclark%2Ftrav3/caches",
+          "@representation": "standard",
+          "caches": [
+
+          ]
+        }
+    http_version: 
+  recorded_at: Tue, 15 Jan 2019 17:43:49 GMT
+recorded_with: VCR 4.0.0

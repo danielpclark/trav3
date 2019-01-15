@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   Success = Trav3::Success
   factory :success do

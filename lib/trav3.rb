@@ -6,12 +6,13 @@ require 'trav3/pagination'
 require 'trav3/options'
 require 'trav3/headers'
 require 'trav3/result'
+require 'trav3/delete'
 require 'trav3/post'
 require 'trav3/get'
 
 # Trav3 project namespace
 module Trav3
-  API_ROOT = 'https://api.travis-ci.org'.freeze
+  API_ROOT = 'https://api.travis-ci.org'
 
   # An abstraction for the Travis CI v3 API
   #
@@ -47,7 +48,7 @@ module Trav3
     # @return [self]
     # rubocop:disable Lint/Void
     def api_endpoint=(endpoint)
-      raise InvalidAPIEndpoint unless /^https:\/\/api\.travis-ci\.(?:org|com)$/.match? endpoint
+      validate_api_endpoint endpoint
 
       @api_endpoint = endpoint
 
@@ -489,6 +490,106 @@ module Trav3
       get("#{without_repo}/build/#{build_id}/jobs")
     end
 
+    # A list of caches.
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    #     Name    Type    Description
+    #     branch  String  The branch the cache belongs to.
+    #     match   String  The string to match against the cache name.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns all the caches for a repository.
+    #
+    # It's possible to filter by branch or by regexp match of a string to the cache name.
+    #
+    # ```bash
+    # curl \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   https://api.travis-ci.com/repo/1234/caches?branch=master
+    # ```
+    #
+    # ```bash
+    # curl \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   https://api.travis-ci.com/repo/1234/caches?match=linux
+    # ```
+    #
+    # GET <code>/repo/{repository.id}/caches</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     branch           [String]  Alias for caches.branch.
+    #     caches.branch    [String]  Filters caches by the branch the cache belongs to.
+    #     caches.match     [String]  Filters caches by the string to match against the cache name.
+    #     include          [String]  List of attributes to eager load.
+    #     match            [String]  Alias for caches.match.
+    #
+    #     Example: GET /repo/891/caches
+    #
+    # GET <code>/repo/{repository.slug}/caches</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     branch           [String]  Alias for caches.branch.
+    #     caches.branch    [String]  Filters caches by the branch the cache belongs to.
+    #     caches.match     [String]  Filters caches by the string to match against the cache name.
+    #     include          [String]  List of attributes to eager load.
+    #     match            [String]  Alias for caches.match.
+    #
+    #     Example: GET /repo/rails%2Frails/caches
+    #
+    # **Delete**
+    #
+    # This deletes all caches for a repository.
+    #
+    # As with `find` it's possible to delete by branch or by regexp match of a string to the cache name.
+    #
+    # ```bash
+    # curl -X DELETE \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   https://api.travis-ci.com/repo/1234/caches?branch=master
+    # ```
+    #
+    # DELETE <code>/repo/{repository.id}/caches</code>
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #
+    #     Example: DELETE /repo/891/caches
+    #
+    # DELETE <code>/repo/{repository.slug}/caches</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #
+    #     Example: DELETE /repo/rails%2Frails/caches
+    #
+    # @param delete [Boolean] option for deleting cache(s)
+    # @return [Success, RequestError]
+    def caches(delete = false)
+      if delete
+        limit = opts.remove(:limit)
+        response = delete("#{with_repo}/caches#{opts}")
+        opts.build(limit: limit) if limit
+        response
+      else
+        get("#{with_repo}/caches")
+      end
+    end
+
     # An individual job.
     #
     # ## Attributes
@@ -883,7 +984,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def owner(owner = username)
-      if /^\d+$/.match? owner.to_s
+      if number? owner
         get("#{without_repo}/owner/github_id/#{owner}")
       else
         get("#{without_repo}/owner/#{owner}")
@@ -1029,7 +1130,7 @@ module Trav3
     # @param owner [String] username or github ID
     # @return [Success, RequestError]
     def repositories(owner = username)
-      if /^\d+$/.match? owner.to_s
+      if number? owner
         get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
       else
         get("#{without_repo}/owner/#{owner}/repos#{opts}")
@@ -1321,6 +1422,10 @@ module Trav3
 
     private # @private
 
+    def delete(url)
+      Trav3::DELETE.call(self, url)
+    end
+
     def get(url, raw_reply = false)
       Trav3::GET.call(self, url, raw_reply)
     end
@@ -1332,6 +1437,10 @@ module Trav3
       h('Travis-API-Version': 3)
     end
 
+    def number?(input)
+      /^\d+$/.match? input.to_s
+    end
+
     def opts
       @options
     end
@@ -1340,8 +1449,12 @@ module Trav3
       Trav3::POST.call(self, url, fields)
     end
 
+    def validate_api_endpoint(input)
+      raise InvalidAPIEndpoint unless /^https:\/\/api\.travis-ci\.(?:org|com)$/.match? input
+    end
+
     def validate_number(input)
-      raise TypeError, "Integer expected, #{input.class} given" unless /^\d+$/.match? input.to_s
+      raise TypeError, "Integer expected, #{input.class} given" unless number? input
     end
 
     def validate_repo_format(input)
