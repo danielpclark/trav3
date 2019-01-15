@@ -61,7 +61,7 @@ module Trav3
     private
 
     def entry_match?(entry, item)
-      (/^#{entry}=/.match? item.to_s)
+      /^#{entry}=/.match? item.to_s
     end
   end
 end
