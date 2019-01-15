@@ -583,10 +583,7 @@ module Trav3
     # @return [Success, RequestError]
     def caches(delete = false)
       if delete
-        limit = opts.remove(:limit)
-        response = delete("#{with_repo}/caches#{opts}")
-        opts.build(limit: limit) if limit
-        response
+        without_limit { delete("#{with_repo}/caches#{opts}") }
       else
         get("#{with_repo}/caches")
       end
@@ -1416,7 +1413,7 @@ module Trav3
       validate_number user_id
 
       if sync
-        get("#{without_repo}/user/#{user_id}/sync")
+        without_limit { get("#{without_repo}/user/#{user_id}/sync") }
       else
         get("#{without_repo}/user/#{user_id}")
       end
@@ -1489,6 +1486,13 @@ module Trav3
 
     def without_repo
       api_endpoint
+    end
+
+    def without_limit
+      limit = opts.remove(:limit)
+      result = yield
+      opts.build(limit: limit) if limit
+      result
     end
   end
 end
