@@ -1209,6 +1209,10 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example:GET /build/86601346/stages
+    #
+    # @param build_id [String, Integer] build id
+    # @raise [TypeError] if given build id is not a number
+    # @return [Success, RequestError]
     def stages(build_id)
       raise TypeError, 'Integer expected for build id' unless /^\d+$/.match? build_id.to_s
 
