@@ -45,6 +45,16 @@ RSpec.describe Trav3::Travis, :vcr do
       build = t.build(351_778_872)
       expect(build).to be_an_instance_of Trav3::Success
     end
+
+    it 'restarts a build' do
+      build = t.build(478_772_528, :restart)
+      expect(build).to be_an_instance_of Trav3::Success
+    end
+
+    it 'cancels a build' do
+      build = t.build(478_772_528, :cancel)
+      expect(build).to be_an_instance_of Trav3::Success
+    end
   end
 
   describe '#builds', vcr: { cassette_name: 'Trav3_Travis/_builds', record: :new_episodes } do

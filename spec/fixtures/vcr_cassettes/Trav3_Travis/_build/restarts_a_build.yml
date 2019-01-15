@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.travis-ci.org/build/478772528/restart
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 15 Jan 2019 15:09:04 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Build::Restart
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - e88f6add-6e1f-4664-9f37-9f53840aa890
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "pending",
+          "build": {
+            "@type": "build",
+            "@href": "/build/478772528",
+            "@representation": "minimal",
+            "id": 478772528,
+            "number": "1",
+            "state": "passed",
+            "duration": 183,
+            "event_type": "push",
+            "previous_state": null,
+            "pull_request_title": null,
+            "pull_request_number": null,
+            "started_at": "2019-01-12T16:01:21Z",
+            "finished_at": "2019-01-12T16:02:32Z",
+            "private": false
+          },
+          "state_change": "restart",
+          "resource_type": "build"
+        }
+    http_version: 
+  recorded_at: Tue, 15 Jan 2019 15:09:04 GMT
+recorded_with: VCR 4.0.0
