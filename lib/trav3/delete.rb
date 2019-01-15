@@ -5,16 +5,13 @@ require 'net/http'
 require 'uri'
 
 module Trav3
-  module POST
-    def self.call(travis, url, **fields)
+  module DELETE
+    def self.call(travis, url)
       uri = URI( url.sub(/\?.*$/, '') )
-      req = Net::HTTP::Post.new(uri.request_uri)
+      req = Net::HTTP::Delete.new(uri.request_uri)
       travis.headers.each_pair do |header, value|
         req[header] = value
       end
-      body = fields.delete(:body)
-      req.body = body if body
-      req.set_form_data(**fields) unless fields.empty?
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = (uri.scheme == 'https')
       response = http.request(req)

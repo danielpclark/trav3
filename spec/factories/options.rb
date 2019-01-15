@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   Options = Trav3::Options
   factory :options do

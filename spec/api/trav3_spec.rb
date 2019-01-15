@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe Trav3::Travis, :vcr do
@@ -86,6 +88,21 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#caches', vcr: { cassette_name: 'Trav3_Travis/_caches', record: :new_episodes } do
+    it 'gets caches for the current repository' do
+      caches = t.caches
+      expect(caches).to be_an_instance_of Trav3::Success
+    end
+
+    it 'deletes the cache' do
+      expect do
+        t.options.reset!
+        response = t.caches(:delete)
+        expect(response).to be_an_instance_of Trav3::Success
+      end.to change { t.caches['caches'].count }.to(0)
+    end
+  end
+
   describe '#job' do
     it 'gets job info' do
       job = t.job(351_778_875)
@@ -98,7 +115,6 @@ RSpec.describe Trav3::Travis, :vcr do
     end
 
     it 'cancels the job' do
-      # TODO: A job needs to be running for this to work
       job = t.job(351_778_875, :cancel)
       expect(job).to be_an_instance_of Trav3::Success
     end

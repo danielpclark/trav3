@@ -6,12 +6,13 @@ require 'trav3/pagination'
 require 'trav3/options'
 require 'trav3/headers'
 require 'trav3/result'
+require 'trav3/delete'
 require 'trav3/post'
 require 'trav3/get'
 
 # Trav3 project namespace
 module Trav3
-  API_ROOT = 'https://api.travis-ci.org'.freeze
+  API_ROOT = 'https://api.travis-ci.org'
 
   # An abstraction for the Travis CI v3 API
   #
@@ -487,6 +488,106 @@ module Trav3
     # @return [Success, RequestError]
     def build_jobs(build_id)
       get("#{without_repo}/build/#{build_id}/jobs")
+    end
+
+    # A list of caches.
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    #     Name    Type    Description
+    #     branch  String  The branch the cache belongs to.
+    #     match   String  The string to match against the cache name.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns all the caches for a repository.
+    #
+    # It's possible to filter by branch or by regexp match of a string to the cache name.
+    #
+    # ```bash
+    # curl \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   https://api.travis-ci.com/repo/1234/caches?branch=master
+    # ```
+    #
+    # ```bash
+    # curl \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   https://api.travis-ci.com/repo/1234/caches?match=linux
+    # ```
+    #
+    # GET <code>/repo/{repository.id}/caches</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     branch           [String]  Alias for caches.branch.
+    #     caches.branch    [String]  Filters caches by the branch the cache belongs to.
+    #     caches.match     [String]  Filters caches by the string to match against the cache name.
+    #     include          [String]  List of attributes to eager load.
+    #     match            [String]  Alias for caches.match.
+    #
+    #     Example: GET /repo/891/caches
+    #
+    # GET <code>/repo/{repository.slug}/caches</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     branch           [String]  Alias for caches.branch.
+    #     caches.branch    [String]  Filters caches by the branch the cache belongs to.
+    #     caches.match     [String]  Filters caches by the string to match against the cache name.
+    #     include          [String]  List of attributes to eager load.
+    #     match            [String]  Alias for caches.match.
+    #
+    #     Example: GET /repo/rails%2Frails/caches
+    #
+    # **Delete**
+    #
+    # This deletes all caches for a repository.
+    #
+    # As with `find` it's possible to delete by branch or by regexp match of a string to the cache name.
+    #
+    # ```bash
+    # curl -X DELETE \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   https://api.travis-ci.com/repo/1234/caches?branch=master
+    # ```
+    #
+    # DELETE <code>/repo/{repository.id}/caches</code>
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #
+    #     Example: DELETE /repo/891/caches
+    #
+    # DELETE <code>/repo/{repository.slug}/caches</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #
+    #     Example: DELETE /repo/rails%2Frails/caches
+    #
+    # @param delete [Boolean] option for deleting cache(s)
+    # @return [Success, RequestError]
+    def caches(delete = false)
+      if delete
+        limit = opts.remove(:limit)
+        response = delete("#{with_repo}/caches#{opts}")
+        opts.build(limit: limit) if limit
+        response
+      else
+        get("#{with_repo}/caches")
+      end
     end
 
     # An individual job.
@@ -1320,6 +1421,10 @@ module Trav3
     end
 
     private # @private
+
+    def delete(url)
+      Trav3::DELETE.call(self, url)
+    end
 
     def get(url, raw_reply = false)
       Trav3::GET.call(self, url, raw_reply)
