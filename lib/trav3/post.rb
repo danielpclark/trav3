@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/MethodLength
 require 'net/http'
 require 'uri'
 require 'json'
 
 module Trav3
   module POST
-    # rubocop:disable Metrics/MethodLength
     def self.call(travis, url, **fields)
       uri = URI( url.sub(/\?.*$/, '') )
       req = Net::HTTP::Post.new(uri.request_uri)
@@ -26,6 +26,6 @@ module Trav3
         RequestError.new(travis, response)
       end
     end
-    # rubocop:enable Metrics/MethodLength
   end
 end
+# rubocop:enable Metrics/MethodLength

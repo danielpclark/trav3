@@ -17,6 +17,7 @@ before_script:
 script:
   - bundle exec rake
   - bundle exec rubocop
+  - bundle exec yard | if grep warn; then exit 1; else exit 0; fi
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

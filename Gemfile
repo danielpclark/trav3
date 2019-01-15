@@ -12,4 +12,5 @@ group :test do
   gem 'simplecov', require: false
   gem 'vcr', '~> 4.0'
   gem 'webmock', '~> 3.5'
+  gem 'yard', require: false
 end

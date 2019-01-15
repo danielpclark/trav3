@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 require 'trav3/version'
 require 'trav3/pagination'
 require 'trav3/options'
@@ -10,7 +11,6 @@ require 'trav3/get'
 
 # Trav3 project namespace
 module Trav3
-  # rubocop:disable Metrics/ClassLength
   API_ROOT = 'https://api.travis-ci.org'.freeze
 
   # An abstraction for the Travis CI v3 API
@@ -1307,5 +1307,5 @@ module Trav3
       api_endpoint
     end
   end
-  # rubocop:enable Metrics/ClassLength
 end
+# rubocop:enable Metrics/ClassLength
