@@ -10,6 +10,7 @@ require 'trav3/get'
 
 # Trav3 project namespace
 module Trav3
+  # rubocop:disable Metrics/ClassLength
   API_ROOT = 'https://api.travis-ci.org'.freeze
 
   # An abstraction for the Travis CI v3 API
@@ -21,7 +22,6 @@ module Trav3
   #   @return [Options] Request options object
   # @!attribute [r] headers
   #   @return [Headers] Request headers object
-  # rubocop:disable Metrics/ClassLength
   class Travis
     API_ENDPOINT = API_ROOT
     attr_reader :api_endpoint
@@ -133,7 +133,7 @@ module Trav3
     #
     #     Example:GET /repo/rails%2Frails/branch/master
     #
-    # @param id [String] the branch name for the current repository
+    # @param name [String] the branch name for the current repository
     # @return [Success, RequestError]
     def branch(name)
       get("#{with_repo}/branch/#{name}#{opts}")
