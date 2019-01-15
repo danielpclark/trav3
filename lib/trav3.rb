@@ -577,6 +577,8 @@ module Trav3
     #
     #     Example: DELETE /repo/rails%2Frails/caches
     #
+    # @note DELETE requests require an authorization token set in the headers. See: {h}
+    #
     # @param delete [Boolean] option for deleting cache(s)
     # @return [Success, RequestError]
     def caches(delete = false)
