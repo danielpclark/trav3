@@ -1413,7 +1413,7 @@ module Trav3
       validate_number user_id
 
       if sync
-        without_limit { get("#{without_repo}/user/#{user_id}/sync") }
+        get("#{without_repo}/user/#{user_id}/sync")
       else
         get("#{without_repo}/user/#{user_id}")
       end
