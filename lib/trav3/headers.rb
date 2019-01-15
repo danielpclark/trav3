@@ -24,7 +24,7 @@ module Trav3
     end
 
     def +(other)
-      raise ArgumentError, 'Invalid type provided.' unless other.is_a?(Headers)
+      raise TypeError, "Headers type expected, #{other.class} given" unless other.is_a? Headers
 
       @heads.merge(other.instance_variable_get(:@heads))
 

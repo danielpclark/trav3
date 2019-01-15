@@ -99,6 +99,13 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#lint' do
+    it 'lints the travis.yml file' do
+      lint = t.lint(File.read('.travis.yml'))
+      expect(lint).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#log' do
     it 'gets log of job' do
       log = t.log(351_778_875)

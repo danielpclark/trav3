@@ -576,6 +576,35 @@ module Trav3
       end
     end
 
+    # This validates the `.travis.yml` file and returns any warnings.
+    #
+    # The request body can contain the content of the .travis.yml file directly as a string, eg "foo: bar".
+    #
+    # ## Attributes
+    #
+    #     Name      Type   Description
+    #     warnings  Array  An array of hashes with keys and warnings.
+    #
+    # ## Actions
+    #
+    # **Lint**
+    #
+    # POST <code>/lint</code>
+    #
+    #     Example:POST /lint
+    #
+    # @param yaml_content [String] the contents for the file `.travis.yml`
+    # @return [Success, RequestError]
+    def lint(yaml_content)
+      raise TypeError, "String expected, #{yaml_content.class} given" unless \
+        yaml_content.is_a? String
+
+      ct = headers.remove(:'Content-Type')
+      result = post("#{without_repo}/lint", body: yaml_content)
+      h('Content-Type': ct) if ct
+      result
+    end
+
     # An individual log.
     #
     # ## Attributes
