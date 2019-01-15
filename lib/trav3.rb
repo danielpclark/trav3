@@ -33,7 +33,7 @@ module Trav3
     #   conform to valid repository identifier format
     # @return [Travis]
     def initialize(repo)
-      raise InvalidRepository unless repo_slug_or_id? repo
+      validate_repo_format repo
 
       @api_endpoint = API_ENDPOINT
       @repo = sanitize_repo_name repo
@@ -289,10 +289,21 @@ module Trav3
     #
     # @note POST requests require an authorization token set in the headers. See: {h}
     #
-    # @param id [String, Integer] the build id number
+    # @param build_id [String, Integer] the build id number
+    # @param option [Symbol] options for :cancel or :restart
+    # @raise [TypeError] if given build id is not a number
     # @return [Success, RequestError]
-    def build(id)
-      get("#{without_repo}/build/#{id}")
+    def build(build_id, option = nil)
+      validate_number build_id
+
+      case option
+      when :cancel
+        post("#{without_repo}/build/#{build_id}/cancel")
+      when :restart
+        post("#{without_repo}/build/#{build_id}/restart")
+      else
+        get("#{without_repo}/build/#{build_id}")
+      end
     end
 
     # A list of builds.
@@ -472,10 +483,10 @@ module Trav3
     # **Sortable by:** <code>id</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is id:desc.
     #
-    # @param id [String, Integer] the build id number
+    # @param build_id [String, Integer] the build id number
     # @return [Success, RequestError]
-    def build_jobs(id)
-      get("#{without_repo}/build/#{id}/jobs")
+    def build_jobs(build_id)
+      get("#{without_repo}/build/#{build_id}/jobs")
     end
 
     # An individual job.
@@ -560,19 +571,19 @@ module Trav3
     #
     # @note POST requests require an authorization token set in the headers. See: {h}
     #
-    # @param id [String, Integer] the job id number
+    # @param job_id [String, Integer] the job id number
     # @param option [Symbol] options for :cancel, :restart, or :debug
     # @return [Success, RequestError]
-    def job(id, option = nil)
+    def job(job_id, option = nil)
       case option
       when :cancel
-        post("#{without_repo}/job/#{id}/cancel")
+        post("#{without_repo}/job/#{job_id}/cancel")
       when :restart
-        post("#{without_repo}/job/#{id}/restart")
+        post("#{without_repo}/job/#{job_id}/restart")
       when :debug
-        post("#{without_repo}/job/#{id}/debug")
+        post("#{without_repo}/job/#{job_id}/debug")
       else
-        get("#{without_repo}/job/#{id}")
+        get("#{without_repo}/job/#{job_id}")
       end
     end
 
@@ -596,8 +607,7 @@ module Trav3
     # @param yaml_content [String] the contents for the file `.travis.yml`
     # @return [Success, RequestError]
     def lint(yaml_content)
-      raise TypeError, "String expected, #{yaml_content.class} given" unless \
-        yaml_content.is_a? String
+      validate_string yaml_content
 
       ct = headers.remove(:'Content-Type')
       result = post("#{without_repo}/lint", body: yaml_content)
@@ -680,17 +690,17 @@ module Trav3
     #
     # @note DELETE is unimplemented
     #
-    # @param id [String, Integer] the job id number
+    # @param job_id [String, Integer] the job id number
     # @param option [Symbol] options for :text or :delete
     # @return [Success, String, RequestError]
-    def log(id, option = nil)
+    def log(job_id, option = nil)
       case option
       when :text
-        get("#{without_repo}/job/#{id}/log.txt", true)
+        get("#{without_repo}/job/#{job_id}/log.txt", true)
       when :delete
         raise Unimplemented
       else
-        get("#{without_repo}/job/#{id}/log")
+        get("#{without_repo}/job/#{job_id}/log")
       end
     end
 
@@ -744,7 +754,7 @@ module Trav3
     # @raise [TypeError] if given organization id is not a number
     # @return [Success, RequestError]
     def organization(org_id)
-      raise TypeError, 'Integer expected for organization id' unless /^\d+$/.match? org_id.to_s
+      validate_number org_id
 
       get("#{without_repo}/org/#{org_id}")
     end
@@ -1161,7 +1171,7 @@ module Trav3
     #   conform to valid repository identifier format
     # @return [Success, RequestError]
     def repository(repo = repository_name, action = nil)
-      raise InvalidRepository unless repo_slug_or_id? repo
+      validate_repo_format repo
 
       repo = sanitize_repo_name repo
       action = '' unless %w[star unstar activate deavtivate].include? action.to_s
@@ -1214,7 +1224,7 @@ module Trav3
     # @raise [TypeError] if given build id is not a number
     # @return [Success, RequestError]
     def stages(build_id)
-      raise TypeError, 'Integer expected for build id' unless /^\d+$/.match? build_id.to_s
+      validate_number build_id
 
       get("#{without_repo}/build/#{build_id}/stages")
     end
@@ -1299,7 +1309,8 @@ module Trav3
     # @return [Success, RequestError]
     def user(user_id = nil, sync = false)
       return get("#{without_repo}/user") if !user_id && !sync
-      raise TypeError, 'Integer expected for user id' unless /^\d+$/.match? user_id.to_s
+
+      validate_number user_id
 
       if sync
         get("#{without_repo}/user/#{user_id}/sync")
@@ -1329,8 +1340,20 @@ module Trav3
       Trav3::POST.call(self, url, fields)
     end
 
-    def repo_slug_or_id?(repo)
-      Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/).match? repo
+    def validate_number(input)
+      raise TypeError, "Integer expected, #{input.class} given" unless /^\d+$/.match? input.to_s
+    end
+
+    def validate_repo_format(input)
+      raise InvalidRepository unless repo_slug_or_id? input
+    end
+
+    def validate_string(input)
+      raise TypeError, "String expected, #{input.class} given" unless input.is_a? String
+    end
+
+    def repo_slug_or_id?(input)
+      Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/).match? input
     end
 
     def repository_name
