@@ -173,6 +173,13 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#stages' do
+    it 'gets build stages' do
+      stages = t.stages(479_113_572)
+      expect(stages).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#user' do
     it 'gets a specific user' do
       user = t.user(119_240)

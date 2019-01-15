@@ -1173,6 +1173,48 @@ module Trav3
       end
     end
 
+    # A list of stages.
+    #
+    # Currently this is nested within a build.
+    #
+    # ## Attributes
+    #
+    #     Name    Type     Description
+    #     stages  [Stage]  List of stages.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the stages array has the following attributes:
+    #
+    #     Name         Type     Description
+    #     id           Integer  Value uniquely identifying the stage.
+    #     number       Integer  Incremental number for a stage.
+    #     name         String   The name of the stage.
+    #     state        String   Current state of the stage.
+    #     started_at   String   When the stage started.
+    #     finished_at  String   When the stage finished.
+    #     jobs         [Job]    The jobs of a stage.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a list of stages belonging to an individual build.
+    #
+    # GET <code>/build/{build.id}/stages</code>
+    #
+    #     Template Variable  Type     Description
+    #     build.id           Integer  Value uniquely identifying the build.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example:GET /build/86601346/stages
+    def stages(build_id)
+      raise TypeError, 'Integer expected for build id' unless /^\d+$/.match? build_id.to_s
+
+      get("#{without_repo}/build/#{build_id}/stages")
+    end
+
     # An individual user.
     #
     # ## Attributes
