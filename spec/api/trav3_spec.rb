@@ -28,6 +28,18 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#active' do
+    it 'gets current users active builds' do
+      active = t.active
+      expect(active).to be_an_instance_of Trav3::Success
+    end
+
+    it 'gets active builds for a user id' do
+      active = t.active(639_823)
+      expect(active).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#branch' do
     it 'gets the branch for the current repository' do
       branch = t.branch('master')

@@ -10,7 +10,7 @@ gemspec
 group :test do
   gem 'byebug'
   gem 'codeclimate-test-reporter', '~> 1.0.0'
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.63.0', require: false
   gem 'simplecov', require: false
   gem 'vcr', '~> 4.0'
   gem 'webmock', '~> 3.5'
