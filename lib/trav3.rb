@@ -79,6 +79,67 @@ module Trav3
       self
     end
 
+    # Please Note that the naming of this endpoint may be changed. Our naming convention for this information is in flux. If you have suggestions for how this information should be presented please leave us feedback by commenting in this issue here or emailing support support@travis-ci.com.
+    #
+    # A list of all the builds in an "active" state, either created or started.
+    #
+    # ## Attributes
+    #
+    #     Name    Type    Description
+    #     builds  Builds  The active builds.
+    #
+    # ## Actions
+    #
+    # **For Owner**
+    #
+    # Returns a list of "active" builds for the owner.
+    #
+    # GET <code>/owner/{owner.login}/active</code>
+    #
+    #     Template Variable  Type    Description
+    #     owner.login        String  User or organization login set on GitHub.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /owner/danielpclark/active
+    #
+    # GET <code>/owner/{user.login}/active</code>
+    #
+    #     Template Variable  Type    Description
+    #     user.login         String  Login set on Github.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /owner/danielpclark/active
+    #
+    # GET <code>/owner/{organization.login}/active</code>
+    #
+    #     Template Variable   Type    Description
+    #     organization.login  String  Login set on GitHub.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /owner/travis-ci/active
+    #
+    # GET <code>/owner/github_id/{owner.github_id}/active</code>
+    #
+    #     Template Variable  Type     Description
+    #     owner.github_id    Integer  User or organization id set on GitHub.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /owner/github_id/639823/active
+    #
+    # @param owner [String] username, organization name, or github id
+    # @return [Success, RequestError]
+    def active(owner = username)
+      if number? owner
+        get("#{without_repo}/owner/github_id/#{owner}/active")
+      else
+        get("#{without_repo}/owner/#{owner}/active")
+      end
+    end
+
     # The branch of a GitHub repository. Useful for obtaining information about the last build on a given branch.
     #
     # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
@@ -980,7 +1041,7 @@ module Trav3
     #
     #     Example: GET /owner/github_id/639823
     #
-    # @param owner [String] username or github ID
+    # @param owner [String] username or github id
     # @return [Success, RequestError]
     def owner(owner = username)
       if number? owner
@@ -1126,7 +1187,7 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
-    # @param owner [String] username or github ID
+    # @param owner [String] username or github id
     # @return [Success, RequestError]
     def repositories(owner = username)
       if number? owner

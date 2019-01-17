@@ -1,0 +1,633 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/owner/github_id/639823/active
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Thu, 17 Jan 2019 18:24:55 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Active::ForOwner
+      X-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - a553a46b-ed3b-4e0c-9ef9-53b79d611d18
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "builds",
+          "@href": "/owner/github_id/639823/active",
+          "@representation": "active",
+          "builds": [
+            {
+              "@type": "build",
+              "@href": "/build/376873572",
+              "@representation": "active",
+              "@permissions": {
+                "read": true,
+                "restart": false,
+                "cancel": false
+              },
+              "id": 376873572,
+              "number": "8174",
+              "state": "created",
+              "duration": null,
+              "event_type": "push",
+              "previous_state": "errored",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": null,
+              "finished_at": null,
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/2717",
+                "@representation": "minimal",
+                "id": 2717,
+                "name": "travis-build",
+                "slug": "travis-ci/travis-build"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/2717/branch/sf-debug",
+                "@representation": "minimal",
+                "name": "sf-debug"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 112664115,
+                "sha": "6d6155966df2474db6b4296c883bcb01e6788676",
+                "ref": "refs/heads/sf-debug",
+                "message": "add a note about apt-get update being disabled if APT_GET_UPDATE_OPT_IN is given",
+                "compare_url": "https://github.com/travis-ci/travis-build/compare/6c382cbfd5be...6d6155966df2",
+                "committed_at": "2018-05-09T15:01:46Z"
+              },
+              "jobs": [
+
+              ],
+              "stages": [
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 2037192,
+                  "number": 2,
+                  "name": "Test update_static_files rake task",
+                  "state": "canceled",
+                  "started_at": null,
+                  "finished_at": "2018-05-09T15:02:28Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 2037191,
+                  "number": 1,
+                  "name": "Test",
+                  "state": "canceled",
+                  "started_at": null,
+                  "finished_at": "2018-05-09T15:02:27Z"
+                }
+              ],
+              "created_by": null,
+              "updated_at": "2018-08-23T16:03:35.200Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/284776097",
+              "@representation": "active",
+              "@permissions": {
+                "read": true,
+                "restart": false,
+                "cancel": false
+              },
+              "id": 284776097,
+              "number": "7180",
+              "state": "started",
+              "duration": null,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2017-10-07T19:22:51Z",
+              "finished_at": null,
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/2717",
+                "@representation": "minimal",
+                "id": 2717,
+                "name": "travis-build",
+                "slug": "travis-ci/travis-build"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/2717/branch/ha-pearrc",
+                "@representation": "minimal",
+                "name": "ha-pearrc"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 83221049,
+                "sha": "5e4f797099639e94321536f5278040d5d74166ea",
+                "ref": "refs/heads/ha-pearrc",
+                "message": "Write ~/.pearrc for pre-installed PHP runtimes\n\nOn-demand PHP archives contain ~/.pearrc, but the pre-installed\nones may have incorrect content depending on in which order\nPHP runtimes were installed during the build image provisioning.\n\nWe ensure that ~/.pearrc is reasonable by dumping the reverse\nengineered content.",
+                "compare_url": "https://github.com/travis-ci/travis-build/compare/740f3a6fc186...5e4f79709963",
+                "committed_at": "2017-10-07T19:22:33Z"
+              },
+              "jobs": [
+
+              ],
+              "stages": [
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 450639,
+                  "number": 3,
+                  "name": "Test update_static_files rake task",
+                  "state": "canceled",
+                  "started_at": null,
+                  "finished_at": "2017-10-07T19:24:47Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 450638,
+                  "number": 2,
+                  "name": ":ship: it to quay.io",
+                  "state": "canceled",
+                  "started_at": null,
+                  "finished_at": "2017-10-07T19:24:47Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 450640,
+                  "number": 1,
+                  "name": "Test",
+                  "state": "errored",
+                  "started_at": "2017-10-07T19:22:51Z",
+                  "finished_at": "2017-10-07T19:24:47Z"
+                }
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/13378",
+                "@representation": "minimal",
+                "id": 13378,
+                "login": "BanzaiMan"
+              },
+              "updated_at": "2018-05-27T11:23:13.392Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/357482691",
+              "@representation": "active",
+              "@permissions": {
+                "read": true,
+                "restart": false,
+                "cancel": false
+              },
+              "id": 357482691,
+              "number": "2528",
+              "state": "started",
+              "duration": null,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2018-03-23T16:42:35Z",
+              "finished_at": null,
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/3371",
+                "@representation": "minimal",
+                "id": 3371,
+                "name": "travis-hub",
+                "slug": "travis-ci/travis-hub"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/3371/branch/sf-merge",
+                "@representation": "minimal",
+                "name": "sf-merge"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 106520529,
+                "sha": "c449da8b744972c88898a5f785759ff16fce1ed3",
+                "ref": "refs/heads/sf-merge",
+                "message": "use /api namespace for merge",
+                "compare_url": "https://github.com/travis-ci/travis-hub/compare/4867ea1d7eaf...c449da8b7449",
+                "committed_at": "2018-03-23T16:42:23Z"
+              },
+              "jobs": [
+
+              ],
+              "stages": [
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 1593374,
+                  "number": 3,
+                  "name": "Trigger automated build on docker hub",
+                  "state": "canceled",
+                  "started_at": null,
+                  "finished_at": "2018-03-23T16:44:27Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 1593373,
+                  "number": 2,
+                  "name": ":ship: it to quay.io",
+                  "state": "canceled",
+                  "started_at": null,
+                  "finished_at": "2018-03-23T16:44:27Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 1593372,
+                  "number": 1,
+                  "name": "Testing time",
+                  "state": "failed",
+                  "started_at": "2018-03-23T16:42:35Z",
+                  "finished_at": "2018-03-23T16:44:27Z"
+                }
+              ],
+              "created_by": null,
+              "updated_at": "2018-08-23T16:03:35.200Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/323854962",
+              "@representation": "active",
+              "@permissions": {
+                "read": true,
+                "restart": false,
+                "cancel": false
+              },
+              "id": 323854962,
+              "number": "11482",
+              "state": "started",
+              "duration": 0,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2018-01-01T18:54:04Z",
+              "finished_at": "2018-01-01T18:54:04Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/269284",
+                "@representation": "minimal",
+                "id": 269284,
+                "name": "travis-web",
+                "slug": "travis-ci/travis-web"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/269284/branch/greenkeeper%2Fember-cli-2.18.0",
+                "@representation": "minimal",
+                "name": "greenkeeper/ember-cli-2.18.0"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 96233410,
+                "sha": "c959394a75edb21debde892463d32607a3e1d067",
+                "ref": "refs/heads/greenkeeper/ember-cli-2.18.0",
+                "message": "chore(package): update ember-cli to version 2.18.0",
+                "compare_url": "https://github.com/travis-ci/travis-web/commit/c959394a75ed",
+                "committed_at": "2018-01-01T18:48:44Z"
+              },
+              "jobs": [
+
+              ],
+              "stages": [
+
+              ],
+              "created_by": null,
+              "updated_at": "2018-08-23T16:03:35.200Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/263545021",
+              "@representation": "active",
+              "@permissions": {
+                "read": true,
+                "restart": false,
+                "cancel": false
+              },
+              "id": 263545021,
+              "number": "139",
+              "state": "started",
+              "duration": null,
+              "event_type": "cron",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2017-08-11T15:32:14Z",
+              "finished_at": null,
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/4988099",
+                "@representation": "minimal",
+                "id": 4988099,
+                "name": "travis-nightly-builder",
+                "slug": "travis-ci/travis-nightly-builder"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/4988099/branch/build",
+                "@representation": "minimal",
+                "name": "build"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 76664979,
+                "sha": "915a6971fa607b4ecc21632b0acbedf12037b008",
+                "ref": null,
+                "message": "Does not alias 7.2snapshot to 7.2\n\n7.2 should be used only be releases (including betas)",
+                "compare_url": "https://github.com/travis-ci/travis-nightly-builder/compare/f40bb2f421b67e0857ad35ca8111299b35b506f3...915a6971fa607b4ecc21632b0acbedf12037b008",
+                "committed_at": "2017-07-22T19:52:54Z"
+              },
+              "jobs": [
+
+              ],
+              "stages": [
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 161092,
+                  "number": 3,
+                  "name": "Build",
+                  "state": "canceled",
+                  "started_at": "2017-08-11T15:36:19Z",
+                  "finished_at": "2017-08-11T15:36:06Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 161091,
+                  "number": 2,
+                  "name": "Build latest archives",
+                  "state": "failed",
+                  "started_at": "2017-08-11T15:34:05Z",
+                  "finished_at": "2017-08-11T15:36:06Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 161090,
+                  "number": 1,
+                  "name": "Test",
+                  "state": "passed",
+                  "started_at": "2017-08-11T15:32:14Z",
+                  "finished_at": "2017-08-11T15:33:18Z"
+                }
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/96178",
+                "@representation": "minimal",
+                "id": 96178,
+                "login": "MariadeAnton"
+              },
+              "updated_at": "2018-05-27T08:26:40.665Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/263139642",
+              "@representation": "active",
+              "@permissions": {
+                "read": true,
+                "restart": false,
+                "cancel": false
+              },
+              "id": 263139642,
+              "number": "138",
+              "state": "started",
+              "duration": null,
+              "event_type": "cron",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2017-08-10T15:31:36Z",
+              "finished_at": null,
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/4988099",
+                "@representation": "minimal",
+                "id": 4988099,
+                "name": "travis-nightly-builder",
+                "slug": "travis-ci/travis-nightly-builder"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/4988099/branch/build",
+                "@representation": "minimal",
+                "name": "build"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 76539451,
+                "sha": "915a6971fa607b4ecc21632b0acbedf12037b008",
+                "ref": null,
+                "message": "Does not alias 7.2snapshot to 7.2\n\n7.2 should be used only be releases (including betas)",
+                "compare_url": "https://github.com/travis-ci/travis-nightly-builder/compare/f40bb2f421b67e0857ad35ca8111299b35b506f3...915a6971fa607b4ecc21632b0acbedf12037b008",
+                "committed_at": "2017-07-22T19:52:54Z"
+              },
+              "jobs": [
+
+              ],
+              "stages": [
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 157961,
+                  "number": 1,
+                  "name": "Test",
+                  "state": "passed",
+                  "started_at": "2017-08-10T15:31:36Z",
+                  "finished_at": "2017-08-10T15:33:29Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 157963,
+                  "number": 3,
+                  "name": "Build",
+                  "state": "canceled",
+                  "started_at": null,
+                  "finished_at": "2017-08-10T15:35:31Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 157962,
+                  "number": 2,
+                  "name": "Build latest archives",
+                  "state": "failed",
+                  "started_at": "2017-08-10T15:33:35Z",
+                  "finished_at": "2017-08-10T15:35:33Z"
+                }
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/96178",
+                "@representation": "minimal",
+                "id": 96178,
+                "login": "MariadeAnton"
+              },
+              "updated_at": "2018-05-27T08:23:01.933Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/258888793",
+              "@representation": "active",
+              "@permissions": {
+                "read": true,
+                "restart": false,
+                "cancel": false
+              },
+              "id": 258888793,
+              "number": "126",
+              "state": "started",
+              "duration": null,
+              "event_type": "cron",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2017-07-29T15:26:26Z",
+              "finished_at": null,
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/4988099",
+                "@representation": "minimal",
+                "id": 4988099,
+                "name": "travis-nightly-builder",
+                "slug": "travis-ci/travis-nightly-builder"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/4988099/branch/build",
+                "@representation": "minimal",
+                "name": "build"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 75275554,
+                "sha": "915a6971fa607b4ecc21632b0acbedf12037b008",
+                "ref": null,
+                "message": "Does not alias 7.2snapshot to 7.2\n\n7.2 should be used only be releases (including betas)",
+                "compare_url": "https://github.com/travis-ci/travis-nightly-builder/compare/f40bb2f421b67e0857ad35ca8111299b35b506f3...915a6971fa607b4ecc21632b0acbedf12037b008",
+                "committed_at": "2017-07-22T19:52:54Z"
+              },
+              "jobs": [
+
+              ],
+              "stages": [
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 124189,
+                  "number": 3,
+                  "name": "Build",
+                  "state": "canceled",
+                  "started_at": "2017-07-29T15:30:21Z",
+                  "finished_at": "2017-07-29T15:30:12Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 124188,
+                  "number": 2,
+                  "name": "Build latest archives",
+                  "state": "failed",
+                  "started_at": "2017-07-29T15:28:18Z",
+                  "finished_at": "2017-07-29T15:30:14Z"
+                },
+                {
+                  "@type": "stage",
+                  "@representation": "minimal",
+                  "id": 124187,
+                  "number": 1,
+                  "name": "Test",
+                  "state": "passed",
+                  "started_at": "2017-07-29T15:26:26Z",
+                  "finished_at": "2017-07-29T15:28:12Z"
+                }
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/924595",
+                "@representation": "minimal",
+                "id": 924595,
+                "login": "DaHfiD"
+              },
+              "updated_at": "2018-05-27T07:47:04.237Z"
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Thu, 17 Jan 2019 18:24:55 GMT
+recorded_with: VCR 4.0.0
