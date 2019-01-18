@@ -5,8 +5,8 @@ require 'net/http'
 require 'uri'
 
 module Trav3
-  module DELETE
-    def self.call(travis, url)
+  module REST
+    def self.delete(travis, url)
       uri = URI( url.sub(/\?.*$/, '') )
       req = Net::HTTP::Delete.new(uri.request_uri)
       travis.headers.each_pair do |header, value|

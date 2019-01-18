@@ -17,8 +17,6 @@ http_interactions:
       - application/json
       Travis-Api-Version:
       - '3'
-      Authorization:
-      - token xxxx
   response:
     status:
       code: 404
@@ -29,7 +27,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 15 Jan 2019 18:25:03 GMT
+      - Fri, 18 Jan 2019 17:19:43 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -37,13 +35,13 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=31536000
       X-Oauth-Scopes:
-      - public,private
+      - ''
       Vary:
       - Accept-Encoding
       X-Rack-Cache:
       - invalidate, pass
       X-Request-Id:
-      - a9f750ba-f774-4050-8ec8-8ead4b019dd1
+      - 944c9931-493e-4c9b-ae80-bb66e42fa536
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -61,5 +59,5 @@ http_interactions:
           "error_message": "resource not found (or insufficient access)"
         }
     http_version: 
-  recorded_at: Tue, 15 Jan 2019 18:25:03 GMT
+  recorded_at: Fri, 18 Jan 2019 17:19:43 GMT
 recorded_with: VCR 4.0.0
