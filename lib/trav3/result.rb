@@ -37,7 +37,11 @@ module Trav3
     def initialize(travis, response)
       @travis = travis
       @response = response
-      @json = JSON.parse(response.body)
+      @json = begin
+                JSON.parse(response.body)
+              rescue JSON::ParserError
+                response.error!
+              end
     end
 
     def inspect

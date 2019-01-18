@@ -1,0 +1,137 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/settings
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 18 Jan 2019 22:30:16 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::UserSettings::ForRepository
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - b2ab624d-c074-4fa0-a4aa-0e9e9ca01025
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "settings",
+          "@href": "/repo/danielpclark%2Ftrav3/settings",
+          "@representation": "standard",
+          "settings": [
+            {
+              "@type": "setting",
+              "@href": "/repo/22777898/setting/builds_only_with_travis_yml",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "write": true
+              },
+              "name": "builds_only_with_travis_yml",
+              "value": false
+            },
+            {
+              "@type": "setting",
+              "@href": "/repo/22777898/setting/build_pushes",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "write": true
+              },
+              "name": "build_pushes",
+              "value": true
+            },
+            {
+              "@type": "setting",
+              "@href": "/repo/22777898/setting/build_pull_requests",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "write": true
+              },
+              "name": "build_pull_requests",
+              "value": true
+            },
+            {
+              "@type": "setting",
+              "@href": "/repo/22777898/setting/maximum_number_of_builds",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "write": true
+              },
+              "name": "maximum_number_of_builds",
+              "value": 0
+            },
+            {
+              "@type": "setting",
+              "@href": "/repo/22777898/setting/auto_cancel_pushes",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "write": true
+              },
+              "name": "auto_cancel_pushes",
+              "value": true
+            },
+            {
+              "@type": "setting",
+              "@href": "/repo/22777898/setting/auto_cancel_pull_requests",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "write": true
+              },
+              "name": "auto_cancel_pull_requests",
+              "value": false
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 18 Jan 2019 22:30:16 GMT
+recorded_with: VCR 4.0.0

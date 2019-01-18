@@ -1388,6 +1388,101 @@ module Trav3
       get("#{without_repo}/build/#{build_id}/stages")
     end
 
+    # An individual repository setting. These are settings on a repository that can be adjusted by the user. There are currently five different kinds of settings a user can modify:
+    #
+    # * `builds_only_with_travis_yml` (boolean)
+    # * `build_pushes` (boolean)
+    # * `build_pull_requests` (boolean)
+    # * `maximum_number_of_builds` (integer)
+    # * `auto_cancel_pushes` (boolean)
+    # * `auto_cancel_pull_requests` (boolean)
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name   Type                Description
+    #     name   String              The setting's name.
+    #     value  Boolean or integer  The setting's value.
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #   Name   Type                Description
+    #   name   String              The setting's name.
+    #   value  Boolean or integer  The setting's value.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single setting. It is possible to use the repository id or slug in the request.
+    #
+    # GET <code>/repo/{repository.id}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     setting.name       String   The setting's name.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # GET <code>/repo/{repository.slug}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     setting.name       String  The setting's name.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # **Update**
+    #
+    # This updates a single setting. It is possible to use the repository id or slug in the request.
+    #
+    # Use namespaced params in the request body to pass the new setting:
+    #
+    # ```bash
+    # curl -X PATCH \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "setting.value": true }' \
+    #   https://api.travis-ci.com/repo/1234/setting/{setting.name}
+    # ```
+    #
+    # PATCH <code>/repo/{repository.id}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     setting.name       String   The setting's name.
+    #     Accepted Parameter  Type                Description
+    #     setting.value       Boolean or integer  The setting's value.
+    #
+    # PATCH <code>/repo/{repository.slug}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     setting.name       String  The setting's name.
+    #     Accepted Parameter  Type                Description
+    #     setting.value       Boolean or integer  The setting's value.
+    #
+    # @param name [String] the setting name for the current repository
+    # @param value [String] optional argument for setting a value for the setting name
+    # @return [Success, RequestError]
+    def setting(name, value = nil)
+      return get("#{with_repo}/setting/#{name}") if value.nil?
+
+      patch("#{with_repo}/setting/#{name}", 'setting.value' => value)
+    end
+
+    def settings
+      get("#{with_repo}/settings")
+    end
+
     # An individual user.
     #
     # ## Attributes
@@ -1501,6 +1596,10 @@ module Trav3
 
     def opts
       @options
+    end
+
+    def patch(url, data)
+      Trav3::REST.patch(self, url, data)
     end
 
     def post(url, fields = {})
