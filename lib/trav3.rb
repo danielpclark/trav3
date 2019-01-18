@@ -6,9 +6,7 @@ require 'trav3/pagination'
 require 'trav3/options'
 require 'trav3/headers'
 require 'trav3/result'
-require 'trav3/delete'
-require 'trav3/post'
-require 'trav3/get'
+require 'trav3/rest'
 
 # Trav3 project namespace
 module Trav3
@@ -1483,11 +1481,11 @@ module Trav3
     private # @private
 
     def delete(url)
-      Trav3::DELETE.call(self, url)
+      Trav3::REST.delete(self, url)
     end
 
     def get(url, raw_reply = false)
-      Trav3::GET.call(self, url, raw_reply)
+      Trav3::REST.get(self, url, raw_reply)
     end
 
     def initial_defaults
@@ -1506,7 +1504,7 @@ module Trav3
     end
 
     def post(url, fields = {})
-      Trav3::POST.call(self, url, fields)
+      Trav3::REST.post(self, url, fields)
     end
 
     def validate_api_endpoint(input)

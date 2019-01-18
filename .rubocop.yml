@@ -2623,7 +2623,7 @@ Style/ExpandPathArguments:
   Enabled: true
   VersionAdded: '0.53'
 
-Style/FlipFlop:
+Lint/FlipFlop:
   Description: 'Checks for flip-flops'
   StyleGuide: '#no-flip-flops'
   Enabled: true

@@ -24,7 +24,7 @@ module Trav3
     end
 
     def get(url)
-      Trav3::GET.call(travis, url)
+      Trav3::REST.get(travis, url)
     end
     private :get
 

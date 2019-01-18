@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-RSpec.describe Trav3::GET, :vcr do
+RSpec.describe Trav3::REST, :vcr do
   let(:t) { build :travis }
 
-  describe '#call' do
+  describe '#get' do
     it 'happy path' do
       expect(t.owner).to be_an_instance_of(Trav3::Success)
     end
@@ -13,6 +13,14 @@ RSpec.describe Trav3::GET, :vcr do
     it 'not happy path' do
       expect(
         t.send(:get, "#{t.send(:without_repo)}/example_fail_1234")
+      ).to be_an_instance_of(Trav3::RequestError)
+    end
+  end
+
+  describe '#delete' do
+    it 'not happy path' do
+      expect(
+        t.send(:delete, "#{t.send(:without_repo)}/example_fail_1234")
       ).to be_an_instance_of(Trav3::RequestError)
     end
   end
