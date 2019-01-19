@@ -624,6 +624,7 @@ module Trav3
     # ```
     #
     # DELETE <code>/repo/{repository.id}/caches</code>
+    #
     #     Template Variable  Type     Description
     #     repository.id      Integer  Value uniquely identifying the repository.
     #
@@ -1164,7 +1165,8 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
-    # **For Current User**<br />
+    # **For Current User**
+    #
     # This returns a list of repositories the current user has access to.
     #
     # GET <code>/repos</code>
