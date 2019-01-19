@@ -1,0 +1,91 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/requests
+    body:
+      encoding: UTF-8
+      string: '{"request":{"message":"Override the commit message: this is an api
+        request","branch":"master"}}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 202
+      message: Accepted
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 19 Jan 2019 16:56:14 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Requests::Create
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - b5b35ff7-c8b1-440d-a68b-b29e3befc0a4
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "pending",
+          "remaining_requests": 10,
+          "repository": {
+            "@type": "repository",
+            "@href": "/repo/22777898",
+            "@representation": "minimal",
+            "id": 22777898,
+            "name": "trav3",
+            "slug": "danielpclark/trav3"
+          },
+          "request": {
+            "repository": {
+              "id": 165383423,
+              "owner_name": "danielpclark",
+              "name": "trav3"
+            },
+            "user": {
+              "id": 114816
+            },
+            "id": 147779403,
+            "message": "Override the commit message: this is an api request",
+            "branch": "master",
+            "config": {
+            }
+          },
+          "resource_type": "request"
+        }
+    http_version: 
+  recorded_at: Sat, 19 Jan 2019 16:56:14 GMT
+recorded_with: VCR 4.0.0

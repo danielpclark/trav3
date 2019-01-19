@@ -1344,6 +1344,12 @@ module Trav3
       end
     end
 
+    def requests(**attributes)
+      return get("#{with_repo}/requests") if attributes.empty?
+
+      create("#{with_repo}/requests", 'request': attributes)
+    end
+
     # A list of stages.
     #
     # Currently this is nested within a build.
@@ -1625,6 +1631,10 @@ module Trav3
     end
 
     private # @private
+
+    def create(url, **data)
+      Trav3::REST.create(self, url, **data)
+    end
 
     def delete(url)
       Trav3::REST.delete(self, url)
