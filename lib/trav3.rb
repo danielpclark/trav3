@@ -181,7 +181,7 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
-    #     Example:GET /repo/891/branch/master
+    #     Example: GET /repo/891/branch/master
     #
     # GET <code>/repo/{repository.slug}/branch/{branch.name}</code>
     #
@@ -191,7 +191,7 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
-    #     Example:GET /repo/rails%2Frails/branch/master
+    #     Example: GET /repo/rails%2Frails/branch/master
     #
     # @param name [String] the branch name for the current repository
     # @return [Success, RequestError]
@@ -238,7 +238,7 @@ module Trav3
     #     offset                   Integer    How many branches to skip before the first entry in the response. Used for pagination.
     #     sort_by                  [String]   Attributes to sort branches by. Used for pagination.
     #
-    #     Example:GET /repo/891/branches?limit=5&exists_on_github=true
+    #     Example: GET /repo/891/branches?limit=5&exists_on_github=true
     #
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
@@ -255,7 +255,7 @@ module Trav3
     #     offset                   Integer    How many branches to skip before the first entry in the response. Used for pagination.
     #     sort_by                  [String]   Attributes to sort branches by. Used for pagination.
     #
-    #     Example:GET /repo/rails%2Frails/branches?limit=5&exists_on_github=true
+    #     Example: GET /repo/rails%2Frails/branches?limit=5&exists_on_github=true
     #
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
@@ -761,7 +761,7 @@ module Trav3
     #
     # POST <code>/lint</code>
     #
-    #     Example:POST /lint
+    #     Example: POST /lint
     #
     # @param yaml_content [String] the contents for the file `.travis.yml`
     # @return [Success, RequestError]
@@ -829,7 +829,7 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #     log.token        Unknown   Documentation missing.
     #
-    #     Example:GET /job/86601347/log.txt
+    #     Example: GET /job/86601347/log.txt
     #
     # **Delete**
     #
@@ -907,7 +907,7 @@ module Trav3
     #     Query Parameter    Type      Description
     #     include            [String]  List of attributes to eager load.
     #
-    #     Example:GET /org/87
+    #     Example: GET /org/87
     #
     # @param org_id [String, Integer] the organization id
     # @raise [TypeError] if given organization id is not a number
@@ -956,7 +956,7 @@ module Trav3
     #     role               Unknown   Alias for organization.role.
     #     sort_by            [String]  Attributes to sort organizations by. Used for pagination.
     #
-    #     Example:GET /orgs?limit=5
+    #     Example: GET /orgs?limit=5
     #
     # **Sortable by:** <code>id</code>, <code>login</code>, <code>name</code>, <code>github_id</code>, append <code>:desc</code> to any attribute to reverse order.
     #
@@ -1377,7 +1377,7 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
-    #     Example:GET /build/86601346/stages
+    #     Example: GET /build/86601346/stages
     #
     # @param build_id [String, Integer] build id
     # @raise [TypeError] if given build id is not a number
@@ -1386,6 +1386,150 @@ module Trav3
       validate_number build_id
 
       get("#{without_repo}/build/#{build_id}/stages")
+    end
+
+    # An individual repository setting. These are settings on a repository that can be adjusted by the user. There are currently five different kinds of settings a user can modify:
+    #
+    # * `builds_only_with_travis_yml` (boolean)
+    # * `build_pushes` (boolean)
+    # * `build_pull_requests` (boolean)
+    # * `maximum_number_of_builds` (integer)
+    # * `auto_cancel_pushes` (boolean)
+    # * `auto_cancel_pull_requests` (boolean)
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name   Type                Description
+    #     name   String              The setting's name.
+    #     value  Boolean or integer  The setting's value.
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #   Name   Type                Description
+    #   name   String              The setting's name.
+    #   value  Boolean or integer  The setting's value.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single setting. It is possible to use the repository id or slug in the request.
+    #
+    # GET <code>/repo/{repository.id}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     setting.name       String   The setting's name.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # GET <code>/repo/{repository.slug}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     setting.name       String  The setting's name.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # **Update**
+    #
+    # This updates a single setting. It is possible to use the repository id or slug in the request.
+    #
+    # Use namespaced params in the request body to pass the new setting:
+    #
+    # ```bash
+    # curl -X PATCH \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "setting.value": true }' \
+    #   https://api.travis-ci.com/repo/1234/setting/{setting.name}
+    # ```
+    #
+    # PATCH <code>/repo/{repository.id}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     setting.name       String   The setting's name.
+    #     Accepted Parameter  Type                Description
+    #     setting.value       Boolean or integer  The setting's value.
+    #
+    # PATCH <code>/repo/{repository.slug}/setting/{setting.name}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     setting.name       String  The setting's name.
+    #     Accepted Parameter  Type                Description
+    #     setting.value       Boolean or integer  The setting's value.
+    #
+    # @param name [String] the setting name for the current repository
+    # @param value [String] optional argument for setting a value for the setting name
+    # @return [Success, RequestError]
+    def setting(name, value = nil)
+      return get("#{with_repo}/setting/#{name}") if value.nil?
+
+      patch("#{with_repo}/setting/#{name}", 'setting.value' => value)
+    end
+
+    # A list of user settings. These are settings on a repository that can be adjusted by the user. There are currently six different kinds of user settings:
+    #
+    # * `builds_only_with_travis_yml` (boolean)
+    # * `build_pushes` (boolean)
+    # * `build_pull_requests` (boolean)
+    # * `maximum_number_of_builds` (integer)
+    # * `auto_cancel_pushes` (boolean)
+    # * `auto_cancel_pull_requests` (boolean)
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    #     Name      Type       Description
+    #     settings  [Setting]  List of settings.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the settings array has the following attributes:
+    #
+    #     Name   Type                Description
+    #     name   String              The setting's name.
+    #     value  Boolean or integer  The setting's value.
+    #
+    # ## Actions
+    #
+    # **For Repository**
+    #
+    # This returns a list of the settings for that repository. It is possible to use the repository id or slug in the request.
+    #
+    # GET <code>/repo/{repository.id}/settings</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/891/settings
+    #
+    # GET <code>/repo/{repository.slug}/settings</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/rails%2Frails/settings
+    #
+    # @return [Success, RequestError]
+    def settings
+      get("#{with_repo}/settings")
     end
 
     # An individual user.
@@ -1435,7 +1579,7 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
-    #     Example:GET /user/119240
+    #     Example: GET /user/119240
     #
     # **Sync**
     #
@@ -1446,7 +1590,7 @@ module Trav3
     #     Template Variable  Type     Description
     #     user.id            Integer  Value uniquely identifying the user.
     #
-    #     Example:POST /user/119240/sync
+    #     Example: POST /user/119240/sync
     #
     # **Current**
     #
@@ -1457,7 +1601,7 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
-    #     Example:GET /user
+    #     Example: GET /user
     #
     # @note sync feature may not be permitted
     # @note POST requests require an authorization token set in the headers. See: {h}
@@ -1501,6 +1645,10 @@ module Trav3
 
     def opts
       @options
+    end
+
+    def patch(url, data)
+      Trav3::REST.patch(self, url, data)
     end
 
     def post(url, fields = {})

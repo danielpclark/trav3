@@ -24,4 +24,12 @@ RSpec.describe Trav3::REST, :vcr do
       ).to be_an_instance_of(Trav3::RequestError)
     end
   end
+
+  describe '#patch' do
+    it 'not happy path' do
+      expect(
+        t.send(:patch, "#{t.send(:without_repo)}/example_fail_1234", a: :b)
+      ).to be_an_instance_of(Trav3::RequestError)
+    end
+  end
 end

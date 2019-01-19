@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/setting/auto_cancel_pull_requests
+    body:
+      encoding: UTF-8
+      string: '{"setting.value":false}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 18 Jan 2019 22:28:53 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::UserSetting::Update
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - 580a16bb-8516-485b-a3de-df3bf57c3ee3
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "setting",
+          "@href": "/repo/22777898/setting/auto_cancel_pull_requests",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "write": true
+          },
+          "name": "auto_cancel_pull_requests",
+          "value": false
+        }
+    http_version: 
+  recorded_at: Fri, 18 Jan 2019 22:28:53 GMT
+recorded_with: VCR 4.0.0

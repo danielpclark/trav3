@@ -4,6 +4,13 @@ require 'spec_helper'
 
 RSpec.describe Trav3::Response do
   let(:response) { build :response }
+  let(:invalid_json_response) { build :invalid_json_response }
+  describe '#new' do
+    it 'raises on invalid JSON response' do
+      expect { invalid_json_response }.to raise_error(Net::HTTPFatalError, /Internal Server Error/)
+    end
+  end
+
   describe '#success?' do
     it 'raises an unimplemented error' do
       expect { response.success? }.to raise_error(Trav3::Unimplemented, /not implemented/)

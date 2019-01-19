@@ -211,6 +211,25 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#setting' do
+    it 'gets a setting' do
+      setting = t.setting('auto_cancel_pull_requests')
+      expect(setting).to be_an_instance_of Trav3::Success
+    end
+
+    it 'sets a setting' do
+      setting = t.setting('auto_cancel_pull_requests', false)
+      expect(setting).to be_an_instance_of Trav3::Success
+    end
+  end
+
+  describe '#settings' do
+    it 'gets settings' do
+      settings = t.settings
+      expect(settings).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#stages' do
     it 'gets build stages' do
       stages = t.stages(479_113_572)
