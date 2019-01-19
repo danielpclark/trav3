@@ -224,7 +224,7 @@ RSpec.describe Trav3::Travis, :vcr do
   end
 
   describe '#settings' do
-    it 'gets a settings' do
+    it 'gets settings' do
       settings = t.settings
       expect(settings).to be_an_instance_of Trav3::Success
     end
