@@ -1335,7 +1335,7 @@ module Trav3
       validate_repo_format repo
 
       repo = sanitize_repo_name repo
-      action = '' unless %w[star unstar activate deavtivate].include? action.to_s
+      action = '' unless %w[star unstar activate deactivate].include? action.to_s
 
       if action.empty?
         get("#{without_repo}/repo/#{repo}")
