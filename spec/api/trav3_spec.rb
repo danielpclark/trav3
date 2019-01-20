@@ -219,8 +219,8 @@ RSpec.describe Trav3::Travis, :vcr do
 
     it 'sets some requests details' do
       requests = t.requests(
-        "message": "Override the commit message: this is an api request",
-        "branch": "master"
+        'message': 'Override the commit message: this is an api request',
+        'branch': 'master'
       )
       expect(requests).to be_an_instance_of Trav3::Success
     end
