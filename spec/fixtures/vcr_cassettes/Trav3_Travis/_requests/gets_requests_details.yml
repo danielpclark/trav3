@@ -1,0 +1,1504 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/requests
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 19 Jan 2019 16:56:14 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Requests::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 9699786b-8ade-4f8b-a981-9e6d14e0a276
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "requests",
+          "@href": "/repo/danielpclark%2Ftrav3/requests",
+          "@representation": "standard",
+          "@pagination": {
+            "limit": 25,
+            "offset": 0,
+            "count": 85,
+            "is_first": true,
+            "is_last": false,
+            "next": {
+              "@href": "/repo/danielpclark%2Ftrav3/requests?limit=25&offset=25",
+              "offset": 25,
+              "limit": 25
+            },
+            "prev": null,
+            "first": {
+              "@href": "/repo/danielpclark%2Ftrav3/requests",
+              "offset": 0,
+              "limit": 25
+            },
+            "last": {
+              "@href": "/repo/danielpclark%2Ftrav3/requests?limit=25&offset=75",
+              "offset": 75,
+              "limit": 25
+            }
+          },
+          "requests": [
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147776757",
+              "@representation": "standard",
+              "id": 147776757,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145154296,
+                "sha": "5ec64a3f574820258ad4ab549169805638718668",
+                "ref": "refs/heads/master",
+                "message": "Fix action deactivate in repository (typo)",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/bc2d920518c2...5ec64a3f5748",
+                "committed_at": "2019-01-19T16:23:53Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481790537",
+                  "@representation": "minimal",
+                  "id": 481790537,
+                  "number": "74",
+                  "state": "passed",
+                  "duration": 200,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-19T16:25:13Z",
+                  "finished_at": "2019-01-19T16:26:28Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T16:24:40Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147731561",
+              "@representation": "standard",
+              "id": 147731561,
+              "state": "created",
+              "result": "rejected",
+              "message": "Build skipped via commit message.",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145109088,
+                "sha": "bc2d920518c2a3a692c8792dd96de456c35b5cf8",
+                "ref": "refs/heads/master",
+                "message": "Doc touch-ups\n\n[ci skip]",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/68d372c12a8a...bc2d920518c2",
+                "committed_at": "2019-01-19T02:49:39Z"
+              },
+              "builds": [
+
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:49:50Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147731209",
+              "@representation": "standard",
+              "id": 147731209,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "v0.2.4",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145108736,
+                "sha": "68d372c12a8a235f0372c5ad71102054bc8cc67a",
+                "ref": "refs/tags/v0.2.4",
+                "message": "Bump version",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/v0.2.4",
+                "committed_at": null
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481642299",
+                  "@representation": "minimal",
+                  "id": 481642299,
+                  "number": "73",
+                  "state": "passed",
+                  "duration": 234,
+                  "event_type": "push",
+                  "previous_state": null,
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-19T02:44:17Z",
+                  "finished_at": "2019-01-19T02:47:07Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:43:33Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147731199",
+              "@representation": "standard",
+              "id": 147731199,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145108726,
+                "sha": "68d372c12a8a235f0372c5ad71102054bc8cc67a",
+                "ref": "refs/heads/master",
+                "message": "Bump version",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/34b668d505a1...68d372c12a8a",
+                "committed_at": "2019-01-19T02:43:12Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481642237",
+                  "@representation": "minimal",
+                  "id": 481642237,
+                  "number": "72",
+                  "state": "passed",
+                  "duration": 182,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-19T02:43:49Z",
+                  "finished_at": "2019-01-19T02:45:05Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:43:21Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147731121",
+              "@representation": "standard",
+              "id": 147731121,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145108648,
+                "sha": "34b668d505a146a3d60c0a0bde6658d3e7d1546f",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #40 from danielpclark/trav3/feature/settings\n\nsettings implementation",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/a3fb10cb5484...34b668d505a1",
+                "committed_at": "2019-01-19T02:41:50Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481641963",
+                  "@representation": "minimal",
+                  "id": 481641963,
+                  "number": "71",
+                  "state": "passed",
+                  "duration": 216,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-19T02:42:21Z",
+                  "finished_at": "2019-01-19T02:43:43Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:41:52Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147730950",
+              "@representation": "standard",
+              "id": 147730950,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145108477,
+                "sha": "e7356ad1b237b0c022bb3fe59b5e79022f11f16a",
+                "ref": "refs/pull/40/merge",
+                "message": "100% coverage - #10",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/40",
+                "committed_at": "2019-01-19T02:37:37Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481641419",
+                  "@representation": "minimal",
+                  "id": 481641419,
+                  "number": "70",
+                  "state": "passed",
+                  "duration": 211,
+                  "event_type": "pull_request",
+                  "previous_state": "passed",
+                  "pull_request_title": "settings implementation",
+                  "pull_request_number": 40,
+                  "started_at": "2019-01-19T02:38:22Z",
+                  "finished_at": "2019-01-19T02:41:13Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:37:50Z",
+              "event_type": "pull_request",
+              "base_commit": "a3fb10cb5484673d70d4640efb3bdf49bc95e4fa",
+              "head_commit": "b965d1746c6631ca41b91ab0cc7bcb62ddb2c5ae"
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147730946",
+              "@representation": "standard",
+              "id": 147730946,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "trav3/feature/settings",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145108473,
+                "sha": "b965d1746c6631ca41b91ab0cc7bcb62ddb2c5ae",
+                "ref": "refs/heads/trav3/feature/settings",
+                "message": "100% coverage - #10",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/e5cf0084cbc8...b965d1746c66",
+                "committed_at": "2019-01-19T02:37:37Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481641413",
+                  "@representation": "minimal",
+                  "id": 481641413,
+                  "number": "69",
+                  "state": "passed",
+                  "duration": 219,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-19T02:38:19Z",
+                  "finished_at": "2019-01-19T02:39:40Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:37:47Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147729653",
+              "@representation": "standard",
+              "id": 147729653,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145107180,
+                "sha": "f1ba61eefce5cbe0b1d957432cc4c4a3153e6363",
+                "ref": "refs/pull/40/merge",
+                "message": "settings implementation- #10",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/40",
+                "committed_at": "2019-01-19T02:06:48Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481637324",
+                  "@representation": "minimal",
+                  "id": 481637324,
+                  "number": "68",
+                  "state": "passed",
+                  "duration": 223,
+                  "event_type": "pull_request",
+                  "previous_state": "passed",
+                  "pull_request_title": "settings implementation",
+                  "pull_request_number": 40,
+                  "started_at": "2019-01-19T02:10:09Z",
+                  "finished_at": "2019-01-19T02:11:33Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:09:40Z",
+              "event_type": "pull_request",
+              "base_commit": "a3fb10cb5484673d70d4640efb3bdf49bc95e4fa",
+              "head_commit": "e5cf0084cbc8d59217b1831760bb18069c78840c"
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147729547",
+              "@representation": "standard",
+              "id": 147729547,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "trav3/feature/settings",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145107074,
+                "sha": "e5cf0084cbc8d59217b1831760bb18069c78840c",
+                "ref": "refs/heads/trav3/feature/settings",
+                "message": "settings implementation- #10",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/d954bc41f55b...e5cf0084cbc8",
+                "committed_at": "2019-01-19T02:06:48Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481637016",
+                  "@representation": "minimal",
+                  "id": 481637016,
+                  "number": "67",
+                  "state": "passed",
+                  "duration": 197,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-19T02:07:31Z",
+                  "finished_at": "2019-01-19T02:08:51Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-19T02:07:03Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147715373",
+              "@representation": "standard",
+              "id": 147715373,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "trav3/feature/settings",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145092905,
+                "sha": "d954bc41f55bb42cfcf0882d2657a29a902f63d1",
+                "ref": "refs/heads/trav3/feature/settings",
+                "message": "setting implementation- #10",
+                "compare_url": "https://github.com/danielpclark/trav3/commit/d954bc41f55b",
+                "committed_at": "2019-01-18T22:47:47Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481588785",
+                  "@representation": "minimal",
+                  "id": 481588785,
+                  "number": "66",
+                  "state": "passed",
+                  "duration": 190,
+                  "event_type": "push",
+                  "previous_state": null,
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-18T22:48:47Z",
+                  "finished_at": "2019-01-18T22:50:12Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-18T22:48:16Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147685428",
+              "@representation": "standard",
+              "id": 147685428,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145062970,
+                "sha": "a3fb10cb5484673d70d4640efb3bdf49bc95e4fa",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #39 from danielpclark/trav3/refactor/rest\n\nRefactor REST",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/08c89ce119a7...a3fb10cb5484",
+                "committed_at": "2019-01-18T18:22:59Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481483759",
+                  "@representation": "minimal",
+                  "id": 481483759,
+                  "number": "65",
+                  "state": "passed",
+                  "duration": 207,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-18T18:23:32Z",
+                  "finished_at": "2019-01-18T18:24:53Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-18T18:23:01Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147678873",
+              "@representation": "standard",
+              "id": 147678873,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145056417,
+                "sha": "c8b7a7f1bea272954f7ba9a1e0f582a5db89a3a3",
+                "ref": "refs/pull/39/merge",
+                "message": "Refactor REST - #38",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/39",
+                "committed_at": "2019-01-18T17:22:21Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481461570",
+                  "@representation": "minimal",
+                  "id": 481461570,
+                  "number": "64",
+                  "state": "passed",
+                  "duration": 256,
+                  "event_type": "pull_request",
+                  "previous_state": "passed",
+                  "pull_request_title": "Refactor REST",
+                  "pull_request_number": 39,
+                  "started_at": "2019-01-18T17:24:27Z",
+                  "finished_at": "2019-01-18T17:27:05Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-18T17:23:54Z",
+              "event_type": "pull_request",
+              "base_commit": "08c89ce119a7194e25bbb3c95b4258292ea2bfe0",
+              "head_commit": "03bb3fa01c5066732cbf3628e17f0b8def4cbba8"
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147678827",
+              "@representation": "standard",
+              "id": 147678827,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "trav3/refactor/rest",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 145056371,
+                "sha": "03bb3fa01c5066732cbf3628e17f0b8def4cbba8",
+                "ref": "refs/heads/trav3/refactor/rest",
+                "message": "Refactor REST - #38",
+                "compare_url": "https://github.com/danielpclark/trav3/commit/03bb3fa01c50",
+                "committed_at": "2019-01-18T17:22:21Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481461441",
+                  "@representation": "minimal",
+                  "id": 481461441,
+                  "number": "63",
+                  "state": "passed",
+                  "duration": 251,
+                  "event_type": "push",
+                  "previous_state": null,
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-18T17:23:53Z",
+                  "finished_at": "2019-01-18T17:25:54Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-18T17:23:19Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147558313",
+              "@representation": "standard",
+              "id": 147558313,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144935897,
+                "sha": "08c89ce119a7194e25bbb3c95b4258292ea2bfe0",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #37 from danielpclark/trav3/feature/active\n\nActive implementation",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/a567dced0398...08c89ce119a7",
+                "committed_at": "2019-01-17T20:43:02Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481062406",
+                  "@representation": "minimal",
+                  "id": 481062406,
+                  "number": "62",
+                  "state": "passed",
+                  "duration": 211,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-17T20:43:37Z",
+                  "finished_at": "2019-01-17T20:45:15Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-17T20:43:06Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147549977",
+              "@representation": "standard",
+              "id": 147549977,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144927564,
+                "sha": "a133412d89a6af4c936f6d00b911eb3c60acc58a",
+                "ref": "refs/pull/37/merge",
+                "message": "Lock down rubocop version - #37",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/37",
+                "committed_at": "2019-01-17T19:36:15Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481034520",
+                  "@representation": "minimal",
+                  "id": 481034520,
+                  "number": "61",
+                  "state": "passed",
+                  "duration": 234,
+                  "event_type": "pull_request",
+                  "previous_state": "passed",
+                  "pull_request_title": "Active implementation",
+                  "pull_request_number": 37,
+                  "started_at": "2019-01-17T19:36:55Z",
+                  "finished_at": "2019-01-17T19:39:56Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-17T19:36:27Z",
+              "event_type": "pull_request",
+              "base_commit": "a567dced0398e6655e58154014213cef1b0b3553",
+              "head_commit": "847c9d3eeca38e287d259d84e0bab485b75714b9"
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147549972",
+              "@representation": "standard",
+              "id": 147549972,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "trav3/feature/active",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144927559,
+                "sha": "847c9d3eeca38e287d259d84e0bab485b75714b9",
+                "ref": "refs/heads/trav3/feature/active",
+                "message": "Lock down rubocop version - #37",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/a39af3a1363b...847c9d3eeca3",
+                "committed_at": "2019-01-17T19:36:15Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481034512",
+                  "@representation": "minimal",
+                  "id": 481034512,
+                  "number": "60",
+                  "state": "passed",
+                  "duration": 221,
+                  "event_type": "push",
+                  "previous_state": "failed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-17T19:37:00Z",
+                  "finished_at": "2019-01-17T19:38:18Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-17T19:36:26Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147549359",
+              "@representation": "standard",
+              "id": 147549359,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144926946,
+                "sha": "4e9bf2a31a1335e8e09c859d0bd68f6f1c8a0672",
+                "ref": "refs/pull/37/merge",
+                "message": "Active implementation - #23",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/37",
+                "committed_at": "2019-01-17T19:29:51Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481032310",
+                  "@representation": "minimal",
+                  "id": 481032310,
+                  "number": "59",
+                  "state": "failed",
+                  "duration": 196,
+                  "event_type": "pull_request",
+                  "previous_state": "passed",
+                  "pull_request_title": "Active implementation",
+                  "pull_request_number": 37,
+                  "started_at": "2019-01-17T19:31:15Z",
+                  "finished_at": "2019-01-17T19:34:17Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-17T19:30:38Z",
+              "event_type": "pull_request",
+              "base_commit": "a567dced0398e6655e58154014213cef1b0b3553",
+              "head_commit": "a39af3a1363bef96bfc06de013ee1b231900c402"
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147549353",
+              "@representation": "standard",
+              "id": 147549353,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "trav3/feature/active",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144926940,
+                "sha": "a39af3a1363bef96bfc06de013ee1b231900c402",
+                "ref": "refs/heads/trav3/feature/active",
+                "message": "Active implementation - #23",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/62f766151fcb...a39af3a1363b",
+                "committed_at": "2019-01-17T19:29:51Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481032302",
+                  "@representation": "minimal",
+                  "id": 481032302,
+                  "number": "58",
+                  "state": "failed",
+                  "duration": 217,
+                  "event_type": "push",
+                  "previous_state": "failed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-17T19:31:03Z",
+                  "finished_at": "2019-01-17T19:32:24Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-17T19:30:35Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147549121",
+              "@representation": "standard",
+              "id": 147549121,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144926708,
+                "sha": "2ddac6ff9ae4c500d537f6507326f3e7be5c53ae",
+                "ref": "refs/pull/37/merge",
+                "message": "Active implementation - #77",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/37",
+                "committed_at": "2019-01-17T19:27:59Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481031424",
+                  "@representation": "minimal",
+                  "id": 481031424,
+                  "number": "57",
+                  "state": "canceled",
+                  "duration": 115,
+                  "event_type": "pull_request",
+                  "previous_state": "passed",
+                  "pull_request_title": "Active implementation - #77",
+                  "pull_request_number": 37,
+                  "started_at": "2019-01-17T19:29:04Z",
+                  "finished_at": "2019-01-17T19:30:11Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-17T19:28:25Z",
+              "event_type": "pull_request",
+              "base_commit": "a567dced0398e6655e58154014213cef1b0b3553",
+              "head_commit": "62f766151fcb8ace6b1fca270e96563d4805515f"
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147549083",
+              "@representation": "standard",
+              "id": 147549083,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "trav3/feature/active",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144926670,
+                "sha": "62f766151fcb8ace6b1fca270e96563d4805515f",
+                "ref": "refs/heads/trav3/feature/active",
+                "message": "Active implementation - #77",
+                "compare_url": "https://github.com/danielpclark/trav3/commit/62f766151fcb",
+                "committed_at": "2019-01-17T19:27:59Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/481031268",
+                  "@representation": "minimal",
+                  "id": 481031268,
+                  "number": "56",
+                  "state": "failed",
+                  "duration": 215,
+                  "event_type": "push",
+                  "previous_state": null,
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-17T19:28:40Z",
+                  "finished_at": "2019-01-17T19:30:06Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-17T19:28:11Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147249664",
+              "@representation": "standard",
+              "id": 147249664,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "v0.2.3",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144627327,
+                "sha": "a567dced0398e6655e58154014213cef1b0b3553",
+                "ref": "refs/tags/v0.2.3",
+                "message": "Version v0.2.3",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/v0.2.3",
+                "committed_at": null
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/480042743",
+                  "@representation": "minimal",
+                  "id": 480042743,
+                  "number": "55",
+                  "state": "passed",
+                  "duration": 218,
+                  "event_type": "push",
+                  "previous_state": null,
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-15T19:19:02Z",
+                  "finished_at": "2019-01-15T19:21:03Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-15T19:17:42Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147249605",
+              "@representation": "standard",
+              "id": 147249605,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144627268,
+                "sha": "a567dced0398e6655e58154014213cef1b0b3553",
+                "ref": "refs/heads/master",
+                "message": "Version v0.2.3",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2ac190e0b144...a567dced0398",
+                "committed_at": "2019-01-15T19:17:00Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/480042559",
+                  "@representation": "minimal",
+                  "id": 480042559,
+                  "number": "54",
+                  "state": "passed",
+                  "duration": 319,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-15T19:17:44Z",
+                  "finished_at": "2019-01-15T19:20:38Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-15T19:17:12Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147249528",
+              "@representation": "standard",
+              "id": 147249528,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144627191,
+                "sha": "2ac190e0b144beb3c7f189dea1df5cc1b8a5ca45",
+                "ref": "refs/heads/master",
+                "message": "no opts on branch & links for owner",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/6d68b94e3a71...2ac190e0b144",
+                "committed_at": "2019-01-15T19:15:02Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/480042366",
+                  "@representation": "minimal",
+                  "id": 480042366,
+                  "number": "53",
+                  "state": "passed",
+                  "duration": 213,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-15T19:16:58Z",
+                  "finished_at": "2019-01-15T19:18:30Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-15T19:16:26Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147244058",
+              "@representation": "standard",
+              "id": 147244058,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144621722,
+                "sha": "79b41a211df47c89e2109d9524b70b6e2a27b2bc",
+                "ref": "refs/heads/master",
+                "message": "Add note about authorization in cache deletion - #20",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/9e31e138a863...79b41a211df4",
+                "committed_at": "2019-01-15T18:28:23Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/480024035",
+                  "@representation": "minimal",
+                  "id": 480024035,
+                  "number": "52",
+                  "state": "passed",
+                  "duration": 302,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-15T18:29:09Z",
+                  "finished_at": "2019-01-15T18:32:05Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-15T18:28:38Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            },
+            {
+              "@type": "request",
+              "@href": "/repo/22777898/request/147242591",
+              "@representation": "standard",
+              "id": 147242591,
+              "state": "finished",
+              "result": "approved",
+              "message": null,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch_name": "master",
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 144620255,
+                "sha": "9e31e138a863a866763f26d1ed6bf9862708628f",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #34 from danielpclark/trav3/feature/caches\n\ncaches implementeation",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/64f1420bff08...9e31e138a863",
+                "committed_at": "2019-01-15T18:15:26Z"
+              },
+              "builds": [
+                {
+                  "@type": "build",
+                  "@href": "/build/480019258",
+                  "@representation": "minimal",
+                  "id": 480019258,
+                  "number": "51",
+                  "state": "passed",
+                  "duration": 242,
+                  "event_type": "push",
+                  "previous_state": "passed",
+                  "pull_request_title": null,
+                  "pull_request_number": null,
+                  "started_at": "2019-01-15T18:15:58Z",
+                  "finished_at": "2019-01-15T18:17:26Z",
+                  "private": false
+                }
+              ],
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "created_at": "2019-01-15T18:15:29Z",
+              "event_type": "push",
+              "base_commit": null,
+              "head_commit": null
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Sat, 19 Jan 2019 16:56:14 GMT
+recorded_with: VCR 4.0.0

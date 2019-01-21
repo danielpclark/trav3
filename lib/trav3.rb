@@ -1344,6 +1344,206 @@ module Trav3
       end
     end
 
+    # An individual request
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name     Type     Description
+    #     id       Integer  Value uniquely identifying the request.
+    #     state    String   The state of a request (eg. whether it has been processed or not).
+    #     result   String   The result of the request (eg. rejected or approved).
+    #     message  String   Travis-ci status message attached to the request.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name         Type        Description
+    #     id           Integer     Value uniquely identifying the request.
+    #     state        String      The state of a request (eg. whether it has been processed or not).
+    #     result       String      The result of the request (eg. rejected or approved).
+    #     message      String      Travis-ci status message attached to the request.
+    #     repository   Repository  GitHub user or organization the request belongs to.
+    #     branch_name  String      Name of the branch requested to be built.
+    #     commit       Commit      The commit the request is associated with.
+    #     builds       [Build]     The request's builds.
+    #     owner        Owner       GitHub user or organization the request belongs to.
+    #     created_at   String      When Travis CI created the request.
+    #     event_type   String      Origin of request (push, pull request, api).
+    #     base_commit  String      The base commit the request is associated with.
+    #     head_commit  String      The head commit the request is associated with.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # Document `resources/request/actions/find` not found.
+    #
+    # GET <code>/repo/{repository.id}/request/{request.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     request.id         Integer  Value uniquely identifying the request.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # GET <code>/repo/{repository.slug}/request/{request.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.slug    String   Same as {repository.owner.name}/{repository.name}.
+    #     request.id         Integer  Value uniquely identifying the request.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # @param request_id [String, Integer] request id
+    # @return [Success, RequestError]
+    def request(request_id)
+      validate_number request_id
+
+      get("#{with_repo}/request/#{request_id}")
+    end
+
+    # A list of requests.
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    #     Name      Type       Description
+    #     requests  [Request]  List of requests.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the **requests** array has the following attributes:
+    #
+    #     Name         Type        Description
+    #     id           Integer     Value uniquely identifying the request.
+    #     state        String      The state of a request (eg. whether it has been processed or not).
+    #     result       String      The result of the request (eg. rejected or approved).
+    #     message      String      Travis-ci status message attached to the request.
+    #     repository   Repository  GitHub user or organization the request belongs to.
+    #     branch_name  String      Name of the branch requested to be built.
+    #     commit       Commit      The commit the request is associated with.
+    #     builds       [Build]     The request's builds.
+    #     owner        Owner       GitHub user or organization the request belongs to.
+    #     created_at   String      When Travis CI created the request.
+    #     event_type   String      Origin of request (push, pull request, api).
+    #     base_commit  String      The base commit the request is associated with.
+    #     head_commit  String      The head commit the request is associated with.
+    #     yaml_config  Unknown     The request's yaml_config.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This will return a list of requests belonging to a repository.
+    #
+    # GET <code>/repo/{repository.id}/requests</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many requests to include in the response. Used for pagination.
+    #     offset           Integer   How many requests to skip before the first entry in the response. Used for pagination.
+    #
+    #     Example: GET /repo/891/requests?limit=5
+    #
+    # GET <code>/repo/{repository.slug}/requests</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many requests to include in the response. Used for pagination.
+    #     offset           Integer   How many requests to skip before the first entry in the response. Used for pagination.
+    #
+    #     Example: GET /repo/rails%2Frails/requests?limit=5
+    #
+    # **Create**
+    #
+    # This will create a request for an individual repository, triggering a build to run on Travis CI.
+    #
+    # Use namespaced params in JSON format in the request body to pass any accepted parameters. Any keys in the request's config will override keys existing in the `.travis.yml`.
+    #
+    # ```bash
+    # curl -X POST \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "request": {
+    #         "message": "Override the commit message: this is an api request", "branch": "master" }}'\
+    #   https://api.travis-ci.com/repo/1/requests
+    # ```
+    #
+    # The response includes the following body:
+    #
+    # ```json
+    # {
+    #   "@type":              "pending",
+    #   "remaining_requests": 1,
+    #   "repository":         {
+    #     "@type":            "repository",
+    #     "@href":            "/repo/1",
+    #     "@representation":  "minimal",
+    #     "id":               1,
+    #     "name":             "test",
+    #     "slug":             "owner/repo"
+    #   },
+    #   "request":            {
+    #     "repository":       {
+    #       "id":             1,
+    #       "owner_name":     "owner",
+    #       "name":           "repo"
+    #     },
+    #     "user":             {
+    #       "id":             1
+    #     },
+    #     "id":               1,
+    #     "message":          "Override the commit message: this is an api request",
+    #     "branch":           "master",
+    #     "config":           { }
+    #   },
+    #   "resource_type":      "request"
+    # }
+    # ```
+    #
+    # POST <code>/repo/{repository.id}/requests</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Accepted Parameter  Type    Description
+    #     request.config      String  Build configuration (as parsed from .travis.yml).
+    #     request.message     String  Travis-ci status message attached to the request.
+    #     request.branch      String  Branch requested to be built.
+    #     request.token       Object  Travis token associated with webhook on GitHub (DEPRECATED).
+    #
+    #     Example: POST /repo/891/requests
+    #
+    # POST <code>/repo/{repository.slug}/requests</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Accepted Parameter  Type    Description
+    #     request.config      String  Build configuration (as parsed from .travis.yml).
+    #     request.message     String  Travis-ci status message attached to the request.
+    #     request.branch      String  Branch requested to be built.
+    #     request.token       Object  Travis token associated with webhook on GitHub (DEPRECATED).
+    #
+    #     Example: POST /repo/rails%2Frails/requests
+    #
+    # @param attributes [Hash] request attributes
+    # @return [Success, RequestError]
+    def requests(**attributes)
+      return get("#{with_repo}/requests") if attributes.empty?
+
+      create("#{with_repo}/requests", 'request': attributes)
+    end
+
     # A list of stages.
     #
     # Currently this is nested within a build.
@@ -1625,6 +1825,10 @@ module Trav3
     end
 
     private # @private
+
+    def create(url, **data)
+      Trav3::REST.create(self, url, **data)
+    end
 
     def delete(url)
       Trav3::REST.delete(self, url)

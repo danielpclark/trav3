@@ -211,6 +211,28 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#request' do
+    it 'gets details of a request' do
+      request = t.request(147_776_757)
+      expect(request).to be_an_instance_of Trav3::Success
+    end
+  end
+
+  describe '#requests' do
+    it 'gets requests details' do
+      requests = t.requests
+      expect(requests).to be_an_instance_of Trav3::Success
+    end
+
+    it 'sets some requests details' do
+      requests = t.requests(
+        'message': 'Override the commit message: this is an api request',
+        'branch': 'master'
+      )
+      expect(requests).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#setting' do
     it 'gets a setting' do
       setting = t.setting('auto_cancel_pull_requests')
