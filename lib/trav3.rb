@@ -770,7 +770,7 @@ module Trav3
       validate_string yaml_content
 
       ct = headers.remove(:'Content-Type')
-      result = post("#{without_repo}/lint", body: yaml_content)
+      result = post("#{without_repo}/lint", yaml_content)
       h('Content-Type': ct) if ct
       result
     end
@@ -1857,8 +1857,8 @@ module Trav3
       Trav3::REST.patch(self, url, data)
     end
 
-    def post(url, fields = {})
-      Trav3::REST.post(self, url, fields)
+    def post(url, body = nil)
+      Trav3::REST.post(self, url, body)
     end
 
     def validate_api_endpoint(input)
