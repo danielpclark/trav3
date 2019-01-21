@@ -1344,6 +1344,69 @@ module Trav3
       end
     end
 
+    # An individual request
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name     Type     Description
+    #     id       Integer  Value uniquely identifying the request.
+    #     state    String   The state of a request (eg. whether it has been processed or not).
+    #     result   String   The result of the request (eg. rejected or approved).
+    #     message  String   Travis-ci status message attached to the request.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name         Type        Description
+    #     id           Integer     Value uniquely identifying the request.
+    #     state        String      The state of a request (eg. whether it has been processed or not).
+    #     result       String      The result of the request (eg. rejected or approved).
+    #     message      String      Travis-ci status message attached to the request.
+    #     repository   Repository  GitHub user or organization the request belongs to.
+    #     branch_name  String      Name of the branch requested to be built.
+    #     commit       Commit      The commit the request is associated with.
+    #     builds       [Build]     The request's builds.
+    #     owner        Owner       GitHub user or organization the request belongs to.
+    #     created_at   String      When Travis CI created the request.
+    #     event_type   String      Origin of request (push, pull request, api).
+    #     base_commit  String      The base commit the request is associated with.
+    #     head_commit  String      The head commit the request is associated with.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # Document `resources/request/actions/find` not found.
+    #
+    # GET <code>/repo/{repository.id}/request/{request.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     request.id         Integer  Value uniquely identifying the request.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # GET <code>/repo/{repository.slug}/request/{request.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.slug    String   Same as {repository.owner.name}/{repository.name}.
+    #     request.id         Integer  Value uniquely identifying the request.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # @param request_id [String, Integer] request id
+    # @return [Success, RequestError]
+    def request(request_id)
+      validate_number request_id
+
+      get("#{with_repo}/request/#{request_id}")
+    end
+
     # A list of requests.
     #
     # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.

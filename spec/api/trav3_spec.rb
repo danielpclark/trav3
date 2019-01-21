@@ -211,6 +211,13 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#request' do
+    it 'gets details of a request' do
+      request = t.request(147_776_757)
+      expect(request).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#requests' do
     it 'gets requests details' do
       requests = t.requests
