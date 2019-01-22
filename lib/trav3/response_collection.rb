@@ -3,7 +3,7 @@
 module Trav3
   class ResponseCollection
     extend Forwardable
-    def_delegators :@collection, :count, :keys, :values, :has_key?
+    def_delegators :@collection, :count, :keys, :values, :has_key?, :key?
     def initialize(travis, collection)
       @travis = travis
       @collection = collection
@@ -73,7 +73,7 @@ module Trav3
     end
 
     def href?
-      collection.respond_to?(:has_key?) and collection.has_key?('@href')
+      collection.respond_to?(:key?) and collection.key?('@href')
     end
 
     attr_reader :travis

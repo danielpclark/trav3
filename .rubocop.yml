@@ -1806,7 +1806,7 @@ Naming/MethodName:
 Naming/PredicateName:
   Description: 'Check the names of predicate methods.'
   StyleGuide: '#bool-methods-qmark'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.50'
   VersionChanged: '0.51'
   # Predicate name prefixes.
@@ -2150,7 +2150,7 @@ Style/Alias:
 Style/AndOr:
   Description: 'Use &&/|| instead of and/or.'
   StyleGuide: '#no-and-or-or'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   VersionChanged: '0.25'
   # Whether `and` and `or` are banned only in conditionals (conditionals)

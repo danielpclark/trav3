@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Trav3::ResponseCollection do
   let(:rc) { build :response_collection }
-  let(:collection) {rc['repositories']}
+  let(:collection) { rc['repositories'] }
 
   describe '#dig' do
     context 'digs collections as ResponseCollections' do
@@ -46,15 +46,15 @@ RSpec.describe Trav3::ResponseCollection do
 
   describe '#fetch' do
     it 'fails to fetch when invalid index' do
-      expect{collection.fetch(26)}.to raise_error(IndexError, /index/)
+      expect { collection.fetch(26) }.to raise_error(IndexError, /index/)
     end
 
     it 'fails to fetch when invalid key' do
-      expect{rc.fetch(:foo)}.to raise_error(KeyError, /key/)
+      expect { rc.fetch(:foo) }.to raise_error(KeyError, /key/)
     end
 
     it 'yields as last resort' do
-      expect(rc.fetch(:foo) {:bar}).to be(:bar)
+      expect(rc.fetch(:foo) { :bar }).to be(:bar)
     end
 
     it 'fetches an array as a ResponseCollection' do
