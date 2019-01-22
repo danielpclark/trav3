@@ -6,6 +6,22 @@ RSpec.describe Trav3::ResponseCollection do
   let(:rc) { build :response_collection }
   let(:collection) {rc['repositories']}
 
+  describe '#dig' do
+    context 'digs collections as ResponseCollections' do
+      it 'with arrays' do
+        expect(rc.dig('repositories')).to be_an_instance_of Trav3::ResponseCollection
+      end
+
+      it 'with hashes' do
+        expect(collection.first.dig('owner')).to be_an_instance_of Trav3::ResponseCollection
+      end
+    end
+
+    it 'non collections are untouched' do
+      expect(collection.first.dig('@representation')).to be_an_instance_of String
+    end
+  end
+
   describe '#each' do
     it 'wraps each item yielded' do
       collection.each do |item|
@@ -25,6 +41,10 @@ RSpec.describe Trav3::ResponseCollection do
 
     it 'yields as last resort' do
       expect(rc.fetch(:foo) {:bar}).to be(:bar)
+    end
+
+    it 'fetches an array as a ResponseCollection' do
+      expect(rc.fetch('repositories')).to be_an_instance_of Trav3::ResponseCollection
     end
   end
 
@@ -71,5 +91,4 @@ RSpec.describe Trav3::ResponseCollection do
       end
     end
   end
-
 end

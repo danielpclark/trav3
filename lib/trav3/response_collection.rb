@@ -20,7 +20,7 @@ module Trav3
       return collection.dig(*target) if target.length != 1
 
       result = collection.dig(*target)
-      return ResponseCollection.new(travis, result) if result.is_a? Hash
+      return ResponseCollection.new(travis, result) if collection?(result)
 
       result
     end
@@ -35,7 +35,7 @@ module Trav3
 
     def fetch(idx)
       result = collection.fetch(idx) { nil }
-      return ResponseCollection.new(travis, result) if result.is_a? Hash
+      return ResponseCollection.new(travis, result) if collection?(result)
       return result if result
 
       # For error raising behavior
