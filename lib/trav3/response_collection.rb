@@ -51,7 +51,7 @@ module Trav3
     end
 
     def follow(idx = nil)
-      return ResponseItem.new(self).follow if hash?
+      return ResponseItem.new(collection).follow if hash?
 
       result = fetch(idx)
       result.follow(travis)
