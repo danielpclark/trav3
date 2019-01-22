@@ -20,12 +20,26 @@ RSpec.describe Trav3::ResponseCollection do
     it 'non collections are untouched' do
       expect(collection.first.dig('@representation')).to be_an_instance_of String
     end
+
+    it 'defaults to normal dig behavior in multiple query' do
+      expect(rc.dig('repositories', 0)).to be_an_instance_of Hash
+    end
   end
 
   describe '#each' do
-    it 'wraps each item yielded' do
-      collection.each do |item|
-        expect(item).to be_an_instance_of Trav3::ResponseCollection
+    context 'for array' do
+      it 'wraps each item yielded' do
+        collection.each do |item|
+          expect(item).to be_an_instance_of Trav3::ResponseCollection
+        end
+      end
+    end
+
+    context 'for hash' do
+      it 'doesn\'t wrap each item yielded' do
+        rc.each do |item|
+          expect(item).to_not be_an_instance_of Trav3::ResponseCollection
+        end
       end
     end
   end
