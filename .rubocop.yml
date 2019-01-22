@@ -2150,7 +2150,7 @@ Style/Alias:
 Style/AndOr:
   Description: 'Use &&/|| instead of and/or.'
   StyleGuide: '#no-and-or-or'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   VersionChanged: '0.25'
   # Whether `and` and `or` are banned only in conditionals (conditionals)

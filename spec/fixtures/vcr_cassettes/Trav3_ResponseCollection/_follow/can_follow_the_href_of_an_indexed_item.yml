@@ -1,0 +1,111 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/119756?limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 22 Jan 2019 21:22:57 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Repository::Find
+      X-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 9de68cce-717b-4f1c-8039-f4419e832705
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@warnings": [
+            {
+              "@type": "warning",
+              "message": "query parameter limit not safelisted, ignored",
+              "warning_type": "ignored_parameter",
+              "parameter": "limit"
+            }
+          ],
+          "@type": "repository",
+          "@href": "/repo/119756",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "create_request": false,
+            "admin": false,
+            "deactivate": false,
+            "star": false,
+            "unstar": false,
+            "create_cron": false,
+            "activate": false,
+            "create_env_var": false,
+            "migrate": false,
+            "delete_key_pair": false,
+            "create_key_pair": false
+          },
+          "id": 119756,
+          "name": "travis-api",
+          "slug": "travis-ci/travis-api",
+          "description": "The Travis CI API",
+          "github_id": 5096124,
+          "github_language": null,
+          "active": true,
+          "private": false,
+          "owner": {
+            "@type": "organization",
+            "id": 87,
+            "login": "travis-ci",
+            "@href": "/org/87"
+          },
+          "default_branch": {
+            "@type": "branch",
+            "@href": "/repo/119756/branch/master",
+            "@representation": "minimal",
+            "name": "master"
+          },
+          "starred": false,
+          "managed_by_installation": false,
+          "active_on_org": null,
+          "migration_status": null
+        }
+    http_version: 
+  recorded_at: Tue, 22 Jan 2019 21:22:57 GMT
+recorded_with: VCR 4.0.0

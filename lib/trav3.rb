@@ -2,10 +2,12 @@
 
 # rubocop:disable Metrics/ClassLength
 require 'trav3/version'
+require 'forwardable'
+require 'trav3/errors'
+require 'trav3/response'
 require 'trav3/pagination'
 require 'trav3/options'
 require 'trav3/headers'
-require 'trav3/result'
 require 'trav3/rest'
 
 # Trav3 project namespace
