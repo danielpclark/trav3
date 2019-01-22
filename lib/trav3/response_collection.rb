@@ -25,8 +25,8 @@ module Trav3
       result
     end
 
-    def each
-      return collection.each if hash?
+    def each(&block)
+      return collection.each(&block) if hash?
 
       collection.each do |item|
         yield ResponseCollection.new(travis, item)
