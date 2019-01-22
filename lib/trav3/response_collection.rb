@@ -2,6 +2,8 @@
 
 module Trav3
   class ResponseCollection
+    extend Forwardable
+    def_delegators :@collection, :count, :keys, :values, :has_key?
     def initialize(travis, collection)
       @travis = travis
       @collection = collection
@@ -9,7 +11,7 @@ module Trav3
 
     def [](target)
       result = collection[target]
-      return ResponseItem.new(travis, result) if result.is_a? Hash
+      return ResponseCollection.new(travis, result) if collection?(result)
 
       result
     end
@@ -18,7 +20,7 @@ module Trav3
       return collection.dig(*target) if target.length != 1
 
       result = collection.dig(*target)
-      return ResponseItem.new(travis, result) if result.is_a? Hash
+      return ResponseCollection.new(travis, result) if result.is_a? Hash
 
       result
     end
@@ -27,17 +29,13 @@ module Trav3
       return collection.each if hash?
 
       collection.each do |item|
-        if item.is_a?(Hash)
-          yield(ResponseItem.new(travis, item))
-        else
-          yield(ResponseCollection.new(travis, item))
-        end
+        yield ResponseCollection.new(travis, item)
       end
     end
 
     def fetch(idx)
       result = collection.fetch(idx) { nil }
-      return ResponseItem.new(travis, result) if result.is_a? Hash
+      return ResponseCollection.new(travis, result) if result.is_a? Hash
       return result if result
 
       # For error raising behavior
@@ -51,32 +49,31 @@ module Trav3
     end
 
     def follow(idx = nil)
-      return ResponseItem.new(collection).follow if hash?
+      if href? && !idx
+        url = collection.fetch('@href')
+        return travis.send(:get, "#{travis.send(:api_endpoint)}#{url}#{travis.send(:opts)}")
+      end
 
       result = fetch(idx)
-      result.follow(travis)
-    end
-
-    def has_key?(key)
-      hash? ? collection.has_key(key) : false
-    end
-
-    def keys
-      hash? ? collection.keys : []
+      result.follow
     end
 
     def last
       self[-1]
     end
 
-    def values
-      hash? ? collection.values : []
-    end
-
     private
+
+    def collection?(input)
+      [Array, Hash].include? input.class
+    end
 
     def hash?
       collection.is_a? Hash
+    end
+
+    def href?
+      collection.respond_to?(:has_key?) and collection.has_key?('@href')
     end
 
     attr_reader :travis
