@@ -187,6 +187,44 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#preference' do
+    context 'for user' do
+      it 'gets a preference' do
+        preference = t.preference('build_emails')
+        expect(preference).to be_an_instance_of Trav3::Success
+      end
+
+      it 'sets a preference' do
+        preference = t.preference('build_emails', true)
+        expect(preference).to be_an_instance_of Trav3::Success
+      end
+    end
+
+    context 'for organization' do
+      it 'gets a preference' do
+        preference = t.preference('private_insights_visibility', org_id: 107_660)
+        expect(preference).to be_an_instance_of Trav3::Success
+      end
+
+      it 'sets a preference' do
+        preference = t.preference('private_insights_visibility', 'admins', org_id: 107_660)
+        expect(preference).to be_an_instance_of Trav3::Success
+      end
+    end
+  end
+
+  describe '#preferences' do
+    it 'gets preferences' do
+      preferences = t.preferences
+      expect(preferences).to be_an_instance_of Trav3::Success
+    end
+
+    it 'gets preferences for an organization' do
+      preferences = t.preferences(107_660)
+      expect(preferences).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#repositories' do
     it 'gets collection of repositories for username' do
       repositories = t.repositories

@@ -1050,6 +1050,131 @@ module Trav3
       end
     end
 
+    # Document `resources/preference/overview` not found.
+    #
+    # ## Attributes
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name   Type     Description
+    #     name   Unknown  The preference's name.
+    #     value  Unknown  The preference's value.
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name   Type     Description
+    #     name   Unknown  The preference's name.
+    #     value  Unknown  The preference's value.
+    #
+    # ## Actions
+    #
+    # **For Organization**
+    #
+    # Document `resources/preference/actions/for_organization` not found.
+    #
+    # GET <code>/org/{organization.id}/preference/{preference.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     organization.id    Integer  Value uniquely identifying the organization.
+    #     preference.name    Unknown  The preference's name.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # **Update**
+    #
+    # Document `resources/preference/actions/update` not found.
+    #
+    # PATCH <code>/org/{organization.id}/preference/{preference.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     organization.id    Integer  Value uniquely identifying the organization.
+    #     preference.name    Unknown  The preference's name.
+    #     Accepted Parameter  Type     Description
+    #     preference.value    Unknown  The preference's value.
+    #
+    # PATCH <code>/preference/{preference.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     preference.name    Unknown  The preference's name.
+    #     Accepted Parameter  Type     Description
+    #     preference.value    Unknown  The preference's value.
+    #
+    # **Find**
+    #
+    # Document `resources/preference/actions/find` not found.
+    #
+    # GET <code>/preference/{preference.name}</code>
+    #
+    #     Template Variable  Type     Description
+    #     preference.name    Unknown  The preference's name.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # @param key [String] preference name to get or set
+    # @param value [String] optional value to set preference
+    # @param org_id [String, Integer] optional keyword argument for an organization id
+    # @return [Success, RequestError]
+    def preference(key, value = nil, org_id: nil)
+      if org_id
+        validate_number org_id
+        org_id = "/org/#{org_id}"
+      end
+
+      if value.nil?
+        get("#{without_repo}#{org_id}/preference/#{key}")
+      else
+        patch("#{without_repo}#{org_id}/preference/#{key}", 'preference.value' => value)
+      end
+    end
+
+    # Document `resources/preferences/overview` not found.
+    #
+    # ## Attributes
+    #
+    #     Name         Type         Description
+    #     preferences  [Preferenc]  List of preferences.
+    #
+    # ## Actions
+    #
+    # **For Organization**
+    #
+    # Document `resources/preferences/actions/for_organization` not found.
+    #
+    # GET <code>/org/{organization.id}/preferences</code>
+    #
+    #     Template Variable  Type     Description
+    #     organization.id    Integer  Value uniquely identifying the organization.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /org/87/preferences
+    #
+    # **For User**
+    #
+    # Document `resources/preferences/actions/for_user` not found.
+    #
+    # GET <code>/preferences</code>
+    #
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /preferences
+    #
+    # @param org_id [String, Integer] optional organization id
+    # @return [Success, RequestError]
+    def preferences(org_id = nil)
+      if org_id
+        validate_number org_id
+        org_id = "/org/#{org_id}"
+      end
+
+      get("#{without_repo}#{org_id}/preferences")
+    end
+
     # A list of repositories for the current user.
     #
     # ## Attributes
