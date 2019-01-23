@@ -58,6 +58,10 @@ module Trav3
       result.follow
     end
 
+    def hash?
+      collection.is_a? Hash
+    end
+
     def last
       self[-1]
     end
@@ -66,10 +70,6 @@ module Trav3
 
     def collection?(input)
       [Array, Hash].include? input.class
-    end
-
-    def hash?
-      collection.is_a? Hash
     end
 
     def href?
