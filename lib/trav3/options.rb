@@ -96,6 +96,7 @@ module Trav3
 
     def update(other)
       return self unless other
+
       build(parse(other))
     end
   end

@@ -2040,7 +2040,7 @@ module Trav3
     def without_limit
       limit = opts.remove(:limit)
       result = yield
-      opts.build({limit: limit}) if limit
+      opts.build(limit: limit) if limit
       result
     end
   end
