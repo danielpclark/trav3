@@ -31,7 +31,7 @@ module Trav3
     end
 
     def get(path)
-      Trav3::REST.get(travis, "#{travis.api_endpoint}#{path}")
+      travis.send(:get_path, path.to_s)
     end
     private :travis
   end
