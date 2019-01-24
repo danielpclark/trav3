@@ -51,7 +51,7 @@ module Trav3
     def follow(idx = nil)
       if href? && !idx
         url = collection.fetch('@href')
-        return travis.send(:get_path_with_opts, url.to_s)
+        return travis.send(:get_path_with_opts, url)
       end
 
       result = fetch(idx)
