@@ -8,7 +8,7 @@ FactoryBot.define do
       response = YAML.safe_load(File.new(file).read)
                      .dig('http_interactions', 0, 'response', 'body', 'string')
       json = JSON.parse(response)
-      new(FactoryBot.build(:travis), json)
+      new(build(:travis), json)
     end
   end
 end

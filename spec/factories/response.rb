@@ -7,7 +7,7 @@ FactoryBot.define do
     initialize_with do
       dbl = double
       allow(dbl).to receive(:body).and_return( { a: :b, c: :d }.to_json )
-      new(FactoryBot.build(:travis), dbl)
+      new(build(:travis), dbl)
     end
   end
 
@@ -16,7 +16,7 @@ FactoryBot.define do
       dbl = double
       allow(dbl).to receive(:body).and_return( ':asdf' )
       allow(dbl).to receive(:error!).and_raise(Net::HTTPFatalError.new('Internal Server Error', 500))
-      new(FactoryBot.build(:travis), dbl)
+      new(build(:travis), dbl)
     end
   end
 end
