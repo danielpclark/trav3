@@ -161,6 +161,14 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#messages' do
+    it 'gets messages for a request' do
+      messages = t.messages(147_731_561)
+      expect(messages).to be_an_instance_of Trav3::Success
+      expect(messages['messages']).to be_empty
+    end
+  end
+
   describe '#owner' do
     it 'gets the owner of a name' do
       owner = t.owner('danielpclark')

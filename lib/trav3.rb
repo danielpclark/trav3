@@ -863,6 +863,58 @@ module Trav3
       end
     end
 
+    # A list of messages. Messages belong to resource types.
+    #
+    # ## Attributes
+    #
+    #     Name      Type       Description
+    #     messages  [Message]  List of messages.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the messages array has the following attributes:
+    #
+    #     Name   Type     Description
+    #     id     Integer  The message's id.
+    #     level  String   The message's level.
+    #     key    String   The message's key.
+    #     code   String   The message's code.
+    #     args   Json     The message's args.
+    #
+    # ## Actions
+    #
+    # **For Request**
+    #
+    # This will return a list of messages created by `travis-yml` for a request, if any exist.
+    #
+    # GET <code>/repo/{repository.id}/request/{request.id}/messages</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     request.id         Integer  Value uniquely identifying the request.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many messages to include in the response. Used for pagination.
+    #     offset           Integer   How many messages to skip before the first entry in the response. Used for pagination.
+    #
+    # GET <code>/repo/{repository.slug}/request/{request.id}/messages</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.slug    String   Same as {repository.owner.name}/{repository.name}.
+    #     request.id         Integer  Value uniquely identifying the request.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many messages to include in the response. Used for pagination.
+    #     offset           Integer   How many messages to skip before the first entry in the response. Used for pagination.
+    #
+    # @param request_id [String, Integer] the request id
+    # @return [Success, RequestError]
+    def messages(request_id)
+      validate_number request_id
+
+      get("#{with_repo}/request/#{request_id}/messages")
+    end
+
     # An individual organization.
     #
     # ## Attributes
