@@ -7,11 +7,11 @@ module Trav3
     extend Forwardable
     def_delegators :@heads, :each_pair
 
-    def initialize(**args)
-      build(**args)
+    def initialize(args = {})
+      build(args)
     end
 
-    def build(**args)
+    def build(args = {})
       @heads ||= {}
 
       args.each do |(key, value)|

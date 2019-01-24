@@ -12,8 +12,6 @@ require 'trav3/rest'
 
 # Trav3 project namespace
 module Trav3
-  API_ROOT = 'https://api.travis-ci.org'
-
   # An abstraction for the Travis CI v3 API
   #
   # @author Daniel P. Clark https://6ftdan.com
@@ -24,7 +22,6 @@ module Trav3
   # @!attribute [r] headers
   #   @return [Headers] Request headers object
   class Travis
-    API_ENDPOINT = API_ROOT
     attr_reader :api_endpoint
     attr_reader :options
     attr_reader :headers
@@ -36,7 +33,7 @@ module Trav3
     def initialize(repo)
       validate_repo_format repo
 
-      @api_endpoint = API_ENDPOINT
+      @api_endpoint = 'https://api.travis-ci.org'
       @repo = sanitize_repo_name repo
 
       initial_defaults
@@ -62,7 +59,7 @@ module Trav3
     #   @param value [Symbol, String, Integer] value for key
     # @return [self]
     def defaults(**args)
-      (@options ||= Options.new).build(**args)
+      (@options ||= Options.new).build(args)
       self
     end
 
@@ -75,7 +72,7 @@ module Trav3
     #   @param value [Symbol, String, Integer] value for key
     # @return [self]
     def h(**args)
-      (@headers ||= Headers.new).build(**args)
+      (@headers ||= Headers.new).build(args)
       self
     end
 
@@ -1963,6 +1960,18 @@ module Trav3
 
     def get(url, raw_reply = false)
       Trav3::REST.get(self, url, raw_reply)
+    end
+
+    def get_path(url)
+      get("#{without_repo}#{url}")
+    end
+
+    def get_path_with_opts(url)
+      url, opt = url.match(/(.+)\?(.*)/)&.captures || url
+      opts.immutable do |o|
+        o.send(:update, opt)
+        get_path("#{url}#{opts}")
+      end
     end
 
     def initial_defaults

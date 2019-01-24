@@ -2,8 +2,8 @@
 
 module Trav3
   class Options
-    def initialize(**args)
-      build(**args)
+    def initialize(args = {})
+      build(args)
     end
 
     def opts
@@ -14,7 +14,7 @@ module Trav3
       end
     end
 
-    def build(**args)
+    def build(args = {})
       @opts ||= []
 
       args.each do |(key, value)|
@@ -41,6 +41,13 @@ module Trav3
       result
     end
 
+    def immutable
+      old = @opts
+      result = yield self
+      @opts = old
+      result
+    end
+
     def remove(key)
       return_value = nil
 
@@ -62,7 +69,7 @@ module Trav3
     def +(other)
       raise TypeError, "Options type expected, #{other.class} given" unless other.is_a? Options
 
-      @opts += other.instance_variable_get(:@opts)
+      update other.instance_variable_get(:@opts)
 
       self
     end
@@ -79,6 +86,18 @@ module Trav3
 
     def split
       ->(entry) { entry.split('=') }
+    end
+
+    def parse(other)
+      return other.split('&').map(&split).to_h if other.is_a? String
+
+      other.map(&split).to_h
+    end
+
+    def update(other)
+      return self unless other
+
+      build(parse(other))
     end
   end
 end
