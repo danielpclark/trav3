@@ -746,6 +746,15 @@ module Trav3
       end
     end
 
+    def key_pair(create: nil, update: nil, delete: nil)
+      raise 'Too many options specified' unless [create, update, delete].compact.count < 2
+
+      create and return create("#{with_repo}/key_pair", key_pair_keys(create))
+      update and return patch("#{with_repo}/key_pair", key_pair_keys(update))
+      delete and return delete("#{with_repo}/key_pair")
+      get("#{with_repo}/key_pair")
+    end
+
     # Every repository has an auto-generated RSA key pair. This is used when cloning the repository from GitHub and when encrypting/decrypting secure data for use in builds, e.g. via the Travis CI command line client.
     #
     # Users may read the public key and fingerprint via GET request, or generate a new key pair via POST, but otherwise this key pair cannot be edited or removed.
@@ -2076,8 +2085,8 @@ module Trav3
 
     private # @private
 
-    def create(url, **data)
-      Trav3::REST.create(self, url, **data)
+    def create(url, data = {})
+      Trav3::REST.create(self, url, data)
     end
 
     def delete(url)
@@ -2105,6 +2114,10 @@ module Trav3
       h('Content-Type': 'application/json')
       h('Accept': 'application/json')
       h('Travis-API-Version': 3)
+    end
+
+    def key_pair_keys(hash)
+      hash.map { |k, v| ["key_pair.#{k}", v] }.to_h unless hash.keys.first.match?(/key_pair\.\w+/)
     end
 
     def number?(input)

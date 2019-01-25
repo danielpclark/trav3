@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.travis-ci.com/repo/danielpclark%2Ftrav3/key_pair
+    body:
+      encoding: UTF-8
+      string: '{"key_pair.description":"FooBar","key_pair.value":"xxxxx"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 403
+      message: Forbidden
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 25 Jan 2019 21:09:30 GMT
+      Content-Type:
+      - text/html;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Oauth-Scopes:
+      - ''
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 5836d274-ff6b-4476-ae3d-6a90520f91b7
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: access denied
+    http_version: 
+  recorded_at: Fri, 25 Jan 2019 21:09:30 GMT
+recorded_with: VCR 4.0.0

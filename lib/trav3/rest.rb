@@ -7,7 +7,7 @@ require 'json'
 module Trav3
   module REST
     class << self
-      def create(travis, url, **data)
+      def create(travis, url, data)
         uri = as_uri url
         req = request_post uri
         set_headers travis, req

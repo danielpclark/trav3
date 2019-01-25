@@ -137,6 +137,36 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#key_pair' do
+    before do
+      t.api_endpoint = 'https://api.travis-ci.com'
+    end
+
+    it 'creates current key pair' do
+      expect do
+        t.key_pair(create: { description: 'FooBar', value: 'xxxxx' })
+      end.to raise_error(/Forbidden/)
+    end
+
+    it 'gets current key pair' do
+      expect do
+        t.key_pair
+      end.to raise_error(/Forbidden/)
+    end
+
+    it 'updates current key pair' do
+      expect do
+        t.key_pair(update: { description: 'FooBarBaz' })
+      end.to raise_error(/Forbidden/)
+    end
+
+    it 'deletes current key pair' do
+      expect do
+        t.key_pair(delete: true)
+      end.to raise_error(/Forbidden/)
+    end
+  end
+
   describe '#key_pair_generated' do
     it 'gets current generated key pair' do
       kp = t.key_pair_generated
