@@ -70,7 +70,7 @@ module Trav3
       end
 
       def output(travis, response)
-        if [Net::HTTPAccepted, Net::HTTPOK].include? response.code_type
+        if [Net::HTTPAccepted, Net::HTTPOK, Net::HTTPCreated].include? response.code_type
           Success.new(travis, response)
         else
           RequestError.new(travis, response)

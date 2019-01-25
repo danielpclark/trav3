@@ -746,6 +746,80 @@ module Trav3
       end
     end
 
+    # Every repository has an auto-generated RSA key pair. This is used when cloning the repository from GitHub and when encrypting/decrypting secure data for use in builds, e.g. via the Travis CI command line client.
+    #
+    # Users may read the public key and fingerprint via GET request, or generate a new key pair via POST, but otherwise this key pair cannot be edited or removed.
+    #
+    # ## Attributes
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name         Type    Description
+    #     description  String  A text description.
+    #     public_key   String  The public key.
+    #     fingerprint  String  The fingerprint.
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name         Type    Description
+    #     description  String  A text description.
+    #     public_key   String  The public key.
+    #     fingerprint  String  The fingerprint.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # Return the current key pair.
+    #
+    # GET <code>/repo/{repository.id}/key_pair/generated</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/891/key_pair/generated
+    #
+    # GET <code>/repo/{repository.slug}/key_pair/generated</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/rails%2Frails/key_pair/generated
+    #
+    # **Create**
+    #
+    # Generate a new key pair, replacing the previous one.
+    #
+    # POST <code>/repo/{repository.id}/key_pair/generated</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #
+    #     Example: POST /repo/891/key_pair/generated
+    #
+    # POST <code>/repo/{repository.slug}/key_pair/generated</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #
+    #     Example: POST /repo/rails%2Frails/key_pair/generated
+    #
+    # @param action [String, Symbol] defaults to getting current key pair, use `:create` if you would like to generate a new key pair
+    # @return [Success, RequestError]
+    def key_pair_generated(action = :get)
+      return post("#{with_repo}/key_pair/generated") if action.match?(/create/i)
+
+      get("#{with_repo}/key_pair/generated")
+    end
+
     # This validates the `.travis.yml` file and returns any warnings.
     #
     # The request body can contain the content of the .travis.yml file directly as a string, eg "foo: bar".

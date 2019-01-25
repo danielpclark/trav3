@@ -137,6 +137,18 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#key_pair_generated' do
+    it 'gets current generated key pair' do
+      kp = t.key_pair_generated
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+
+    it 'generates a key pair' do
+      kp = t.key_pair_generated(:create)
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#lint' do
     it 'lints the travis.yml file' do
       lint = t.lint(File.read('.travis.yml'))
