@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/env_var/76f9d8bd-642d-47ed-9f35-4c25eb030c6c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 26 Jan 2019 21:21:29 GMT
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::EnvVar::Delete
+      X-Oauth-Scopes:
+      - public,private
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - ea3cd4af-a25e-4e07-bcf0-9bc8296d848c
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sat, 26 Jan 2019 21:21:29 GMT
+recorded_with: VCR 4.0.0

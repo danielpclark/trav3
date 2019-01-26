@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/env_var/76f9d8bd-642d-47ed-9f35-4c25eb030c6c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 26 Jan 2019 21:18:16 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::EnvVar::Find
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 6f8ddd99-ba2d-4095-96f1-6977797dda48
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "env_var",
+          "@href": "/repo/22777898/env_var/76f9d8bd-642d-47ed-9f35-4c25eb030c6c",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "write": true
+          },
+          "id": "76f9d8bd-642d-47ed-9f35-4c25eb030c6c",
+          "name": "Foo",
+          "value": "Bar",
+          "public": true
+        }
+    http_version: 
+  recorded_at: Sat, 26 Jan 2019 21:18:16 GMT
+recorded_with: VCR 4.0.0

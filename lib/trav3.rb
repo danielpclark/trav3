@@ -150,11 +150,8 @@ module Trav3
     # @param owner [String] username, organization name, or github id
     # @return [Success, RequestError]
     def active(owner = username)
-      if number? owner
-        get("#{without_repo}/owner/github_id/#{owner}/active")
-      else
-        get("#{without_repo}/owner/#{owner}/active")
-      end
+      number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}/active")
+      get("#{without_repo}/owner/#{owner}/active")
     end
 
     # The branch of a GitHub repository. Useful for obtaining information about the last build on a given branch.
@@ -366,7 +363,7 @@ module Trav3
     #
     #     Example: POST /build/86601346/restart
     #
-    # @note POST requests require an authorization token set in the headers. See: {h}
+    # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param build_id [String, Integer] the build id number
     # @param option [Symbol] options for :cancel or :restart
@@ -656,16 +653,220 @@ module Trav3
     #
     #     Example: DELETE /repo/rails%2Frails/caches
     #
-    # @note DELETE requests require an authorization token set in the headers. See: {h}
+    # @note DELETE requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param delete [Boolean] option for deleting cache(s)
     # @return [Success, RequestError]
     def caches(delete = false)
-      if delete
-        without_limit { delete("#{with_repo}/caches#{opts}") }
-      else
-        get("#{with_repo}/caches")
+      delete and return without_limit { delete("#{with_repo}/caches#{opts}") }
+      get("#{with_repo}/caches")
+    end
+
+    # An individual environment variable.
+    #
+    # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
+    #
+    # ## Attributes
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name    Type     Description
+    #     id      String   The environment variable id.
+    #     name    String   The environment variable name, e.g. FOO.
+    #     value   String   The environment variable's value, e.g. bar.
+    #     public  Boolean  Whether this environment variable should be publicly visible or not.
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name    Type     Description
+    #     id      String   The environment variable id.
+    #     name    String   The environment variable name, e.g. FOO.
+    #     public  Boolean  Whether this environment variable should be publicly visible or not.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single environment variable. It is possible to use the repository id or slug in the request.
+    #
+    # GET <code>/repo/{repository.id}/env_var/{env_var.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     env_var.id         String   The environment variable id.
+    #     Query Parameter  Type      Description
+    #     env_var.id       String    The environment variable id.
+    #     id               String    Alias for env_var.id.
+    #     include          [String]  List of attributes to eager load.
+    #     repository.id    Integer   Value uniquely identifying the repository.
+    #
+    # GET <code>/repo/{repository.slug}/env_var/{env_var.id}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     env_var.id         String  The environment variable id.
+    #     Query Parameter  Type      Description
+    #     env_var.id       String    The environment variable id.
+    #     id               String    Alias for env_var.id.
+    #     include          [String]  List of attributes to eager load.
+    #     repository.id    Integer   Value uniquely identifying the repository.
+    #
+    # **Update**
+    #
+    # This updates a single environment variable. It is possible to use the repository id or slug in the request.
+    #
+    # Use namespaced params in the request body to pass the new environment variable:
+    #
+    # ```bash
+    # curl -X PATCH \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "env_var.value": "bar", "env_var.public": false }' \
+    #   https://api.travis-ci.com/repo/1234/{env_var.id}
+    # ```
+    #
+    # PATCH <code>/repo/{repository.id}/env_var/{env_var.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     env_var.id         String   The environment variable id.
+    #     Accepted Parameter  Type     Description
+    #     env_var.name        String   The environment variable name, e.g. FOO.
+    #     env_var.value       String   The environment variable's value, e.g. bar.
+    #     env_var.public      Boolean  Whether this environment variable should be publicly visible or not.
+    #
+    # PATCH <code>/repo/{repository.slug}/env_var/{env_var.id}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     env_var.id         String  The environment variable id.
+    #     Accepted Parameter  Type     Description
+    #     env_var.name        String   The environment variable name, e.g. FOO.
+    #     env_var.value       String   The environment variable's value, e.g. bar.
+    #     env_var.public      Boolean  Whether this environment variable should be publicly visible or not.
+    #
+    # **Delete**
+    #
+    # This deletes a single environment variable. It is possible to use the repository id or slug in the request.
+    #
+    # DELETE <code>/repo/{repository.id}/env_var/{env_var.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     env_var.id         String   The environment variable id.
+    #
+    # DELETE <code>/repo/{repository.slug}/env_var/{env_var.id}</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     env_var.id         String  The environment variable id.
+    #
+    # @overload env_var(env_var_id)
+    #   Gets current env var
+    #   @param env_var_id [String] environment variable id
+    # @overload env_var(env_var_id, action: params)
+    #   Performs action per specific key word argument
+    #   @param env_var_id [String] environment variable id
+    #   @param update [Hash] Optional keyword argument. Update key pair with hash `{ value: "new value" }`
+    #   @param delete [Boolean] Optional keyword argument. Use truthy value to delete current key pair
+    # @return [Success, RequestError]
+    def env_var(env_var_id, update: nil, delete: nil)
+      raise 'Too many options specified' unless [update, delete].compact.count < 2
+
+      validate_string env_var_id
+
+      update and return patch("#{with_repo}/env_var/#{env_var_id}", env_var_keys(update))
+      delete and return delete("#{with_repo}/env_var/#{env_var_id}")
+      get("#{with_repo}/env_var/#{env_var_id}")
+    end
+
+    # A list of environment variables.
+    #
+    # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
+    #
+    # ## Attributes
+    #
+    #     Name      Type       Description
+    #     env_vars  [Env var]  List of env_vars.
+    #
+    # ## Actions
+    #
+    # **For Repository**
+    #
+    # This returns a list of environment variables for an individual repository. It is possible to use the repository id or slug in the request.
+    #
+    # GET <code>/repo/{repository.id}/env_vars</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/891/env_vars
+    #
+    # GET <code>/repo/{repository.slug}/env_vars</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/rails%2Frails/env_vars
+    #
+    # **Create**
+    #
+    # This creates an environment variable for an individual repository. It is possible to use the repository id or slug in the request.
+    #
+    # Use namespaced params in the request body to pass the new environment variables:
+    #
+    # ```bash
+    # curl -X POST \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "env_var.name": "FOO", "env_var.value": "bar", "env_var.public": false }' \
+    #   https://api.travis-ci.com/repo/1234/env_vars
+    # ```
+    #
+    # POST <code>/repo/{repository.id}/env_vars</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Accepted Parameter  Type     Description
+    #     env_var.name        String   The environment variable name, e.g. FOO.
+    #     env_var.value       String   The environment variable's value, e.g. bar.
+    #     env_var.public      Boolean  Whether this environment variable should be publicly visible or not.
+    #
+    #     Example: POST /repo/891/env_vars
+    #
+    # POST <code>/repo/{repository.slug}/env_vars</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Accepted Parameter  Type     Description
+    #     env_var.name        String   The environment variable name, e.g. FOO.
+    #     env_var.value       String   The environment variable's value, e.g. bar.
+    #     env_var.public      Boolean  Whether this environment variable should be publicly visible or not.
+    #
+    #     Example: POST /repo/rails%2Frails/env_vars
+    #
+    # @note requests require an authorization token set in the headers. See: {authorization=}
+    #
+    # @param create [Hash] Optional argument.  A hash of the `name`, `value`, and `public` visibleness for a env var to create
+    # @return [Success, RequestError]
+    def env_vars(create = nil)
+      if create
+        validate_env_var create
+
+        return create("#{with_repo}/env_vars", env_var_keys(create))
       end
+
+      get("#{with_repo}/env_vars")
     end
 
     # A GitHub App installation.
@@ -790,7 +991,7 @@ module Trav3
     #
     #     Example: POST /job/86601347/debug
     #
-    # @note POST requests require an authorization token set in the headers. See: {h}
+    # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param job_id [String, Integer] the job id number
     # @param option [Symbol] options for :cancel, :restart, or :debug
@@ -940,16 +1141,16 @@ module Trav3
     #
     #     Example: DELETE /repo/rails%2Frails/key_pair
     #
-    # @note requests require an authorization token set in the headers. See: {h}
+    # @note requests require an authorization token set in the headers. See: {authorization=}
     # @note API enpoint needs to be set to `https://api.travis-ci.com` See: {api_endpoint=}
     #
-    # @overload key_par()
+    # @overload key_pair()
     #   Gets current key_pair if any
     # @overload key_pair(action: params)
     #   Performs action per specific key word argument
-    #   @param create [Hash] Create a new key pair from provided private key { description: "name", value: "private key" }
-    #   @param update [Hash] Update key pair with hash { description: "new name" }
-    #   @param delete [Boolean] Use truthy value to delete current key pair
+    #   @param create [Hash] Optional keyword argument.  Create a new key pair from provided private key `{ description: "name", value: "private key" }`
+    #   @param update [Hash] Optional keyword argument.  Update key pair with hash `{ description: "new name" }`
+    #   @param delete [Boolean] Optional keyword argument.  Use truthy value to delete current key pair
     # @return [Success, RequestError]
     def key_pair(create: nil, update: nil, delete: nil)
       raise 'Too many options specified' unless [create, update, delete].compact.count < 2
@@ -1026,7 +1227,7 @@ module Trav3
     #
     #     Example: POST /repo/rails%2Frails/key_pair/generated
     #
-    # @note requests require an authorization token set in the headers. See: {h}
+    # @note requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param action [String, Symbol] defaults to getting current key pair, use `:create` if you would like to generate a new key pair
     # @return [Success, RequestError]
@@ -1384,11 +1585,8 @@ module Trav3
     # @param owner [String] username or github id
     # @return [Success, RequestError]
     def owner(owner = username)
-      if number? owner
-        get("#{without_repo}/owner/github_id/#{owner}")
-      else
-        get("#{without_repo}/owner/#{owner}")
-      end
+      number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}")
+      get("#{without_repo}/owner/#{owner}")
     end
 
     # Document `resources/preference/overview` not found.
@@ -1455,7 +1653,7 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
-    # @note requests require an authorization token set in the headers. See: {h}
+    # @note requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param key [String] preference name to get or set
     # @param value [String] optional value to set preference
@@ -1467,11 +1665,8 @@ module Trav3
         org_id = "/org/#{org_id}"
       end
 
-      if value.nil?
-        get("#{without_repo}#{org_id}/preference/#{key}")
-      else
-        patch("#{without_repo}#{org_id}/preference/#{key}", 'preference.value' => value)
-      end
+      value and return patch("#{without_repo}#{org_id}/preference/#{key}", 'preference.value' => value)
+      get("#{without_repo}#{org_id}/preference/#{key}")
     end
 
     # Document `resources/preferences/overview` not found.
@@ -1507,7 +1702,7 @@ module Trav3
     #
     #     Example: GET /preferences
     #
-    # @note requests require an authorization token set in the headers. See: {h}
+    # @note requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param org_id [String, Integer] optional organization id
     # @return [Success, RequestError]
@@ -1660,11 +1855,8 @@ module Trav3
     # @param owner [String] username or github id
     # @return [Success, RequestError]
     def repositories(owner = username)
-      if number? owner
-        get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
-      else
-        get("#{without_repo}/owner/#{owner}/repos#{opts}")
-      end
+      number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
+      get("#{without_repo}/owner/#{owner}/repos#{opts}")
     end
 
     # An individual repository.
@@ -1794,7 +1986,7 @@ module Trav3
     #
     #     Example: POST /repo/rails%2Frails/unstar
     #
-    # @note POST requests require an authorization token set in the headers. See: {h}
+    # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param repo [String] github_username/repository_name
     # @param action [String, Symbol] Optional argument for star/unstar/activate/deactivate
@@ -1805,13 +1997,9 @@ module Trav3
       validate_repo_format repo
 
       repo = sanitize_repo_name repo
-      action = '' unless %w[star unstar activate deactivate].include? action.to_s
 
-      if action.empty?
-        get("#{without_repo}/repo/#{repo}")
-      else
-        post("#{without_repo}/repo/#{repo}/#{action}")
-      end
+      action and return post("#{without_repo}/repo/#{repo}/#{action}")
+      get("#{without_repo}/repo/#{repo}")
     end
 
     # An individual request
@@ -2276,7 +2464,7 @@ module Trav3
     #     Example: GET /user
     #
     # @note sync feature may not be permitted
-    # @note POST requests require an authorization token set in the headers. See: {h}
+    # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param user_id [String, Integer] optional user id
     # @param sync [Boolean] optional argument for syncing your Travis CI account with GitHub
@@ -2287,11 +2475,8 @@ module Trav3
 
       validate_number user_id
 
-      if sync
-        get("#{without_repo}/user/#{user_id}/sync")
-      else
-        get("#{without_repo}/user/#{user_id}")
-      end
+      sync and return get("#{without_repo}/user/#{user_id}/sync")
+      get("#{without_repo}/user/#{user_id}")
     end
 
     private # @private
@@ -2302,6 +2487,10 @@ module Trav3
 
     def delete(url)
       Trav3::REST.delete(self, url)
+    end
+
+    def env_var_keys(hash)
+      inject_property_name('env_var', hash)
     end
 
     def get(url, raw_reply = false)
@@ -2327,8 +2516,12 @@ module Trav3
       h('Travis-API-Version': 3)
     end
 
+    def inject_property_name(name, hash)
+      hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/#{name}\.\w+/)
+    end
+
     def key_pair_keys(hash)
-      hash.map { |k, v| ["key_pair.#{k}", v] }.to_h unless hash.keys.first.match?(/key_pair\.\w+/)
+      inject_property_name('key_pair', hash)
     end
 
     def number?(input)
@@ -2350,6 +2543,21 @@ module Trav3
     def validate_api_endpoint(input)
       raise InvalidAPIEndpoint unless /^https:\/\/api\.travis-ci\.(?:org|com)$/.match? input
     end
+
+    # rubocop:disable Metrics/CyclomaticComplexity
+    def validate_env_var(input)
+      raise TypeError, "Hash expected, #{input.class} given" unless input.is_a? Hash
+      raise EnvVarError unless input.all? do |k, v|
+        k.match?(/name|value|public/) &&
+        case k.to_s
+        when /name/ then v.is_a? String
+        when /value/ then v.is_a? String
+        when /public/ then [true, false].include? v
+        else false
+        end
+      end
+    end
+    # rubocop:enable Metrics/CyclomaticComplexity
 
     def validate_number(input)
       raise TypeError, "Integer expected, #{input.class} given" unless number? input
