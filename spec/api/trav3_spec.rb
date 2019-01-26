@@ -142,6 +142,11 @@ RSpec.describe Trav3::Travis, :vcr do
       ev = t.env_vars(name: 'Foo', value: 'Bar', public: true)
       expect(ev).to be_an_instance_of Trav3::Success
     end
+
+    it 'raises EnvVarError when invalid parameters given' do
+      expect { t.env_vars(name: '', value: '', pic: true) }.to \
+        raise_error(Trav3::EnvVarError, /provide the keys/)
+    end
   end
 
   describe '#installation' do

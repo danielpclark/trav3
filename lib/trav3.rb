@@ -2553,7 +2553,6 @@ module Trav3
         when /name/ then v.is_a? String
         when /value/ then v.is_a? String
         when /public/ then [true, false].include? v
-        else false
         end
       end
     end
