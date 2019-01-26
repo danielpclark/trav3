@@ -6,7 +6,7 @@ FactoryBot.define do
     initialize_with { new('danielpclark/trav3') }
 
     after :build do |t|
-      t.h('Authorization': "token #{ENV['TRAVIS_TOKEN']}") if ENV['TRAVIS_TOKEN']
+      t.authorization = ENV['TRAVIS_TOKEN'] if ENV['TRAVIS_TOKEN']
     end
   end
 end
