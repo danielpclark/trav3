@@ -139,31 +139,29 @@ RSpec.describe Trav3::Travis, :vcr do
 
   describe '#key_pair' do
     before do
+      t.repository = 'danielpclark/xxxxx'
       t.api_endpoint = 'https://api.travis-ci.com'
+      t.h('Authorization': 'token xxxx')
     end
 
     it 'creates current key pair' do
-      expect do
-        t.key_pair(create: { description: 'FooBar', value: 'xxxxx' })
-      end.to raise_error(/Forbidden/)
+      kp = t.key_pair(create: { description: 'FooBarBaz', value: OpenSSL::PKey::RSA.generate(2048).to_s })
+      expect(kp).to be_an_instance_of Trav3::Success
     end
 
     it 'gets current key pair' do
-      expect do
-        t.key_pair
-      end.to raise_error(/Forbidden/)
+      kp = t.key_pair
+      expect(kp).to be_an_instance_of Trav3::Success
     end
 
     it 'updates current key pair' do
-      expect do
-        t.key_pair(update: { description: 'FooBarBaz' })
-      end.to raise_error(/Forbidden/)
+      kp = t.key_pair(update: { description: 'Foo Bar Baz' })
+      expect(kp).to be_an_instance_of Trav3::Success
     end
 
     it 'deletes current key pair' do
-      expect do
-        t.key_pair(delete: true)
-      end.to raise_error(/Forbidden/)
+      kp = t.key_pair(delete: true)
+      expect(kp).to be_an_instance_of Trav3::Success
     end
   end
 

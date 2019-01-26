@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.travis-ci.com/repo/danielpclark%2Ftrav3/key_pair
+    uri: https://api.travis-ci.com/repo/danielpclark%2Fxxxxx/key_pair
     body:
       encoding: US-ASCII
       string: ''
@@ -21,27 +21,29 @@ http_interactions:
       - token xxxx
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 200
+      message: OK
     headers:
       Connection:
       - keep-alive
       Server:
       - nginx
       Date:
-      - Fri, 25 Jan 2019 21:14:52 GMT
+      - Sat, 26 Jan 2019 16:04:12 GMT
       Content-Type:
-      - text/html;charset=utf-8
+      - application/json
       Transfer-Encoding:
       - chunked
       Strict-Transport-Security:
       - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::KeyPair::Find
       X-Oauth-Scopes:
-      - ''
+      - public,private
       Vary:
       - Accept-Encoding
       X-Request-Id:
-      - 87a7adca-b164-4df3-bc59-84a3a1b18807
+      - a9ceff92-3cdc-42d2-830f-5340052258ba
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -52,7 +54,19 @@ http_interactions:
       - 1.1 vegur
     body:
       encoding: ASCII-8BIT
-      string: access denied
+      string: |-
+        {
+          "@type": "key_pair",
+          "@href": "/repo/7483089/key_pair",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "write": true
+          },
+          "description": "FooBarBaz",
+          "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzJfD4+8VgTn6Y7aNX7fB\n/L7auodJftL9d74KD88/kfrQpb+RjEcXEC/YrwBLgsc9j9tDsLXOBUSWMLL/0Qy4\ndurvUP4kIDRTqxKAGOLZ0h+5buuEClSCHN5MfoODDja47EFzaTw/JZd6iKzrNDX8\npV/syHm++QW5u8Kyj/E796PBq08Ffkgc6CLtoli40imxiGnLMX48KQWlNqSYfQzp\nyo7oUgf2R+bwlOA9X7G4IgeHuKMXM7m9zop/hqO/CLiSPFLFi+vk8FUoUuLiJ7Ov\nIFvkuL4oOqQSXukeW9mnZ+QShOCmDDGrgev3o9KACAMB3aOQNCoFBx0pfgGrhvbF\nlQIDAQAB\n-----END PUBLIC KEY-----\n",
+          "fingerprint": "03:22:d3:91:af:c2:21:11:89:71:8d:cc:07:55:3c:0a"
+        }
     http_version: 
-  recorded_at: Fri, 25 Jan 2019 21:14:52 GMT
+  recorded_at: Sat, 26 Jan 2019 16:04:12 GMT
 recorded_with: VCR 4.0.0

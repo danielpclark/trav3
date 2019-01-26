@@ -31,17 +31,16 @@ module Trav3
     #   conform to valid repository identifier format
     # @return [Travis]
     def initialize(repo)
-      validate_repo_format repo
-
       @api_endpoint = 'https://api.travis-ci.org'
-      @repo = sanitize_repo_name repo
+
+      self.repository = repo
 
       initial_defaults
     end
 
-    # @overload api_endpoint=(endpoint)
-    #   Set as the API endpoint
-    #   @param endpoint [String] name for value to set
+    # Set as the API endpoint
+    #
+    # @param endpoint [String] name for value to set
     # @return [self]
     # rubocop:disable Lint/Void
     def api_endpoint=(endpoint)
@@ -53,9 +52,10 @@ module Trav3
     end
     # rubocop:enable Lint/Void
 
+    # Set as many options as you'd like for collections queried via an API request
+    #
     # @overload defaults(key: value, ...)
-    #   Set as many options as you'd like for collections queried via an API request
-    #   @param key [Symbol, String] name for value to set
+    #   @param key [Symbol] name for value to set
     #   @param value [Symbol, String, Integer] value for key
     # @return [self]
     def defaults(**args)
@@ -68,12 +68,20 @@ module Trav3
     #     h("Authorization": "token xxxxxxxxxxxxxxxxxxxxxx")
     #
     # @overload h(key: value, ...)
-    #   @param key [Symbol, String] name for value to set
+    #   @param key [Symbol] name for value to set
     #   @param value [Symbol, String, Integer] value for key
     # @return [self]
     def h(**args)
       (@headers ||= Headers.new).build(args)
       self
+    end
+
+    # Change the repository this instance of `Trav3::Travis` uses.
+    #
+    # @param repo_name [String] github_username/repository_name
+    def repository=(repo_name)
+      validate_repo_format repo_name
+      @repo = sanitize_repo_name repo_name
     end
 
     # Please Note that the naming of this endpoint may be changed. Our naming convention for this information is in flux. If you have suggestions for how this information should be presented please leave us feedback by commenting in this issue here or emailing support support@travis-ci.com.
@@ -746,6 +754,149 @@ module Trav3
       end
     end
 
+    # Users may add a public/private RSA key pair to a repository.
+    # This can be used within builds, for example to access third-party services or deploy code to production.
+    # Please note this feature is only available on the travis-ci.com domain.
+    #
+    # ## Attributes
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name         Type    Description
+    #     description  String  A text description.
+    #     public_key   String  The public key.
+    #     fingerprint  String  The fingerprint.
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name         Type    Description
+    #     description  String  A text description.
+    #     public_key   String  The public key.
+    #     fingerprint  String  The fingerprint.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # Return the current key pair, if it exists.
+    #
+    # GET <code>/repo/{repository.id}/key_pair</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/891/key_pair
+    #
+    # GET <code>/repo/{repository.slug}/key_pair</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/rails%2Frails/key_pair
+    #
+    # **Create**
+    #
+    # Creates a new key pair.
+    #
+    # ```bash
+    # curl -X POST \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "key_pair.description": "FooBar", "key_pair.value": "xxxxx"}' \
+    #   https://api.travis-ci.com/repo/1234/key_pair
+    # ```
+    #
+    # POST <code>/repo/{repository.id}/key_pair</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Accepted Parameter    Type    Description
+    #     key_pair.description  String  A text description.
+    #     key_pair.value        String  The private key.
+    #
+    #     Example: POST /repo/891/key_pair
+    #
+    # POST <code>/repo/{repository.slug}/key_pair</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Accepted Parameter    Type    Description
+    #     key_pair.description  String  A text description.
+    #     key_pair.value        String  The private key.
+    #
+    #     Example: POST /repo/rails%2Frails/key_pair
+    #
+    # **Update**
+    #
+    # Update the key pair.
+    #
+    # ```bash
+    # curl -X PATCH \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "key_pair.description": "FooBarBaz" }' \
+    #   https://api.travis-ci.com/repo/1234/key_pair
+    # ```
+    #
+    # PATCH <code>/repo/{repository.id}/key_pair</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Accepted Parameter    Type    Description
+    #     key_pair.description  String  A text description.
+    #     key_pair.value        String  The private key.
+    #
+    #     Example: PATCH /repo/891/key_pair
+    #
+    # PATCH <code>/repo/{repository.slug}/key_pair</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Accepted Parameter    Type    Description
+    #     key_pair.description  String  A text description.
+    #     key_pair.value        String  The private key.
+    #
+    #     Example: PATCH /repo/rails%2Frails/key_pair
+    #
+    # **Delete**
+    #
+    # Delete the key pair.
+    #
+    # DELETE <code>/repo/{repository.id}/key_pair</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #
+    #     Example: DELETE /repo/891/key_pair
+    #
+    # DELETE <code>/repo/{repository.slug}/key_pair</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #
+    #     Example: DELETE /repo/rails%2Frails/key_pair
+    #
+    # @note requests require an authorization token set in the headers. See: {h}
+    # @note API enpoint needs to be set to `https://api.travis-ci.com` See: {api_endpoint=}
+    #
+    # @overload key_par()
+    #   Gets current key_pair if any
+    # @overload key_pair(action: params)
+    #   Performs action per specific key word argument
+    #   @param create [Hash] Create a new key pair from provided private key { description: "name", value: "private key" }
+    #   @param update [Hash] Update key pair with hash { description: "new name" }
+    #   @param delete [Boolean] Use truthy value to delete current key pair
+    # @return [Success, RequestError]
     def key_pair(create: nil, update: nil, delete: nil)
       raise 'Too many options specified' unless [create, update, delete].compact.count < 2
 
@@ -820,6 +971,8 @@ module Trav3
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/key_pair/generated
+    #
+    # @note requests require an authorization token set in the headers. See: {h}
     #
     # @param action [String, Symbol] defaults to getting current key pair, use `:create` if you would like to generate a new key pair
     # @return [Success, RequestError]
@@ -1248,6 +1401,8 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # @note requests require an authorization token set in the headers. See: {h}
+    #
     # @param key [String] preference name to get or set
     # @param value [String] optional value to set preference
     # @param org_id [String, Integer] optional keyword argument for an organization id
@@ -1297,6 +1452,8 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /preferences
+    #
+    # @note requests require an authorization token set in the headers. See: {h}
     #
     # @param org_id [String, Integer] optional organization id
     # @return [Success, RequestError]
@@ -2153,7 +2310,7 @@ module Trav3
     end
 
     def repo_slug_or_id?(input)
-      Regexp.new(/(^\d+$)|(^\w+(?:\/|%2F){1}\w+$)/).match? input
+      Regexp.new(/(^\d+$)|(^[A-Za-z0-9_.-]+(?:\/|%2F){1}[A-Za-z0-9_.-]+$)/i).match? input
     end
 
     def repository_name
