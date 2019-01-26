@@ -115,6 +115,18 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#env_vars' do
+    it 'gets env vars' do
+      ev = t.env_vars
+      expect(ev).to be_an_instance_of Trav3::Success
+    end
+
+    it 'creates an environment variable' do
+      ev = t.env_vars(name: 'Foo', value: 'Bar', public: true)
+      expect(ev).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#installation' do
     before do
       t.api_endpoint = 'https://api.travis-ci.com'
