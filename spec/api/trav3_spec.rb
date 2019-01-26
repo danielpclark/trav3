@@ -115,6 +115,23 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#env_var' do
+    it 'finds an env var' do
+      ev = t.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c')
+      expect(ev).to be_an_instance_of Trav3::Success
+    end
+
+    it 'updates an env var' do
+      ev = t.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', update: { value: 'Baz' })
+      expect(ev).to be_an_instance_of Trav3::Success
+    end
+
+    it 'deletes an env var' do
+      ev = t.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', delete: true)
+      expect(ev).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#env_vars' do
     it 'gets env vars' do
       ev = t.env_vars
