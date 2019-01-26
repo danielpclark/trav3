@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://api.travis-ci.com/repo/danielpclark%2Fxxxxx/key_pair
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 26 Jan 2019 16:05:15 GMT
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::KeyPair::Delete
+      X-Oauth-Scopes:
+      - public,private
+      X-Request-Id:
+      - 9360b449-26fd-441e-894d-67d720e69a8c
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sat, 26 Jan 2019 16:05:15 GMT
+recorded_with: VCR 4.0.0

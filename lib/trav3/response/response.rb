@@ -16,7 +16,7 @@ module Trav3
       @travis = travis
       @response = response
       @collection = begin
-                      result = JSON.parse(response.body)
+                      result = JSON.parse(response&.body || '{}')
                       ResponseCollection.new(travis, result)
                     rescue JSON::ParserError
                       response.error!

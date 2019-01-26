@@ -6,8 +6,9 @@ require 'json'
 
 module Trav3
   module REST
+    extend Net
     class << self
-      def create(travis, url, **data)
+      def create(travis, url, data)
         uri = as_uri url
         req = request_post uri
         set_headers travis, req
@@ -64,13 +65,13 @@ module Trav3
       end
 
       def get_response(uri, request)
-        http = Net::HTTP.new(uri.host, uri.port)
+        http = HTTP.new(uri.host, uri.port)
         http.use_ssl = (uri.scheme == 'https')
         http.request(request)
       end
 
       def output(travis, response)
-        if [Net::HTTPAccepted, Net::HTTPOK].include? response.code_type
+        if [HTTPAccepted, HTTPOK, HTTPCreated, HTTPNoContent].include? response.code_type
           Success.new(travis, response)
         else
           RequestError.new(travis, response)
@@ -78,19 +79,19 @@ module Trav3
       end
 
       def request_delete(uri)
-        Net::HTTP::Delete.new(uri.request_uri)
+        HTTP::Delete.new(uri.request_uri)
       end
 
       def request_get(uri)
-        Net::HTTP::Get.new(uri.request_uri)
+        HTTP::Get.new(uri.request_uri)
       end
 
       def request_patch(uri)
-        Net::HTTP::Patch.new(uri.request_uri)
+        HTTP::Patch.new(uri.request_uri)
       end
 
       def request_post(uri)
-        Net::HTTP::Post.new(uri.request_uri)
+        HTTP::Post.new(uri.request_uri)
       end
 
       def set_headers(travis, request)

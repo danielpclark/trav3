@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.travis-ci.com/repo/danielpclark%2Fxxxxx/key_pair
+    body:
+      encoding: UTF-8
+      string: '{"key_pair.description":"FooBarBaz","key_pair.value":"-----BEGIN RSA
+        PRIVATE KEY-----\nMIIEowIBAAKCAQEAzJfD4+8VgTn6Y7aNX7fB/L7auodJftL9d74KD88/kfrQpb+R\njEcXEC/YrwBLgsc9j9tDsLXOBUSWMLL/0Qy4durvUP4kIDRTqxKAGOLZ0h+5buuE\nClSCHN5MfoODDja47EFzaTw/JZd6iKzrNDX8pV/syHm++QW5u8Kyj/E796PBq08F\nfkgc6CLtoli40imxiGnLMX48KQWlNqSYfQzpyo7oUgf2R+bwlOA9X7G4IgeHuKMX\nM7m9zop/hqO/CLiSPFLFi+vk8FUoUuLiJ7OvIFvkuL4oOqQSXukeW9mnZ+QShOCm\nDDGrgev3o9KACAMB3aOQNCoFBx0pfgGrhvbFlQIDAQABAoIBAGFWYzByczzEJMiD\n9cbwWi6xbscHzoO0RjtOAuN6qrf9KH9zIQAoYmSlHuZDsalKuZNTsmTEWnxPIVWS\nE/uVnb2WEL3r66wWuSfO6XrtksxRo5uOGYgApNavPJ2EXDnK9zgP+6S5sSFlbDrS\naiSw+r6DYNgQdDdt7evSubmZ//nU6WtbmC8VCWjXFgFhF2YBuOu5g6Ab0hU0/Etx\n0hIheJrToLhvdSjpO9Bi+pkHZOYn/U9G5e9WJ+CeTTQDHQqxAzOFiPjc8kUlPwv0\ny2ipyN2l9vMjdflnY8BnhWORfTvlS85JUIAiz/Pq0hfqqvip+B0PVfdOCtxVAnAE\nGUprLgECgYEA54i+F/rezOrltm5/Sa6/46FMKzwr+OkDRXV77fm9KwmuT9zf3/oP\noazn714rfIDv15ps5rk5s2UCCKkxLpWyTvLo/4k8ZViiBAtYP//6yKRmax6Qfhm8\nHcPxQXDkDEXlG3a+wJpWuE3EKLHNm0zHgPlJ4oCsZ9oETAGdDcQcWiECgYEA4jY6\n2pMZgN/5JQEmPoHjp8MJIxTSKaALsE+064G9JpiULUuLfEYrWAXVNJYmH2fXprs5\nue9ZhiLwS10iBzCJSP8vaPNdmUHr7FckgFlm2XvN5WEUd0he1RyqX/74GGl4pUAT\nQkakM9BC86wxExOJInKXdiT1Tb7qLLD8AVDsBPUCgYAS1llA8jQ2T9YopYzNnd4W\n0wSzb83UDoEpoYlXrz3oxnzcGohMXLfw23RzUSIQmxzoWbQKgX9kTQ+BTOKne55q\nNfEm+S9kv3VPBu1DJ7xrnpSGmpH+8HERquNyA5FKPlWJinuyh9wOWqVe+jhULkb9\nA0szlmxwdphq5qa0fAQigQKBgQCbFjjlT4Jlo6hJIW+Z3S05//IMtiKb3RkGaK8N\n4yXOBz9Xinp32hevQlh4tBQw5d2odqXN/vWui9eYo6JHsZP9ks5rMqZSAyr/HoNs\n514m7sUrZJJGcTxq+Tspk0F+YxkOmk5Z2tqKl1a/fqcqf/M9xbhnjFENWz1rJG+x\na0xU3QKBgEWwfzAcsH/NfrfOCSDxVZPTV8ANPrI2cUTheUNAPBB3daT7sGuJT6ZB\nGAo9MNjx5ghYPUDPGjZPMVSyDjO6jQU1jansJK+dI3QYP8qjZcC9X3C2UCJnPcv+\ndnkOjzzFjqnffr47HV3mRIQqIN3fnD0nQmAmMhppyYawmvJyVePI\n-----END
+        RSA PRIVATE KEY-----\n"}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Sat, 26 Jan 2019 16:02:08 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::KeyPair::Create
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 8df62ced-a727-4f7b-b488-b1454e9efc82
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "key_pair",
+          "@href": "/repo/7483089/key_pair",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "write": true
+          },
+          "description": "FooBarBaz",
+          "public_key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzJfD4+8VgTn6Y7aNX7fB\n/L7auodJftL9d74KD88/kfrQpb+RjEcXEC/YrwBLgsc9j9tDsLXOBUSWMLL/0Qy4\ndurvUP4kIDRTqxKAGOLZ0h+5buuEClSCHN5MfoODDja47EFzaTw/JZd6iKzrNDX8\npV/syHm++QW5u8Kyj/E796PBq08Ffkgc6CLtoli40imxiGnLMX48KQWlNqSYfQzp\nyo7oUgf2R+bwlOA9X7G4IgeHuKMXM7m9zop/hqO/CLiSPFLFi+vk8FUoUuLiJ7Ov\nIFvkuL4oOqQSXukeW9mnZ+QShOCmDDGrgev3o9KACAMB3aOQNCoFBx0pfgGrhvbF\nlQIDAQAB\n-----END PUBLIC KEY-----\n",
+          "fingerprint": "03:22:d3:91:af:c2:21:11:89:71:8d:cc:07:55:3c:0a"
+        }
+    http_version: 
+  recorded_at: Sat, 26 Jan 2019 16:02:08 GMT
+recorded_with: VCR 4.0.0

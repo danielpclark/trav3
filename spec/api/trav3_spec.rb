@@ -137,6 +137,46 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#key_pair' do
+    before do
+      t.repository = 'danielpclark/xxxxx'
+      t.api_endpoint = 'https://api.travis-ci.com'
+      t.h('Authorization': 'token xxxx')
+    end
+
+    it 'creates current key pair' do
+      kp = t.key_pair(create: { description: 'FooBarBaz', value: OpenSSL::PKey::RSA.generate(2048).to_s })
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+
+    it 'gets current key pair' do
+      kp = t.key_pair
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+
+    it 'updates current key pair' do
+      kp = t.key_pair(update: { description: 'Foo Bar Baz' })
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+
+    it 'deletes current key pair' do
+      kp = t.key_pair(delete: true)
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+  end
+
+  describe '#key_pair_generated' do
+    it 'gets current generated key pair' do
+      kp = t.key_pair_generated
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+
+    it 'generates a key pair' do
+      kp = t.key_pair_generated(:create)
+      expect(kp).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#lint' do
     it 'lints the travis.yml file' do
       lint = t.lint(File.read('.travis.yml'))
