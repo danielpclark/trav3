@@ -150,11 +150,8 @@ module Trav3
     # @param owner [String] username, organization name, or github id
     # @return [Success, RequestError]
     def active(owner = username)
-      if number? owner
-        get("#{without_repo}/owner/github_id/#{owner}/active")
-      else
-        get("#{without_repo}/owner/#{owner}/active")
-      end
+      number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}/active")
+      get("#{without_repo}/owner/#{owner}/active")
     end
 
     # The branch of a GitHub repository. Useful for obtaining information about the last build on a given branch.
@@ -661,11 +658,8 @@ module Trav3
     # @param delete [Boolean] option for deleting cache(s)
     # @return [Success, RequestError]
     def caches(delete = false)
-      if delete
-        without_limit { delete("#{with_repo}/caches#{opts}") }
-      else
-        get("#{with_repo}/caches")
-      end
+      delete and return without_limit { delete("#{with_repo}/caches#{opts}") }
+      get("#{with_repo}/caches")
     end
 
     # An individual environment variable.
@@ -1591,11 +1585,8 @@ module Trav3
     # @param owner [String] username or github id
     # @return [Success, RequestError]
     def owner(owner = username)
-      if number? owner
-        get("#{without_repo}/owner/github_id/#{owner}")
-      else
-        get("#{without_repo}/owner/#{owner}")
-      end
+      number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}")
+      get("#{without_repo}/owner/#{owner}")
     end
 
     # Document `resources/preference/overview` not found.
@@ -1674,11 +1665,8 @@ module Trav3
         org_id = "/org/#{org_id}"
       end
 
-      if value.nil?
-        get("#{without_repo}#{org_id}/preference/#{key}")
-      else
-        patch("#{without_repo}#{org_id}/preference/#{key}", 'preference.value' => value)
-      end
+      value and return patch("#{without_repo}#{org_id}/preference/#{key}", 'preference.value' => value)
+      get("#{without_repo}#{org_id}/preference/#{key}")
     end
 
     # Document `resources/preferences/overview` not found.
@@ -1867,11 +1855,8 @@ module Trav3
     # @param owner [String] username or github id
     # @return [Success, RequestError]
     def repositories(owner = username)
-      if number? owner
-        get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
-      else
-        get("#{without_repo}/owner/#{owner}/repos#{opts}")
-      end
+      number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
+      get("#{without_repo}/owner/#{owner}/repos#{opts}")
     end
 
     # An individual repository.
@@ -2012,13 +1997,9 @@ module Trav3
       validate_repo_format repo
 
       repo = sanitize_repo_name repo
-      action = '' unless %w[star unstar activate deactivate].include? action.to_s
 
-      if action.empty?
-        get("#{without_repo}/repo/#{repo}")
-      else
-        post("#{without_repo}/repo/#{repo}/#{action}")
-      end
+      action and return post("#{without_repo}/repo/#{repo}/#{action}")
+      get("#{without_repo}/repo/#{repo}")
     end
 
     # An individual request
@@ -2494,11 +2475,8 @@ module Trav3
 
       validate_number user_id
 
-      if sync
-        get("#{without_repo}/user/#{user_id}/sync")
-      else
-        get("#{without_repo}/user/#{user_id}")
-      end
+      sync and return get("#{without_repo}/user/#{user_id}/sync")
+      get("#{without_repo}/user/#{user_id}")
     end
 
     private # @private
