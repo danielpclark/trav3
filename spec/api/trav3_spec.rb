@@ -115,6 +115,18 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#installation' do
+    before do
+      t.api_endpoint = 'https://api.travis-ci.com'
+      t.authorization = 'xxxx'
+    end
+
+    it 'returns a single installation' do
+      installation = t.installation(617_754)
+      expect(installation).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#job' do
     it 'gets job info' do
       job = t.job(351_778_875)
@@ -141,7 +153,7 @@ RSpec.describe Trav3::Travis, :vcr do
     before do
       t.repository = 'danielpclark/xxxxx'
       t.api_endpoint = 'https://api.travis-ci.com'
-      t.h('Authorization': 'token xxxx')
+      t.authorization = 'xxxx'
     end
 
     it 'creates current key pair' do

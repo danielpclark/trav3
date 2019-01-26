@@ -37,12 +37,12 @@ module Trav3
 
       initial_defaults
     end
+    # rubocop:disable Lint/Void
 
     # Set as the API endpoint
     #
     # @param endpoint [String] name for value to set
     # @return [self]
-    # rubocop:disable Lint/Void
     def api_endpoint=(endpoint)
       validate_api_endpoint endpoint
 
@@ -50,7 +50,16 @@ module Trav3
 
       self
     end
-    # rubocop:enable Lint/Void
+
+    # Set the authorization token in the requests' headers
+    #
+    # @param token [String] sets authorization token header
+    # @return [self]
+    def authorization=(token)
+      validate_string token
+      h('Authorization': "token #{token}")
+      self
+    end
 
     # Set as many options as you'd like for collections queried via an API request
     #
@@ -79,10 +88,13 @@ module Trav3
     # Change the repository this instance of `Trav3::Travis` uses.
     #
     # @param repo_name [String] github_username/repository_name
+    # @return [self]
     def repository=(repo_name)
       validate_repo_format repo_name
       @repo = sanitize_repo_name repo_name
+      self
     end
+    # rubocop:enable Lint/Void
 
     # Please Note that the naming of this endpoint may be changed. Our naming convention for this information is in flux. If you have suggestions for how this information should be presented please leave us feedback by commenting in this issue here or emailing support support@travis-ci.com.
     #
@@ -111,7 +123,7 @@ module Trav3
     # GET <code>/owner/{user.login}/active</code>
     #
     #     Template Variable  Type    Description
-    #     user.login         String  Login set on Github.
+    #     user.login         String  Login set on GitHub.
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
@@ -654,6 +666,48 @@ module Trav3
       else
         get("#{with_repo}/caches")
       end
+    end
+
+    # A GitHub App installation.
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name       Type     Description
+    #     id         Integer  The installation id.
+    #     github_id  Integer  The installation's id on GitHub.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name       Type     Description
+    #     id         Integer  The installation id.
+    #     github_id  Integer  The installation's id on GitHub.
+    #     owner      Owner    GitHub user or organization the installation belongs to.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single installation.
+    #
+    # GET <code>/installation/{installation.github_id}</code>
+    #
+    #     Template Variable       Type     Description
+    #     installation.github_id  Integer  The installation's id on GitHub.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # @param installation_id [String, Integer] GitHub App installation id
+    # @return [Success, RequestError]
+    def installation(installation_id)
+      validate_number installation_id
+
+      get("#{without_repo}/installation/#{installation_id}")
     end
 
     # An individual job.
@@ -1300,7 +1354,7 @@ module Trav3
     # GET <code>/owner/{user.login}</code>
     #
     #     Template Variable  Type      Description
-    #     user.login         String    Login set on Github.
+    #     user.login         String    Login set on GitHub.
     #
     #     Query Parameter    Type      Description
     #     include            [String]  List of attributes to eager load.
@@ -1521,7 +1575,7 @@ module Trav3
     # GET <code>/owner/{user.login}/repos</code>
     #
     #     Template Variable  Type    Description
-    #     user.login         String  Login set on Github.
+    #     user.login         String  Login set on GitHub.
     #
     #     Query Parameter     Type       Description
     #     active              [Boolean]  Alias for repository.active.
@@ -2160,7 +2214,7 @@ module Trav3
     #
     #     Name  Type     Description
     #     id    Integer  Value uniquely identifying the user.
-    #     login String   Login set on Github.
+    #     login String   Login set on GitHub.
     #
     # **Standard Representation**
     #
@@ -2168,13 +2222,13 @@ module Trav3
     #
     #     Name              Type     Description
     #     id                Integer  Value uniquely identifying the user.
-    #     login             String   Login set on Github.
+    #     login             String   Login set on GitHub.
     #     name              String   Name set on GitHub.
     #     github_id         Integer  Id set on GitHub.
     #     avatar_url        String   Avatar URL set on GitHub.
     #     education         Boolean  Whether or not the user has an education account.
     #     allow_migration   Unknown  The user's allow_migration.
-    #     is_syncing        Boolean  Whether or not the user is currently being synced with Github.
+    #     is_syncing        Boolean  Whether or not the user is currently being synced with GitHub.
     #     synced_at         String   The last time the user was synced with GitHub.
     #
     # **Additional Attributes**
@@ -2225,7 +2279,7 @@ module Trav3
     # @note POST requests require an authorization token set in the headers. See: {h}
     #
     # @param user_id [String, Integer] optional user id
-    # @param sync [Boolean] optional argument for syncing your Travis CI account with Github
+    # @param sync [Boolean] optional argument for syncing your Travis CI account with GitHub
     # @raise [TypeError] if given user id is not a number
     # @return [Success, RequestError]
     def user(user_id = nil, sync = false)
