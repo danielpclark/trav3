@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/trav3.svg)](http://badge.fury.io/rb/trav3)
 [![Build Status](https://travis-ci.org/danielpclark/trav3.svg?branch=master)](https://travis-ci.org/danielpclark/trav3)
-[![Commits Since Release](https://img.shields.io/github/commits-since/danielpclark/trav3/v0.3.1.svg)](https://github.com/danielpclark/trav3/graphs/commit-activity)
+[![Commits Since Release](https://img.shields.io/github/commits-since/danielpclark/trav3/v0.3.2.svg)](https://github.com/danielpclark/trav3/graphs/commit-activity)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1ed07a4baea3832b6207/maintainability)](https://codeclimate.com/github/danielpclark/trav3/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1ed07a4baea3832b6207/test_coverage)](https://codeclimate.com/github/danielpclark/trav3/test_coverage)
 [![Red The Docs](https://img.shields.io/badge/Read-the%20docs-blue.svg)](http://danielpclark.github.io/trav3/Trav3/Travis.html)
