@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.travis-ci.org/repo/danielpclark%2Ftrav3/email_subscription
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Length:
+      - '0'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Mon, 28 Jan 2019 20:55:25 GMT
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::EmailSubscription::Resubscribe
+      X-Oauth-Scopes:
+      - public,private
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - c581f182-7ec0-4c02-8fb6-e1a6cf9e1358
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Mon, 28 Jan 2019 20:55:25 GMT
+recorded_with: VCR 4.0.0
