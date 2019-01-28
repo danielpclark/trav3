@@ -662,6 +662,48 @@ module Trav3
       get("#{with_repo}/caches")
     end
 
+    # POST <code>/repo/{repository.id}/email_subscription</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #
+    #     Example: POST /repo/891/email_subscription
+    #
+    # POST <code>/repo/{repository.slug}/email_subscription</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #
+    #     Example: POST /repo/rails%2Frails/email_subscription
+    #
+    # @note requests require an authorization token set in the headers. See: {authorization=}
+    #
+    # @return [Success, RequestError]
+    def email_resubscribe
+      post("#{with_repo}/email_subscription")
+    end
+
+    # DELETE <code>/repo/{repository.id}/email_subscription</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #
+    #     Example: DELETE /repo/891/email_subscription
+    #
+    # DELETE <code>/repo/{repository.slug}/email_subscription</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #
+    #     Example: DELETE /repo/rails%2Frails/email_subscription
+    #
+    # @note requests require an authorization token set in the headers. See: {authorization=}
+    #
+    # @return [Success, RequestError]
+    def email_unsubscribe
+      delete("#{with_repo}/email_subscription")
+    end
+
     # An individual environment variable.
     #
     # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**

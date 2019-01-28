@@ -115,6 +115,20 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#email_resubscribe' do
+    it 'resubscribes to receiving email for build status' do
+      sub = t.email_resubscribe
+      expect(sub).to be_an_instance_of Trav3::Success
+    end
+  end
+
+  describe '#email_unsubscribe' do
+    it 'unsubscribes for receiving email for build status' do
+      sub = t.email_unsubscribe
+      expect(sub).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#env_var' do
     it 'finds an env var' do
       ev = t.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c')
