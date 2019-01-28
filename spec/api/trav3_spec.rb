@@ -256,8 +256,9 @@ RSpec.describe Trav3::Travis, :vcr do
       expect(log).to include('Worker information')
     end
 
-    it 'raises an unimplemented error when :delete is used' do
-      expect { t.log(351_778_875, :delete) }.to raise_error(Trav3::Unimplemented, /not implemented/)
+    it 'deletes a log entry' do
+      log = t.log(478_772_530, :delete)
+      expect(log).to be_an_instance_of Trav3::Success
     end
   end
 

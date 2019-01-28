@@ -1380,8 +1380,6 @@ module Trav3
     #
     #     Example: DELETE /job/86601347/log
     #
-    # @note DELETE is unimplemented
-    #
     # @param job_id [String, Integer] the job id number
     # @param option [Symbol] options for :text or :delete
     # @return [Success, String, RequestError]
@@ -1390,7 +1388,7 @@ module Trav3
       when :text
         get("#{without_repo}/job/#{job_id}/log.txt", true)
       when :delete
-        raise Unimplemented
+        delete("#{without_repo}/job/#{job_id}/log")
       else
         get("#{without_repo}/job/#{job_id}/log")
       end

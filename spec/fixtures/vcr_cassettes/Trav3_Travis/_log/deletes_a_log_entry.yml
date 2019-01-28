@@ -1,0 +1,84 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://api.travis-ci.org/job/478772530/log
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Mon, 28 Jan 2019 21:11:30 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Log::Delete
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Rack-Cache:
+      - invalidate, pass
+      X-Request-Id:
+      - d6d31d4b-a54e-4e19-969a-0a01e159bb9f
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "log",
+          "@href": "/job/478772530/log",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "restart": false,
+            "delete_log": false,
+            "debug": false,
+            "cancel": false
+          },
+          "id": 351921791,
+          "content": "Log removed by Daniel P. Clark at 2019-01-28 21:11:29 UTC",
+          "log_parts": [
+            {
+              "content": "Log removed by Daniel P. Clark at 2019-01-28 21:11:29 UTC",
+              "final": true,
+              "number": 0
+            }
+          ],
+          "@raw_log_href": "/v3/job/478772530/log.txt"
+        }
+    http_version: 
+  recorded_at: Mon, 28 Jan 2019 21:11:30 GMT
+recorded_with: VCR 4.0.0
