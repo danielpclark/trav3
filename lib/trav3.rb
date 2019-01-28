@@ -2745,7 +2745,9 @@ module Trav3
     end
 
     def inject_property_name(name, hash)
-      hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/\A#{name}\.[A-Za-z0-9_.-]+\z/)
+      return hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/\A#{name}\.\w+\z/)
+
+      hash
     end
 
     def key_pair_keys(hash)

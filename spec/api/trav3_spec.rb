@@ -122,6 +122,11 @@ RSpec.describe Trav3::Travis, :vcr do
         expect(c).to be_an_instance_of Trav3::Success
       end
 
+      it 'creates a cron job with travis style params' do
+        c = t.cron(branch_name: 'master', create: { 'cron.interval' => 'weekly' })
+        expect(c).to be_an_instance_of Trav3::Success
+      end
+
       it 'gets a cron job' do
         c = t.cron(branch_name: 'master')
         expect(c).to be_an_instance_of Trav3::Success
