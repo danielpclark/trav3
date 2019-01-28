@@ -115,6 +115,13 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#crons' do
+    it 'gets crons for an individual repository' do
+      crons = t.crons
+      expect(crons).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#email_resubscribe' do
     it 'resubscribes to receiving email for build status' do
       sub = t.email_resubscribe

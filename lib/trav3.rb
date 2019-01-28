@@ -662,6 +662,63 @@ module Trav3
       get("#{with_repo}/caches")
     end
 
+    # A list of crons.
+    # 
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    # 
+    # ## Attributes
+    #
+    #     Name   Type    Description
+    #     crons  [Cron]  List of crons.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the crons array has the following attributes:
+    # 
+    #     Name                             Type        Description
+    #     id                               Integer     Value uniquely identifying the cron.
+    #     repository                       Repository  Github repository to which this cron belongs.
+    #     branch                           Branch      Git branch of repository to which this cron belongs.
+    #     interval                         String      Interval at which the cron will run (can be "daily", "weekly" or "monthly").
+    #     dont_run_if_recent_build_exists  Boolean     Whether a cron build should run if there has been a build on this branch in the last 24 hours.
+    #     last_run                         String      When the cron ran last.
+    #     next_run                         String      When the cron is scheduled to run next.
+    #     created_at                       String      When the cron was created.
+    #     active                           Unknown     The cron's active.
+    #
+    # ## Actions
+    #
+    # **For Repository**
+    #
+    # This returns a list of crons for an individual repository. It is possible to use the repository id or slug in the request.
+    # 
+    # GET <code>/repo/{repository.id}/crons</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many crons to include in the response. Used for pagination.
+    #     offset           Integer   How many crons to skip before the first entry in the response. Used for pagination.
+    #
+    #     Example: GET /repo/891/crons?limit=5
+    # 
+    # GET <code>/repo/{repository.slug}/crons</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many crons to include in the response. Used for pagination.
+    #     offset           Integer   How many crons to skip before the first entry in the response. Used for pagination.
+    #
+    #     Example: GET /repo/rails%2Frails/crons?limit=5
+    #
+    # @return [Success, RequestError]
+    def crons
+      get("#{with_repo}/crons")
+    end
+
     # POST <code>/repo/{repository.id}/email_subscription</code>
     #
     #     Template Variable  Type     Description
