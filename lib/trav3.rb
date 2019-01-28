@@ -662,6 +662,190 @@ module Trav3
       get("#{with_repo}/caches")
     end
 
+    # An individual cron. There can be only one cron per branch on a repository.
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    # **Minimal Representation**
+    #
+    # Included when the resource is returned as part of another resource.
+    #
+    #     Name  Type     Description
+    #     id    Integer  Value uniquely identifying the cron.
+    #
+    # **Standard Representation**
+    #
+    # Included when the resource is the main response of a request, or is {https://developer.travis-ci.com/eager-loading eager loaded}.
+    #
+    #     Name                             Type        Description
+    #     id                               Integer     Value uniquely identifying the cron.
+    #     repository                       Repository  Github repository to which this cron belongs.
+    #     branch                           Branch      Git branch of repository to which this cron belongs.
+    #     interval                         String      Interval at which the cron will run (can be "daily", "weekly" or "monthly").
+    #     dont_run_if_recent_build_exists  Boolean     Whether a cron build should run if there has been a build on this branch in the last 24 hours.
+    #     last_run                         String      When the cron ran last.
+    #     next_run                         String      When the cron is scheduled to run next.
+    #     created_at                       String      When the cron was created.
+    #     active                           Unknown     The cron's active.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This returns a single cron.
+    #
+    # GET <code>/cron/{cron.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     cron.id            Integer  Value uniquely identifying the cron.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    # **Delete**
+    #
+    # This deletes a single cron.
+    #
+    # DELETE <code>/cron/{cron.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     cron.id            Integer  Value uniquely identifying the cron.
+    #
+    # **For Branch**
+    #
+    # This returns the cron set for the specified branch for the specified repository. It is possible to use the repository id or slug in the request.
+    #
+    # GET <code>/repo/{repository.id}/branch/{branch.name}/cron</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     branch.name        String   Name of the git branch.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/891/branch/master/cron
+    #
+    # GET <code>/repo/{repository.slug}/branch/{branch.name}/cron</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     branch.name        String  Name of the git branch.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /repo/rails%2Frails/branch/master/cron
+    #
+    # **Create**
+    #
+    # This creates a cron on the specified branch for the specified repository. It is possible to use the repository id or slug in the request. Content-Type MUST be set in the header and an interval for the cron MUST be specified as a parameter.
+    #
+    # ```bash
+    # curl -X POST \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{ "cron.interval": "monthly" }' \
+    #   https://api.travis-ci.com/repo/1234/branch/master/cron
+    # ```
+    #
+    # POST <code>/repo/{repository.id}/branch/{branch.name}/cron</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     branch.name        String   Name of the git branch.
+    #     Accepted Parameter                    Type     Description
+    #     cron.interval                         String   Interval at which the cron will run (can be "daily", "weekly" or "monthly").
+    #     cron.dont_run_if_recent_build_exists  Boolean  Whether a cron build should run if there has been a build on this branch in the last 24 hours.
+    #
+    #     Example: POST /repo/891/branch/master/cron
+    #
+    # POST <code>/repo/{repository.slug}/branch/{branch.name}/cron</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     branch.name        String  Name of the git branch.
+    #     Accepted Parameter                    Type     Description
+    #     cron.interval                         String   Interval at which the cron will run (can be "daily", "weekly" or "monthly").
+    #     cron.dont_run_if_recent_build_exists  Boolean  Whether a cron build should run if there has been a build on this branch in the last 24 hours.
+    #
+    #     Example: POST /repo/rails%2Frails/branch/master/cron
+    #
+    # @param id [String, Integer] cron id to get or delete
+    # @param branch_name [String] branch name to get cron or create
+    # @param create [Hash] Properties for creating the cron.  `branch_name` keyword argument required and `interval` key/value required.
+    # @param delete [Boolean] option for deleting cron.  Cron `id` keyword argument required.
+    # @return [Success, RequestError]
+    def cron(id: nil, branch_name: nil, create: nil, delete: false)
+      if id
+        validate_number id
+
+        delete and return delete("#{without_repo}/cron/#{id}")
+        return get("#{without_repo}/cron/#{id}")
+      end
+      raise ArgumentError, 'id or branch_name required' unless branch_name
+
+      create and return create("#{with_repo}/branch/#{branch_name}/cron", cron_keys(create))
+      get("#{with_repo}/branch/#{branch_name}/cron")
+    end
+
+    # A list of crons.
+    #
+    # If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.
+    #
+    # ## Attributes
+    #
+    #     Name   Type    Description
+    #     crons  [Cron]  List of crons.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the crons array has the following attributes:
+    #
+    #     Name                             Type        Description
+    #     id                               Integer     Value uniquely identifying the cron.
+    #     repository                       Repository  Github repository to which this cron belongs.
+    #     branch                           Branch      Git branch of repository to which this cron belongs.
+    #     interval                         String      Interval at which the cron will run (can be "daily", "weekly" or "monthly").
+    #     dont_run_if_recent_build_exists  Boolean     Whether a cron build should run if there has been a build on this branch in the last 24 hours.
+    #     last_run                         String      When the cron ran last.
+    #     next_run                         String      When the cron is scheduled to run next.
+    #     created_at                       String      When the cron was created.
+    #     active                           Unknown     The cron's active.
+    #
+    # ## Actions
+    #
+    # **For Repository**
+    #
+    # This returns a list of crons for an individual repository. It is possible to use the repository id or slug in the request.
+    #
+    # GET <code>/repo/{repository.id}/crons</code>
+    #
+    #     Template Variable  Type     Description
+    #     repository.id      Integer  Value uniquely identifying the repository.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many crons to include in the response. Used for pagination.
+    #     offset           Integer   How many crons to skip before the first entry in the response. Used for pagination.
+    #
+    #     Example: GET /repo/891/crons?limit=5
+    #
+    # GET <code>/repo/{repository.slug}/crons</code>
+    #
+    #     Template Variable  Type    Description
+    #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #     limit            Integer   How many crons to include in the response. Used for pagination.
+    #     offset           Integer   How many crons to skip before the first entry in the response. Used for pagination.
+    #
+    #     Example: GET /repo/rails%2Frails/crons?limit=5
+    #
+    # @return [Success, RequestError]
+    def crons
+      get("#{with_repo}/crons")
+    end
+
     # POST <code>/repo/{repository.id}/email_subscription</code>
     #
     #     Template Variable  Type     Description
@@ -2525,6 +2709,10 @@ module Trav3
       Trav3::REST.create(self, url, data)
     end
 
+    def cron_keys(hash)
+      inject_property_name('cron', hash)
+    end
+
     def delete(url)
       Trav3::REST.delete(self, url)
     end
@@ -2557,7 +2745,7 @@ module Trav3
     end
 
     def inject_property_name(name, hash)
-      hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/#{name}\.\w+/)
+      hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/\A#{name}\.[A-Za-z0-9_.-]+\z/)
     end
 
     def key_pair_keys(hash)

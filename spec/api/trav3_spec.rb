@@ -115,6 +115,39 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#cron' do
+    context 'on a branch' do
+      it 'creates a cron job' do
+        c = t.cron(branch_name: 'master', create: { 'interval' => 'weekly' })
+        expect(c).to be_an_instance_of Trav3::Success
+      end
+
+      it 'gets a cron job' do
+        c = t.cron(branch_name: 'master')
+        expect(c).to be_an_instance_of Trav3::Success
+      end
+    end
+
+    context 'for a specific cron' do
+      it 'finds a cron' do
+        c = t.cron(id: 78_199)
+        expect(c).to be_an_instance_of Trav3::Success
+      end
+
+      it 'deletes a cron' do
+        c = t.cron(id: 78_199, delete: true)
+        expect(c).to be_an_instance_of Trav3::Success
+      end
+    end
+  end
+
+  describe '#crons' do
+    it 'gets crons for an individual repository' do
+      crons = t.crons
+      expect(crons).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#email_resubscribe' do
     it 'resubscribes to receiving email for build status' do
       sub = t.email_resubscribe
