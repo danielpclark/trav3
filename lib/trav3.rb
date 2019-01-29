@@ -1086,12 +1086,7 @@ module Trav3
     # @param create [Hash] Optional argument.  A hash of the `name`, `value`, and `public` visibleness for a env var to create
     # @return [Success, RequestError]
     def env_vars(create = nil)
-      if create
-        validate_env_var create
-
-        return create("#{with_repo}/env_vars", env_var_keys(create))
-      end
-
+      create and return create("#{with_repo}/env_vars", env_var_keys(create))
       get("#{with_repo}/env_vars")
     end
 
@@ -2745,6 +2740,7 @@ module Trav3
     end
 
     def inject_property_name(name, hash)
+      raise TypeError, "Hash expected, #{input.class} given" unless hash.is_a? Hash
       return hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/\A#{name}\.\w+\z/)
 
       hash
@@ -2773,20 +2769,6 @@ module Trav3
     def validate_api_endpoint(input)
       raise InvalidAPIEndpoint unless /^https:\/\/api\.travis-ci\.(?:org|com)$/.match? input
     end
-
-    # rubocop:disable Metrics/CyclomaticComplexity
-    def validate_env_var(input)
-      raise TypeError, "Hash expected, #{input.class} given" unless input.is_a? Hash
-      raise EnvVarError unless input.all? do |k, v|
-        k.match?(/name|value|public/) &&
-        case k.to_s
-        when /name/ then v.is_a? String
-        when /value/ then v.is_a? String
-        when /public/ then [true, false].include? v
-        end
-      end
-    end
-    # rubocop:enable Metrics/CyclomaticComplexity
 
     def validate_number(input)
       raise TypeError, "Integer expected, #{input.class} given" unless number? input
