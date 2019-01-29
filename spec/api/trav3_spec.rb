@@ -299,9 +299,12 @@ RSpec.describe Trav3::Travis, :vcr do
       expect(job).to be_an_instance_of Trav3::Success
     end
 
-    it 'fails to use debug mode on the .org of Travis CI' do
-      job = t.job(351_778_875, :debug)
-      expect(job).to be_an_instance_of Trav3::RequestError
+    it 'use debug mode on job' do
+      t.api_endpoint = 'https://api.travis-ci.com'
+      t.authorization = 'xxxx'
+
+      job = t.job(173_173_524, :debug)
+      expect(job).to be_an_instance_of Trav3::Success
     end
   end
 

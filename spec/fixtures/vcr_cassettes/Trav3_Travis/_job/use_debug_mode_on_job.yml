@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.travis-ci.org/job/351778875/debug
+    uri: https://api.travis-ci.com/job/173173524/debug
     body:
       encoding: UTF-8
       string: ''
@@ -21,15 +21,15 @@ http_interactions:
       - token xxxx
   response:
     status:
-      code: 403
-      message: Forbidden
+      code: 202
+      message: Accepted
     headers:
       Connection:
       - keep-alive
       Server:
       - nginx
       Date:
-      - Fri, 11 Jan 2019 21:14:24 GMT
+      - Tue, 29 Jan 2019 23:03:03 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -42,10 +42,8 @@ http_interactions:
       - public,private
       Vary:
       - Accept-Encoding
-      X-Rack-Cache:
-      - invalidate, pass
       X-Request-Id:
-      - 9aed5e82-9006-410d-b66e-5dbdebbf8f8a
+      - 2a8b7533-df2e-4a25-82d8-c4f84062591d
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -58,10 +56,16 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |-
         {
-          "@type": "error",
-          "error_type": "wrong_credentials",
-          "error_message": "access denied"
+          "@type": "pending",
+          "job": {
+            "@type": "job",
+            "@href": "/job/173173524",
+            "@representation": "minimal",
+            "id": 173173524
+          },
+          "state_change": "created",
+          "resource_type": "job"
         }
     http_version: 
-  recorded_at: Fri, 11 Jan 2019 21:14:24 GMT
+  recorded_at: Tue, 29 Jan 2019 23:03:03 GMT
 recorded_with: VCR 4.0.0
