@@ -6,7 +6,3 @@ checks:
   method-count:
     config:
       threshold: 100
-
-plugins:
-  rubocop:
-    enabled: true
