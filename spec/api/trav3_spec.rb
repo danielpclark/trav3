@@ -40,6 +40,18 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#beta_features' do
+    before do
+      t.api_endpoint = 'https://api.travis-ci.com'
+      t.authorization = 'xxxx'
+    end
+
+    it 'gets the beta features for a user' do
+      bf = t.beta_features(119_240)
+      expect(bf).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#branch' do
     it 'gets the branch for the current repository' do
       branch = t.branch('master')

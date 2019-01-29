@@ -154,6 +154,38 @@ module Trav3
       get("#{without_repo}/owner/#{owner}/active")
     end
 
+    # A list of beta features. Beta features are new Travis CI features in beta mode. They can be toggled on or off via the API or on this page on our site: https://travis-ci.com/features
+    #
+    # ## Attributes
+    #
+    #     Name           Type            Description
+    #     beta_features  [Beta feature]  List of beta_features.
+    #
+    # ## Actions
+    #
+    # **Find**
+    #
+    # This will return a list of beta features available to a user.
+    #
+    # GET <code>/user/{user.id}/beta_features</code>
+    #
+    #     Template Variable  Type     Description
+    #     user.id            Integer  Value  uniquely identifying the user.
+    #     Query Parameter  Type      Description
+    #     include          [String]  List of attributes to eager load.
+    #
+    #     Example: GET /user/119240/beta_features
+    #
+    # @note requests require an authorization token set in the headers. See: {authorization=}
+    #
+    # @param user_id [String, Integer] user id
+    # @return [Success, RequestError]
+    def beta_features(user_id)
+      validate_number user_id
+
+      get("#{without_repo}/user/#{user_id}/beta_features")
+    end
+
     # The branch of a GitHub repository. Useful for obtaining information about the last build on a given branch.
     #
     # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
