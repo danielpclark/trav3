@@ -40,6 +40,41 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#beta_feature' do
+    before do
+      t.api_endpoint = 'https://api.travis-ci.com'
+      t.authorization = 'xxxx'
+    end
+
+    it 'updates and enables a beta feature' do
+      bf = t.beta_feature(:enable, 3, 119_240)
+      expect(bf).to be_an_instance_of Trav3::Success
+    end
+
+    it 'updates and disables a beta feature' do
+      bf = t.beta_feature(:disable, 3, 119_240)
+      expect(bf).to be_an_instance_of Trav3::Success
+    end
+
+    it 'deletes a beta feature' do
+      t.beta_feature(:enable, 2, 119_240)
+      bf = t.beta_feature(:delete, 2, 119_240)
+      expect(bf).to be_an_instance_of Trav3::Success
+    end
+  end
+
+  describe '#beta_features' do
+    before do
+      t.api_endpoint = 'https://api.travis-ci.com'
+      t.authorization = 'xxxx'
+    end
+
+    it 'gets the beta features for a user' do
+      bf = t.beta_features(119_240)
+      expect(bf).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#branch' do
     it 'gets the branch for the current repository' do
       branch = t.branch('master')
