@@ -65,6 +65,7 @@ in url requests.
 
 The client has the full API implemented.  Here are the methods.
 
+| | | |
 |-----|-----|-----|
 | [`#active`](http://danielpclark.github.io/trav3/Trav3/Travis.html#active-instance_method) | [`#beta_feature`](http://danielpclark.github.io/trav3/Trav3/Travis.html#beta_feature-instance_method) | [`#beta_features`](http://danielpclark.github.io/trav3/Trav3/Travis.html#beta_features-instance_method) |
 | [`#branch`](http://danielpclark.github.io/trav3/Trav3/Travis.html#branch-instance_method) | [`#branches`](http://danielpclark.github.io/trav3/Trav3/Travis.html#branches-instance_method) | [`#broadcasts`](http://danielpclark.github.io/trav3/Trav3/Travis.html#broadcasts-instance_method) |
