@@ -54,6 +54,13 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#broadcasts' do
+    it 'gets broadcasts for the current user' do
+      broadcasts = t.broadcasts
+      expect(broadcasts).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#build' do
     it 'gets build info' do
       build = t.build(351_778_872)

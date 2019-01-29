@@ -281,6 +281,47 @@ module Trav3
       get("#{with_repo}/branches#{opts}")
     end
 
+    # A list of broadcasts for the current user.
+    #
+    # ## Attributes
+    #
+    #     Name        Type         Description
+    #     broadcasts  [Broadcast]  List of broadcasts.
+    #
+    # **Collection Items**
+    #
+    # Each entry in the broadcasts array has the following attributes:
+    #
+    #     Name        Type     Description
+    #     id          Integer  Value uniquely identifying the broadcast.
+    #     message     String   Message to display to the user.
+    #     created_at  String   When the broadcast was created.
+    #     category    String   Broadcast category (used for icon and color).
+    #     active      Boolean  Whether or not the brodacast should still be displayed.
+    #     recipient   Object   Either a user, organization or repository, or null for global.
+    #
+    # ## Actions
+    #
+    # **For Current User**
+    #
+    # This will return a list of broadcasts for the current user.
+    #
+    # GET <code>/broadcasts</code>
+    #
+    #     Query Parameter   Type       Description
+    #     active            [Boolean]  Alias for broadcast.active.
+    #     broadcast.active  [Boolean]  Filters broadcasts by whether or not the brodacast should still be displayed.
+    #     include           [String]   List of attributes to eager load.
+    #
+    #     Example: GET /broadcasts
+    #
+    # @note requests require an authorization token set in the headers. See: {authorization=}
+    #
+    # @return [Success, RequestError]
+    def broadcasts
+      get("#{without_repo}/broadcasts")
+    end
+
     # An individual build.
     #
     # ## Attributes
