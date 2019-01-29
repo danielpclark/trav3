@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://api.travis-ci.com/user/119240/beta_feature/2
+    body:
+      encoding: UTF-8
+      string: '{"beta_feature.id":2,"beta_feature.enabled":true}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 Jan 2019 18:33:18 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::BetaFeature::Update
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 283f411c-c2b7-4095-8dbf-c6c9d214c4d4
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "beta_feature",
+          "@representation": "standard",
+          "id": 2,
+          "name": "pride",
+          "description": "We deeply care about diversity, and strive to be an inclusive organisation. Show your pride (or your solidarity).",
+          "enabled": true,
+          "feedback_url": null
+        }
+    http_version: 
+  recorded_at: Tue, 29 Jan 2019 18:33:18 GMT
+- request:
+    method: delete
+    uri: https://api.travis-ci.com/user/119240/beta_feature/2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 Jan 2019 18:33:18 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::BetaFeature::Delete
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 173a1568-cd4b-4be5-a173-9861afec5ef4
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "beta_feature",
+          "@representation": "standard",
+          "id": 2,
+          "name": "pride",
+          "description": "We deeply care about diversity, and strive to be an inclusive organisation. Show your pride (or your solidarity).",
+          "enabled": true,
+          "feedback_url": null
+        }
+    http_version: 
+  recorded_at: Tue, 29 Jan 2019 18:33:18 GMT
+recorded_with: VCR 4.0.0

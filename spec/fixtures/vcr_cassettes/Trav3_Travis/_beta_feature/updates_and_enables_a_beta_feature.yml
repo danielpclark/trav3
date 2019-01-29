@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: patch
+    uri: https://api.travis-ci.com/user/119240/beta_feature/3
+    body:
+      encoding: UTF-8
+      string: '{"beta_feature.id":3,"beta_feature.enabled":true}'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 Jan 2019 18:30:34 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::BetaFeature::Update
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      X-Request-Id:
+      - 9a90007d-1be7-4370-9acb-c1d93b5ca680
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "beta_feature",
+          "@representation": "standard",
+          "id": 3,
+          "name": "comic-sans",
+          "description": "You can't usually see it much around here, but deep in our hearts, we will always treasure Comic Sans (the font that was all over the internet back in the 90s). If you feel the same way, this is your chance to bring some Comic Sans to your Travis CI.",
+          "enabled": true,
+          "feedback_url": null
+        }
+    http_version: 
+  recorded_at: Tue, 29 Jan 2019 18:30:34 GMT
+recorded_with: VCR 4.0.0

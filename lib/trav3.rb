@@ -154,6 +154,70 @@ module Trav3
       get("#{without_repo}/owner/#{owner}/active")
     end
 
+    # A beta feature (a Travis-CI feature currently in beta).
+    #
+    # ## Attributes
+    #
+    #     Name          Type     Description
+    #     id            Integer  Value uniquely identifying the beta feature.
+    #     name          String   The name of the feature.
+    #     description   String   Longer description of the feature.
+    #     enabled       Boolean  Indicates if the user has this feature turned on.
+    #     feedback_url  String   Url for users to leave Travis CI feedback on this feature.
+    #
+    # ## Actions
+    #
+    # **Update**
+    #
+    # This will update a user's beta_feature.
+    #
+    # Use namespaced params in the request body to pass the `enabled` value (either true or false):
+    #
+    # ```bash
+    # curl -X PATCH \
+    #   -H "Content-Type: application/json" \
+    #   -H "Travis-API-Version: 3" \
+    #   -H "Authorization: token xxxxxxxxxxxx" \
+    #   -d '{"beta_feature.enabled":true}' \
+    #   https://api.travis-ci.com/user/1234/{beta_feature.id}
+    # ```
+    #
+    # PATCH <code>/user/{user.id}/beta_feature/{beta_feature.id}</code>
+    #
+    #     Template Variable     Type     Description
+    #     user.id               Integer  Value uniquely identifying the user.
+    #     beta_feature.id       Integer  Value uniquely identifying the beta feature.
+    #     Accepted Parameter    Type     Description
+    #     beta_feature.id       Integer  Value uniquely identifying the beta feature.
+    #     beta_feature.enabled  Boolean  Indicates if the user has this feature turned on.
+    #
+    # **Delete**
+    #
+    # This will delete a user's beta feature.
+    #
+    # DELETE <code>/user/{user.id}/beta_feature/{beta_feature.id}</code>
+    #
+    #     Template Variable  Type     Description
+    #     user.id            Integer  Value uniquely identifying the user.
+    #     beta_feature.id    Integer  Value uniquely identifying the beta feature.
+    #
+    # @param action [Symbol] either `:enable`, `:disable` or `:delete`
+    # @param beta_feature_id [String, Integer] id for the beta feature
+    # @param user_id [String] user id
+    # @return [Success, RequestError]
+    def beta_feature(action, beta_feature_id, user_id)
+      validate_number beta_feature_id
+      validate_number user_id
+
+      if action != :delete
+        params = { 'beta_feature.id' => beta_feature_id, 'beta_feature.enabled' => action == :enable }
+
+        patch("#{without_repo}/user/#{user_id}/beta_feature/#{beta_feature_id}", params)
+      else
+        delete("#{without_repo}/user/#{user_id}/beta_feature/#{beta_feature_id}")
+      end
+    end
+
     # A list of beta features. Beta features are new Travis CI features in beta mode. They can be toggled on or off via the API or on this page on our site: https://travis-ci.com/features
     #
     # ## Attributes
