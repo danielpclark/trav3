@@ -37,7 +37,6 @@ module Trav3
 
       initial_defaults
     end
-    # rubocop:disable Lint/Void
 
     # Set as the API endpoint
     #
@@ -45,10 +44,7 @@ module Trav3
     # @return [Travis]
     def api_endpoint=(endpoint)
       validate_api_endpoint endpoint
-
       @api_endpoint = endpoint
-
-      self
     end
 
     # Set the authorization token in the requests' headers
@@ -58,7 +54,6 @@ module Trav3
     def authorization=(token)
       validate_string token
       h('Authorization': "token #{token}")
-      self
     end
 
     # Set as many options as you'd like for collections queried via an API request
@@ -92,9 +87,7 @@ module Trav3
     def repository=(repo_name)
       validate_repo_format repo_name
       @repo = sanitize_repo_name repo_name
-      self
     end
-    # rubocop:enable Lint/Void
 
     # Please Note that the naming of this endpoint may be changed. Our naming convention for this information is in flux. If you have suggestions for how this information should be presented please leave us feedback by commenting in this issue here or emailing support support@travis-ci.com.
     #
@@ -2862,7 +2855,7 @@ module Trav3
     end
 
     def get_path_with_opts(url)
-      url, opt = url.match(/(.+)\?(.*)/)&.captures || url
+      url, opt = url.match(/^(.+)\?(.*)$/)&.captures || url
       opts.immutable do |o|
         o.send(:update, opt)
         get_path("#{url}#{opts}")
@@ -2878,7 +2871,7 @@ module Trav3
 
     def inject_property_name(name, hash)
       raise TypeError, "Hash expected, #{input.class} given" unless hash.is_a? Hash
-      return hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/\A#{name}\.\w+\z/)
+      return hash.map { |k, v| ["#{name}.#{k}", v] }.to_h unless hash.keys.first.match?(/^#{name}\.\w+$/)
 
       hash
     end

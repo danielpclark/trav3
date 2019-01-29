@@ -5,7 +5,7 @@ require 'forwardable'
 module Trav3
   class Headers
     extend Forwardable
-    def_delegators :@heads, :each_pair
+    def_delegators :@heads, :each_pair, :fetch
 
     def initialize(args = {})
       build(args)

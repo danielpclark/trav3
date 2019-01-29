@@ -6,14 +6,31 @@ RSpec.describe Trav3::Travis, :vcr do
   let(:t) { build :travis }
 
   describe '#new' do
-    it 'returns a valid instance with good repo name' do
-      expect(t).to be_an_instance_of Trav3::Travis
-      expect(t.send(:repository_name)).to eq 'danielpclark%2Ftrav3'
+    context 'happy path' do
+      it 'returns a valid instance' do
+        expect(t).to be_an_instance_of Trav3::Travis
+      end
+
+      it 'has good repo name' do
+        expect(t.send(:repository_name)).to eq 'danielpclark%2Ftrav3'
+      end
+
+      it 'has default headers' do
+        accept = t.headers.fetch(:Accept)
+        expect(accept).to eql('application/json')
+      end
+
+      it 'has default options' do
+        limit = t.options.fetch(:limit)
+        expect(limit).to eql('limit=25')
+      end
     end
 
-    let(:travis) { Trav3::Travis.new('asdf-asdf') }
-    it 'raises Trav3::InvalidRepository when invalid' do
-      expect { travis }.to raise_error(Trav3::InvalidRepository, /invlaid/)
+    context 'unhappy path' do
+      let(:travis) { Trav3::Travis.new('asdf-asdf') }
+      it 'raises Trav3::InvalidRepository when invalid' do
+        expect { travis }.to raise_error(Trav3::InvalidRepository, /invlaid/)
+      end
     end
   end
 
@@ -25,6 +42,22 @@ RSpec.describe Trav3::Travis, :vcr do
 
     it 'raises on invalid API endpoint' do
       expect { t.api_endpoint = 'https://asdf.qwerty' }.to raise_error(Trav3::InvalidAPIEndpoint, /API/)
+    end
+  end
+
+  describe '#defaults' do
+    it 'also sets options via kwargs' do
+      t.defaults(asdf: :qwerty)
+      o = t.options.fetch(:asdf)
+      expect(o).to eql('asdf=qwerty')
+    end
+  end
+
+  describe '#h' do
+    it 'also sets headers via kwargs' do
+      t.h(asdf: :qwerty)
+      h = t.headers.fetch(:asdf)
+      expect(h).to eql(:qwerty)
     end
   end
 
