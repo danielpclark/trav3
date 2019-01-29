@@ -90,6 +90,7 @@ module Trav3
     end
 
     # Add the values of one `Options` into another
+    #
     # @param other [Options] instance of `Options`
     # @return [Options]
     def +(other)
