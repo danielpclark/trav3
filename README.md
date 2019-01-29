@@ -31,32 +31,93 @@ Or install it yourself as:
 
 ## Usage
 
-    require 'trav3'
-    project = Trav3::Travis.new("name/example")
-    project.owner
-    project.owner("owner")
-    project.repositories
-    project.repositories("owner")
-    project.repository
-    project.repository("owner/repo")
-    project.builds
-    project.build(12345)
-    project.build_jobs(12345)
-    project.job(1234)
-    project.log(1234)
-    
-    # API Request Options
-    project.defaults(limit: 25)
-    
-    # Pagination
-    builds = project.builds
-    builds.page.next
-    builds.page.first
-    builds.page.last
-    
-    # Recommended inspection
-    builds.keys
-    builds.dig("some_key")
+You can get started with the following.
+
+```ruby
+require 'trav3'
+project = Trav3::Travis.new("name/example")
+```
+
+When you instantiate an instance of [Trav3::Travis](http://danielpclark.github.io/trav3/Trav3/Travis.html)
+you get some default headers and default options.
+
+#### Default Options
+
+* `limit: 25` — for limiting data queries to 25 items at most
+
+Options can be changed via the `#options` getter method which will give you a
+[Trav3::Options](http://danielpclark.github.io/trav3/Trav3/Options.html) instance.
+All changes to it affect the options that the `Trav3::Travis` instance will submit
+in url requests.
+
+#### Default Headers
+
+* `'Content-Type': 'application/json'`
+* `'Accept': 'application/json'`
+* `'Travis-API-Version': 3`
+
+Headers can be changed via the `#headers` getter method which will give you a
+[Trav3::Headers](http://danielpclark.github.io/trav3/Trav3/Headers.html) instance.
+All changes to it affect the headers that the `Trav3::Travis` instance will submit
+in url requests.
+
+## API
+
+The client has the full API implemented.  Here are the methods.
+
+| | | |
+|-----|-----|-----|
+| [`#active`](http://danielpclark.github.io/trav3/Trav3/Travis.html#active-instance_method) | [`#beta_feature`](http://danielpclark.github.io/trav3/Trav3/Travis.html#beta_feature-instance_method) | [`#beta_features`](http://danielpclark.github.io/trav3/Trav3/Travis.html#beta_features-instance_method) |
+| [`#branch`](http://danielpclark.github.io/trav3/Trav3/Travis.html#branch-instance_method) | [`#branches`](http://danielpclark.github.io/trav3/Trav3/Travis.html#branches-instance_method) | [`#broadcasts`](http://danielpclark.github.io/trav3/Trav3/Travis.html#broadcasts-instance_method) |
+| [`#build`](http://danielpclark.github.io/trav3/Trav3/Travis.html#build-instance_method) | [`#builds`](http://danielpclark.github.io/trav3/Trav3/Travis.html#builds-instance_method) | [`#build_jobs`](http://danielpclark.github.io/trav3/Trav3/Travis.html#build_jobs-instance_method) |
+| [`#caches`](http://danielpclark.github.io/trav3/Trav3/Travis.html#caches-instance_method) | [`#cron`](http://danielpclark.github.io/trav3/Trav3/Travis.html#cron-instance_method) | [`#crons`](http://danielpclark.github.io/trav3/Trav3/Travis.html#crons-instance_method) |
+| [`#email_resubscribe`](http://danielpclark.github.io/trav3/Trav3/Travis.html#email_resubscribe-instance_method) | [`#email_unsubscribe`](http://danielpclark.github.io/trav3/Trav3/Travis.html#email_unsubscribe-instance_method) | [`#env_var`](http://danielpclark.github.io/trav3/Trav3/Travis.html#env_var-instance_method) |
+| [`#env_vars`](http://danielpclark.github.io/trav3/Trav3/Travis.html#env_vars-instance_method) | [`#installation`](http://danielpclark.github.io/trav3/Trav3/Travis.html#installation-instance_method) | [`#job`](http://danielpclark.github.io/trav3/Trav3/Travis.html#job-instance_method) |
+| [`#key_pair`](http://danielpclark.github.io/trav3/Trav3/Travis.html#key_pair-instance_method) | [`#key_pair_generated`](http://danielpclark.github.io/trav3/Trav3/Travis.html#key_pair_generated-instance_method) | [`#lint`](http://danielpclark.github.io/trav3/Trav3/Travis.html#lint-instance_method) |
+| [`#log`](http://danielpclark.github.io/trav3/Trav3/Travis.html#log-instance_method) | [`#messages`](http://danielpclark.github.io/trav3/Trav3/Travis.html#messages-instance_method) | [`#organization`](http://danielpclark.github.io/trav3/Trav3/Travis.html#organization-instance_method) |
+| [`#organizations`](http://danielpclark.github.io/trav3/Trav3/Travis.html#organizations-instance_method) | [`#owner`](http://danielpclark.github.io/trav3/Trav3/Travis.html#owner-instance_method) | [`#preference`](http://danielpclark.github.io/trav3/Trav3/Travis.html#preference-instance_method) |
+| [`#preferences`](http://danielpclark.github.io/trav3/Trav3/Travis.html#preferences-instance_method) | [`#repositories`](http://danielpclark.github.io/trav3/Trav3/Travis.html#repositories-instance_method) | [`#repository`](http://danielpclark.github.io/trav3/Trav3/Travis.html#repository-instance_method) |
+| [`#request`](http://danielpclark.github.io/trav3/Trav3/Travis.html#request-instance_method) | [`#requests`](http://danielpclark.github.io/trav3/Trav3/Travis.html#requests-instance_method) | [`#stages`](http://danielpclark.github.io/trav3/Trav3/Travis.html#stages-instance_method) |
+| [`#setting`](http://danielpclark.github.io/trav3/Trav3/Travis.html#setting-instance_method) | [`#settings`](http://danielpclark.github.io/trav3/Trav3/Travis.html#settings-instance_method) | [`#user`](http://danielpclark.github.io/trav3/Trav3/Travis.html#user-instance_method) |
+
+
+**General Usage**
+
+```ruby
+project.owner
+project.owner("owner")
+project.repositories
+project.repositories("owner")
+project.repository
+project.repository("owner/repo")
+project.builds
+project.build(12345)
+project.build_jobs(12345)
+project.job(1234)
+project.log(1234)
+
+# API Request Options
+project.options.build({limit: 25})
+
+# Pagination
+builds = project.builds
+builds.page.next
+builds.page.first
+builds.page.last
+
+# Recommended inspection
+builds.keys
+builds.dig("some_key")
+```
+
+#### Follow
+
+Each request returns a `Trav3::Response` type of either `Trav3::Success` or `Trav3::RequestError`.
+When you have an instance of `Trav3::Success` each response collection of either `Hash` or `Array` will
+be an instance of `Trav3::ResponseCollection`.  If the `#hash?` method responds as `true` the `#follow`
+method will follow any immediate `@href` link provided in the collection.  If `#hash?` produces `false`
+then the collection is an Array of items and you may use the index of the item you want to follow the
+`@href` with; like so `#follow(3)`.
 
 ## Development
 

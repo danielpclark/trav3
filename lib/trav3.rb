@@ -42,7 +42,7 @@ module Trav3
     # Set as the API endpoint
     #
     # @param endpoint [String] name for value to set
-    # @return [self]
+    # @return [Travis]
     def api_endpoint=(endpoint)
       validate_api_endpoint endpoint
 
@@ -54,7 +54,7 @@ module Trav3
     # Set the authorization token in the requests' headers
     #
     # @param token [String] sets authorization token header
-    # @return [self]
+    # @return [Travis]
     def authorization=(token)
       validate_string token
       h('Authorization': "token #{token}")
@@ -66,7 +66,7 @@ module Trav3
     # @overload defaults(key: value, ...)
     #   @param key [Symbol] name for value to set
     #   @param value [Symbol, String, Integer] value for key
-    # @return [self]
+    # @return [Travis]
     def defaults(**args)
       (@options ||= Options.new).build(args)
       self
@@ -79,7 +79,7 @@ module Trav3
     # @overload h(key: value, ...)
     #   @param key [Symbol] name for value to set
     #   @param value [Symbol, String, Integer] value for key
-    # @return [self]
+    # @return [Travis]
     def h(**args)
       (@headers ||= Headers.new).build(args)
       self
@@ -88,7 +88,7 @@ module Trav3
     # Change the repository this instance of `Trav3::Travis` uses.
     #
     # @param repo_name [String] github_username/repository_name
-    # @return [self]
+    # @return [Travis]
     def repository=(repo_name)
       validate_repo_format repo_name
       @repo = sanitize_repo_name repo_name

@@ -11,6 +11,9 @@ module Trav3
       build(args)
     end
 
+    # Add or update the request headers
+    #
+    # @return [Headers] self
     def build(args = {})
       @heads ||= {}
 
@@ -21,10 +24,18 @@ module Trav3
       self
     end
 
+    # Remove key/value from headers via key
+    #
+    # @param key [Symbol, String] key to look up
+    # @return [String, Symbol, nil] returns value if key found, `nil` otherwise.
     def remove(key)
       @heads.delete(key)
     end
 
+    # Add the values of one `Headers` into another
+    #
+    # @param other [Headers] instance of `Headers`
+    # @return [Headers]
     def +(other)
       raise TypeError, "Headers type expected, #{other.class} given" unless other.is_a? Headers
 
@@ -33,6 +44,7 @@ module Trav3
       self
     end
 
+    # @return [Hash] hash of the `Headers`
     def to_h
       @heads
     end
