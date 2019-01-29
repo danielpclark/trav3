@@ -48,6 +48,13 @@ module Trav3
       self[0]
     end
 
+    # Follows `@href` link within item.
+    # If `#hash?` returns `true` then `#follow` takes no parameters.
+    # If `#hash?` returns `false` then `#follow` takes an index parameter
+    #   for which item in the Array you wish to follow.
+    #
+    # @param idx [Integer] (optional parameter) index of array of item to follow `@href` url from
+    # @return [Success, RequestError]
     def follow(idx = nil)
       if href? && !idx
         url = collection.fetch('@href')

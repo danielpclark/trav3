@@ -34,7 +34,7 @@ module Trav3
     # Fetch the `key=value`
     #
     # @param [Symbol, String] key of the key/value pair to fetch
-    # @return [String] 
+    # @return [String]
     def fetch(key)
       @opts.each do |item|
         return item if key.to_s == split.call(item).first
@@ -48,7 +48,7 @@ module Trav3
     # Fetch and remove `key=value`.  Modifies `Options`.
     #
     # @param [Symbol, String] key of the key/value pair to fetch
-    # @return [String] 
+    # @return [String]
     def fetch!(key, &block)
       result = fetch(key, &block)
       remove(key)
