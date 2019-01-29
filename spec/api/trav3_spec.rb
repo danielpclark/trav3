@@ -520,10 +520,9 @@ RSpec.describe Trav3::Travis, :vcr do
       expect(user).to be_an_instance_of Trav3::Success
     end
 
-    it "method not allowed for syncing a user's account with Github" do
+    it 'sync a user account with Github' do
       user = t.user(114_816, :sync)
-      expect(user).to be_an_instance_of Trav3::RequestError
-      expect(user['error_message']).to eq 'method not allowed'
+      expect(user).to be_an_instance_of Trav3::Success
     end
 
     it 'gets the current user' do

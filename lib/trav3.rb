@@ -2824,7 +2824,7 @@ module Trav3
 
       validate_number user_id
 
-      sync and return get("#{without_repo}/user/#{user_id}/sync")
+      sync and return post("#{without_repo}/user/#{user_id}/sync")
       get("#{without_repo}/user/#{user_id}")
     end
 

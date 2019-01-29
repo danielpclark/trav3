@@ -1,10 +1,10 @@
 ---
 http_interactions:
 - request:
-    method: get
+    method: post
     uri: https://api.travis-ci.org/user/114816/sync
     body:
-      encoding: US-ASCII
+      encoding: UTF-8
       string: ''
     headers:
       Accept-Encoding:
@@ -21,31 +21,31 @@ http_interactions:
       - token xxxx
   response:
     status:
-      code: 405
-      message: Method Not Allowed
+      code: 200
+      message: OK
     headers:
       Connection:
       - keep-alive
       Server:
       - nginx
       Date:
-      - Mon, 14 Jan 2019 20:18:39 GMT
+      - Tue, 29 Jan 2019 22:56:01 GMT
       Content-Type:
-      - text/html;charset=utf-8
+      - application/json
       Transfer-Encoding:
       - chunked
       Strict-Transport-Security:
       - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::User::Sync
       X-Oauth-Scopes:
       - public,private
       Vary:
       - Accept-Encoding
-      Cache-Control:
-      - private
       X-Rack-Cache:
-      - miss
+      - invalidate, pass
       X-Request-Id:
-      - f476ba59-3520-444d-a284-0b230b99a4da
+      - 5ff4af97-7773-41da-9836-f3eb1f7d91cf
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -58,10 +58,23 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |-
         {
-          "@type": "error",
-          "error_type": "method_not_allowed",
-          "error_message": "method not allowed"
+          "@type": "user",
+          "@href": "/user/114816",
+          "@representation": "standard",
+          "@permissions": {
+            "read": true,
+            "sync": true
+          },
+          "id": 114816,
+          "login": "danielpclark",
+          "name": "Daniel P. Clark",
+          "github_id": 319081,
+          "avatar_url": "https://avatars1.githubusercontent.com/u/319081?v=4",
+          "education": false,
+          "allow_migration": false,
+          "is_syncing": true,
+          "synced_at": "2019-01-29T22:55:23Z"
         }
     http_version: 
-  recorded_at: Mon, 14 Jan 2019 20:18:39 GMT
+  recorded_at: Tue, 29 Jan 2019 22:56:01 GMT
 recorded_with: VCR 4.0.0
