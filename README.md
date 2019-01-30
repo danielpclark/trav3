@@ -8,9 +8,15 @@
 
 # Trav3
 
-A simple abstraction layer for Travis CI API v3. The results from queries return either `Success`
-or `RequestError` which both repsond with Hash like query methods for the JSON data or the Net::HTTP
-resonse object methods.
+A simple abstraction layer for Travis CI API v3.
+
+The benefits of this library over the official gem are:
+
+* No gem dependencies
+* Designed much like the API documentation
+* Handling the returned data is the same for nearly every response
+
+The results from queries return either `Success` or `RequestError` which both repsond with Hash like query methods for the JSON data or the Net::HTTP resonse object methods.
 
 
 ## Installation
