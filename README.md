@@ -15,9 +15,7 @@ The benefits of this library over the official gem are:
 * No gem dependencies
 * Designed much like the API documentation
 * Handling the returned data is the same for nearly every response
-
-The results from queries return either `Success` or `RequestError` which both repsond with Hash like query methods for the JSON data or the Net::HTTP resonse object methods.
-
+* Little to no learning curve
 
 ## Installation
 
@@ -116,11 +114,64 @@ builds.keys
 builds.dig("some_key")
 ```
 
-#### Follow
+## Response
 
-Each request returns a `Trav3::Response` type of either `Trav3::Success` or `Trav3::RequestError`.
-When you have an instance of `Trav3::Success` each response collection of either `Hash` or `Array` will
-be an instance of `Trav3::ResponseCollection`.  If the `#hash?` method responds as `true` the `#follow`
+The results from queries return either `Success` or `RequestError` which both repsond with Hash like query methods for the JSON data or the Net::HTTP resonse object methods.
+
+The `Response` classes `Success` and `RequestError` forward method calls for all of the instance methods of a `ResponseCollection` to the collection.  And for the actual Net::HTTP response the following methods are forwarded from these classes to it:
+
+* `#code`
+* `#code_type`
+* `#uri`
+* `#message`
+* `#read_header`
+* `#header`
+* `#value`
+* `#entity`
+* `#response`
+* `#body`
+* `#decode_content`
+* `#msg`
+* `#reading_body`
+* `#read_body`
+* `#http_version`
+* `#connection_close?`
+* `#connection_keep_alive?`
+* `#initialize_http_header`
+* `#get_fields`
+* `#each_header`
+
+The keys for the response are displayed with `#inspect` along with the object.  Opening up any of the items from its key will produce a [`ResponseCollection`](http://danielpclark.github.io/trav3/Trav3/ResponseCollection.html) object that behaves like both an Array or Hash and has a method to [follow](https://github.com/danielpclark/trav3#follow) response links.
+
+`ResponseCollection` uniformly implements:
+
+* `#[]`
+* `#dig`
+* `#each`
+* `#fetch`
+* `#first`
+* `#follow`
+* `#hash?`
+* `#last`
+
+Which each behave as they would on the collection type per collection type, `Hash` or `Array`, with the exception of `#each`.  `#each` will wrap every item in an `Array` with another `ResponseCollection`, but if it's a `Hash` then `#each` simply works as it normally would on a `Hash`
+
+`ResponseCollection` also forwards:
+
+* `#count`
+* `#keys`
+* `#values`
+* `#has_key?`
+* `#key?`
+* `empty?`
+
+to the inner collection.
+
+## Follow
+
+Each request returns a `Response` type of either `Success` or `RequestError`.
+When you have an instance of `Success` each response collection of either `Hash` or `Array` will
+be an instance of `ResponseCollection`.  If the `#hash?` method responds as `true` the `#follow`
 method will follow any immediate `@href` link provided in the collection.  If `#hash?` produces `false`
 then the collection is an Array of items and you may use the index of the item you want to follow the
 `@href` with; like so `#follow(3)`.
