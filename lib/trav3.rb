@@ -1520,6 +1520,13 @@ module Trav3
     #
     #     Example: GET /repo/891/env_vars
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_vars
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/env_vars</code>
     #
     #     Template Variable  Type    Description
@@ -1528,6 +1535,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/env_vars
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_vars
+    # ```
     #
     # **Create**
     #
@@ -1542,6 +1556,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "env_var.name": "FOO", "env_var.value": "bar", "env_var.public": false }' \
     #   https://api.travis-ci.com/repo/1234/env_vars
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_vars(name: 'FOO', value: 'bar', public: false)
     # ```
     #
     # POST <code>/repo/{repository.id}/env_vars</code>
