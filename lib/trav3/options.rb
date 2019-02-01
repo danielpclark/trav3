@@ -111,7 +111,7 @@ module Trav3
       @opts.map(&split).to_h
     end
 
-    private
+    private # @private
 
     def split
       ->(entry) { entry.split('=') }
