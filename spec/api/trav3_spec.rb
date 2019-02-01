@@ -178,6 +178,11 @@ RSpec.describe Trav3::Travis, :vcr do
       build_jobs = t.build_jobs(351_778_872)
       expect(build_jobs).to be_an_instance_of Trav3::Success
     end
+
+    it 'gets jobs for user' do
+      build_jobs = t.build_jobs(false)
+      expect(build_jobs).to be_an_instance_of Trav3::Success
+    end
   end
 
   describe '#caches', vcr: { cassette_name: 'Trav3_Travis/_caches', record: :new_episodes } do

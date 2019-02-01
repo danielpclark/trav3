@@ -810,6 +810,7 @@ module Trav3
     # travis.options.build({limit: 5})
     # travis.builds
     # ```
+    #
     # @note requests may require an authorization token set in the headers. See: {authorization=}
     #
     # @param repo [Boolean] If true get repo builds, otherwise get user builds
@@ -863,6 +864,12 @@ module Trav3
     #
     #     Example: GET /build/86601346/jobs
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.build_jobs(86_601_346)
+    # ```
+    #
     # **For Current User**
     #
     # This returns a list of jobs a current user has access to.
@@ -886,10 +893,21 @@ module Trav3
     # **Sortable by:** <code>id</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is id:desc.
     #
-    # @param build_id [String, Integer] the build id number
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.build_jobs(false)
+    # ```
+    #
+    # @note requests may require an authorization token set in the headers. See: {authorization=}
+    #
+    # @param build_id [String, Integer, Boolean] the build id number.  If falsey then get all jobs for current user
     # @return [Success, RequestError]
     def build_jobs(build_id)
-      get("#{without_repo}/build/#{build_id}/jobs")
+      build_id and return get("#{without_repo}/build/#{build_id}/jobs")
+      get("#{without_repo}/jobs#{opts}")
     end
 
     # A list of caches.
