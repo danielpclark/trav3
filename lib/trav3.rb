@@ -2013,6 +2013,14 @@ module Trav3
     #
     #     Example: GET /repo/891/key_pair/generated
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/key_pair/generated</code>
     #
     #     Template Variable  Type    Description
@@ -2021,6 +2029,14 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/key_pair/generated
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated
+    # ```
     #
     # **Create**
     #
@@ -2033,12 +2049,28 @@ module Trav3
     #
     #     Example: POST /repo/891/key_pair/generated
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated(:create)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/key_pair/generated</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/key_pair/generated
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated(:create)
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
