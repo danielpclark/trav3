@@ -407,6 +407,12 @@ module Trav3
     #
     #     Example: GET /repo/891/branch/master
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.branch('master')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/branch/{branch.name}</code>
     #
     #     Template Variable  Type    Description
@@ -416,6 +422,12 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/branch/master
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.branch('master')
+    # ```
     #
     # @param name [String] the branch name for the current repository
     # @return [Success, RequestError]
