@@ -1236,6 +1236,14 @@ module Trav3
     #
     #     Example: GET /repo/891/crons?limit=5
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.crons
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/crons</code>
     #
     #     Template Variable  Type    Description
@@ -1247,9 +1255,17 @@ module Trav3
     #
     #     Example: GET /repo/rails%2Frails/crons?limit=5
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.crons
+    # ```
+    #
     # @return [Success, RequestError]
     def crons
-      get("#{with_repo}/crons")
+      get("#{with_repo}/crons#{opts}")
     end
 
     # POST <code>/repo/{repository.id}/email_subscription</code>
