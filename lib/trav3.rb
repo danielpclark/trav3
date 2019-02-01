@@ -3117,7 +3117,7 @@ module Trav3
     #
     # **Find**
     #
-    # Document `resources/request/actions/find` not found.
+    # Get the request by id for the current repository
     #
     # GET <code>/repo/{repository.id}/request/{request.id}</code>
     #
