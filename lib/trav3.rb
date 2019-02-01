@@ -346,6 +346,12 @@ module Trav3
     #
     #     Example: GET /user/119240/beta_features
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.beta_features(119_240)
+    # ```
+    #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
     # @param user_id [String, Integer] user id
