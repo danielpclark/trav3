@@ -549,6 +549,13 @@ module Trav3
     #
     #     Example: GET /broadcasts
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.broadcasts
+    # ```
+    #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
     # @return [Success, RequestError]
