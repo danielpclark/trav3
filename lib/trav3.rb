@@ -2252,6 +2252,13 @@ module Trav3
     #     limit            Integer   How many messages to include in the response. Used for pagination.
     #     offset           Integer   How many messages to skip before the first entry in the response. Used for pagination.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.messages(147_731_561)
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/request/{request.id}/messages</code>
     #
     #     Template Variable  Type     Description
@@ -2261,6 +2268,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #     limit            Integer   How many messages to include in the response. Used for pagination.
     #     offset           Integer   How many messages to skip before the first entry in the response. Used for pagination.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.messages(147_731_561)
+    # ```
     #
     # @param request_id [String, Integer] the request id
     # @return [Success, RequestError]
