@@ -17,13 +17,16 @@ module Trav3
     end
 
     def dig(*target)
-      return collection.dig(*target) if target.length != 1
+      dug, *rest = target
 
-      result = collection.dig(*target)
-      return ResponseCollection.new(travis, result) if collection?(result)
+      result = collection.dig(dug)
+      if collection?(result)
+        rc = ResponseCollection.new(travis, result) 
+        return rest.empty? ? rc : rc.dig(*rest)
+      end 
 
       result
-    end
+    end 
 
     def each(&block)
       return collection.each(&block) if hash?
