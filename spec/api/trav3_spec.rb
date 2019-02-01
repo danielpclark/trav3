@@ -413,6 +413,7 @@ RSpec.describe Trav3::Travis, :vcr do
 
   describe '#organizations' do
     it 'gets organizations for current user' do
+      t.options.reset!
       organizations = t.organizations
       expect(organizations).to be_an_instance_of Trav3::Success
     end

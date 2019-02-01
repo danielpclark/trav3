@@ -2387,9 +2387,17 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>login</code>, <code>name</code>, <code>github_id</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.organizations
+    # ```
+    #
     # @return [Success, RequestError]
     def organizations
-      get("#{without_repo}/orgs")
+      get("#{without_repo}/orgs#{opts}")
     end
 
     # This will be either a {https://developer.travis-ci.com/resource/user user} or {https://developer.travis-ci.com/resource/organization organization}.
