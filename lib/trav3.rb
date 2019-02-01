@@ -3601,6 +3601,12 @@ module Trav3
     #
     #     Example: GET /user/119240
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.user(119_240)
+    # ```
+    #
     # **Sync**
     #
     # This triggers a sync on a user's account with their GitHub account.
@@ -3612,6 +3618,13 @@ module Trav3
     #
     #     Example: POST /user/119240/sync
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.user(114_816, :sync)
+    # ```
+    #
     # **Current**
     #
     # This will return information about the current user.
@@ -3622,6 +3635,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /user
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.user
+    # ```
     #
     # @note sync feature may not be permitted
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
