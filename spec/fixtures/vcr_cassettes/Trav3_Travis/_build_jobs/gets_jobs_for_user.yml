@@ -1,0 +1,1694 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/jobs?limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 01 Feb 2019 19:51:35 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Jobs::ForCurrentUser
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 7292805f-55d1-4160-a796-176d64c46f0e
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "jobs",
+          "@href": "/jobs?limit=25",
+          "@representation": "standard",
+          "@pagination": {
+            "limit": 25,
+            "offset": 0,
+            "count": 20283,
+            "is_first": true,
+            "is_last": false,
+            "next": {
+              "@href": "/jobs?limit=25&offset=25",
+              "offset": 25,
+              "limit": 25
+            },
+            "prev": null,
+            "first": {
+              "@href": "/jobs?limit=25",
+              "offset": 0,
+              "limit": 25
+            },
+            "last": {
+              "@href": "/jobs?limit=25&offset=20275",
+              "offset": 20275,
+              "limit": 25
+            }
+          },
+          "jobs": [
+            {
+              "@type": "job",
+              "@href": "/job/487611549",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487611549,
+              "allow_failure": false,
+              "number": "183.3",
+              "state": "passed",
+              "started_at": "2019-02-01T19:38:19Z",
+              "finished_at": "2019-02-01T19:42:04Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487611546",
+                "@representation": "minimal",
+                "id": 487611546,
+                "number": "183",
+                "state": "passed",
+                "duration": 418,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T19:36:25Z",
+                "finished_at": "2019-02-01T19:42:04Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146910681,
+                "sha": "1c994764ede089413c807d7f719a592697b4f73f",
+                "ref": "refs/pull/63/merge",
+                "message": "Example docs for Travis#builds & fix - #61\n\nFix: The builds method didn't account for checking all builds for the\nuser before.  New implementation does not break old method behavior.",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T19:33:02Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T19:35:50.769Z",
+              "updated_at": "2019-02-01T19:42:04.740Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487611548",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487611548,
+              "allow_failure": false,
+              "number": "183.2",
+              "state": "passed",
+              "started_at": "2019-02-01T19:36:25Z",
+              "finished_at": "2019-02-01T19:37:52Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487611546",
+                "@representation": "minimal",
+                "id": 487611546,
+                "number": "183",
+                "state": "passed",
+                "duration": 418,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T19:36:25Z",
+                "finished_at": "2019-02-01T19:42:04Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146910681,
+                "sha": "1c994764ede089413c807d7f719a592697b4f73f",
+                "ref": "refs/pull/63/merge",
+                "message": "Example docs for Travis#builds & fix - #61\n\nFix: The builds method didn't account for checking all builds for the\nuser before.  New implementation does not break old method behavior.",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T19:33:02Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T19:35:50.766Z",
+              "updated_at": "2019-02-01T19:37:52.255Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487611547",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487611547,
+              "allow_failure": false,
+              "number": "183.1",
+              "state": "passed",
+              "started_at": "2019-02-01T19:36:36Z",
+              "finished_at": "2019-02-01T19:38:22Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487611546",
+                "@representation": "minimal",
+                "id": 487611546,
+                "number": "183",
+                "state": "passed",
+                "duration": 418,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T19:36:25Z",
+                "finished_at": "2019-02-01T19:42:04Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146910681,
+                "sha": "1c994764ede089413c807d7f719a592697b4f73f",
+                "ref": "refs/pull/63/merge",
+                "message": "Example docs for Travis#builds & fix - #61\n\nFix: The builds method didn't account for checking all builds for the\nuser before.  New implementation does not break old method behavior.",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T19:33:02Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T19:35:50.762Z",
+              "updated_at": "2019-02-01T19:38:22.817Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487611529",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487611529,
+              "allow_failure": false,
+              "number": "182.3",
+              "state": "passed",
+              "started_at": "2019-02-01T19:36:25Z",
+              "finished_at": "2019-02-01T19:38:05Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487611526",
+                "@representation": "minimal",
+                "id": 487611526,
+                "number": "182",
+                "state": "passed",
+                "duration": 288,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T19:36:15Z",
+                "finished_at": "2019-02-01T19:38:12Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146910677,
+                "sha": "633a03ad7be87284a42aea86bf006ace3662ce8f",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Example docs for Travis#builds & fix - #61\n\nFix: The builds method didn't account for checking all builds for the\nuser before.  New implementation does not break old method behavior.",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/5798efa1ade0...633a03ad7be8",
+                "committed_at": "2019-02-01T19:33:02Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T19:35:48.282Z",
+              "updated_at": "2019-02-01T19:38:05.346Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487611528",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487611528,
+              "allow_failure": false,
+              "number": "182.2",
+              "state": "passed",
+              "started_at": "2019-02-01T19:36:15Z",
+              "finished_at": "2019-02-01T19:37:48Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487611526",
+                "@representation": "minimal",
+                "id": 487611526,
+                "number": "182",
+                "state": "passed",
+                "duration": 288,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T19:36:15Z",
+                "finished_at": "2019-02-01T19:38:12Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146910677,
+                "sha": "633a03ad7be87284a42aea86bf006ace3662ce8f",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Example docs for Travis#builds & fix - #61\n\nFix: The builds method didn't account for checking all builds for the\nuser before.  New implementation does not break old method behavior.",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/5798efa1ade0...633a03ad7be8",
+                "committed_at": "2019-02-01T19:33:02Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T19:35:48.278Z",
+              "updated_at": "2019-02-01T19:37:48.088Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487611527",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487611527,
+              "allow_failure": false,
+              "number": "182.1",
+              "state": "passed",
+              "started_at": "2019-02-01T19:36:37Z",
+              "finished_at": "2019-02-01T19:38:12Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487611526",
+                "@representation": "minimal",
+                "id": 487611526,
+                "number": "182",
+                "state": "passed",
+                "duration": 288,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T19:36:15Z",
+                "finished_at": "2019-02-01T19:38:12Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146910677,
+                "sha": "633a03ad7be87284a42aea86bf006ace3662ce8f",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Example docs for Travis#builds & fix - #61\n\nFix: The builds method didn't account for checking all builds for the\nuser before.  New implementation does not break old method behavior.",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/5798efa1ade0...633a03ad7be8",
+                "committed_at": "2019-02-01T19:33:02Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T19:35:48.272Z",
+              "updated_at": "2019-02-01T19:38:12.144Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487595345",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487595345,
+              "allow_failure": false,
+              "number": "181.3",
+              "state": "passed",
+              "started_at": "2019-02-01T18:55:43Z",
+              "finished_at": "2019-02-01T18:57:07Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487595342",
+                "@representation": "minimal",
+                "id": 487595342,
+                "number": "181",
+                "state": "passed",
+                "duration": 226,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:54:14Z",
+                "finished_at": "2019-02-01T18:57:07Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146905807,
+                "sha": "ade7ddb9017475e53bd1ce689684e83ba9d3bbe7",
+                "ref": "refs/pull/63/merge",
+                "message": "Example docs for Travis#beta_feature - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:53:33Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:53:42.456Z",
+              "updated_at": "2019-02-01T18:57:08.006Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487595344",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487595344,
+              "allow_failure": false,
+              "number": "181.2",
+              "state": "passed",
+              "started_at": "2019-02-01T18:54:14Z",
+              "finished_at": "2019-02-01T18:55:16Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487595342",
+                "@representation": "minimal",
+                "id": 487595342,
+                "number": "181",
+                "state": "passed",
+                "duration": 226,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:54:14Z",
+                "finished_at": "2019-02-01T18:57:07Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146905807,
+                "sha": "ade7ddb9017475e53bd1ce689684e83ba9d3bbe7",
+                "ref": "refs/pull/63/merge",
+                "message": "Example docs for Travis#beta_feature - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:53:33Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:53:42.449Z",
+              "updated_at": "2019-02-01T18:55:16.690Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487595343",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487595343,
+              "allow_failure": false,
+              "number": "181.1",
+              "state": "passed",
+              "started_at": "2019-02-01T18:54:21Z",
+              "finished_at": "2019-02-01T18:55:41Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487595342",
+                "@representation": "minimal",
+                "id": 487595342,
+                "number": "181",
+                "state": "passed",
+                "duration": 226,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:54:14Z",
+                "finished_at": "2019-02-01T18:57:07Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146905807,
+                "sha": "ade7ddb9017475e53bd1ce689684e83ba9d3bbe7",
+                "ref": "refs/pull/63/merge",
+                "message": "Example docs for Travis#beta_feature - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:53:33Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:53:42.442Z",
+              "updated_at": "2019-02-01T18:55:41.350Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487595303",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487595303,
+              "allow_failure": false,
+              "number": "180.3",
+              "state": "passed",
+              "started_at": "2019-02-01T18:54:24Z",
+              "finished_at": "2019-02-01T18:56:03Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487595300",
+                "@representation": "minimal",
+                "id": 487595300,
+                "number": "180",
+                "state": "passed",
+                "duration": 298,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:54:07Z",
+                "finished_at": "2019-02-01T18:56:13Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146905804,
+                "sha": "5798efa1ade005172d474ae584494eee8c049278",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Example docs for Travis#beta_feature - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/11445307582c...5798efa1ade0",
+                "committed_at": "2019-02-01T18:53:33Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:53:39.918Z",
+              "updated_at": "2019-02-01T18:56:03.516Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487595302",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487595302,
+              "allow_failure": false,
+              "number": "180.2",
+              "state": "passed",
+              "started_at": "2019-02-01T18:54:07Z",
+              "finished_at": "2019-02-01T18:56:13Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487595300",
+                "@representation": "minimal",
+                "id": 487595300,
+                "number": "180",
+                "state": "passed",
+                "duration": 298,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:54:07Z",
+                "finished_at": "2019-02-01T18:56:13Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146905804,
+                "sha": "5798efa1ade005172d474ae584494eee8c049278",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Example docs for Travis#beta_feature - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/11445307582c...5798efa1ade0",
+                "committed_at": "2019-02-01T18:53:33Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:53:39.900Z",
+              "updated_at": "2019-02-01T18:56:13.461Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487595301",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487595301,
+              "allow_failure": false,
+              "number": "180.1",
+              "state": "passed",
+              "started_at": "2019-02-01T18:54:08Z",
+              "finished_at": "2019-02-01T18:55:21Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487595300",
+                "@representation": "minimal",
+                "id": 487595300,
+                "number": "180",
+                "state": "passed",
+                "duration": 298,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:54:07Z",
+                "finished_at": "2019-02-01T18:56:13Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146905804,
+                "sha": "5798efa1ade005172d474ae584494eee8c049278",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Example docs for Travis#beta_feature - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/11445307582c...5798efa1ade0",
+                "committed_at": "2019-02-01T18:53:33Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:53:39.892Z",
+              "updated_at": "2019-02-01T18:55:21.554Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487588535",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487588535,
+              "allow_failure": false,
+              "number": "179.3",
+              "state": "passed",
+              "started_at": "2019-02-01T18:38:11Z",
+              "finished_at": "2019-02-01T18:39:30Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487588532",
+                "@representation": "minimal",
+                "id": 487588532,
+                "number": "179",
+                "state": "passed",
+                "duration": 263,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:36:18Z",
+                "finished_at": "2019-02-01T18:39:48Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146903718,
+                "sha": "c61756755c1d4c5148a5a9af4864283c5ca553d9",
+                "ref": "refs/pull/63/merge",
+                "message": "Bump ruby version on TravisCI",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:35:31Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:35:42.608Z",
+              "updated_at": "2019-02-01T18:39:30.778Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487588534",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487588534,
+              "allow_failure": false,
+              "number": "179.2",
+              "state": "passed",
+              "started_at": "2019-02-01T18:37:42Z",
+              "finished_at": "2019-02-01T18:39:48Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487588532",
+                "@representation": "minimal",
+                "id": 487588532,
+                "number": "179",
+                "state": "passed",
+                "duration": 263,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:36:18Z",
+                "finished_at": "2019-02-01T18:39:48Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146903718,
+                "sha": "c61756755c1d4c5148a5a9af4864283c5ca553d9",
+                "ref": "refs/pull/63/merge",
+                "message": "Bump ruby version on TravisCI",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:35:31Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:35:42.597Z",
+              "updated_at": "2019-02-01T18:39:48.818Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487588533",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487588533,
+              "allow_failure": false,
+              "number": "179.1",
+              "state": "passed",
+              "started_at": "2019-02-01T18:36:18Z",
+              "finished_at": "2019-02-01T18:37:16Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487588532",
+                "@representation": "minimal",
+                "id": 487588532,
+                "number": "179",
+                "state": "passed",
+                "duration": 263,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:36:18Z",
+                "finished_at": "2019-02-01T18:39:48Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146903718,
+                "sha": "c61756755c1d4c5148a5a9af4864283c5ca553d9",
+                "ref": "refs/pull/63/merge",
+                "message": "Bump ruby version on TravisCI",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:35:31Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:35:42.593Z",
+              "updated_at": "2019-02-01T18:37:16.282Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487588485",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487588485,
+              "allow_failure": false,
+              "number": "178.3",
+              "state": "passed",
+              "started_at": "2019-02-01T18:38:37Z",
+              "finished_at": "2019-02-01T18:39:43Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487588482",
+                "@representation": "minimal",
+                "id": 487588482,
+                "number": "178",
+                "state": "passed",
+                "duration": 296,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:36:09Z",
+                "finished_at": "2019-02-01T18:39:43Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146903705,
+                "sha": "11445307582cd1aceeb2f0e2559c50d57625c81c",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Bump ruby version on TravisCI",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2a254e3ce3f6...11445307582c",
+                "committed_at": "2019-02-01T18:35:31Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:35:37.645Z",
+              "updated_at": "2019-02-01T18:39:43.936Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487588484",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487588484,
+              "allow_failure": false,
+              "number": "178.2",
+              "state": "passed",
+              "started_at": "2019-02-01T18:36:27Z",
+              "finished_at": "2019-02-01T18:38:56Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487588482",
+                "@representation": "minimal",
+                "id": 487588482,
+                "number": "178",
+                "state": "passed",
+                "duration": 296,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:36:09Z",
+                "finished_at": "2019-02-01T18:39:43Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146903705,
+                "sha": "11445307582cd1aceeb2f0e2559c50d57625c81c",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Bump ruby version on TravisCI",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2a254e3ce3f6...11445307582c",
+                "committed_at": "2019-02-01T18:35:31Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:35:37.636Z",
+              "updated_at": "2019-02-01T18:38:56.398Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487588483",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487588483,
+              "allow_failure": false,
+              "number": "178.1",
+              "state": "passed",
+              "started_at": "2019-02-01T18:36:09Z",
+              "finished_at": "2019-02-01T18:37:30Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487588482",
+                "@representation": "minimal",
+                "id": 487588482,
+                "number": "178",
+                "state": "passed",
+                "duration": 296,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:36:09Z",
+                "finished_at": "2019-02-01T18:39:43Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146903705,
+                "sha": "11445307582cd1aceeb2f0e2559c50d57625c81c",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Bump ruby version on TravisCI",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2a254e3ce3f6...11445307582c",
+                "committed_at": "2019-02-01T18:35:31Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:35:37.631Z",
+              "updated_at": "2019-02-01T18:37:31.033Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487586251",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487586251,
+              "allow_failure": false,
+              "number": "177.3",
+              "state": "passed",
+              "started_at": "2019-02-01T18:32:56Z",
+              "finished_at": "2019-02-01T18:34:23Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487586248",
+                "@representation": "minimal",
+                "id": 487586248,
+                "number": "177",
+                "state": "passed",
+                "duration": 241,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:31:06Z",
+                "finished_at": "2019-02-01T18:37:39Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902985,
+                "sha": "bc47a3d3932725836585d3e255e807bc502a9bf5",
+                "ref": "refs/pull/63/merge",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:30:34.732Z",
+              "updated_at": "2019-02-01T18:34:23.890Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487586250",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487586250,
+              "allow_failure": false,
+              "number": "177.2",
+              "state": "passed",
+              "started_at": "2019-02-01T18:31:06Z",
+              "finished_at": "2019-02-01T18:32:21Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487586248",
+                "@representation": "minimal",
+                "id": 487586248,
+                "number": "177",
+                "state": "passed",
+                "duration": 241,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:31:06Z",
+                "finished_at": "2019-02-01T18:37:39Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902985,
+                "sha": "bc47a3d3932725836585d3e255e807bc502a9bf5",
+                "ref": "refs/pull/63/merge",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:30:34.720Z",
+              "updated_at": "2019-02-01T18:32:21.607Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487586249",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487586249,
+              "allow_failure": false,
+              "number": "177.1",
+              "state": "passed",
+              "started_at": "2019-02-01T18:36:20Z",
+              "finished_at": "2019-02-01T18:37:39Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487586248",
+                "@representation": "minimal",
+                "id": 487586248,
+                "number": "177",
+                "state": "passed",
+                "duration": 241,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:31:06Z",
+                "finished_at": "2019-02-01T18:37:39Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902985,
+                "sha": "bc47a3d3932725836585d3e255e807bc502a9bf5",
+                "ref": "refs/pull/63/merge",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:30:34.705Z",
+              "updated_at": "2019-02-01T18:37:39.751Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487586162",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487586162,
+              "allow_failure": false,
+              "number": "176.3",
+              "state": "canceled",
+              "started_at": "2019-02-01T18:30:56Z",
+              "finished_at": "2019-02-01T18:35:45Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487586159",
+                "@representation": "minimal",
+                "id": 487586159,
+                "number": "176",
+                "state": "canceled",
+                "duration": 859,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:30:55Z",
+                "finished_at": "2019-02-01T18:35:45Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902962,
+                "sha": "2a254e3ce3f6bef078c0c1b26a69dbe0ddb08cf5",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2800eda68252...2a254e3ce3f6",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:30:27.879Z",
+              "updated_at": "2019-02-01T18:35:45.227Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487586161",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487586161,
+              "allow_failure": false,
+              "number": "176.2",
+              "state": "canceled",
+              "started_at": "2019-02-01T18:30:55Z",
+              "finished_at": "2019-02-01T18:35:45Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487586159",
+                "@representation": "minimal",
+                "id": 487586159,
+                "number": "176",
+                "state": "canceled",
+                "duration": 859,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:30:55Z",
+                "finished_at": "2019-02-01T18:35:45Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902962,
+                "sha": "2a254e3ce3f6bef078c0c1b26a69dbe0ddb08cf5",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2800eda68252...2a254e3ce3f6",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:30:27.876Z",
+              "updated_at": "2019-02-01T18:35:45.128Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487586160",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487586160,
+              "allow_failure": false,
+              "number": "176.1",
+              "state": "canceled",
+              "started_at": "2019-02-01T18:31:05Z",
+              "finished_at": "2019-02-01T18:35:45Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487586159",
+                "@representation": "minimal",
+                "id": 487586159,
+                "number": "176",
+                "state": "canceled",
+                "duration": 859,
+                "event_type": "push",
+                "previous_state": "passed",
+                "pull_request_title": null,
+                "pull_request_number": null,
+                "started_at": "2019-02-01T18:30:55Z",
+                "finished_at": "2019-02-01T18:35:45Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902962,
+                "sha": "2a254e3ce3f6bef078c0c1b26a69dbe0ddb08cf5",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2800eda68252...2a254e3ce3f6",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:30:27.861Z",
+              "updated_at": "2019-02-01T18:35:45.010Z",
+              "private": false
+            },
+            {
+              "@type": "job",
+              "@href": "/job/487578802",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "delete_log": true,
+                "cancel": true,
+                "restart": true,
+                "debug": true
+              },
+              "id": 487578802,
+              "allow_failure": false,
+              "number": "175.3",
+              "state": "passed",
+              "started_at": "2019-02-01T18:19:21Z",
+              "finished_at": "2019-02-01T18:20:58Z",
+              "build": {
+                "@type": "build",
+                "@href": "/build/487578799",
+                "@representation": "minimal",
+                "id": 487578799,
+                "number": "175",
+                "state": "passed",
+                "duration": 519,
+                "event_type": "pull_request",
+                "previous_state": "passed",
+                "pull_request_title": "Documentation enhancements & minor refactorings",
+                "pull_request_number": 63,
+                "started_at": "2019-02-01T18:17:49Z",
+                "finished_at": "2019-02-01T18:21:25Z",
+                "private": false
+              },
+              "queue": "builds.gce",
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146900735,
+                "sha": "2937af4c300185d1739ad5b53e8665ca1a94eab9",
+                "ref": "refs/pull/63/merge",
+                "message": "Documented Headers forward methods - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:12:20Z"
+              },
+              "owner": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "stage": null,
+              "created_at": "2019-02-01T18:17:20.576Z",
+              "updated_at": "2019-02-01T18:20:58.475Z",
+              "private": false
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 01 Feb 2019 19:51:35 GMT
+recorded_with: VCR 4.0.0

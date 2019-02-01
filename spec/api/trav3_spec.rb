@@ -166,11 +166,21 @@ RSpec.describe Trav3::Travis, :vcr do
       builds = t.builds
       expect(builds.page.last['builds'].count).to be > 10
     end
+
+    it 'gets all builds for current user' do
+      builds = t.builds(false)
+      expect(builds['builds'].count).to be 25
+    end
   end
 
   describe '#build_jobs' do
     it 'gets build job details for build' do
       build_jobs = t.build_jobs(351_778_872)
+      expect(build_jobs).to be_an_instance_of Trav3::Success
+    end
+
+    it 'gets jobs for user' do
+      build_jobs = t.build_jobs(false)
       expect(build_jobs).to be_an_instance_of Trav3::Success
     end
   end
@@ -223,6 +233,7 @@ RSpec.describe Trav3::Travis, :vcr do
 
   describe '#crons' do
     it 'gets crons for an individual repository' do
+      t.options.reset!
       crons = t.crons
       expect(crons).to be_an_instance_of Trav3::Success
     end
@@ -402,6 +413,7 @@ RSpec.describe Trav3::Travis, :vcr do
 
   describe '#organizations' do
     it 'gets organizations for current user' do
+      t.options.reset!
       organizations = t.organizations
       expect(organizations).to be_an_instance_of Trav3::Success
     end
@@ -453,6 +465,11 @@ RSpec.describe Trav3::Travis, :vcr do
 
     it 'gets collection of repositories for user_id' do
       repositories = t.repositories(639_823)
+      expect(repositories['repositories'].count).to be 25
+    end
+
+    it 'gets the repositories of the current user' do
+      repositories = t.repositories(:self)
       expect(repositories['repositories'].count).to be 25
     end
   end

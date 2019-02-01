@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Trav3
+  # A url options builder class for outgoing requests.
   class Options
     def initialize(args = {})
       build(args)
@@ -111,7 +112,7 @@ module Trav3
       @opts.map(&split).to_h
     end
 
-    private
+    private # @private
 
     def split
       ->(entry) { entry.split('=') }

@@ -3,8 +3,16 @@
 require 'forwardable'
 
 module Trav3
+  # A header builder class for outgoing requests
   class Headers
     extend Forwardable
+    # @!macro [attach] def_delegators
+    #   @!method each_pair
+    #     Forwards to $1.
+    #     @see Hash#each_pair
+    #   @!method fetch
+    #     Forwards to $1.
+    #     @see Hash#fetch
     def_delegators :@heads, :each_pair, :fetch
 
     def initialize(args = {})

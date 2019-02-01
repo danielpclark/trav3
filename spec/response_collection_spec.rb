@@ -22,7 +22,7 @@ RSpec.describe Trav3::ResponseCollection do
     end
 
     it 'defaults to normal dig behavior in multiple query' do
-      expect(rc.dig('repositories', 0)).to be_an_instance_of Hash
+      expect(rc.dig('repositories', 0)).to be_an_instance_of Trav3::ResponseCollection
     end
   end
 

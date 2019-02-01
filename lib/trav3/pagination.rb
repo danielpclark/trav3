@@ -8,19 +8,25 @@ module Trav3
       @result = result
     end
 
+    # Next page of results
+    # @return [Success, RequestError]
     def next
       get(action(:next))
     end
 
+    # First page of results
+    # @return [Success, RequestError]
     def first
       get(action(:first))
     end
 
+    # Last page of results
+    # @return [Success, RequestError]
     def last
       get(action(:last))
     end
 
-    private
+    private # @private
 
     def action(action)
       dig('@pagination').dig(action.to_s).dig('@href')

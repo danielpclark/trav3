@@ -14,6 +14,68 @@ require 'trav3/rest'
 module Trav3
   # An abstraction for the Travis CI v3 API
   #
+  #
+  # You can get started with the following.
+  #
+  # ```ruby
+  # require 'trav3'
+  # project = Trav3::Travis.new("name/example")
+  # ```
+  #
+  # When you instantiate an instance of `Travis`
+  # you get some default headers and default options.
+  #
+  # #### Default Options
+  #
+  # * `limit: 25` - for limiting data queries to 25 items at most
+  #
+  # Options can be changed via the {#options} getter method which will give you a
+  # {Options} instance. All changes to it affect the options that the `Travis`
+  # instance will submit in url requests.
+  #
+  # #### Default Headers
+  #
+  # * `'Content-Type': 'application/json'`
+  # * `'Accept': 'application/json'`
+  # * `'Travis-API-Version': 3`
+  #
+  # Headers can be changed via the {#headers} getter method which will give you a
+  # {Headers} instance. All changes to it affect the headers that the `Travis`
+  # instance will submit in url requests.
+  #
+  # #### General Usage
+  #
+  # ```ruby
+  # project.owner
+  # project.owner("owner")
+  # project.repositories
+  # project.repositories("owner")
+  # project.repository
+  # project.repository("owner/repo")
+  # project.builds
+  # project.build(12345)
+  # project.build_jobs(12345)
+  # project.job(1234)
+  # project.log(1234)
+  #
+  # # API Request Options
+  # project.options.build({limit: 25})
+  #
+  # # Pagination
+  # builds = project.builds
+  # builds.page.next
+  # builds.page.first
+  # builds.page.last
+  #
+  # # Recommended inspection
+  # builds.keys
+  # builds.dig("some_key")
+  #
+  # # Follow `@href`
+  # repositories = project.repositories("owner")['repositories']
+  # repositories.first.follow
+  # ```
+  #
   # @author Daniel P. Clark https://6ftdan.com
   # @!attribute [r] api_endpoint
   #   @return [String] API endpoint
@@ -113,6 +175,14 @@ module Trav3
     #
     #     Example: GET /owner/danielpclark/active
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.active
+    # # or
+    # travis.active('danielpclark')
+    # ```
+    #
     # GET <code>/owner/{user.login}/active</code>
     #
     #     Template Variable  Type    Description
@@ -121,6 +191,14 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /owner/danielpclark/active
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.active
+    # # or
+    # travis.active('danielpclark')
+    # ```
     #
     # GET <code>/owner/{organization.login}/active</code>
     #
@@ -131,6 +209,12 @@ module Trav3
     #
     #     Example: GET /owner/travis-ci/active
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.active('travis-ci')
+    # ```
+    #
     # GET <code>/owner/github_id/{owner.github_id}/active</code>
     #
     #     Template Variable  Type     Description
@@ -139,6 +223,12 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /owner/github_id/639823/active
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.active(639_823)
+    # ```
     #
     # @param owner [String] username, organization name, or github id
     # @return [Success, RequestError]
@@ -184,6 +274,19 @@ module Trav3
     #     beta_feature.id       Integer  Value uniquely identifying the beta feature.
     #     beta_feature.enabled  Boolean  Indicates if the user has this feature turned on.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    #
+    # # Enable comic-sans for user id 119240
+    # travis.beta_feature(:enable, 3, 119_240)
+    #
+    # # Disable comic-sans for user id 119240
+    # travis.beta_feature(:disable, 3, 119_240)
+    # ```
+    #
     # **Delete**
     #
     # This will delete a user's beta feature.
@@ -193,6 +296,16 @@ module Trav3
     #     Template Variable  Type     Description
     #     user.id            Integer  Value uniquely identifying the user.
     #     beta_feature.id    Integer  Value uniquely identifying the beta feature.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    #
+    # # Disable comic-sans via delete for user id 119240
+    # travis.beta_feature(:delete, 3, 119_240)
+    # ```
     #
     # @param action [Symbol] either `:enable`, `:disable` or `:delete`
     # @param beta_feature_id [String, Integer] id for the beta feature
@@ -232,6 +345,12 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /user/119240/beta_features
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.beta_features(119_240)
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -288,6 +407,12 @@ module Trav3
     #
     #     Example: GET /repo/891/branch/master
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.branch('master')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/branch/{branch.name}</code>
     #
     #     Template Variable  Type    Description
@@ -297,6 +422,12 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/branch/master
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.branch('master')
+    # ```
     #
     # @param name [String] the branch name for the current repository
     # @return [Success, RequestError]
@@ -348,6 +479,13 @@ module Trav3
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, exists_on_github: true})
+    # travis.branches
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/branches</code>
     #
     #     Template Variable  Type    Description
@@ -364,6 +502,13 @@ module Trav3
     #
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, exists_on_github: true})
+    # travis.branches
+    # ```
     #
     # @return [Success, RequestError]
     def branches
@@ -403,6 +548,13 @@ module Trav3
     #     include           [String]   List of attributes to eager load.
     #
     #     Example: GET /broadcasts
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.broadcasts
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -471,6 +623,12 @@ module Trav3
     #
     #     Example: GET /build/86601346
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.build(351_778_872)
+    # ```
+    #
     # **Cancel**
     #
     # This cancels a currently running build. It will set the build and associated jobs to "state": "canceled".
@@ -482,6 +640,13 @@ module Trav3
     #
     #     Example: POST /build/86601346/cancel
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.build(478_772_528, :cancel)
+    # ```
+    #
     # **Restart**
     #
     # This restarts a build that has completed or been canceled.
@@ -492,6 +657,13 @@ module Trav3
     #     build.id           Integer  Value uniquely identifying the build.
     #
     #     Example: POST /build/86601346/restart
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.build(478_772_528, :restart)
+    # ```
     #
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -565,6 +737,14 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.builds(false)
+    # ```
+    #
     # **Find**
     #
     # This returns a list of builds for an individual repository. It is possible to use the repository id or slug in the request. The result is paginated. Each request will return 25 results.
@@ -593,6 +773,13 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5})
+    # travis.builds
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/builds</code>
     #
     #     Template Variable  Type    Description
@@ -617,9 +804,20 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5})
+    # travis.builds
+    # ```
+    #
+    # @note requests may require an authorization token set in the headers. See: {authorization=}
+    #
+    # @param repo [Boolean] If true get repo builds, otherwise get user builds
     # @return [Success, RequestError]
-    def builds
-      get("#{with_repo}/builds#{opts}")
+    def builds(repo = true)
+      repo and return get("#{with_repo}/builds#{opts}")
+      get("#{without_repo}/builds#{opts}")
     end
 
     # A list of jobs.
@@ -666,6 +864,12 @@ module Trav3
     #
     #     Example: GET /build/86601346/jobs
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.build_jobs(86_601_346)
+    # ```
+    #
     # **For Current User**
     #
     # This returns a list of jobs a current user has access to.
@@ -689,10 +893,21 @@ module Trav3
     # **Sortable by:** <code>id</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is id:desc.
     #
-    # @param build_id [String, Integer] the build id number
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.build_jobs(false)
+    # ```
+    #
+    # @note requests may require an authorization token set in the headers. See: {authorization=}
+    #
+    # @param build_id [String, Integer, Boolean] the build id number.  If falsey then get all jobs for current user
     # @return [Success, RequestError]
     def build_jobs(build_id)
-      get("#{without_repo}/build/#{build_id}/jobs")
+      build_id and return get("#{without_repo}/build/#{build_id}/jobs")
+      get("#{without_repo}/jobs#{opts}")
     end
 
     # A list of caches.
@@ -721,12 +936,28 @@ module Trav3
     #   https://api.travis-ci.com/repo/1234/caches?branch=master
     # ```
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({branch: :master})
+    # travis.caches
+    # ```
+    #
     # ```bash
     # curl \
     #   -H "Content-Type: application/json" \
     #   -H "Travis-API-Version: 3" \
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   https://api.travis-ci.com/repo/1234/caches?match=linux
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({match: :linux})
+    # travis.caches
     # ```
     #
     # GET <code>/repo/{repository.id}/caches</code>
@@ -769,6 +1000,14 @@ module Trav3
     #   https://api.travis-ci.com/repo/1234/caches?branch=master
     # ```
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({branch: :master})
+    # travis.caches(:delete)
+    # ```
+    #
     # DELETE <code>/repo/{repository.id}/caches</code>
     #
     #     Template Variable  Type     Description
@@ -788,8 +1027,10 @@ module Trav3
     # @param delete [Boolean] option for deleting cache(s)
     # @return [Success, RequestError]
     def caches(delete = false)
-      delete and return without_limit { delete("#{with_repo}/caches#{opts}") }
-      get("#{with_repo}/caches")
+      without_limit do
+        delete and return delete("#{with_repo}/caches#{opts}")
+        get("#{with_repo}/caches#{opts}")
+      end
     end
 
     # An individual cron. There can be only one cron per branch on a repository.
@@ -833,6 +1074,13 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(id: 78_199)
+    # ```
+    #
     # **Delete**
     #
     # This deletes a single cron.
@@ -841,6 +1089,13 @@ module Trav3
     #
     #     Template Variable  Type     Description
     #     cron.id            Integer  Value uniquely identifying the cron.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(id: 78_199, delete: true)
+    # ```
     #
     # **For Branch**
     #
@@ -856,6 +1111,13 @@ module Trav3
     #
     #     Example: GET /repo/891/branch/master/cron
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(branch_name: 'master')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/branch/{branch.name}/cron</code>
     #
     #     Template Variable  Type    Description
@@ -865,6 +1127,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/branch/master/cron
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(branch_name: 'master')
+    # ```
     #
     # **Create**
     #
@@ -877,6 +1146,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "cron.interval": "monthly" }' \
     #   https://api.travis-ci.com/repo/1234/branch/master/cron
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(branch_name: 'master', create: { 'interval' => 'monthly' })
     # ```
     #
     # POST <code>/repo/{repository.id}/branch/{branch.name}/cron</code>
@@ -960,6 +1236,14 @@ module Trav3
     #
     #     Example: GET /repo/891/crons?limit=5
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.crons
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/crons</code>
     #
     #     Template Variable  Type    Description
@@ -971,9 +1255,17 @@ module Trav3
     #
     #     Example: GET /repo/rails%2Frails/crons?limit=5
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.crons
+    # ```
+    #
     # @return [Success, RequestError]
     def crons
-      get("#{with_repo}/crons")
+      get("#{with_repo}/crons#{opts}")
     end
 
     # POST <code>/repo/{repository.id}/email_subscription</code>
@@ -983,12 +1275,26 @@ module Trav3
     #
     #     Example: POST /repo/891/email_subscription
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_resubscribe
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/email_subscription</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/email_subscription
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_resubscribe
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -1004,12 +1310,26 @@ module Trav3
     #
     #     Example: DELETE /repo/891/email_subscription
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_unsubscribe
+    # ```
+    #
     # DELETE <code>/repo/{repository.slug}/email_subscription</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: DELETE /repo/rails%2Frails/email_subscription
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_unsubscribe
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -1060,6 +1380,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #     repository.id    Integer   Value uniquely identifying the repository.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/env_var/{env_var.id}</code>
     #
     #     Template Variable  Type    Description
@@ -1070,6 +1397,13 @@ module Trav3
     #     id               String    Alias for env_var.id.
     #     include          [String]  List of attributes to eager load.
     #     repository.id    Integer   Value uniquely identifying the repository.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c')
+    # ```
     #
     # **Update**
     #
@@ -1084,6 +1418,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "env_var.value": "bar", "env_var.public": false }' \
     #   https://api.travis-ci.com/repo/1234/{env_var.id}
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', update: { value: 'bar', public: false })
     # ```
     #
     # PATCH <code>/repo/{repository.id}/env_var/{env_var.id}</code>
@@ -1116,11 +1457,25 @@ module Trav3
     #     repository.id      Integer  Value uniquely identifying the repository.
     #     env_var.id         String   The environment variable id.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', delete: true)
+    # ```
+    #
     # DELETE <code>/repo/{repository.slug}/env_var/{env_var.id}</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #     env_var.id         String  The environment variable id.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', delete: true)
+    # ```
     #
     # @overload env_var(env_var_id)
     #   Gets current env var
@@ -1165,6 +1520,13 @@ module Trav3
     #
     #     Example: GET /repo/891/env_vars
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_vars
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/env_vars</code>
     #
     #     Template Variable  Type    Description
@@ -1173,6 +1535,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/env_vars
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_vars
+    # ```
     #
     # **Create**
     #
@@ -1187,6 +1556,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "env_var.name": "FOO", "env_var.value": "bar", "env_var.public": false }' \
     #   https://api.travis-ci.com/repo/1234/env_vars
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_vars(name: 'FOO', value: 'bar', public: false)
     # ```
     #
     # POST <code>/repo/{repository.id}/env_vars</code>
@@ -1254,6 +1630,14 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.installation(617_754)
+    # ```
+    #
     # @param installation_id [String, Integer] GitHub App installation id
     # @return [Success, RequestError]
     def installation(installation_id)
@@ -1309,6 +1693,13 @@ module Trav3
     #
     #     Example: GET /job/86601347
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875)
+    # ```
+    #
     # **Cancel**
     #
     # This cancels a currently running job.
@@ -1319,6 +1710,13 @@ module Trav3
     #     job.id             Integer  Value uniquely identifying the job.
     #
     #     Example: POST /job/86601347/cancel
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875, :cancel)
+    # ```
     #
     # **Restart**
     #
@@ -1331,6 +1729,13 @@ module Trav3
     #
     #     Example: POST /job/86601347/restart
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875, :restart)
+    # ```
+    #
     # **Debug**
     #
     # This restarts a job in debug mode, enabling the logged-in user to ssh into the build VM. Please note this feature is only available on the travis-ci.com domain, and those repositories on the travis-ci.org domain for which the debug feature is enabled. See this document for more details.
@@ -1342,7 +1747,16 @@ module Trav3
     #
     #     Example: POST /job/86601347/debug
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875, :debug)
+    # ```
+    #
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
+    # @note **Debug** is only available on the travis-ci.com domain, and those repositories on the travis-ci.org domain for which the debug feature is enabled.
     #
     # @param job_id [String, Integer] the job id number
     # @param option [Symbol] options for :cancel, :restart, or :debug
@@ -1399,6 +1813,14 @@ module Trav3
     #
     #     Example: GET /repo/891/key_pair
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/key_pair</code>
     #
     #     Template Variable  Type    Description
@@ -1407,6 +1829,14 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/key_pair
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair
+    # ```
     #
     # **Create**
     #
@@ -1419,6 +1849,14 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "key_pair.description": "FooBar", "key_pair.value": "xxxxx"}' \
     #   https://api.travis-ci.com/repo/1234/key_pair
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(create: { description: 'FooBar', value: OpenSSL::PKey::RSA.generate(2048).to_s })
     # ```
     #
     # POST <code>/repo/{repository.id}/key_pair</code>
@@ -1454,6 +1892,14 @@ module Trav3
     #   https://api.travis-ci.com/repo/1234/key_pair
     # ```
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(update: { description: 'FooBarBaz' })
+    # ```
+    #
     # PATCH <code>/repo/{repository.id}/key_pair</code>
     #
     #     Template Variable  Type     Description
@@ -1485,12 +1931,28 @@ module Trav3
     #
     #     Example: DELETE /repo/891/key_pair
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(delete: true)
+    # ```
+    #
     # DELETE <code>/repo/{repository.slug}/key_pair</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: DELETE /repo/rails%2Frails/key_pair
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(delete: true)
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     # @note API enpoint needs to be set to `https://api.travis-ci.com` See: {api_endpoint=}
@@ -1551,6 +2013,14 @@ module Trav3
     #
     #     Example: GET /repo/891/key_pair/generated
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/key_pair/generated</code>
     #
     #     Template Variable  Type    Description
@@ -1559,6 +2029,14 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/key_pair/generated
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated
+    # ```
     #
     # **Create**
     #
@@ -1571,12 +2049,28 @@ module Trav3
     #
     #     Example: POST /repo/891/key_pair/generated
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated(:create)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/key_pair/generated</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/key_pair/generated
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair_generated(:create)
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -1604,6 +2098,12 @@ module Trav3
     # POST <code>/lint</code>
     #
     #     Example: POST /lint
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.lint(File.read('.travis.yml'))
+    # ```
     #
     # @param yaml_content [String] the contents for the file `.travis.yml`
     # @return [Success, RequestError]
@@ -1649,6 +2149,14 @@ module Trav3
     #       -H "Authorization: token xxxxxxxxxxxx" \
     #       https://api.travis-ci.org/job/{job.id}/log
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.log(351_778_875)
+    # # or
+    # travis.log(351_778_875, :text)
+    # ```
+    #
     # The default response type is application/json, and will include additional meta data such as @type, @representation etc. (see [https://developer.travis-ci.org/format](https://developer.travis-ci.org/format)).
     #
     # GET <code>/job/{job.id}/log</code>
@@ -1681,6 +2189,13 @@ module Trav3
     #       -H "Travis-API-Version: 3" \
     #       -H "Authorization: token xxxxxxxxxxxx" \
     #       https://api.travis-ci.org/job/{job.id}/log
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.log(478_772_530, :delete)
+    # ```
     #
     # DELETE <code>/job/{job.id}/log</code>
     #
@@ -1737,6 +2252,13 @@ module Trav3
     #     limit            Integer   How many messages to include in the response. Used for pagination.
     #     offset           Integer   How many messages to skip before the first entry in the response. Used for pagination.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.messages(147_731_561)
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/request/{request.id}/messages</code>
     #
     #     Template Variable  Type     Description
@@ -1746,6 +2268,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #     limit            Integer   How many messages to include in the response. Used for pagination.
     #     offset           Integer   How many messages to skip before the first entry in the response. Used for pagination.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.messages(147_731_561)
+    # ```
     #
     # @param request_id [String, Integer] the request id
     # @return [Success, RequestError]
@@ -1801,6 +2330,12 @@ module Trav3
     #
     #     Example: GET /org/87
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.organization(87)
+    # ```
+    #
     # @param org_id [String, Integer] the organization id
     # @raise [TypeError] if given organization id is not a number
     # @return [Success, RequestError]
@@ -1852,9 +2387,17 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>login</code>, <code>name</code>, <code>github_id</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.organizations
+    # ```
+    #
     # @return [Success, RequestError]
     def organizations
-      get("#{without_repo}/orgs")
+      get("#{without_repo}/orgs#{opts}")
     end
 
     # This will be either a {https://developer.travis-ci.com/resource/user user} or {https://developer.travis-ci.com/resource/organization organization}.
@@ -1901,6 +2444,15 @@ module Trav3
     #
     #     Example: GET /owner/danielpclark
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner
+    # # or
+    # travis.owner('danielpclark')
+    # ```
+    #
     # GET <code>/owner/{user.login}</code>
     #
     #     Template Variable  Type      Description
@@ -1910,6 +2462,15 @@ module Trav3
     #     include            [String]  List of attributes to eager load.
     #
     #     Example: GET /owner/danielpclark
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner
+    # # or
+    # travis.owner('danielpclark')
+    # ```
     #
     # GET <code>/owner/{organization.login}</code>
     #
@@ -1921,6 +2482,13 @@ module Trav3
     #
     #     Example: GET /owner/travis-ci
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner('travis-ci')
+    # ```
+    #
     # GET <code>/owner/github_id/{owner.github_id}</code>
     #
     #     Template Variable   Type      Description
@@ -1931,6 +2499,13 @@ module Trav3
     #
     #     Example: GET /owner/github_id/639823
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner(639_823)
+    # ```
+    #
     # @param owner [String] username or github id
     # @return [Success, RequestError]
     def owner(owner = username)
@@ -1938,7 +2513,7 @@ module Trav3
       get("#{without_repo}/owner/#{owner}")
     end
 
-    # Document `resources/preference/overview` not found.
+    # Individual preferences for current user or organization.
     #
     # ## Attributes
     #
@@ -1962,7 +2537,7 @@ module Trav3
     #
     # **For Organization**
     #
-    # Document `resources/preference/actions/for_organization` not found.
+    # Get preference for organization.
     #
     # GET <code>/org/{organization.id}/preference/{preference.name}</code>
     #
@@ -1972,9 +2547,16 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('private_insights_visibility', org_id: 107_660)
+    # ```
+    #
     # **Update**
     #
-    # Document `resources/preference/actions/update` not found.
+    # Set preference for organization.
     #
     # PATCH <code>/org/{organization.id}/preference/{preference.name}</code>
     #
@@ -1984,6 +2566,15 @@ module Trav3
     #     Accepted Parameter  Type     Description
     #     preference.value    Unknown  The preference's value.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('private_insights_visibility', 'admins', org_id: 107_660)
+    # ```
+    #
+    # Set preference for current user.
+    #
     # PATCH <code>/preference/{preference.name}</code>
     #
     #     Template Variable  Type     Description
@@ -1991,9 +2582,16 @@ module Trav3
     #     Accepted Parameter  Type     Description
     #     preference.value    Unknown  The preference's value.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('build_emails', true)
+    # ```
+    #
     # **Find**
     #
-    # Document `resources/preference/actions/find` not found.
+    # Get preference for current user.
     #
     # GET <code>/preference/{preference.name}</code>
     #
@@ -2001,6 +2599,13 @@ module Trav3
     #     preference.name    Unknown  The preference's name.
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('build_emails')
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -2018,7 +2623,7 @@ module Trav3
       get("#{without_repo}#{org_id}/preference/#{key}")
     end
 
-    # Document `resources/preferences/overview` not found.
+    # Preferences for current user or organization.
     #
     # ## Attributes
     #
@@ -2029,7 +2634,7 @@ module Trav3
     #
     # **For Organization**
     #
-    # Document `resources/preferences/actions/for_organization` not found.
+    # Gets preferences for organization.
     #
     # GET <code>/org/{organization.id}/preferences</code>
     #
@@ -2040,9 +2645,16 @@ module Trav3
     #
     #     Example: GET /org/87/preferences
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preferences(107_660)
+    # ```
+    #
     # **For User**
     #
-    # Document `resources/preferences/actions/for_user` not found.
+    # Gets preferences for current user.
     #
     # GET <code>/preferences</code>
     #
@@ -2050,6 +2662,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /preferences
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preferences
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -2116,6 +2735,15 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories
+    # # or
+    # travis.repositories('danielpclark')
+    # ```
+    #
     # GET <code>/owner/{user.login}/repos</code>
     #
     #     Template Variable  Type    Description
@@ -2136,6 +2764,15 @@ module Trav3
     #     Example: GET /owner/danielpclark/repos?limit=5&sort_by=active,name
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories
+    # # or
+    # travis.repositories('danielpclark')
+    # ```
     #
     # GET <code>/owner/{organization.login}/repos</code>
     #
@@ -2158,6 +2795,14 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories('travis-ci')
+    # ```
+    #
     # GET <code>/owner/github_id/{owner.github_id}/repos</code>
     #
     #     Template Variable  Type     Description
@@ -2178,6 +2823,13 @@ module Trav3
     #     Example: GET /owner/github_id/639823/repos?limit=5&sort_by=active,name
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories(639_823)
+    # ```
     #
     # **For Current User**
     #
@@ -2201,9 +2853,18 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
-    # @param owner [String] username or github id
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories(:self)
+    # ```
+    #
+    # @param owner [String, Integer, Symbol] username, github id, or `:self`
     # @return [Success, RequestError]
     def repositories(owner = username)
+      owner.equal?(:self) and return get("#{without_repo}/repos#{opts}")
       number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
       get("#{without_repo}/owner/#{owner}/repos#{opts}")
     end
@@ -2253,6 +2914,12 @@ module Trav3
     #
     #     Example: GET /repo/891
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.repository('danielpclark/trav3')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}</code>
     #
     #     Template Variable  Type    Description
@@ -2262,6 +2929,12 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.repository('danielpclark/trav3')
+    # ```
     #
     # **Activate**
     #
@@ -2274,12 +2947,26 @@ module Trav3
     #
     #     Example: POST /repo/891/activate
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :activate)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/activate</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/activate
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :activate)
+    # ```
     #
     # **Deactivate**
     #
@@ -2292,12 +2979,26 @@ module Trav3
     #
     #     Example: POST /repo/891/deactivate
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :deactivate)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/deactivate</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/deactivate
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :deactivate)
+    # ```
     #
     # **Star**
     #
@@ -2310,12 +3011,26 @@ module Trav3
     #
     #     Example: POST /repo/891/star
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :star)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/star</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/star
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :star)
+    # ```
     #
     # **Unstar**
     #
@@ -2328,12 +3043,26 @@ module Trav3
     #
     #     Example: POST /repo/891/unstar
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :unstar)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/unstar</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/unstar
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :unstar)
+    # ```
     #
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -2388,7 +3117,7 @@ module Trav3
     #
     # **Find**
     #
-    # Document `resources/request/actions/find` not found.
+    # Get the request by id for the current repository
     #
     # GET <code>/repo/{repository.id}/request/{request.id}</code>
     #
@@ -2398,6 +3127,13 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.request(147_776_757)
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/request/{request.id}</code>
     #
     #     Template Variable  Type     Description
@@ -2405,6 +3141,13 @@ module Trav3
     #     request.id         Integer  Value uniquely identifying the request.
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.request(147_776_757)
+    # ```
     #
     # @param request_id [String, Integer] request id
     # @return [Success, RequestError]
@@ -2460,6 +3203,14 @@ module Trav3
     #
     #     Example: GET /repo/891/requests?limit=5
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.requests
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/requests</code>
     #
     #     Template Variable  Type    Description
@@ -2470,6 +3221,14 @@ module Trav3
     #     offset           Integer   How many requests to skip before the first entry in the response. Used for pagination.
     #
     #     Example: GET /repo/rails%2Frails/requests?limit=5
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.requests
+    # ```
     #
     # **Create**
     #
@@ -2485,6 +3244,16 @@ module Trav3
     #   -d '{ "request": {
     #         "message": "Override the commit message: this is an api request", "branch": "master" }}'\
     #   https://api.travis-ci.com/repo/1/requests
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.requests(
+    #   message: 'Override the commit message: this is an api request',
+    #   branch: 'master'
+    # )
     # ```
     #
     # The response includes the following body:
@@ -2588,6 +3357,13 @@ module Trav3
     #
     #     Example: GET /build/86601346/stages
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.stages(479_113_572)
+    # ```
+    #
     # @param build_id [String, Integer] build id
     # @raise [TypeError] if given build id is not a number
     # @return [Success, RequestError]
@@ -2640,6 +3416,13 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.setting('auto_cancel_pull_requests')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/setting/{setting.name}</code>
     #
     #     Template Variable  Type    Description
@@ -2647,6 +3430,13 @@ module Trav3
     #     setting.name       String  The setting's name.
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.setting('auto_cancel_pull_requests')
+    # ```
     #
     # **Update**
     #
@@ -2661,6 +3451,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "setting.value": true }' \
     #   https://api.travis-ci.com/repo/1234/setting/{setting.name}
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.setting('auto_cancel_pull_requests', false)
     # ```
     #
     # PATCH <code>/repo/{repository.id}/setting/{setting.name}</code>
@@ -2727,6 +3524,13 @@ module Trav3
     #
     #     Example: GET /repo/891/settings
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.settings
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/settings</code>
     #
     #     Template Variable  Type    Description
@@ -2735,6 +3539,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/settings
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.settings
+    # ```
     #
     # @return [Success, RequestError]
     def settings
@@ -2790,6 +3601,12 @@ module Trav3
     #
     #     Example: GET /user/119240
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.user(119_240)
+    # ```
+    #
     # **Sync**
     #
     # This triggers a sync on a user's account with their GitHub account.
@@ -2801,6 +3618,13 @@ module Trav3
     #
     #     Example: POST /user/119240/sync
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.user(114_816, :sync)
+    # ```
+    #
     # **Current**
     #
     # This will return information about the current user.
@@ -2811,6 +3635,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /user
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.user
+    # ```
     #
     # @note sync feature may not be permitted
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
