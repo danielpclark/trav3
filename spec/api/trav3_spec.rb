@@ -166,6 +166,11 @@ RSpec.describe Trav3::Travis, :vcr do
       builds = t.builds
       expect(builds.page.last['builds'].count).to be > 10
     end
+
+    it 'gets all builds for current user' do
+      builds = t.builds(false)
+      expect(builds['builds'].count).to be 25
+    end
   end
 
   describe '#build_jobs' do

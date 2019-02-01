@@ -5421,4 +5421,2032 @@ http_interactions:
         }
     http_version: 
   recorded_at: Sat, 12 Jan 2019 14:06:18 GMT
+- request:
+    method: get
+    uri: https://api.travis-ci.org/builds?limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 01 Feb 2019 19:24:47 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Builds::ForCurrentUser
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - 89398314-17a7-4615-a510-f6ceeb6a4d18
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "builds",
+          "@href": "/builds?limit=25",
+          "@representation": "standard",
+          "@pagination": {
+            "limit": 25,
+            "offset": 0,
+            "count": 2053,
+            "is_first": true,
+            "is_last": false,
+            "next": {
+              "@href": "/builds?limit=25&offset=25",
+              "offset": 25,
+              "limit": 25
+            },
+            "prev": null,
+            "first": {
+              "@href": "/builds?limit=25",
+              "offset": 0,
+              "limit": 25
+            },
+            "last": {
+              "@href": "/builds?limit=25&offset=2050",
+              "offset": 2050,
+              "limit": 25
+            }
+          },
+          "builds": [
+            {
+              "@type": "build",
+              "@href": "/build/487588482",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 487588482,
+              "number": "178",
+              "state": "passed",
+              "duration": 296,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-02-01T18:36:09Z",
+              "finished_at": "2019-02-01T18:39:43Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Fenhance%2Fdoc",
+                "@representation": "minimal",
+                "name": "trav3/enhance/doc"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146903705,
+                "sha": "11445307582cd1aceeb2f0e2559c50d57625c81c",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Bump ruby version on TravisCI",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2a254e3ce3f6...11445307582c",
+                "committed_at": "2019-02-01T18:35:31Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/487588483",
+                  "@representation": "minimal",
+                  "id": 487588483
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487588484",
+                  "@representation": "minimal",
+                  "id": 487588484
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487588485",
+                  "@representation": "minimal",
+                  "id": 487588485
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-02-01T18:39:44.022Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/487586248",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 487586248,
+              "number": "177",
+              "state": "passed",
+              "duration": 241,
+              "event_type": "pull_request",
+              "previous_state": "passed",
+              "pull_request_title": "Documentation enhancements & minor refactorings",
+              "pull_request_number": 63,
+              "started_at": "2019-02-01T18:31:06Z",
+              "finished_at": "2019-02-01T18:37:39Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902985,
+                "sha": "bc47a3d3932725836585d3e255e807bc502a9bf5",
+                "ref": "refs/pull/63/merge",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/487586249",
+                  "@representation": "minimal",
+                  "id": 487586249
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487586250",
+                  "@representation": "minimal",
+                  "id": 487586250
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487586251",
+                  "@representation": "minimal",
+                  "id": 487586251
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-02-01T18:37:39.771Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/487586159",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 487586159,
+              "number": "176",
+              "state": "canceled",
+              "duration": 859,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-02-01T18:30:55Z",
+              "finished_at": "2019-02-01T18:35:45Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Fenhance%2Fdoc",
+                "@representation": "minimal",
+                "name": "trav3/enhance/doc"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146902962,
+                "sha": "2a254e3ce3f6bef078c0c1b26a69dbe0ddb08cf5",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Merge remote-tracking branch 'origin/master' into trav3/enhance/doc",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2800eda68252...2a254e3ce3f6",
+                "committed_at": "2019-02-01T18:30:09Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/487586160",
+                  "@representation": "minimal",
+                  "id": 487586160
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487586161",
+                  "@representation": "minimal",
+                  "id": 487586161
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487586162",
+                  "@representation": "minimal",
+                  "id": 487586162
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-02-01T18:35:45.251Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/487578799",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 487578799,
+              "number": "175",
+              "state": "passed",
+              "duration": 519,
+              "event_type": "pull_request",
+              "previous_state": "passed",
+              "pull_request_title": "Documentation enhancements & minor refactorings",
+              "pull_request_number": 63,
+              "started_at": "2019-02-01T18:17:49Z",
+              "finished_at": "2019-02-01T18:21:25Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146900735,
+                "sha": "2937af4c300185d1739ad5b53e8665ca1a94eab9",
+                "ref": "refs/pull/63/merge",
+                "message": "Documented Headers forward methods - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/63",
+                "committed_at": "2019-02-01T18:12:20Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/487578800",
+                  "@representation": "minimal",
+                  "id": 487578800
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487578801",
+                  "@representation": "minimal",
+                  "id": 487578801
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487578802",
+                  "@representation": "minimal",
+                  "id": 487578802
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-02-01T18:21:25.674Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/487578455",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 487578455,
+              "number": "174",
+              "state": "passed",
+              "duration": 440,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-02-01T18:17:14Z",
+              "finished_at": "2019-02-01T18:21:10Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Fenhance%2Fdoc",
+                "@representation": "minimal",
+                "name": "trav3/enhance/doc"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146900607,
+                "sha": "2800eda68252f09181debbd3eb983b206ecdeb27",
+                "ref": "refs/heads/trav3/enhance/doc",
+                "message": "Documented Headers forward methods - #61",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/d50447a494e8^...2800eda68252",
+                "committed_at": "2019-02-01T18:12:20Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/487578456",
+                  "@representation": "minimal",
+                  "id": 487578456
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487578457",
+                  "@representation": "minimal",
+                  "id": 487578457
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487578458",
+                  "@representation": "minimal",
+                  "id": 487578458
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-02-01T18:21:10.460Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/487577383",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 487577383,
+              "number": "173",
+              "state": "passed",
+              "duration": 250,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-02-01T18:15:13Z",
+              "finished_at": "2019-02-01T18:16:44Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146900234,
+                "sha": "e4811ef3023c3b5007f7f93368db64cdd41067f1",
+                "ref": "refs/heads/master",
+                "message": "Typo fix as per @varyonic - #62",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/5f1bc87980ea...e4811ef3023c",
+                "committed_at": "2019-02-01T18:14:27Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/487577384",
+                  "@representation": "minimal",
+                  "id": 487577384
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487577386",
+                  "@representation": "minimal",
+                  "id": 487577386
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/487577388",
+                  "@representation": "minimal",
+                  "id": 487577388
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-02-01T18:16:44.960Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486163219",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486163219,
+              "number": "170",
+              "state": "passed",
+              "duration": 499,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T23:15:12Z",
+              "finished_at": "2019-01-29T23:19:50Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146474306,
+                "sha": "d2e4a82b6c2e07247909f026160259af68a097f4",
+                "ref": "refs/heads/master",
+                "message": "Version v0.4.1",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/e25b18f2cad8...d2e4a82b6c2e",
+                "committed_at": "2019-01-29T23:07:44Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486163220",
+                  "@representation": "minimal",
+                  "id": 486163220
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486163221",
+                  "@representation": "minimal",
+                  "id": 486163221
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486163222",
+                  "@representation": "minimal",
+                  "id": 486163222
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T23:19:50.219Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486163231",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486163231,
+              "number": "171",
+              "state": "passed",
+              "duration": 303,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T23:15:11Z",
+              "finished_at": "2019-01-29T23:19:13Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/v0.4.1",
+                "@representation": "minimal",
+                "name": "v0.4.1"
+              },
+              "tag": {
+                "@type": "tag",
+                "@representation": "minimal",
+                "repository_id": 22777898,
+                "name": "v0.4.1",
+                "last_build_id": null
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146474311,
+                "sha": "d2e4a82b6c2e07247909f026160259af68a097f4",
+                "ref": "refs/tags/v0.4.1",
+                "message": "Version v0.4.1",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/v0.4.1",
+                "committed_at": null
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486163232",
+                  "@representation": "minimal",
+                  "id": 486163232
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486163233",
+                  "@representation": "minimal",
+                  "id": 486163233
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486163234",
+                  "@representation": "minimal",
+                  "id": 486163234
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T23:19:13.133Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486160564",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486160564,
+              "number": "169",
+              "state": "passed",
+              "duration": 515,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T23:07:56Z",
+              "finished_at": "2019-01-29T23:13:29Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146473532,
+                "sha": "e25b18f2cad84e55032ff2b63286b40627158a46",
+                "ref": "refs/heads/master",
+                "message": "Fix debug job feature",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/65c08d5caa40...e25b18f2cad8",
+                "committed_at": "2019-01-29T23:05:58Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486160565",
+                  "@representation": "minimal",
+                  "id": 486160565
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486160566",
+                  "@representation": "minimal",
+                  "id": 486160566
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486160567",
+                  "@representation": "minimal",
+                  "id": 486160567
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T23:13:29.453Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486138840",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486138840,
+              "number": "168",
+              "state": "passed",
+              "duration": 302,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T22:11:47Z",
+              "finished_at": "2019-01-29T22:15:32Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/v0.4.0",
+                "@representation": "minimal",
+                "name": "v0.4.0"
+              },
+              "tag": {
+                "@type": "tag",
+                "@representation": "minimal",
+                "repository_id": 22777898,
+                "name": "v0.4.0",
+                "last_build_id": null
+              },
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146467475,
+                "sha": "65c08d5caa406272298654dc57de66f6bc7512ad",
+                "ref": "refs/tags/v0.4.0",
+                "message": "Version v0.4.0",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/v0.4.0",
+                "committed_at": null
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486138841",
+                  "@representation": "minimal",
+                  "id": 486138841
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486138842",
+                  "@representation": "minimal",
+                  "id": 486138842
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486138843",
+                  "@representation": "minimal",
+                  "id": 486138843
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T22:15:32.158Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486138821",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486138821,
+              "number": "167",
+              "state": "passed",
+              "duration": 303,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T22:11:39Z",
+              "finished_at": "2019-01-29T22:13:45Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146467469,
+                "sha": "65c08d5caa406272298654dc57de66f6bc7512ad",
+                "ref": "refs/heads/master",
+                "message": "Version v0.4.0",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/5d96ff93acdc...65c08d5caa40",
+                "committed_at": "2019-01-29T22:11:00Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486138822",
+                  "@representation": "minimal",
+                  "id": 486138822
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486138823",
+                  "@representation": "minimal",
+                  "id": 486138823
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486138824",
+                  "@representation": "minimal",
+                  "id": 486138824
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T22:13:45.707Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486135816",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486135816,
+              "number": "166",
+              "state": "passed",
+              "duration": 275,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T22:04:23Z",
+              "finished_at": "2019-01-29T22:06:17Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146466635,
+                "sha": "5d96ff93acdc7fd8afd91e2c4508653dd0b343c3",
+                "ref": "refs/heads/master",
+                "message": "general setter/getter check - #54",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/b821705e27c3...5d96ff93acdc",
+                "committed_at": "2019-01-29T22:03:26Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486135817",
+                  "@representation": "minimal",
+                  "id": 486135817
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486135818",
+                  "@representation": "minimal",
+                  "id": 486135818
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486135819",
+                  "@representation": "minimal",
+                  "id": 486135819
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T22:06:17.502Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486126910",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486126910,
+              "number": "165",
+              "state": "passed",
+              "duration": 285,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T21:42:57Z",
+              "finished_at": "2019-01-29T21:44:49Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146464032,
+                "sha": "b821705e27c357e4ac47aaa04056486f869420e7",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #60 from danielpclark/trav3/enhance/options_doc\n\nOptions, Headers, and Follow doc",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/64b0886bbe42...b821705e27c3",
+                "committed_at": "2019-01-29T21:42:27Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486126911",
+                  "@representation": "minimal",
+                  "id": 486126911
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486126912",
+                  "@representation": "minimal",
+                  "id": 486126912
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486126913",
+                  "@representation": "minimal",
+                  "id": 486126913
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T21:44:49.897Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486123894",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486123894,
+              "number": "164",
+              "state": "passed",
+              "duration": 228,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T21:36:15Z",
+              "finished_at": "2019-01-29T21:37:41Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Fenhance%2Foptions_doc",
+                "@representation": "minimal",
+                "name": "trav3/enhance/options_doc"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146463120,
+                "sha": "579baa45d7248976e82622cdd66beac7b8f07824",
+                "ref": "refs/heads/trav3/enhance/options_doc",
+                "message": "Document #follow",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/13c58b188d3f^...579baa45d724",
+                "committed_at": "2019-01-29T21:35:11Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486123895",
+                  "@representation": "minimal",
+                  "id": 486123895
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486123896",
+                  "@representation": "minimal",
+                  "id": 486123896
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486123897",
+                  "@representation": "minimal",
+                  "id": 486123897
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T21:37:41.556Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486053670",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486053670,
+              "number": "163",
+              "state": "passed",
+              "duration": 379,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T18:48:21Z",
+              "finished_at": "2019-01-29T18:51:59Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146442667,
+                "sha": "64b0886bbe422f5c6c162adf7cae9c6da9273a61",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #59 from danielpclark/trav3/feature/beta_features\n\nbeta_features implementation",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/685a2d5e9887...64b0886bbe42",
+                "committed_at": "2019-01-29T18:47:49Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486053671",
+                  "@representation": "minimal",
+                  "id": 486053671
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486053672",
+                  "@representation": "minimal",
+                  "id": 486053672
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486053673",
+                  "@representation": "minimal",
+                  "id": 486053673
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T18:51:59.698Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486051919",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486051919,
+              "number": "162",
+              "state": "passed",
+              "duration": 209,
+              "event_type": "pull_request",
+              "previous_state": "passed",
+              "pull_request_title": "beta_features implementation",
+              "pull_request_number": 59,
+              "started_at": "2019-01-29T18:44:49Z",
+              "finished_at": "2019-01-29T18:47:37Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146442196,
+                "sha": "830293b6ebd3ce93b41d0c28a08a9e8c794bb232",
+                "ref": "refs/pull/59/merge",
+                "message": "beta_feature implementation - #22",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/59",
+                "committed_at": "2019-01-29T18:43:32Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486051920",
+                  "@representation": "minimal",
+                  "id": 486051920
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486051923",
+                  "@representation": "minimal",
+                  "id": 486051923
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486051924",
+                  "@representation": "minimal",
+                  "id": 486051924
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T18:47:37.979Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486051733",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486051733,
+              "number": "161",
+              "state": "passed",
+              "duration": 275,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T18:44:21Z",
+              "finished_at": "2019-01-29T18:45:59Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Ffeature%2Fbeta_features",
+                "@representation": "minimal",
+                "name": "trav3/feature/beta_features"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146442134,
+                "sha": "15313421523c8e08ac3523fc0010955823a20520",
+                "ref": "refs/heads/trav3/feature/beta_features",
+                "message": "beta_feature implementation - #22",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/2cdc9f089275...15313421523c",
+                "committed_at": "2019-01-29T18:43:32Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486051734",
+                  "@representation": "minimal",
+                  "id": 486051734
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486051735",
+                  "@representation": "minimal",
+                  "id": 486051735
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486051736",
+                  "@representation": "minimal",
+                  "id": 486051736
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T18:45:59.185Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486034007",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486034007,
+              "number": "160",
+              "state": "passed",
+              "duration": 232,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T18:04:22Z",
+              "finished_at": "2019-01-29T18:05:49Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Ffeature%2Fbeta_features",
+                "@representation": "minimal",
+                "name": "trav3/feature/beta_features"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146437280,
+                "sha": "2cdc9f089275049cc7bab76c540530a329cf422f",
+                "ref": "refs/heads/trav3/feature/beta_features",
+                "message": "beta_features implementation - #22",
+                "compare_url": "https://github.com/danielpclark/trav3/commit/2cdc9f089275",
+                "committed_at": "2019-01-29T18:03:28Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486034008",
+                  "@representation": "minimal",
+                  "id": 486034008
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486034009",
+                  "@representation": "minimal",
+                  "id": 486034009
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486034010",
+                  "@representation": "minimal",
+                  "id": 486034010
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T18:05:49.343Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486027604",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486027604,
+              "number": "159",
+              "state": "passed",
+              "duration": 226,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T17:48:26Z",
+              "finished_at": "2019-01-29T17:50:58Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146435354,
+                "sha": "685a2d5e98873a5a06eed5092ebac6cbde262a2c",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #58 from danielpclark/trav3/feature/broadcasts\n\nbroadcasts implementation",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/e334c5c68d09...685a2d5e9887",
+                "committed_at": "2019-01-29T17:47:53Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486027605",
+                  "@representation": "minimal",
+                  "id": 486027605
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486027607",
+                  "@representation": "minimal",
+                  "id": 486027607
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486027611",
+                  "@representation": "minimal",
+                  "id": 486027611
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T17:50:59.207Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486024074",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486024074,
+              "number": "158",
+              "state": "passed",
+              "duration": 248,
+              "event_type": "pull_request",
+              "previous_state": "passed",
+              "pull_request_title": "broadcasts implementation",
+              "pull_request_number": 58,
+              "started_at": "2019-01-29T17:39:28Z",
+              "finished_at": "2019-01-29T17:43:10Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146434203,
+                "sha": "d33ab105a82f3e195563a7bd622d788cbf5a0b88",
+                "ref": "refs/pull/58/merge",
+                "message": "broadcasts implementation - #21",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/58",
+                "committed_at": "2019-01-29T17:37:42Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486024077",
+                  "@representation": "minimal",
+                  "id": 486024077
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486024078",
+                  "@representation": "minimal",
+                  "id": 486024078
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486024081",
+                  "@representation": "minimal",
+                  "id": 486024081
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T17:43:10.333Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/486023599",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 486023599,
+              "number": "157",
+              "state": "passed",
+              "duration": 252,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-29T17:38:21Z",
+              "finished_at": "2019-01-29T17:40:35Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Ffeature%2Fbroadcasts",
+                "@representation": "minimal",
+                "name": "trav3/feature/broadcasts"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146434077,
+                "sha": "fb803aed1e1b97c25b78aba49303ac1903c65e14",
+                "ref": "refs/heads/trav3/feature/broadcasts",
+                "message": "broadcasts implementation - #21",
+                "compare_url": "https://github.com/danielpclark/trav3/commit/fb803aed1e1b",
+                "committed_at": "2019-01-29T17:37:42Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/486023602",
+                  "@representation": "minimal",
+                  "id": 486023602
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486023603",
+                  "@representation": "minimal",
+                  "id": 486023603
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/486023604",
+                  "@representation": "minimal",
+                  "id": 486023604
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-29T17:40:35.349Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/485619265",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 485619265,
+              "number": "146",
+              "state": "failed",
+              "duration": 328,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-28T21:52:07Z",
+              "finished_at": "2019-01-28T21:55:33Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Ffeature%2Fcrons",
+                "@representation": "minimal",
+                "name": "trav3/feature/crons"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146312145,
+                "sha": "c2b8aa1d32dd625e8d97d02f10a4c023818f69ac",
+                "ref": "refs/heads/trav3/feature/crons",
+                "message": "crons implementation - #19",
+                "compare_url": "https://github.com/danielpclark/trav3/commit/c2b8aa1d32dd",
+                "committed_at": "2019-01-28T21:51:24Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/485619266",
+                  "@representation": "minimal",
+                  "id": 485619266
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485619267",
+                  "@representation": "minimal",
+                  "id": 485619267
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485619268",
+                  "@representation": "minimal",
+                  "id": 485619268
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-28T21:55:34.027Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/485613121",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 485613121,
+              "number": "145",
+              "state": "passed",
+              "duration": 173,
+              "event_type": "push",
+              "previous_state": "passed",
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-28T21:36:02Z",
+              "finished_at": "2019-01-28T21:37:16Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146310346,
+                "sha": "b41033dad598cbcc9f4f959036a252914d382a2d",
+                "ref": "refs/heads/master",
+                "message": "Merge pull request #56 from danielpclark/trav3/feature/log_delete\n\ndelete log implementation",
+                "compare_url": "https://github.com/danielpclark/trav3/compare/d011d92ca137...b41033dad598",
+                "committed_at": "2019-01-28T21:35:25Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/485613122",
+                  "@representation": "minimal",
+                  "id": 485613122
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485613123",
+                  "@representation": "minimal",
+                  "id": 485613123
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485613124",
+                  "@representation": "minimal",
+                  "id": 485613124
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-28T21:37:16.730Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/485605772",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 485605772,
+              "number": "144",
+              "state": "passed",
+              "duration": 247,
+              "event_type": "pull_request",
+              "previous_state": "passed",
+              "pull_request_title": "delete log implementation",
+              "pull_request_number": 56,
+              "started_at": "2019-01-28T21:17:27Z",
+              "finished_at": "2019-01-28T21:20:15Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146308062,
+                "sha": "d26d3456e80ce8d3087fdee1e34ab7a5bda12350",
+                "ref": "refs/pull/56/merge",
+                "message": "delete log implementation - #25",
+                "compare_url": "https://github.com/danielpclark/trav3/pull/56",
+                "committed_at": "2019-01-28T21:16:21Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/485605773",
+                  "@representation": "minimal",
+                  "id": 485605773
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485605774",
+                  "@representation": "minimal",
+                  "id": 485605774
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485605775",
+                  "@representation": "minimal",
+                  "id": 485605775
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-28T21:20:15.744Z"
+            },
+            {
+              "@type": "build",
+              "@href": "/build/485605532",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "cancel": true,
+                "restart": true
+              },
+              "id": 485605532,
+              "number": "143",
+              "state": "passed",
+              "duration": 232,
+              "event_type": "push",
+              "previous_state": null,
+              "pull_request_title": null,
+              "pull_request_number": null,
+              "started_at": "2019-01-28T21:16:59Z",
+              "finished_at": "2019-01-28T21:19:15Z",
+              "private": false,
+              "repository": {
+                "@type": "repository",
+                "@href": "/repo/22777898",
+                "@representation": "minimal",
+                "id": 22777898,
+                "name": "trav3",
+                "slug": "danielpclark/trav3"
+              },
+              "branch": {
+                "@type": "branch",
+                "@href": "/repo/22777898/branch/trav3%2Ffeature%2Flog_delete",
+                "@representation": "minimal",
+                "name": "trav3/feature/log_delete"
+              },
+              "tag": null,
+              "commit": {
+                "@type": "commit",
+                "@representation": "minimal",
+                "id": 146307996,
+                "sha": "aa211e6e603962b4768f0471a82618586d4f1294",
+                "ref": "refs/heads/trav3/feature/log_delete",
+                "message": "delete log implementation - #25",
+                "compare_url": "https://github.com/danielpclark/trav3/commit/aa211e6e6039",
+                "committed_at": "2019-01-28T21:16:21Z"
+              },
+              "jobs": [
+                {
+                  "@type": "job",
+                  "@href": "/job/485605533",
+                  "@representation": "minimal",
+                  "id": 485605533
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485605534",
+                  "@representation": "minimal",
+                  "id": 485605534
+                },
+                {
+                  "@type": "job",
+                  "@href": "/job/485605535",
+                  "@representation": "minimal",
+                  "id": 485605535
+                }
+              ],
+              "stages": [
+
+              ],
+              "created_by": {
+                "@type": "user",
+                "@href": "/user/114816",
+                "@representation": "minimal",
+                "id": 114816,
+                "login": "danielpclark"
+              },
+              "updated_at": "2019-01-28T21:19:15.884Z"
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 01 Feb 2019 19:24:47 GMT
 recorded_with: VCR 4.0.0

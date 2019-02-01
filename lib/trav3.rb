@@ -737,6 +737,14 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.builds(false)
+    # ```
+    #
     # **Find**
     #
     # This returns a list of builds for an individual repository. It is possible to use the repository id or slug in the request. The result is paginated. Each request will return 25 results.
@@ -765,6 +773,13 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5})
+    # travis.builds
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/builds</code>
     #
     #     Template Variable  Type    Description
@@ -789,9 +804,19 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>started_at</code>, <code>finished_at</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5})
+    # travis.builds
+    # ```
+    # @note requests may require an authorization token set in the headers. See: {authorization=}
+    #
+    # @param repo [Boolean] If true get repo builds, otherwise get user builds
     # @return [Success, RequestError]
-    def builds
-      get("#{with_repo}/builds#{opts}")
+    def builds(repo = true)
+      repo and return get("#{with_repo}/builds#{opts}")
+      get("#{without_repo}/builds#{opts}")
     end
 
     # A list of jobs.
