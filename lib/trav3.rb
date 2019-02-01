@@ -1813,6 +1813,14 @@ module Trav3
     #
     #     Example: GET /repo/891/key_pair
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/key_pair</code>
     #
     #     Template Variable  Type    Description
@@ -1821,6 +1829,14 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/key_pair
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair
+    # ```
     #
     # **Create**
     #
@@ -1833,6 +1849,14 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "key_pair.description": "FooBar", "key_pair.value": "xxxxx"}' \
     #   https://api.travis-ci.com/repo/1234/key_pair
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(create: { description: 'FooBar', value: OpenSSL::PKey::RSA.generate(2048).to_s })
     # ```
     #
     # POST <code>/repo/{repository.id}/key_pair</code>
@@ -1868,6 +1892,14 @@ module Trav3
     #   https://api.travis-ci.com/repo/1234/key_pair
     # ```
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(update: { description: 'FooBarBaz' })
+    # ```
+    #
     # PATCH <code>/repo/{repository.id}/key_pair</code>
     #
     #     Template Variable  Type     Description
@@ -1899,12 +1931,28 @@ module Trav3
     #
     #     Example: DELETE /repo/891/key_pair
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(delete: true)
+    # ```
+    #
     # DELETE <code>/repo/{repository.slug}/key_pair</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: DELETE /repo/rails%2Frails/key_pair
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.key_pair(delete: true)
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     # @note API enpoint needs to be set to `https://api.travis-ci.com` See: {api_endpoint=}
