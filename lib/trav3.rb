@@ -1074,6 +1074,13 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(id: 78_199)
+    # ```
+    #
     # **Delete**
     #
     # This deletes a single cron.
@@ -1082,6 +1089,13 @@ module Trav3
     #
     #     Template Variable  Type     Description
     #     cron.id            Integer  Value uniquely identifying the cron.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(id: 78_199, delete: true)
+    # ```
     #
     # **For Branch**
     #
@@ -1097,6 +1111,13 @@ module Trav3
     #
     #     Example: GET /repo/891/branch/master/cron
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(branch_name: 'master')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/branch/{branch.name}/cron</code>
     #
     #     Template Variable  Type    Description
@@ -1106,6 +1127,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/branch/master/cron
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(branch_name: 'master')
+    # ```
     #
     # **Create**
     #
@@ -1118,6 +1146,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "cron.interval": "monthly" }' \
     #   https://api.travis-ci.com/repo/1234/branch/master/cron
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.cron(branch_name: 'master', create: { 'interval' => 'monthly' })
     # ```
     #
     # POST <code>/repo/{repository.id}/branch/{branch.name}/cron</code>
