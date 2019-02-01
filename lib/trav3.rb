@@ -1693,6 +1693,13 @@ module Trav3
     #
     #     Example: GET /job/86601347
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875)
+    # ```
+    #
     # **Cancel**
     #
     # This cancels a currently running job.
@@ -1703,6 +1710,13 @@ module Trav3
     #     job.id             Integer  Value uniquely identifying the job.
     #
     #     Example: POST /job/86601347/cancel
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875, :cancel)
+    # ```
     #
     # **Restart**
     #
@@ -1715,6 +1729,13 @@ module Trav3
     #
     #     Example: POST /job/86601347/restart
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875, :restart)
+    # ```
+    #
     # **Debug**
     #
     # This restarts a job in debug mode, enabling the logged-in user to ssh into the build VM. Please note this feature is only available on the travis-ci.com domain, and those repositories on the travis-ci.org domain for which the debug feature is enabled. See this document for more details.
@@ -1726,7 +1747,16 @@ module Trav3
     #
     #     Example: POST /job/86601347/debug
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.job(351_778_875, :debug)
+    # ```
+    #
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
+    # @note **Debug** is only available on the travis-ci.com domain, and those repositories on the travis-ci.org domain for which the debug feature is enabled.
     #
     # @param job_id [String, Integer] the job id number
     # @param option [Symbol] options for :cancel, :restart, or :debug
