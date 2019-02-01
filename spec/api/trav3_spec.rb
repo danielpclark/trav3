@@ -467,6 +467,11 @@ RSpec.describe Trav3::Travis, :vcr do
       repositories = t.repositories(639_823)
       expect(repositories['repositories'].count).to be 25
     end
+
+    it 'gets the repositories of the current user' do
+      repositories = t.repositories(:self)
+      expect(repositories['repositories'].count).to be 25
+    end
   end
 
   describe '#repository' do

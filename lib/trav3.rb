@@ -2735,6 +2735,15 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories
+    # # or
+    # travis.repositories('danielpclark')
+    # ```
+    #
     # GET <code>/owner/{user.login}/repos</code>
     #
     #     Template Variable  Type    Description
@@ -2755,6 +2764,15 @@ module Trav3
     #     Example: GET /owner/danielpclark/repos?limit=5&sort_by=active,name
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories
+    # # or
+    # travis.repositories('danielpclark')
+    # ```
     #
     # GET <code>/owner/{organization.login}/repos</code>
     #
@@ -2777,6 +2795,14 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories('travis-ci')
+    # ```
+    #
     # GET <code>/owner/github_id/{owner.github_id}/repos</code>
     #
     #     Template Variable  Type     Description
@@ -2797,6 +2823,13 @@ module Trav3
     #     Example: GET /owner/github_id/639823/repos?limit=5&sort_by=active,name
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories(639_823)
+    # ```
     #
     # **For Current User**
     #
@@ -2820,9 +2853,18 @@ module Trav3
     #
     # **Sortable by:** <code>id</code>, <code>github_id</code>, <code>owner_name</code>, <code>name</code>, <code>active</code>, <code>default_branch.last_build</code>, append <code>:desc</code> to any attribute to reverse order.
     #
-    # @param owner [String] username or github id
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5, sort_by: 'active,name'})
+    # travis.repositories(:self)
+    # ```
+    #
+    # @param owner [String, Integer, Symbol] username, github id, or `:self`
     # @return [Success, RequestError]
     def repositories(owner = username)
+      owner.equal?(:self) and return get("#{without_repo}/repos#{opts}")
       number?(owner) and return get("#{without_repo}/owner/github_id/#{owner}/repos#{opts}")
       get("#{without_repo}/owner/#{owner}/repos#{opts}")
     end

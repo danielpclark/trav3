@@ -1,0 +1,1169 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.travis-ci.org/repos?limit=25
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/json
+      Travis-Api-Version:
+      - '3'
+      Authorization:
+      - token xxxx
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Date:
+      - Fri, 01 Feb 2019 22:35:30 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Strict-Transport-Security:
+      - max-age=31536000
+      X-Endpoint:
+      - Travis::API::V3::Services::Repositories::ForCurrentUser
+      X-Oauth-Scopes:
+      - public,private
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - private
+      X-Rack-Cache:
+      - miss
+      X-Request-Id:
+      - bc2aa486-a730-42da-be91-c925b304ee73
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Expose-Headers:
+      - Content-Type, Cache-Control, Expires, Etag, Last-Modified, X-Request-ID
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "@type": "repositories",
+          "@href": "/repos?limit=25",
+          "@representation": "standard",
+          "@pagination": {
+            "limit": 25,
+            "offset": 0,
+            "count": 106,
+            "is_first": true,
+            "is_last": false,
+            "next": {
+              "@href": "/repos?limit=25&offset=25",
+              "offset": 25,
+              "limit": 25
+            },
+            "prev": null,
+            "first": {
+              "@href": "/repos?limit=25",
+              "offset": 0,
+              "limit": 25
+            },
+            "last": {
+              "@href": "/repos?limit=25&offset=100",
+              "offset": 100,
+              "limit": 25
+            }
+          },
+          "repositories": [
+            {
+              "@type": "repository",
+              "@href": "/repo/93278",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": false,
+                "activate": true,
+                "migrate": false,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 93278,
+              "name": "fish-nuggets",
+              "slug": "lunks/fish-nuggets",
+              "description": "Completions, code snippets helping you to get even more out of the amazing Fish shell",
+              "github_id": 1518918,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 335,
+                "login": "lunks",
+                "@href": "/user/335"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/93278/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625659",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625659,
+              "name": "b64challenge",
+              "slug": "danielpclark/b64challenge",
+              "description": "Golf Challenge Unique Base 64 Incrementor",
+              "github_id": 19390406,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625659/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625661",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625661,
+              "name": "BaseCustom",
+              "slug": "danielpclark/BaseCustom",
+              "description": "Define any base conversion with any identifier for each value. Let the fun begin!",
+              "github_id": 6466176,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625661/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625662",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625662,
+              "name": "camcatch",
+              "slug": "danielpclark/camcatch",
+              "description": "Just basic hornetseye v4l2 stuff.",
+              "github_id": 7187601,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625662/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625664",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625664,
+              "name": "compass-rails",
+              "slug": "danielpclark/compass-rails",
+              "description": "compass rails integration",
+              "github_id": 28016204,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625664/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625666",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625666,
+              "name": "CountDownObj",
+              "slug": "danielpclark/CountDownObj",
+              "description": "Count Down Object. An object base on ruby's Time object that'll let you know how much time is left until the deadline.",
+              "github_id": 6993805,
+              "github_language": "Ruby",
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625666/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625667",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625667,
+              "name": "dfm",
+              "slug": "danielpclark/dfm",
+              "description": "Duplicate File Manager",
+              "github_id": 20826328,
+              "github_language": "Ruby",
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625667/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625668",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625668,
+              "name": "django_meta_gen",
+              "slug": "danielpclark/django_meta_gen",
+              "description": "Django meta tags automation.  Hassle free SEO back end for Django template processing.",
+              "github_id": 16125590,
+              "github_language": "Python",
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625668/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625669",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625669,
+              "name": "dynaspan",
+              "slug": "danielpclark/dynaspan",
+              "description": "In place text editing for Rails with AJAX substituting text to input field.",
+              "github_id": 27533331,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625669/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625670",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625670,
+              "name": "evernote-oauth-ruby",
+              "slug": "danielpclark/evernote-oauth-ruby",
+              "description": "Evernote OAuth / Thrift API client library for Ruby",
+              "github_id": 20512435,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625670/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625672",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625672,
+              "name": "grd",
+              "slug": "danielpclark/grd",
+              "description": "Get the URL redirection for the command line.",
+              "github_id": 20021877,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625672/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625673",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625673,
+              "name": "heroku-nano",
+              "slug": "danielpclark/heroku-nano",
+              "description": "Add pico (nano) text editor to the bash console on Heroku.  NOTE: Compile the src directory, copy nano from there to ~/bin",
+              "github_id": 20509074,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625673/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625675",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625675,
+              "name": "INGdirect_pdf_processor",
+              "slug": "danielpclark/INGdirect_pdf_processor",
+              "description": "Take all your saved PDF bank statements and turn the data into a usable hash of records.",
+              "github_id": 7494872,
+              "github_language": "Ruby",
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625675/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625676",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625676,
+              "name": "mdbm",
+              "slug": "danielpclark/mdbm",
+              "description": "Marshalling Database Manager. Drop any object into MDBM. It marshals in and out of DBM.",
+              "github_id": 6525844,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625676/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625677",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625677,
+              "name": "MightyString",
+              "slug": "danielpclark/MightyString",
+              "description": "Making Ruby Strings Powerful",
+              "github_id": 6117747,
+              "github_language": null,
+              "active": true,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625677/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625678",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625678,
+              "name": "nanorc-erb",
+              "slug": "danielpclark/nanorc-erb",
+              "description": "My custom Pico/Nano config and highlighting to support ERB.  Added highlighting for Enumerator/Enumerable methods.",
+              "github_id": 19802240,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625678/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625680",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625680,
+              "name": "OAuthPrime",
+              "slug": "danielpclark/OAuthPrime",
+              "description": "Beauty, Simplicity, and Seamless.  This is your prime source for OAuth 1.0",
+              "github_id": 19186024,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625680/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625681",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625681,
+              "name": "omnicontacts-rm",
+              "slug": "danielpclark/omnicontacts-rm",
+              "description": "This is, and will be, a ReMastered version of OmniContacts.  Going for standardizing returned information.",
+              "github_id": 26601881,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625681/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625682",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625682,
+              "name": "PicPacPut",
+              "slug": "danielpclark/PicPacPut",
+              "description": "Bulk image shrinking, packaging, and pushing.",
+              "github_id": 7142443,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625682/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625683",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625683,
+              "name": "PMMC",
+              "slug": "danielpclark/PMMC",
+              "description": "Plugable Module Meta Controller",
+              "github_id": 5336714,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625683/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625684",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625684,
+              "name": "puzzle-11-hitting-rock-bottom",
+              "slug": "danielpclark/puzzle-11-hitting-rock-bottom",
+              "description": "http://www.puzzlenode.com/puzzles/11-hitting-rock-bottom",
+              "github_id": 21388672,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625684/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625685",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625685,
+              "name": "RandomYouTube",
+              "slug": "danielpclark/RandomYouTube",
+              "description": "Grab a random youtube video link from any linux box.  Parsable and human readable.",
+              "github_id": 6846065,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625685/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625686",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625686,
+              "name": "RTsingle",
+              "slug": "danielpclark/RTsingle",
+              "description": "Retweet Single Account",
+              "github_id": 18301753,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625686/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625687",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625687,
+              "name": "RubyGemFeed",
+              "slug": "danielpclark/RubyGemFeed",
+              "description": "Get the latest updates and newest releases from RubyGems.org in a nice readable console.",
+              "github_id": 6874490,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625687/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            },
+            {
+              "@type": "repository",
+              "@href": "/repo/3625691",
+              "@representation": "standard",
+              "@permissions": {
+                "read": true,
+                "create_request": true,
+                "admin": true,
+                "activate": true,
+                "migrate": true,
+                "star": true,
+                "deactivate": true,
+                "unstar": true,
+                "create_cron": true,
+                "create_env_var": true,
+                "create_key_pair": true,
+                "delete_key_pair": true
+              },
+              "id": 3625691,
+              "name": "t4tt",
+              "slug": "danielpclark/t4tt",
+              "description": "A website tracker for tracking sites that track what you care about.  Really it's an inline frame tabbed browser.",
+              "github_id": 20298117,
+              "github_language": null,
+              "active": false,
+              "private": false,
+              "owner": {
+                "@type": "user",
+                "id": 114816,
+                "login": "danielpclark",
+                "@href": "/user/114816"
+              },
+              "default_branch": {
+                "@type": "branch",
+                "@href": "/repo/3625691/branch/master",
+                "@representation": "minimal",
+                "name": "master"
+              },
+              "starred": false,
+              "managed_by_installation": false,
+              "active_on_org": null,
+              "migration_status": null
+            }
+          ]
+        }
+    http_version: 
+  recorded_at: Fri, 01 Feb 2019 22:35:30 GMT
+recorded_with: VCR 4.0.0
