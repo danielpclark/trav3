@@ -2914,6 +2914,12 @@ module Trav3
     #
     #     Example: GET /repo/891
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.repository('danielpclark/trav3')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}</code>
     #
     #     Template Variable  Type    Description
@@ -2923,6 +2929,12 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.repository('danielpclark/trav3')
+    # ```
     #
     # **Activate**
     #
@@ -2935,12 +2947,26 @@ module Trav3
     #
     #     Example: POST /repo/891/activate
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :activate)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/activate</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/activate
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :activate)
+    # ```
     #
     # **Deactivate**
     #
@@ -2953,12 +2979,26 @@ module Trav3
     #
     #     Example: POST /repo/891/deactivate
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :deactivate)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/deactivate</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/deactivate
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :deactivate)
+    # ```
     #
     # **Star**
     #
@@ -2971,12 +3011,26 @@ module Trav3
     #
     #     Example: POST /repo/891/star
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :star)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/star</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/star
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :star)
+    # ```
     #
     # **Unstar**
     #
@@ -2989,12 +3043,26 @@ module Trav3
     #
     #     Example: POST /repo/891/unstar
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :unstar)
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/unstar</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/unstar
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.repository('danielpclark/trav3', :unstar)
+    # ```
     #
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
