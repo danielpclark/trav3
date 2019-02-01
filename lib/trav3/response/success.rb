@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Trav3
+  # (see Response)
   class Success < Response
     # @return [Pagination]
     def page

@@ -3,6 +3,12 @@
 require 'forwardable'
 
 module Trav3
+  # The results from queries return either `Success` or `RequestError` which both
+  # repsond with Hash like query methods for the JSON data or the Net::HTTP resonse object methods.
+  #  
+  # The `Response` classes `Success` and `RequestError` forward method calls for all of the instance
+  # methods of a `ResponseCollection` to the collection.  And many of the methods calls for the Net::HTTP
+  # response are also available on this class and those method calls are forwarded to the response.
   class Response
     extend Forwardable
     attr_reader :travis
