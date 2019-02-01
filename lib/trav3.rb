@@ -2513,7 +2513,7 @@ module Trav3
       get("#{without_repo}/owner/#{owner}")
     end
 
-    # Document `resources/preference/overview` not found.
+    # Individual preferences for current user or organization.
     #
     # ## Attributes
     #
@@ -2623,7 +2623,7 @@ module Trav3
       get("#{without_repo}#{org_id}/preference/#{key}")
     end
 
-    # Document `resources/preferences/overview` not found.
+    # Preferences for current user or organization.
     #
     # ## Attributes
     #
@@ -2634,7 +2634,7 @@ module Trav3
     #
     # **For Organization**
     #
-    # Document `resources/preferences/actions/for_organization` not found.
+    # Gets preferences for organization.
     #
     # GET <code>/org/{organization.id}/preferences</code>
     #
@@ -2645,9 +2645,16 @@ module Trav3
     #
     #     Example: GET /org/87/preferences
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preferences(107_660)
+    # ```
+    #
     # **For User**
     #
-    # Document `resources/preferences/actions/for_user` not found.
+    # Gets preferences for current user.
     #
     # GET <code>/preferences</code>
     #
@@ -2655,6 +2662,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /preferences
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preferences
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
