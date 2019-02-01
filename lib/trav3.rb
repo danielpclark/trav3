@@ -3203,6 +3203,14 @@ module Trav3
     #
     #     Example: GET /repo/891/requests?limit=5
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.requests
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/requests</code>
     #
     #     Template Variable  Type    Description
@@ -3213,6 +3221,14 @@ module Trav3
     #     offset           Integer   How many requests to skip before the first entry in the response. Used for pagination.
     #
     #     Example: GET /repo/rails%2Frails/requests?limit=5
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({limit: 5})
+    # travis.requests
+    # ```
     #
     # **Create**
     #
@@ -3228,6 +3244,16 @@ module Trav3
     #   -d '{ "request": {
     #         "message": "Override the commit message: this is an api request", "branch": "master" }}'\
     #   https://api.travis-ci.com/repo/1/requests
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.requests(
+    #   message: 'Override the commit message: this is an api request',
+    #   branch: 'master'
+    # )
     # ```
     #
     # The response includes the following body:
