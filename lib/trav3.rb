@@ -3357,6 +3357,13 @@ module Trav3
     #
     #     Example: GET /build/86601346/stages
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.stages(479_113_572)
+    # ```
+    #
     # @param build_id [String, Integer] build id
     # @raise [TypeError] if given build id is not a number
     # @return [Success, RequestError]
