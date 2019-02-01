@@ -479,6 +479,13 @@ module Trav3
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, exists_on_github: true})
+    # travis.branches
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/branches</code>
     #
     #     Template Variable  Type    Description
@@ -495,6 +502,13 @@ module Trav3
     #
     # **Sortable by:** <code>name</code>, <code>last_build</code>, <code>exists_on_github</code>, <code>default_branch</code>, append <code>:desc</code> to any attribute to reverse order.
     # The default value is <code>default_branch</code>,<code>exists_on_github</code>,<code>last_build:desc</code>.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.options.build({limit: 5, exists_on_github: true})
+    # travis.branches
+    # ```
     #
     # @return [Success, RequestError]
     def branches
