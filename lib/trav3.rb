@@ -2149,6 +2149,14 @@ module Trav3
     #       -H "Authorization: token xxxxxxxxxxxx" \
     #       https://api.travis-ci.org/job/{job.id}/log
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.log(351_778_875)
+    # # or
+    # travis.log(351_778_875, :text)
+    # ```
+    #
     # The default response type is application/json, and will include additional meta data such as @type, @representation etc. (see [https://developer.travis-ci.org/format](https://developer.travis-ci.org/format)).
     #
     # GET <code>/job/{job.id}/log</code>
@@ -2181,6 +2189,13 @@ module Trav3
     #       -H "Travis-API-Version: 3" \
     #       -H "Authorization: token xxxxxxxxxxxx" \
     #       https://api.travis-ci.org/job/{job.id}/log
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.log(478_772_530, :delete)
+    # ```
     #
     # DELETE <code>/job/{job.id}/log</code>
     #
