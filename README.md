@@ -112,6 +112,10 @@ builds.page.last
 # Recommended inspection
 builds.keys
 builds.dig("some_key")
+
+# Follow `@href`
+repositories = project.repositories("owner")['repositories']
+repositories.first.follow
 ```
 
 ## Response

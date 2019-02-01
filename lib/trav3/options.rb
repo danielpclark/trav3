@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Trav3
+  # A url options builder class.
   class Options
     def initialize(args = {})
       build(args)

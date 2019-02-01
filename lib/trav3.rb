@@ -14,6 +14,68 @@ require 'trav3/rest'
 module Trav3
   # An abstraction for the Travis CI v3 API
   #
+  #
+  # You can get started with the following.
+  #
+  # ```ruby
+  # require 'trav3'
+  # project = Trav3::Travis.new("name/example")
+  # ```
+  #
+  # When you instantiate an instance of `Travis`
+  # you get some default headers and default options.
+  #
+  # #### Default Options
+  #
+  # * `limit: 25` - for limiting data queries to 25 items at most
+  #
+  # Options can be changed via the {#options} getter method which will give you a
+  # {Options} instance. All changes to it affect the options that the `Travis`
+  # instance will submit in url requests.
+  #
+  # #### Default Headers
+  #
+  # * `'Content-Type': 'application/json'`
+  # * `'Accept': 'application/json'`
+  # * `'Travis-API-Version': 3`
+  #
+  # Headers can be changed via the {#headers} getter method which will give you a
+  # {Headers} instance. All changes to it affect the headers that the `Travis`
+  # instance will submit in url requests.
+  #
+  # #### General Usage
+  #
+  # ```ruby
+  # project.owner
+  # project.owner("owner")
+  # project.repositories
+  # project.repositories("owner")
+  # project.repository
+  # project.repository("owner/repo")
+  # project.builds
+  # project.build(12345)
+  # project.build_jobs(12345)
+  # project.job(1234)
+  # project.log(1234)
+  #
+  # # API Request Options
+  # project.options.build({limit: 25})
+  #
+  # # Pagination
+  # builds = project.builds
+  # builds.page.next
+  # builds.page.first
+  # builds.page.last
+  #
+  # # Recommended inspection
+  # builds.keys
+  # builds.dig("some_key")
+  #
+  # # Follow `@href`
+  # repositories = project.repositories("owner")['repositories']
+  # repositories.first.follow
+  # ```
+  #
   # @author Daniel P. Clark https://6ftdan.com
   # @!attribute [r] api_endpoint
   #   @return [String] API endpoint

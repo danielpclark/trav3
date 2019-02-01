@@ -3,6 +3,7 @@
 require 'forwardable'
 
 module Trav3
+  # A header builder class for outgoing requests
   class Headers
     extend Forwardable
     # @!macro [attach] def_delegators
