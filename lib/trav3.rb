@@ -623,6 +623,12 @@ module Trav3
     #
     #     Example: GET /build/86601346
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.build(351_778_872)
+    # ```
+    #
     # **Cancel**
     #
     # This cancels a currently running build. It will set the build and associated jobs to "state": "canceled".
@@ -634,6 +640,13 @@ module Trav3
     #
     #     Example: POST /build/86601346/cancel
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.build(478_772_528, :cancel)
+    # ```
+    #
     # **Restart**
     #
     # This restarts a build that has completed or been canceled.
@@ -644,6 +657,13 @@ module Trav3
     #     build.id           Integer  Value uniquely identifying the build.
     #
     #     Example: POST /build/86601346/restart
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.build(478_772_528, :restart)
+    # ```
     #
     # @note POST requests require an authorization token set in the headers. See: {authorization=}
     #
