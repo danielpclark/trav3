@@ -2444,6 +2444,15 @@ module Trav3
     #
     #     Example: GET /owner/danielpclark
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner
+    # # or
+    # travis.owner('danielpclark')
+    # ```
+    #
     # GET <code>/owner/{user.login}</code>
     #
     #     Template Variable  Type      Description
@@ -2453,6 +2462,15 @@ module Trav3
     #     include            [String]  List of attributes to eager load.
     #
     #     Example: GET /owner/danielpclark
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner
+    # # or
+    # travis.owner('danielpclark')
+    # ```
     #
     # GET <code>/owner/{organization.login}</code>
     #
@@ -2464,6 +2482,13 @@ module Trav3
     #
     #     Example: GET /owner/travis-ci
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner('travis-ci')
+    # ```
+    #
     # GET <code>/owner/github_id/{owner.github_id}</code>
     #
     #     Template Variable   Type      Description
@@ -2473,6 +2498,13 @@ module Trav3
     #     include             [String]  List of attributes to eager load.
     #
     #     Example: GET /owner/github_id/639823
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.owner(639_823)
+    # ```
     #
     # @param owner [String] username or github id
     # @return [Success, RequestError]
