@@ -3524,6 +3524,13 @@ module Trav3
     #
     #     Example: GET /repo/891/settings
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.settings
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/settings</code>
     #
     #     Template Variable  Type    Description
@@ -3532,6 +3539,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #
     #     Example: GET /repo/rails%2Frails/settings
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.settings
+    # ```
     #
     # @return [Success, RequestError]
     def settings
