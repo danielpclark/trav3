@@ -936,12 +936,28 @@ module Trav3
     #   https://api.travis-ci.com/repo/1234/caches?branch=master
     # ```
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({branch: :master})
+    # travis.caches
+    # ```
+    #
     # ```bash
     # curl \
     #   -H "Content-Type: application/json" \
     #   -H "Travis-API-Version: 3" \
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   https://api.travis-ci.com/repo/1234/caches?match=linux
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({match: :linux})
+    # travis.caches
     # ```
     #
     # GET <code>/repo/{repository.id}/caches</code>
@@ -984,6 +1000,14 @@ module Trav3
     #   https://api.travis-ci.com/repo/1234/caches?branch=master
     # ```
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.options.build({branch: :master})
+    # travis.caches(:delete)
+    # ```
+    #
     # DELETE <code>/repo/{repository.id}/caches</code>
     #
     #     Template Variable  Type     Description
@@ -1003,8 +1027,10 @@ module Trav3
     # @param delete [Boolean] option for deleting cache(s)
     # @return [Success, RequestError]
     def caches(delete = false)
-      delete and return without_limit { delete("#{with_repo}/caches#{opts}") }
-      get("#{with_repo}/caches")
+      without_limit do
+        delete and return delete("#{with_repo}/caches#{opts}")
+        get("#{with_repo}/caches#{opts}")
+      end
     end
 
     # An individual cron. There can be only one cron per branch on a repository.
