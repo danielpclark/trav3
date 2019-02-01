@@ -1380,6 +1380,13 @@ module Trav3
     #     include          [String]  List of attributes to eager load.
     #     repository.id    Integer   Value uniquely identifying the repository.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/env_var/{env_var.id}</code>
     #
     #     Template Variable  Type    Description
@@ -1390,6 +1397,13 @@ module Trav3
     #     id               String    Alias for env_var.id.
     #     include          [String]  List of attributes to eager load.
     #     repository.id    Integer   Value uniquely identifying the repository.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c')
+    # ```
     #
     # **Update**
     #
@@ -1404,6 +1418,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "env_var.value": "bar", "env_var.public": false }' \
     #   https://api.travis-ci.com/repo/1234/{env_var.id}
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', update: { value: 'bar', public: false })
     # ```
     #
     # PATCH <code>/repo/{repository.id}/env_var/{env_var.id}</code>
@@ -1436,11 +1457,25 @@ module Trav3
     #     repository.id      Integer  Value uniquely identifying the repository.
     #     env_var.id         String   The environment variable id.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', delete: true)
+    # ```
+    #
     # DELETE <code>/repo/{repository.slug}/env_var/{env_var.id}</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #     env_var.id         String  The environment variable id.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.env_var('76f9d8bd-642d-47ed-9f35-4c25eb030c6c', delete: true)
+    # ```
     #
     # @overload env_var(env_var_id)
     #   Gets current env var
