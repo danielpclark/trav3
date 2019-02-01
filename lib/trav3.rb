@@ -274,6 +274,19 @@ module Trav3
     #     beta_feature.id       Integer  Value uniquely identifying the beta feature.
     #     beta_feature.enabled  Boolean  Indicates if the user has this feature turned on.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    #
+    # # Enable comic-sans for user id 119240
+    # travis.beta_feature(:enable, 3, 119_240)
+    #
+    # # Disable comic-sans for user id 119240
+    # travis.beta_feature(:disable, 3, 119_240)
+    # ```
+    #
     # **Delete**
     #
     # This will delete a user's beta feature.
@@ -283,6 +296,16 @@ module Trav3
     #     Template Variable  Type     Description
     #     user.id            Integer  Value uniquely identifying the user.
     #     beta_feature.id    Integer  Value uniquely identifying the beta feature.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    #
+    # # Disable comic-sans via delete for user id 119240
+    # travis.beta_feature(:delete, 3, 119_240)
+    # ```
     #
     # @param action [Symbol] either `:enable`, `:disable` or `:delete`
     # @param beta_feature_id [String, Integer] id for the beta feature
