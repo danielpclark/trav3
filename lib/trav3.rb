@@ -1630,6 +1630,14 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.api_endpoint = 'https://api.travis-ci.com'
+    # travis.authorization = 'xxxx'
+    # travis.installation(617_754)
+    # ```
+    #
     # @param installation_id [String, Integer] GitHub App installation id
     # @return [Success, RequestError]
     def installation(installation_id)
