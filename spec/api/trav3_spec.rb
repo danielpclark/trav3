@@ -233,6 +233,7 @@ RSpec.describe Trav3::Travis, :vcr do
 
   describe '#crons' do
     it 'gets crons for an individual repository' do
+      t.options.reset!
       crons = t.crons
       expect(crons).to be_an_instance_of Trav3::Success
     end
