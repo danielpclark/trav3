@@ -5,6 +5,7 @@ require 'uri'
 require 'json'
 
 module Trav3
+  # @private
   module REST
     extend Net
     class << self
