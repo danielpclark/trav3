@@ -2537,7 +2537,7 @@ module Trav3
     #
     # **For Organization**
     #
-    # Document `resources/preference/actions/for_organization` not found.
+    # Get preference for organization.
     #
     # GET <code>/org/{organization.id}/preference/{preference.name}</code>
     #
@@ -2547,9 +2547,16 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('private_insights_visibility', org_id: 107_660)
+    # ```
+    #
     # **Update**
     #
-    # Document `resources/preference/actions/update` not found.
+    # Set preference for organization.
     #
     # PATCH <code>/org/{organization.id}/preference/{preference.name}</code>
     #
@@ -2559,6 +2566,15 @@ module Trav3
     #     Accepted Parameter  Type     Description
     #     preference.value    Unknown  The preference's value.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('private_insights_visibility', 'admins', org_id: 107_660)
+    # ```
+    #
+    # Set preference for current user.
+    #
     # PATCH <code>/preference/{preference.name}</code>
     #
     #     Template Variable  Type     Description
@@ -2566,9 +2582,16 @@ module Trav3
     #     Accepted Parameter  Type     Description
     #     preference.value    Unknown  The preference's value.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('build_emails', true)
+    # ```
+    #
     # **Find**
     #
-    # Document `resources/preference/actions/find` not found.
+    # Get preference for current user.
     #
     # GET <code>/preference/{preference.name}</code>
     #
@@ -2576,6 +2599,13 @@ module Trav3
     #     preference.name    Unknown  The preference's name.
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.preference('build_emails')
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
