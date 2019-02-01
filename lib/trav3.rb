@@ -2330,6 +2330,12 @@ module Trav3
     #
     #     Example: GET /org/87
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.organization(87)
+    # ```
+    #
     # @param org_id [String, Integer] the organization id
     # @raise [TypeError] if given organization id is not a number
     # @return [Success, RequestError]
