@@ -3127,6 +3127,13 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.request(147_776_757)
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/request/{request.id}</code>
     #
     #     Template Variable  Type     Description
@@ -3134,6 +3141,13 @@ module Trav3
     #     request.id         Integer  Value uniquely identifying the request.
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.request(147_776_757)
+    # ```
     #
     # @param request_id [String, Integer] request id
     # @return [Success, RequestError]
