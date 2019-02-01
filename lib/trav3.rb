@@ -3416,6 +3416,13 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.setting('auto_cancel_pull_requests')
+    # ```
+    #
     # GET <code>/repo/{repository.slug}/setting/{setting.name}</code>
     #
     #     Template Variable  Type    Description
@@ -3423,6 +3430,13 @@ module Trav3
     #     setting.name       String  The setting's name.
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.setting('auto_cancel_pull_requests')
+    # ```
     #
     # **Update**
     #
@@ -3437,6 +3451,13 @@ module Trav3
     #   -H "Authorization: token xxxxxxxxxxxx" \
     #   -d '{ "setting.value": true }' \
     #   https://api.travis-ci.com/repo/1234/setting/{setting.name}
+    # ```
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.setting('auto_cancel_pull_requests', false)
     # ```
     #
     # PATCH <code>/repo/{repository.id}/setting/{setting.name}</code>
