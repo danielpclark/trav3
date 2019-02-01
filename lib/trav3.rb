@@ -2099,6 +2099,12 @@ module Trav3
     #
     #     Example: POST /lint
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.lint(File.read('.travis.yml'))
+    # ```
+    #
     # @param yaml_content [String] the contents for the file `.travis.yml`
     # @return [Success, RequestError]
     def lint(yaml_content)
