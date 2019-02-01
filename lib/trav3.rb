@@ -1275,12 +1275,26 @@ module Trav3
     #
     #     Example: POST /repo/891/email_subscription
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_resubscribe
+    # ```
+    #
     # POST <code>/repo/{repository.slug}/email_subscription</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: POST /repo/rails%2Frails/email_subscription
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_resubscribe
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
@@ -1296,12 +1310,26 @@ module Trav3
     #
     #     Example: DELETE /repo/891/email_subscription
     #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_unsubscribe
+    # ```
+    #
     # DELETE <code>/repo/{repository.slug}/email_subscription</code>
     #
     #     Template Variable  Type    Description
     #     repository.slug    String  Same as {repository.owner.name}/{repository.name}.
     #
     #     Example: DELETE /repo/rails%2Frails/email_subscription
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.authorization = 'xxxx'
+    # travis.email_unsubscribe
+    # ```
     #
     # @note requests require an authorization token set in the headers. See: {authorization=}
     #
