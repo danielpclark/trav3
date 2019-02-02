@@ -727,10 +727,7 @@ module Trav3
     #     Query Parameter  Type      Description
     #     include          [String]  List of attributes to eager load.
     #     limit            Integer   How many builds to include in the response. Used for pagination.
-    #     limit            Integer   How many builds to include in the response. Used for pagination.
     #     offset           Integer   How many builds to skip before the first entry in the response. Used for pagination.
-    #     offset           Integer   How many builds to skip before the first entry in the response. Used for pagination.
-    #     sort_by          [String]  Attributes to sort builds by. Used for pagination.
     #     sort_by          [String]  Attributes to sort builds by. Used for pagination.
     #
     #     Example: GET /builds?limit=5
