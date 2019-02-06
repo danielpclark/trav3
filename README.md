@@ -1,6 +1,6 @@
 [![Gem Version](https://badge.fury.io/rb/trav3.svg)](http://badge.fury.io/rb/trav3)
 [![Build Status](https://travis-ci.org/danielpclark/trav3.svg?branch=master)](https://travis-ci.org/danielpclark/trav3)
-[![Commits Since Release](https://img.shields.io/github/commits-since/danielpclark/trav3/v0.5.0.svg)](https://github.com/danielpclark/trav3/graphs/commit-activity)
+[![Commits Since Release](https://img.shields.io/github/commits-since/danielpclark/trav3/v0.5.1.svg)](https://github.com/danielpclark/trav3/graphs/commit-activity)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1ed07a4baea3832b6207/maintainability)](https://codeclimate.com/github/danielpclark/trav3/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1ed07a4baea3832b6207/test_coverage)](https://codeclimate.com/github/danielpclark/trav3/test_coverage)
 [![Red The Docs](https://img.shields.io/badge/Read-the%20docs-blue.svg)](http://danielpclark.github.io/trav3/Trav3/Travis.html)
@@ -157,6 +157,7 @@ The keys for the response are displayed with `#inspect` along with the object.  
 * `#follow`
 * `#hash?`
 * `#last`
+* `#warnings`
 
 Which each behave as they would on the collection type per collection type, `Hash` or `Array`, with the exception of `#each`.  `#each` will wrap every item in an `Array` with another `ResponseCollection`, but if it's a `Hash` then `#each` simply works as it normally would on a `Hash`
 
