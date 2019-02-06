@@ -3682,9 +3682,10 @@ module Trav3
       get("#{without_repo}#{url}")
     end
 
-    def get_path_with_opts(url)
+    def get_path_with_opts(url, without_limit = true)
       url, opt = url.match(/^(.+)\?(.*)$/)&.captures || url
       opts.immutable do |o|
+        o.remove(:limit) if without_limit
         o.send(:update, opt)
         get_path("#{url}#{opts}")
       end

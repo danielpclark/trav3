@@ -142,6 +142,16 @@ module Trav3
       self[-1]
     end
 
+    # If `@warnings` was returned with the response this will return
+    # a `ResponseCollection` instance of them.  Otherwise this returns `nil`.
+    #
+    # @return [ResponseCollection, nil]
+    def warnings
+      return nil unless hash?
+
+      self['@warnings']
+    end
+
     private
 
     def collection?(input)

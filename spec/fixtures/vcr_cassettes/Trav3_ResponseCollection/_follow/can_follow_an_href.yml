@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.travis-ci.org/repo/4067916?limit=25
+    uri: https://api.travis-ci.org/repo/4067916
     body:
       encoding: US-ASCII
       string: ''
@@ -27,7 +27,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 22 Jan 2019 21:22:57 GMT
+      - Wed, 06 Feb 2019 21:49:52 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -43,7 +43,7 @@ http_interactions:
       X-Rack-Cache:
       - miss
       X-Request-Id:
-      - ed3a47cd-bda7-430e-9139-38f912b37435
+      - 2a093586-bca2-4542-88fb-b4b454e1af41
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -56,30 +56,22 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |-
         {
-          "@warnings": [
-            {
-              "@type": "warning",
-              "message": "query parameter limit not safelisted, ignored",
-              "warning_type": "ignored_parameter",
-              "parameter": "limit"
-            }
-          ],
           "@type": "repository",
           "@href": "/repo/4067916",
           "@representation": "standard",
           "@permissions": {
             "read": true,
-            "create_request": false,
             "admin": false,
+            "activate": false,
             "deactivate": false,
-            "star": false,
             "unstar": false,
             "create_cron": false,
-            "activate": false,
+            "star": false,
             "create_env_var": false,
             "migrate": false,
             "delete_key_pair": false,
-            "create_key_pair": false
+            "create_key_pair": false,
+            "create_request": false
           },
           "id": 4067916,
           "name": "php-src-builder",
@@ -107,5 +99,5 @@ http_interactions:
           "migration_status": null
         }
     http_version: 
-  recorded_at: Tue, 22 Jan 2019 21:22:57 GMT
+  recorded_at: Wed, 06 Feb 2019 21:49:52 GMT
 recorded_with: VCR 4.0.0
