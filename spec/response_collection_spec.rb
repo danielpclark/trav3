@@ -82,6 +82,7 @@ RSpec.describe Trav3::ResponseCollection do
     it 'can follow an @href' do
       follow = collection.first.follow
       expect(follow).to be_an_instance_of Trav3::Success
+      expect(follow.warnings).to be_nil
     end
 
     it 'can follow the @href of an indexed item' do
