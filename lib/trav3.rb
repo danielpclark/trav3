@@ -100,6 +100,8 @@ module Trav3
       initial_defaults
     end
 
+    # @!group Request Parameters
+
     # Set as the API endpoint
     #
     # @param endpoint [String] name for value to set
@@ -150,6 +152,10 @@ module Trav3
       validate_repo_format repo_name
       @repo = sanitize_repo_name repo_name
     end
+
+    # @!endgroup
+
+    # @!group API Endpoints
 
     # Please Note that the naming of this endpoint may be changed. Our naming convention for this information is in flux. If you have suggestions for how this information should be presented please leave us feedback by commenting in this issue here or emailing support support@travis-ci.com.
     #
@@ -3655,6 +3661,8 @@ module Trav3
       sync and return post("#{without_repo}/user/#{user_id}/sync")
       get("#{without_repo}/user/#{user_id}")
     end
+
+    # @!endgroup
 
     private # @private
 
