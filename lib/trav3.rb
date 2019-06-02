@@ -1071,7 +1071,7 @@ module Trav3
     # @return [Success, RequestError]
     def caches(delete = false)
       without_limit do
-        delete and return delete("#{with_repo}/caches#{opts}")
+        :delete.==(delete) and return delete("#{with_repo}/caches#{opts}")
         get("#{with_repo}/caches#{opts}")
       end
     end
