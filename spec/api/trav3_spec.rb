@@ -108,6 +108,18 @@ RSpec.describe Trav3::Travis, :vcr do
     end
   end
 
+  describe '#beta_migration_request' do
+    before do
+      t.api_endpoint = 'https://api.travis-ci.com'
+      t.authorization = 'xxxx'
+    end
+
+    it 'requests beta migration' do
+      request = t.beta_migration_request(119_240)
+      expect(request).to be_an_instance_of Trav3::Success
+    end
+  end
+
   describe '#branch' do
     it 'gets the branch for the current repository' do
       branch = t.branch('master')
