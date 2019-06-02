@@ -3789,7 +3789,7 @@ Style/WordArray:
 Style/YodaCondition:
   Description: 'Do not use literals as the first operand of a comparison.'
   Reference: 'https://en.wikipedia.org/wiki/Yoda_conditions'
-  Enabled: true
+  Enabled: false
   EnforcedStyle: forbid_for_all_comparison_operators
   SupportedStyles:
     - forbid_for_all_comparison_operators
