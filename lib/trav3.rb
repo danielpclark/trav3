@@ -368,6 +368,46 @@ module Trav3
       get("#{without_repo}/user/#{user_id}/beta_features")
     end
 
+    # Request migration to beta
+    #
+    # ## Attributes
+    #     Name           Type     Description
+    #     id             Unknown  The beta_migration_request's id.
+    #     owner_id       Unknown  The beta_migration_request's owner_id.
+    #     owner_name     Unknown  The beta_migration_request's owner_name.
+    #     owner_type     Unknown  The beta_migration_request's owner_type.
+    #     accepted_at    Unknown  The beta_migration_request's accepted_at.
+    #     organizations  Unknown  The beta_migration_request's organizations.
+    #
+    # ## Actions
+    #
+    # **Create**
+    #
+    # Submits a request for beta migration
+    #
+    # POST <code>/user/{user.id}/beta_migration_request</code>
+    #
+    #     Template Variable  Type     Description
+    #     user.id            Integer  Value uniquely identifying the user.
+    #     Accepted Parameter                    Type     Description
+    #     beta_migration_request.organizations  Unknown  The beta_migration_request's organizations.
+    #
+    #     Example: POST /user/119240/beta_migration_request
+    #
+    # ```ruby
+    # # RUBY EXAMPLE
+    # travis = Trav3::Travis.new('danielpclark/trav3')
+    # travis.beta_migration_request(119_240)
+    # ```
+    #
+    # @note requests require an authorization token set in the headers. See: {authorization=}
+    #
+    # @param user_id [String, Integer] user id
+    # @return [Success, RequestError]
+    def beta_migration_request(user_id)
+      create("#{without_repo}/user/#{user_id}/beta_migration_request")
+    end
+
     # The branch of a GitHub repository. Useful for obtaining information about the last build on a given branch.
     #
     # **If querying using the repository slug, it must be formatted using {http://www.w3schools.com/tags/ref_urlencode.asp standard URL encoding}, including any special characters.**
